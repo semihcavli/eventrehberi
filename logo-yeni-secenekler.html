@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EventRehberi — Logo Seçenekleri</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #1F4D33;
+    --green-dark: #173a26;
+    --gold: #E8A630;
+    --gold-light: #f4c463;
+    --bg: #fafaf7;
+    --card: #ffffff;
+    --border: #e8e6e0;
+    --text: #1a1a1a;
+    --muted: #6b7568;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 2rem 1rem 5rem;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+
+  .header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .header .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+  .header h1 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+    color: var(--green);
+  }
+  .header p {
+    color: var(--muted);
+    font-size: 1.0625rem;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .logo-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s;
+    cursor: pointer;
+  }
+  .logo-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 42px rgba(31, 77, 51, 0.12);
+    border-color: var(--green);
+  }
+
+  .logo-preview-light {
+    background: #fff;
+    padding: 2.5rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+  .logo-preview-dark {
+    background: var(--green-dark);
+    padding: 2rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+  .logo-mark {
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+  }
+  .logo-mark-sm {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+  }
+  .logo-wordmark {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--text);
+  }
+  .logo-wordmark-light {
+    font-size: 1.125rem;
+    font-weight: 800;
+    color: #fff;
+  }
+
+  .logo-info {
+    padding: 1.5rem;
+  }
+  .logo-num {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: #fff8e6;
+    padding: 0.25rem 0.625rem;
+    border-radius: 6px;
+    margin-bottom: 0.75rem;
+  }
+  .logo-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--green);
+  }
+  .logo-desc {
+    color: var(--muted);
+    font-size: 0.9375rem;
+    margin-bottom: 1rem;
+  }
+  .logo-traits {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .logo-trait {
+    font-size: 0.75rem;
+    background: #f3efe6;
+    color: var(--green);
+    padding: 0.25rem 0.625rem;
+    border-radius: 999px;
+    font-weight: 500;
+  }
+
+  .footer-cta {
+    background: var(--green);
+    color: #fff;
+    border-radius: 18px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    margin-top: 2rem;
+  }
+  .footer-cta h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .footer-cta p {
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 0.5rem;
+  }
+  .footer-cta strong { color: var(--gold-light); }
+
+  .compare-row {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 1.5rem;
+    align-items: center;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+  .compare-num {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+</style>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZH1F3D61N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZZH1F3D61N');
+</script>
+</head>
+<body>
+
+<div class="container">
+
+  <header class="header">
+    <p class="eyebrow">EventRehberi · Logo Seçenekleri</p>
+    <h1>Hangi mark daha çok hitap ediyor?</h1>
+    <p>5 farklı yöne göre tasarlandı. Her birinin <strong>açık zemin</strong> ve <strong>koyu zemin</strong> hâli yan yana. Beğendiğin numarayı söyle, tüm sayfalara onu uygulayayım.</p>
+  </header>
+
+  <!-- ===== GRID — 5 SEÇENEK ===== -->
+  <div class="grid">
+
+    <!-- ============== 1. DAVETİYE ZARFI + MÜHÜR ============== -->
+    <article class="logo-card">
+      <div class="logo-preview-light">
+        <span class="logo-mark"><svg viewBox="-60 -64 120 132" width="40" height="40" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M -36 -56 H 36 a 6 6 0 0 1 6 6 V 60 L 0 32 L -42 60 V -50 a 6 6 0 0 1 6 -6 Z" fill="#C7522A"/><path d="M 0 -22 L 9 -4 L 28 -2 L 14 12 L 18 30 L 0 22 L -18 30 L -14 12 L -28 -2 L -9 -4 Z" fill="#FFFFFF"/></svg></span>
+        <span class="logo-wordmark">EventRehberi</span>
+      </div>
+      <div class="logo-preview-dark">
+        <span class="logo-mark-sm">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <rect x="8" y="20" width="48" height="34" rx="3" stroke="#fff" stroke-width="3.2" stroke-linejoin="round"/>
+            <path d="M8 22 L32 40 L56 22" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="32" cy="14" r="6" fill="#E8A630"/>
+            <circle cx="32" cy="14" r="2.5" fill="#173a26"/>
+          </svg>
+        </span>
+        <span class="logo-wordmark-light">EventRehberi</span>
+      </div>
+      <div class="logo-info">
+        <span class="logo-num">Seçenek 1</span>
+        <h3 class="logo-name">Davetiye Zarfı + Mühür</h3>
+        <p class="logo-desc">Açılan davetiye zarfı + üstte altın mühür. Doğrudan "davet" çağrışımı, kurumsal ama sıcak. Düğün ve kurumsal pazara eşit hitap.</p>
+        <div class="logo-traits">
+          <span class="logo-trait">🎯 Net anlam</span>
+          <span class="logo-trait">📨 Davet odaklı</span>
+          <span class="logo-trait">⭐ Premium</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- ============== 2. KONFETİ PATLAMASI ============== -->
+    <article class="logo-card">
+      <div class="logo-preview-light">
+        <span class="logo-mark"><svg viewBox="-60 -64 120 132" width="40" height="40" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M -36 -56 H 36 a 6 6 0 0 1 6 6 V 60 L 0 32 L -42 60 V -50 a 6 6 0 0 1 6 -6 Z" fill="#C7522A"/><path d="M 0 -22 L 9 -4 L 28 -2 L 14 12 L 18 30 L 0 22 L -18 30 L -14 12 L -28 -2 L -9 -4 Z" fill="#FFFFFF"/></svg></span>
+        <span class="logo-wordmark">EventRehberi</span>
+      </div>
+      <div class="logo-preview-dark">
+        <span class="logo-mark-sm">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <circle cx="32" cy="32" r="3" fill="#E8A630"/>
+            <line x1="32" y1="10" x2="32" y2="18" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+            <line x1="48" y1="16" x2="44" y2="22" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+            <line x1="54" y1="32" x2="46" y2="32" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+            <line x1="48" y1="48" x2="44" y2="42" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+            <line x1="32" y1="54" x2="32" y2="46" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+            <line x1="16" y1="48" x2="20" y2="42" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+            <line x1="10" y1="32" x2="18" y2="32" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+            <line x1="16" y1="16" x2="20" y2="22" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="42" cy="14" r="2" fill="#E8A630"/>
+            <circle cx="50" cy="42" r="2" fill="#E8A630"/>
+            <circle cx="22" cy="50" r="2" fill="#E8A630"/>
+            <circle cx="14" cy="22" r="2" fill="#E8A630"/>
+          </svg>
+        </span>
+        <span class="logo-wordmark-light">EventRehberi</span>
+      </div>
+      <div class="logo-info">
+        <span class="logo-num">Seçenek 2</span>
+        <h3 class="logo-name">Konfeti Patlaması</h3>
+        <p class="logo-desc">Merkezden 8 yöne yayılan kutlama anı. Eğlenceli, modern, hareketli. Doğum günü, kına, parti pazarına özellikle güçlü hitap.</p>
+        <div class="logo-traits">
+          <span class="logo-trait">🎉 Eğlenceli</span>
+          <span class="logo-trait">⚡ Dinamik</span>
+          <span class="logo-trait">🎂 Genç hedef</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- ============== 3. DG MONOGRAM ============== -->
+    <article class="logo-card">
+      <div class="logo-preview-light">
+        <span class="logo-mark"><svg viewBox="-60 -64 120 132" width="40" height="40" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M -36 -56 H 36 a 6 6 0 0 1 6 6 V 60 L 0 32 L -42 60 V -50 a 6 6 0 0 1 6 -6 Z" fill="#C7522A"/><path d="M 0 -22 L 9 -4 L 28 -2 L 14 12 L 18 30 L 0 22 L -18 30 L -14 12 L -28 -2 L -9 -4 Z" fill="#FFFFFF"/></svg></span>
+        <span class="logo-wordmark">EventRehberi</span>
+      </div>
+      <div class="logo-preview-dark">
+        <span class="logo-mark-sm">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <rect x="6" y="6" width="52" height="52" rx="14" fill="#fff"/>
+            <text x="32" y="44" text-anchor="middle" font-family="Inter, system-ui" font-weight="800" font-size="30" fill="#1F4D33" letter-spacing="-1">DG</text>
+            <circle cx="50" cy="16" r="3" fill="#E8A630"/>
+          </svg>
+        </span>
+        <span class="logo-wordmark-light">EventRehberi</span>
+      </div>
+      <div class="logo-info">
+        <span class="logo-num">Seçenek 3</span>
+        <h3 class="logo-name">DG Monogram</h3>
+        <p class="logo-desc">Yumuşak köşeli kare içinde "DG" tipografisi + üst köşede altın nokta. Premium, kurumsal, scaleable. App icon, sosyal medya avatar olarak güçlü.</p>
+        <div class="logo-traits">
+          <span class="logo-trait">💎 Premium</span>
+          <span class="logo-trait">🏢 Kurumsal</span>
+          <span class="logo-trait">📱 App-ready</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- ============== 4. AÇIK KAPI + IŞIK ============== -->
+    <article class="logo-card">
+      <div class="logo-preview-light">
+        <span class="logo-mark"><svg viewBox="-60 -64 120 132" width="40" height="40" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M -36 -56 H 36 a 6 6 0 0 1 6 6 V 60 L 0 32 L -42 60 V -50 a 6 6 0 0 1 6 -6 Z" fill="#C7522A"/><path d="M 0 -22 L 9 -4 L 28 -2 L 14 12 L 18 30 L 0 22 L -18 30 L -14 12 L -28 -2 L -9 -4 Z" fill="#FFFFFF"/></svg></span>
+        <span class="logo-wordmark">EventRehberi</span>
+      </div>
+      <div class="logo-preview-dark">
+        <span class="logo-mark-sm">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <line x1="6" y1="54" x2="58" y2="54" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+            <path d="M16 54 L16 14 L40 14 L40 54" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M40 14 L48 22 L48 54 L40 54 Z" fill="#fff"/>
+            <circle cx="52" cy="22" r="5" fill="#E8A630"/>
+            <line x1="52" y1="11" x2="52" y2="14" stroke="#E8A630" stroke-width="2" stroke-linecap="round"/>
+            <line x1="60" y1="22" x2="58" y2="22" stroke="#E8A630" stroke-width="2" stroke-linecap="round"/>
+            <line x1="58" y1="14" x2="56" y2="16" stroke="#E8A630" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="logo-wordmark-light">EventRehberi</span>
+      </div>
+      <div class="logo-info">
+        <span class="logo-num">Seçenek 4</span>
+        <h3 class="logo-name">Açık Kapı + Işık</h3>
+        <p class="logo-desc">Yarı açık kapı, dışarıda parlayan altın ışık. Misafirperverlik metaforu — "kapımız davete açık". Anadolu sıcaklığı + Türk konukseverliğine doğrudan referans.</p>
+        <div class="logo-traits">
+          <span class="logo-trait">🤝 Sıcak</span>
+          <span class="logo-trait">🏠 Anadolu</span>
+          <span class="logo-trait">💡 Hikâye dolu</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- ============== 5. KALPLİ DAVETİYE ============== -->
+    <article class="logo-card">
+      <div class="logo-preview-light">
+        <span class="logo-mark"><svg viewBox="-60 -64 120 132" width="40" height="40" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M -36 -56 H 36 a 6 6 0 0 1 6 6 V 60 L 0 32 L -42 60 V -50 a 6 6 0 0 1 6 -6 Z" fill="#C7522A"/><path d="M 0 -22 L 9 -4 L 28 -2 L 14 12 L 18 30 L 0 22 L -18 30 L -14 12 L -28 -2 L -9 -4 Z" fill="#FFFFFF"/></svg></span>
+        <span class="logo-wordmark">EventRehberi</span>
+      </div>
+      <div class="logo-preview-dark">
+        <span class="logo-mark-sm">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <rect x="8" y="20" width="48" height="32" rx="3" stroke="#fff" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M14 16 L14 36 L50 36 L50 16 Z" fill="#173a26" stroke="#fff" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M32 30 C32 30 25 25 25 21 C25 18.5 27 17 29 17 C30.5 17 32 18 32 19 C32 18 33.5 17 35 17 C37 17 39 18.5 39 21 C39 25 32 30 32 30 Z" fill="#E8A630"/>
+            <path d="M8 22 L24 32" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+            <path d="M56 22 L40 32" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+          </svg>
+        </span>
+        <span class="logo-wordmark-light">EventRehberi</span>
+      </div>
+      <div class="logo-info">
+        <span class="logo-num">Seçenek 5</span>
+        <h3 class="logo-name">Kalpli Davetiye</h3>
+        <p class="logo-desc">Davetiye zarfından çıkan mektup + altın kalp. Düğün ve aile odaklı pazara çok güçlü hitap. Romantik, samimi, Instagram için ideal görsel.</p>
+        <div class="logo-traits">
+          <span class="logo-trait">💛 Sıcak</span>
+          <span class="logo-trait">💍 Düğün</span>
+          <span class="logo-trait">📸 IG-friendly</span>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- ===== KÜÇÜK BOYUT KARŞILAŞTIRMA ===== -->
+  <h2 style="font-size: 1.375rem; font-weight: 700; margin: 1.5rem 0 1.5rem; color: var(--green);">Sosyal medya / favicon boyutunda nasıl görünüyor?</h2>
+  <p style="color: var(--muted); margin-bottom: 1.25rem;">Bir markanın "küçük boyutta okunaklı kalması" çok önemli — Instagram avatar, tarayıcı sekmesi, mobil uygulama ikonu gibi yerlerde 32-64 piksel olarak görüneceğiz. Aşağıda her seçeneğin küçük hâli:</p>
+
+  <div class="compare-row">
+    <span class="compare-num">Seçenek 1</span>
+    <div style="display:flex; gap:1.5rem; align-items:center;">
+      <svg width="32" height="32" viewBox="0 0 64 64"><rect x="8" y="20" width="48" height="34" rx="3" stroke="#1F4D33" stroke-width="3.2" stroke-linejoin="round" fill="none"/><path d="M8 22 L32 40 L56 22" stroke="#1F4D33" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="32" cy="14" r="6" fill="#E8A630"/><circle cx="32" cy="14" r="2.5" fill="#fff"/></svg>
+      <svg width="48" height="48" viewBox="0 0 64 64"><rect x="8" y="20" width="48" height="34" rx="3" stroke="#1F4D33" stroke-width="3.2" stroke-linejoin="round" fill="none"/><path d="M8 22 L32 40 L56 22" stroke="#1F4D33" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="32" cy="14" r="6" fill="#E8A630"/><circle cx="32" cy="14" r="2.5" fill="#fff"/></svg>
+      <svg width="64" height="64" viewBox="0 0 64 64"><rect x="8" y="20" width="48" height="34" rx="3" stroke="#1F4D33" stroke-width="3.2" stroke-linejoin="round" fill="none"/><path d="M8 22 L32 40 L56 22" stroke="#1F4D33" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="32" cy="14" r="6" fill="#E8A630"/><circle cx="32" cy="14" r="2.5" fill="#fff"/></svg>
+      <span style="color:var(--muted); font-size:0.875rem;">Davetiye + Mühür</span>
+    </div>
+  </div>
+
+  <div class="compare-row">
+    <span class="compare-num">Seçenek 2</span>
+    <div style="display:flex; gap:1.5rem; align-items:center;">
+      <svg width="32" height="32" viewBox="0 0 64 64"><circle cx="32" cy="32" r="3" fill="#E8A630"/><line x1="32" y1="10" x2="32" y2="18" stroke="#1F4D33" stroke-width="3" stroke-linecap="round"/><line x1="48" y1="16" x2="44" y2="22" stroke="#1F4D33" stroke-width="3" stroke-linecap="round"/><line x1="54" y1="32" x2="46" y2="32" stroke="#1F4D33" stroke-width="3" stroke-linecap="round"/><line x1="48" y1="48" x2="44" y2="42" stroke="#1F4D33" stroke-width="3" stroke-linecap="round"/><line x1="32" y1="54" x2="32" y2="46" stroke="#1F4D33" stroke-width="3" stroke-linecap="round"/><line x1="16" y1="48" x2="20" y2="42" stroke="#1F4D33" stroke-width="3" stroke-linecap="round"/><line x1="10" y1="32" x2="18" y2="32" stroke="#1F4D33" stroke-width="3" stroke-linecap="round"/><line x1="16" y1="16" x2="20" y2="22" stroke="#1F4D33" stroke-width="3" stroke-linecap="round"/></svg>
+      <svg width="48" height="48" viewBox="0 0 64 64"><circle cx="32" cy="32" r="3" fill="#E8A630"/><line x1="32" y1="10" x2="32" y2="18" stroke="#1F4D33" stroke-width="3" stroke-linecap="round"/><line x1="48" y1="16" x2="44" y2="22" stroke="#1F4D33" stroke-width="3" stroke-linecap="round"/><line x1="54" y1="32" x2="46" y2="32" stroke="#1F4D33" stroke-width="3" stroke-linecap="round"/><line x1="48" y1="48" x2="44" y2="42" stroke="#1F4D33" stroke-width="3" stroke-linecap="round"/><line x1="32" y1="54" x2="32" y2="46" stroke="#1F4D33" stroke-width="3" stroke-linecap="round"/><line x1="16" y1="48" x2="20" y2="42" stroke="#1F4D33" stroke-width="3" stroke-linecap="round"/><line x1="10" y1="32" x2="18" y2="32" stroke="#1F4D33" stroke-width="3" stroke-linecap="round"/><line x1="16" y1="16" x2="20" y2="22" stroke="#1F4D33" stroke-width="3" stroke-linecap="round"/><circle cx="42" cy="14" r="2" fill="#E8A630"/><circle cx="50" cy="42" r="2" fill="#E8A630"/><circle cx="22" cy="50" r="2" fill="#E8A630"/><circle cx="14" cy="22" r="2" fill="#E8A630"/></svg>
+      <svg width="64" height="64" viewBox="0 0 64 64"><circle cx="32" cy="32" r="3" fill="#E8A630"/><line x1="32" y1="10" x2="32" y2="18" stroke="#1F4D33" stroke-width="3" stroke-linecap="round"/><line x1="48" y1="16" x2="44" y2="22" stroke="#1F4D33" stroke-width="3" stroke-linecap="round"/><line x1="54" y1="32" x2="46" y2="32" stroke="#1F4D33" stroke-width="3" stroke-linecap="round"/><line x1="48" y1="48" x2="44" y2="42" stroke="#1F4D33" stroke-width="3" stroke-linecap="round"/><line x1="32" y1="54" x2="32" y2="46" stroke="#1F4D33" stroke-width="3" stroke-linecap="round"/><line x1="16" y1="48" x2="20" y2="42" stroke="#1F4D33" stroke-width="3" stroke-linecap="round"/><line x1="10" y1="32" x2="18" y2="32" stroke="#1F4D33" stroke-width="3" stroke-linecap="round"/><line x1="16" y1="16" x2="20" y2="22" stroke="#1F4D33" stroke-width="3" stroke-linecap="round"/><circle cx="42" cy="14" r="2" fill="#E8A630"/><circle cx="50" cy="42" r="2" fill="#E8A630"/><circle cx="22" cy="50" r="2" fill="#E8A630"/><circle cx="14" cy="22" r="2" fill="#E8A630"/></svg>
+      <span style="color:var(--muted); font-size:0.875rem;">Konfeti</span>
+    </div>
+  </div>
+
+  <div class="compare-row">
+    <span class="compare-num">Seçenek 3</span>
+    <div style="display:flex; gap:1.5rem; align-items:center;">
+      <svg width="32" height="32" viewBox="0 0 64 64"><rect x="6" y="6" width="52" height="52" rx="14" fill="#1F4D33"/><text x="32" y="44" text-anchor="middle" font-family="Inter" font-weight="800" font-size="30" fill="#fff" letter-spacing="-1">DG</text><circle cx="50" cy="16" r="3" fill="#E8A630"/></svg>
+      <svg width="48" height="48" viewBox="0 0 64 64"><rect x="6" y="6" width="52" height="52" rx="14" fill="#1F4D33"/><text x="32" y="44" text-anchor="middle" font-family="Inter" font-weight="800" font-size="30" fill="#fff" letter-spacing="-1">DG</text><circle cx="50" cy="16" r="3" fill="#E8A630"/></svg>
+      <svg width="64" height="64" viewBox="0 0 64 64"><rect x="6" y="6" width="52" height="52" rx="14" fill="#1F4D33"/><text x="32" y="44" text-anchor="middle" font-family="Inter" font-weight="800" font-size="30" fill="#fff" letter-spacing="-1">DG</text><circle cx="50" cy="16" r="3" fill="#E8A630"/></svg>
+      <span style="color:var(--muted); font-size:0.875rem;">DG Monogram</span>
+    </div>
+  </div>
+
+  <div class="compare-row">
+    <span class="compare-num">Seçenek 4</span>
+    <div style="display:flex; gap:1.5rem; align-items:center;">
+      <svg width="32" height="32" viewBox="0 0 64 64" fill="none"><line x1="6" y1="54" x2="58" y2="54" stroke="#1F4D33" stroke-width="3" stroke-linecap="round"/><path d="M16 54 L16 14 L40 14 L40 54" stroke="#1F4D33" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M40 14 L48 22 L48 54 L40 54 Z" fill="#1F4D33"/><circle cx="52" cy="22" r="5" fill="#E8A630"/></svg>
+      <svg width="48" height="48" viewBox="0 0 64 64" fill="none"><line x1="6" y1="54" x2="58" y2="54" stroke="#1F4D33" stroke-width="3" stroke-linecap="round"/><path d="M16 54 L16 14 L40 14 L40 54" stroke="#1F4D33" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M40 14 L48 22 L48 54 L40 54 Z" fill="#1F4D33"/><circle cx="52" cy="22" r="5" fill="#E8A630"/><line x1="52" y1="11" x2="52" y2="14" stroke="#E8A630" stroke-width="2" stroke-linecap="round"/><line x1="60" y1="22" x2="58" y2="22" stroke="#E8A630" stroke-width="2" stroke-linecap="round"/><line x1="58" y1="14" x2="56" y2="16" stroke="#E8A630" stroke-width="2" stroke-linecap="round"/></svg>
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none"><line x1="6" y1="54" x2="58" y2="54" stroke="#1F4D33" stroke-width="3" stroke-linecap="round"/><path d="M16 54 L16 14 L40 14 L40 54" stroke="#1F4D33" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M40 14 L48 22 L48 54 L40 54 Z" fill="#1F4D33"/><circle cx="52" cy="22" r="5" fill="#E8A630"/><line x1="52" y1="11" x2="52" y2="14" stroke="#E8A630" stroke-width="2" stroke-linecap="round"/><line x1="60" y1="22" x2="58" y2="22" stroke="#E8A630" stroke-width="2" stroke-linecap="round"/><line x1="58" y1="14" x2="56" y2="16" stroke="#E8A630" stroke-width="2" stroke-linecap="round"/></svg>
+      <span style="color:var(--muted); font-size:0.875rem;">Açık Kapı</span>
+    </div>
+  </div>
+
+  <div class="compare-row">
+    <span class="compare-num">Seçenek 5</span>
+    <div style="display:flex; gap:1.5rem; align-items:center;">
+      <svg width="32" height="32" viewBox="0 0 64 64" fill="none"><rect x="8" y="20" width="48" height="32" rx="3" stroke="#1F4D33" stroke-width="3" stroke-linejoin="round"/><path d="M14 16 L14 36 L50 36 L50 16 Z" fill="#fff" stroke="#1F4D33" stroke-width="3" stroke-linejoin="round"/><path d="M32 30 C32 30 25 25 25 21 C25 18.5 27 17 29 17 C30.5 17 32 18 32 19 C32 18 33.5 17 35 17 C37 17 39 18.5 39 21 C39 25 32 30 32 30 Z" fill="#E8A630"/></svg>
+      <svg width="48" height="48" viewBox="0 0 64 64" fill="none"><rect x="8" y="20" width="48" height="32" rx="3" stroke="#1F4D33" stroke-width="3" stroke-linejoin="round"/><path d="M14 16 L14 36 L50 36 L50 16 Z" fill="#fff" stroke="#1F4D33" stroke-width="3" stroke-linejoin="round"/><path d="M32 30 C32 30 25 25 25 21 C25 18.5 27 17 29 17 C30.5 17 32 18 32 19 C32 18 33.5 17 35 17 C37 17 39 18.5 39 21 C39 25 32 30 32 30 Z" fill="#E8A630"/></svg>
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none"><rect x="8" y="20" width="48" height="32" rx="3" stroke="#1F4D33" stroke-width="3" stroke-linejoin="round"/><path d="M14 16 L14 36 L50 36 L50 16 Z" fill="#fff" stroke="#1F4D33" stroke-width="3" stroke-linejoin="round"/><path d="M32 30 C32 30 25 25 25 21 C25 18.5 27 17 29 17 C30.5 17 32 18 32 19 C32 18 33.5 17 35 17 C37 17 39 18.5 39 21 C39 25 32 30 32 30 Z" fill="#E8A630"/></svg>
+      <span style="color:var(--muted); font-size:0.875rem;">Kalpli Davetiye</span>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER CTA ===== -->
+  <div class="footer-cta">
+    <h2>Hangi numarayı seçtin?</h2>
+    <p>1, 2, 3, 4 veya 5 yaz; sayfaya bütün uygulayayım.</p>
+    <p style="margin-top: 1rem; font-size: 0.875rem;">İstersen iki seçeneği <strong>karıştırabilir</strong> (örn. "1'in zarfı + 2'nin altın renk yoğunluğu"), ya da küçük dokunuşlar isteyebilirsin ("4'teki kapı biraz daha geniş olsun"). Söyle, ona göre rafine ederim.</p>
+  </div>
+
+</div>
+
+</body>
+</html>

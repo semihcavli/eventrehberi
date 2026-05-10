@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Round 5 — Görsel Önizleme v3</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #0f0f0f;
+    color: #e8e8e8;
+    padding: 2rem;
+  }
+
+  h1 { font-size: 1.4rem; font-weight: 600; color: #fff; margin-bottom: 0.3rem; }
+  .subtitle { font-size: 0.82rem; color: #555; margin-bottom: 2.5rem; }
+
+  .section { margin-bottom: 3rem; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-bottom: 1px solid #222;
+    padding-bottom: 0.6rem;
+    margin-bottom: 1.2rem;
+    flex-wrap: wrap;
+  }
+
+  .section-title { font-size: 0.95rem; font-weight: 600; color: #bbb; text-transform: uppercase; letter-spacing: 0.08em; }
+
+  .status-badge {
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+  .s-done    { background: #1F4D33; color: #7FD9A8; }
+  .s-new     { background: #2A1F00; color: #E5A800; }
+  .s-limited { background: #2A0A0A; color: #E57373; }
+
+  /* ONAYLANANLAR */
+  .approved-strip { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .approved-card {
+    background: #111;
+    border: 1px solid #1F4D33;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 240px;
+  }
+  .approved-card img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+  .approved-card .cb { padding: 0.6rem 0.8rem; }
+  .approved-card .lbl { font-size: 0.68rem; color: #7FD9A8; font-weight: 700; margin-bottom: 0.2rem; }
+  .approved-card .pid { font-family: monospace; font-size: 0.65rem; color: #555; }
+  .approved-card .dsc { font-size: 0.76rem; color: #999; margin-top: 0.2rem; }
+
+  /* GRID */
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+
+  .card {
+    background: #1a1a1a;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid #252525;
+    position: relative;
+  }
+  .card.rec { border-color: #1F4D33; }
+
+  .badge-rec {
+    position: absolute; top: 10px; left: 10px;
+    background: #1F4D33; color: #fff;
+    font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 4px; z-index: 2;
+  }
+  .badge-code {
+    position: absolute; top: 10px; right: 10px;
+    background: rgba(0,0,0,0.65); color: #ccc;
+    font-size: 0.7rem; font-weight: 700; font-family: monospace;
+    padding: 3px 8px; border-radius: 4px; z-index: 2;
+  }
+  .badge-warn {
+    position: absolute; bottom: 10px; left: 10px;
+    background: rgba(100,50,0,0.85); color: #FFA;
+    font-size: 0.62rem; font-weight: 700;
+    padding: 3px 8px; border-radius: 4px; z-index: 2;
+  }
+
+  .card img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+  .card.hero-card img { aspect-ratio: 21/9; }
+
+  .card-body { padding: 0.75rem 0.9rem; }
+  .pid { font-family: monospace; font-size: 0.65rem; color: #555; margin-bottom: 0.25rem; }
+  .dsc { font-size: 0.78rem; color: #aaa; line-height: 1.4; }
+  .note { font-size: 0.7rem; color: #a06020; margin-top: 0.3rem; }
+  .warn { font-size: 0.7rem; color: #888; margin-top: 0.3rem; font-style: italic; }
+
+  .limit-box {
+    background: #1A0E0E;
+    border: 1px solid #5A1A1A;
+    border-radius: 8px;
+    padding: 0.9rem 1.1rem;
+    margin-bottom: 1rem;
+  }
+  .limit-box p { font-size: 0.8rem; color: #CCA; line-height: 1.5; }
+  .limit-box strong { color: #FFA; }
+  .limit-box ul { margin: 0.4rem 0 0 1.1rem; font-size: 0.77rem; color: #AA9; }
+
+  .summary-box {
+    background: #161616;
+    border-radius: 8px;
+    padding: 1.1rem 1.3rem;
+    font-size: 0.8rem;
+    line-height: 1.8;
+    color: #aaa;
+  }
+  .summary-box strong { color: #fff; }
+  .summary-box ul { margin: 0.3rem 0 0.7rem 1.2rem; color: #8DB; }
+  .summary-box .need { color: #AA8; }
+
+  @media (max-width: 900px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<h1>Round 5 — Görsel Önizleme v3</h1>
+<p class="subtitle">Alkol kuralı aktif. Yeşil kenarlık = tavsiye / yeni bulgu. SADECE Garson ve Davetiye bölümleri güncellendi (diğerleri uygulandı).</p>
+
+<!-- ════ ONAYLANANLAR ════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-title">Uygulandı</span>
+    <span class="status-badge s-done">index.html + firms-data.js güncellendi</span>
+  </div>
+  <div class="approved-strip">
+
+    <div class="approved-card">
+      <img src="https://images.unsplash.com/photo-1510076857177-7470076d4098?w=600&q=80&fit=crop" loading="lazy" alt="">
+      <div class="cb">
+        <div class="lbl">Hero (HR-B)</div>
+        <div class="pid">photo-1510076857177</div>
+        <div class="dsc">Rustik düğün salonu, peri ışıkları — alkol yok</div>
+      </div>
+    </div>
+
+    <div class="approved-card">
+      <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&q=80&fit=crop" loading="lazy" alt="">
+      <div class="cb">
+        <div class="lbl">DJ &amp; Müzik (DJ-B)</div>
+        <div class="pid">photo-1516450360452</div>
+        <div class="dsc">Laser ışıklı DJ seti</div>
+      </div>
+    </div>
+
+    <div class="approved-card">
+      <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=600&q=80&fit=crop" loading="lazy" alt="">
+      <div class="cb">
+        <div class="lbl">Ekipman Kiralama (E-B)</div>
+        <div class="pid">photo-1598488035139</div>
+        <div class="dsc">Müzik stüdyosu, ekipman dolu</div>
+      </div>
+    </div>
+
+    <div class="approved-card">
+      <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?w=600&q=80&fit=crop" loading="lazy" alt="">
+      <div class="cb">
+        <div class="lbl">Kına Gecesi (K-A)</div>
+        <div class="pid">photo-1513151233558</div>
+        <div class="dsc">Renkli konfeti, kutlama</div>
+      </div>
+    </div>
+
+    <div class="approved-card">
+      <img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?w=600&q=80&fit=crop" loading="lazy" alt="">
+      <div class="cb">
+        <div class="lbl">VIP Davet (V-A)</div>
+        <div class="pid">photo-1531058020387</div>
+        <div class="dsc">Mimari salon, etkinlik kalabalığı</div>
+      </div>
+    </div>
+
+    <div class="approved-card">
+      <img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?w=600&q=80&fit=crop" loading="lazy" alt="">
+      <div class="cb">
+        <div class="lbl">DJ Mert Ocak (F-A)</div>
+        <div class="pid">photo-1506157786151</div>
+        <div class="dsc">Festival sahnesi, mor ışıklar</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════ GARSON & HOSTES ════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-title">Garson &amp; Hostes — Seçim Bekleniyor</span>
+    <span class="status-badge s-limited">8 sıralı testten 1 yeni bulgu</span>
+  </div>
+
+  <div class="limit-box">
+    <p><strong>8 sıralı test:</strong> Kafeterya, avokado tostu, resort şezlongu, ofis toplantısı döndü — "formal event staff" fotoğrafı ID tahminiyle bulunamadı.<br>
+    Aşağıda yeni bulgu + eski 2 seçenek. <strong>Birini onayla veya Unsplash'tan URL paylaş.</strong></p>
+    <ul>
+      <li>unsplash.com → "hotel concierge", "event staff", "formal waiter service" → URL paylaş</li>
+    </ul>
+  </div>
+
+  <div class="grid-3">
+
+    <div class="card rec">
+      <span class="badge-rec">Yeni bulgu</span>
+      <span class="badge-code">G-1</span>
+      <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&q=80&fit=crop" loading="lazy" alt="">
+      <div class="card-body">
+        <div class="pid">photo-1559339352</div>
+        <div class="dsc">Göl kenarı lüks teras restoranı, kurulmuş masalar, gün batımı. Garson görünmüyor ama premium mekan hissi — bu turda bulunan tek uygun görsel.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="badge-code">G-2</span>
+      <img src="https://images.unsplash.com/photo-1559329007-40df8a9345d8?w=800&q=80&fit=crop" loading="lazy" alt="">
+      <div class="card-body">
+        <div class="pid">photo-1559329007-40df8a9345d8</div>
+        <div class="dsc">Kuş bakışı lüks restoran, beyaz örtülü masalar, garsonlar görünüyor.</div>
+        <div class="note">Önceki turda reddedilmişti.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="badge-code">G-3</span>
+      <img src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&q=80&fit=crop" loading="lazy" alt="">
+      <div class="card-body">
+        <div class="pid">photo-1551632436</div>
+        <div class="dsc">Modern rıhtım restoranı, garson serviste, büyük pencereler.</div>
+        <div class="note">Önceki turda reddedilmişti.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════ DAVETİYE TASARIMI ════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-title">Davetiye Tasarımı — Seçim Bekleniyor</span>
+    <span class="status-badge s-limited">Sıralı 8 testten 0 davetiye görseli</span>
+  </div>
+
+  <div class="limit-box">
+    <p><strong>8 sıralı test:</strong> Bavul flatlay, konferans salonu, string ışıklı kalabalık döndü — gerçek stationery/davetiye kartı ID tahminiyle bulunamadı.<br>
+    Seçenekler: <strong>(A)</strong> Aşağıdaki 2 alternatiften birini onayla &emsp; <strong>(B)</strong> Unsplash'ta URL bul: "wedding invitation flatlay", "wax seal envelope"</p>
+  </div>
+
+  <div class="grid-2">
+
+    <div class="card">
+      <span class="badge-code">D-1</span>
+      <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=800&q=80&fit=crop" loading="lazy" alt="">
+      <div class="card-body">
+        <div class="pid">photo-1606800052052</div>
+        <div class="dsc">Altın alyanslar, beyaz çiçek flatlay — düğün/resmi etkinlik çağrışımı. Gerçek davetiye değil ama tematik.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="badge-code">D-2</span>
+      <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800&q=80&fit=crop" loading="lazy" alt="">
+      <div class="card-body">
+        <div class="pid">photo-1465495976277</div>
+        <div class="dsc">Düğün buketi ve nişan yüzükleri — resmi davet teması.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════ ÖZET ════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-title">Sonraki Adım</span>
+  </div>
+  <div class="summary-box">
+    <strong>Uygulandı (6 değişiklik):</strong>
+    <ul>
+      <li>Hero, DJ rail, Ekipman rail, Kına Gecesi, VIP Davet, DJ Mert Ocak</li>
+    </ul>
+    <strong>Seçim bekleniyor (2 kategori):</strong>
+    <ul class="need">
+      <li><strong>Garson:</strong> G-1 / G-2 / G-3 — ya da Unsplash'tan URL paylaş</li>
+      <li><strong>Davetiye:</strong> D-1 / D-2 — ya da Unsplash'tan URL paylaş</li>
+    </ul>
+    <strong>Onayladıktan sonra:</strong> B (firma.html hizmet-aware UI) ve C (CTA renk) devam eder.
+  </div>
+</div>
+
+</body>
+</html>

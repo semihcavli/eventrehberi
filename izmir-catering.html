@@ -1,0 +1,310 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="İzmir'de catering firmaları — Konak, Karşıyaka, Çeşme, Alsancak'tan tüm ilçelere. Sahil düğünü, kokteyl, kurumsal davet için Ege mutfağı uzmanı onaylı catering firmalarını karşılaştır, doğrudan teklif al.">
+<meta name="keywords" content="İzmir catering, İzmir düğün catering, Çeşme catering, Karşıyaka catering, Alsancak catering, Ege catering">
+<title>İzmir Catering Firmaları — Çeşme, Konak, Alsancak &amp; Sahil Düğünleri | EventRehberi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="supabase-client.js"></script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZH1F3D61N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZZH1F3D61N');
+</script>
+</head>
+<body>
+
+<!-- =============== NAVBAR =============== -->
+<nav class="navbar">
+  <div class="container navbar-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-mark"><svg viewBox="-60 -64 120 132" width="40" height="40" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M -36 -56 H 36 a 6 6 0 0 1 6 6 V 60 L 0 32 L -42 60 V -50 a 6 6 0 0 1 6 -6 Z" fill="#C7522A"/><path d="M 0 -22 L 9 -4 L 28 -2 L 14 12 L 18 30 L 0 22 L -18 30 L -14 12 L -28 -2 L -9 -4 Z" fill="#FFFFFF"/></svg></span>
+      <span>EventRehberi</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="catererlar.html">Firmalar</a></li>
+      <li><a href="fiyatlar.html">Firma Paketleri</a></li>
+      <li><a href="hakkimizda.html">Hakkımızda</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="giris.html" class="nav-auth-link">Giriş Yap</a>
+      <a href="uye-ol.html" class="btn btn-ghost btn-sm">Üye Ol</a>
+      <a href="kayit.html" class="btn btn-primary btn-sm">Firmanı Kaydet</a>
+    </div>
+  </div>
+</nav>
+
+<!-- =============== HERO =============== -->
+<section class="landing-hero">
+  <div class="landing-hero-bg" aria-hidden="true">
+    <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?w=2000&h=1100&fit=crop&auto=format&q=80" alt="İzmir'de Ege mutfağı catering" loading="eager">
+  </div>
+  <div class="container">
+    <div class="landing-hero-inner">
+      <p class="eyebrow">İzmir · Catering Pazaryeri</p>
+      <h1>İzmir'de catering firmaları — Ege'nin sahil davetlerinde uzman.</h1>
+      <p class="lead">Konak'tan Karşıyaka'ya, Alsancak'tan Çeşme'ye — Ege mutfağı, deniz ürünleri ve sahil düğünü uzmanı onaylı catering firmalarını karşılaştır, doğrudan teklif al.</p>
+      <div class="landing-hero-actions">
+        <a href="catererlar.html?city=İzmir" class="btn btn-primary btn-lg">İzmir Firmalarını Gör</a>
+        <a href="#nasil-secilir" class="btn btn-ghost btn-lg">Nasıl seçilir?</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="landing-quick-stats">
+  <div class="container">
+    <div class="landing-quick-stats-grid">
+      <div class="landing-quick-stat">
+        <span class="num"><span id="landing-firm-count">—</span></span>
+        <span class="label">Onaylı İzmir firması</span>
+      </div>
+      <div class="landing-quick-stat">
+        <span class="num">5</span>
+        <span class="label">Catering hizmet türü</span>
+      </div>
+      <div class="landing-quick-stat">
+        <span class="num">30</span>
+        <span class="label">Hizmet alanı (ilçe)</span>
+      </div>
+      <div class="landing-quick-stat">
+        <span class="num">24sa</span>
+        <span class="label">Ortalama teklif yanıt süresi</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="landing-intro">
+      <h2>İzmir — Ege'nin sahil ve davet kültürü</h2>
+      <p>İzmir, Türkiye'nin en yoğun yaz turizm sezonu yaşayan illerinden biri. Çeşme, Urla, Foça gibi sahil ilçelerinde haziran-eylül arası her hafta sonu onlarca sahil düğünü ve kokteyl daveti düzenleniyor. Şehir merkezindeki Konak, Alsancak ve Karşıyaka'da ise yıl boyu kurumsal etkinlikler, lansmanlar ve kokteyl davetleri akıyor.</p>
+      <p>EventRehberi olarak İzmir'in catering firmalarını <strong>Ege mutfağı uzmanlığı</strong>, <strong>açık hava ve sahil etkinliklerinde deneyim</strong>, ve <strong>deniz ürünleri kalitesi</strong> ölçütleriyle değerlendiriyoruz. Zeytinyağlı yemekler, mevsimlik otlar, taze deniz mahsulleri konusunda fark yaratan firmalarla çalışıyoruz.</p>
+
+      <h3 id="ilceler">İzmir'de popüler catering bölgeleri</h3>
+      <p>Aşağıdaki ilçelerde özellikle yoğun hizmet ağımız var. Bölge seçerek ilgili firmaları görebilirsiniz:</p>
+      <div class="landing-districts">
+        <a href="catererlar.html?city=İzmir&amp;district=Konak" class="landing-district-chip">Konak</a>
+        <a href="catererlar.html?city=İzmir&amp;district=Karşıyaka" class="landing-district-chip">Karşıyaka</a>
+        <a href="catererlar.html?city=İzmir&amp;district=Bornova" class="landing-district-chip">Bornova</a>
+        <a href="catererlar.html?city=İzmir&amp;district=Çeşme" class="landing-district-chip">Çeşme</a>
+        <a href="catererlar.html?city=İzmir&amp;district=Urla" class="landing-district-chip">Urla</a>
+        <a href="catererlar.html?city=İzmir&amp;district=Foça" class="landing-district-chip">Foça</a>
+        <a href="catererlar.html?city=İzmir&amp;district=Buca" class="landing-district-chip">Buca</a>
+        <a href="catererlar.html?city=İzmir&amp;district=Bayraklı" class="landing-district-chip">Bayraklı</a>
+        <a href="catererlar.html?city=İzmir" class="landing-district-chip">+ tüm ilçeler</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header" style="text-align:left; max-width:760px; margin:0 0 2rem;">
+      <p class="eyebrow">Onaylı Firmalar</p>
+      <h2>İzmir'de öne çıkan catering firmaları</h2>
+      <p class="section-sub">Ege mutfağı uzmanlığı, sahil etkinlik deneyimi ve müşteri puanlarıyla seçilen İzmir firmaları.</p>
+    </div>
+
+    <div id="landing-firms-grid" class="landing-firms-grid"></div>
+
+    <div style="text-align:center; margin-top:2.5rem;">
+      <a href="catererlar.html?city=İzmir" class="btn btn-ghost btn-lg">Tüm İzmir firmalarını gör →</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="nasil-secilir">
+  <div class="container">
+    <div class="section-header" style="text-align:left; max-width:760px; margin:0 0 1.5rem;">
+      <p class="eyebrow">Rehber</p>
+      <h2>İzmir'de catering firması nasıl seçilir?</h2>
+      <p class="section-sub">Sahil etkinlikleri ve Ege mutfağı yoğunluğu, İzmir'de catering seçimini özel kılıyor. 5 madde:</p>
+    </div>
+
+    <div class="landing-guide">
+      <div class="landing-guide-card">
+        <div class="num">1</div>
+        <div>
+          <h3>Sahil/açık hava deneyimini sorgulayın</h3>
+          <p>Çeşme, Urla, Foça gibi açık alanlarda yapılan etkinliklerde rüzgâr, güneş ve sıcaklık servis lojistiğini etkiler. Bu bölgelerde tecrübeli firmalar gölgelendirme, sıcaklık koruma ve tabak/içecek seçiminde fark yaratır.</p>
+        </div>
+      </div>
+      <div class="landing-guide-card">
+        <div class="num">2</div>
+        <div>
+          <h3>Deniz ürünleri kaynağını ve tazeliğini sorun</h3>
+          <p>İzmir'de balık ve deniz ürünleri menüde olmazsa olmazdır. İyi firmalar günlük balıkçı tezgâhından tedarik yapar; soruyu sormaktan çekinmeyin: "balıklar ne kadar taze?", "kaynağı nereden?".</p>
+        </div>
+      </div>
+      <div class="landing-guide-card">
+        <div class="num">3</div>
+        <div>
+          <h3>Mevsim sebzelerine ve zeytinyağlılara dikkat edin</h3>
+          <p>Ege mutfağının özü mevsim otları (radika, hardal, ebegümeci) ve zeytinyağlı yemeklerdir. Menüde mevsime uygun otların ve kaliteli zeytinyağı kullanımının öne çıkması firmanın gerçek Ege mutfağı uzmanı olduğunun göstergesidir.</p>
+        </div>
+      </div>
+      <div class="landing-guide-card">
+        <div class="num">4</div>
+        <div>
+          <h3>Sezon yoğunluğunu hesaba katın</h3>
+          <p>Haziran-Eylül arası İzmir'de catering sezonu zirve yapar. Çeşme/Urla'daki sahil mekanları için en az <strong>4-6 ay öncesinden</strong> bağlamak gerekir; aksi halde düğün tarihinizi bulamayabilirsiniz.</p>
+        </div>
+      </div>
+      <div class="landing-guide-card">
+        <div class="num">5</div>
+        <div>
+          <h3>Sözleşme ve iptal koşullarını yazılı isteyin</h3>
+          <p>Açık hava etkinliklerinde hava koşulları sürpriz yapabilir. Yağmur planı, alternatif kapalı alan, gecikme protokolü gibi maddeler sözleşmede yazılı olmalı.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header" style="text-align:left; max-width:760px; margin:0 0 1.5rem;">
+      <p class="eyebrow">Sıkça Sorulanlar</p>
+      <h2>İzmir catering hakkında merak edilenler</h2>
+    </div>
+
+    <div class="landing-faq">
+      <details class="landing-faq-item">
+        <summary>Çeşme veya Urla'da sahil düğünü için catering nasıl bulurum?</summary>
+        <div class="answer">
+          Çeşme ve Urla'da yaz sezonu Mayıs-Eylül arasındadır ve bu dönem catering firmaları için zirve yoğunluk demektir. İzmir merkezli birçok firma bu bölgelere hizmet verir; ek nakliye/kurulum ücreti mahalin uzaklığına göre değişir. Filtremizden "Çeşme" veya "Urla" ilçesini seçerek ilgili firmaları görebilirsiniz.
+        </div>
+      </details>
+      <details class="landing-faq-item">
+        <summary>İzmir'de Ege mutfağı uzmanı catering firması var mı?</summary>
+        <div class="answer">
+          Evet — İzmir, Türkiye'de Ege mutfağı catering konusunda en güçlü şehirdir. Onaylı firmalarımızın büyük çoğunluğu zeytinyağlı yemekler, mevsim otları, taze deniz ürünleri ve geleneksel Ege tatlılarında uzmanlaşmıştır. Filtreden "Ege" mutfağını seçerek bu firmaları görebilirsiniz.
+        </div>
+      </details>
+      <details class="landing-faq-item">
+        <summary>İzmir'de catering kişi başı ortalama ne kadar?</summary>
+        <div class="answer">
+          İzmir'de catering fiyatları kişi başı 300-1.200 TL arasında değişir. Sahil/yaz sezonu ücretleri %15-25 daha yüksektir. Kokteyl menüleri 250-450 TL, tam servis düğün menüleri 500-1.200 TL, premium fine-dining 1.200+ TL aralığındadır.
+        </div>
+      </details>
+      <details class="landing-faq-item">
+        <summary>Sahil düğününde rüzgâr/sıcaklık nasıl yönetilir?</summary>
+        <div class="answer">
+          İyi bir İzmir catering firması açık hava etkinliklerinde gölgelendirme tenteleri, soğuk içecek istasyonları, rüzgâra karşı sabit servis tabakları, mevsime uygun menü seçimleri yapar. Bu detayları teklif aşamasında konuşmak, etkinlik gününde sürpriz yaşamamayı sağlar.
+        </div>
+      </details>
+      <details class="landing-faq-item">
+        <summary>Düğün tarihinden ne kadar önce rezervasyon yapmalıyım?</summary>
+        <div class="answer">
+          İzmir'de sezon (Mayıs-Eylül) dönemi için <strong>en az 4-6 ay öncesinden</strong>, popüler Çeşme/Urla mekânları için <strong>6-8 ay öncesinden</strong> bağlanmak gerekir. Sezon dışı dönemler için 1-2 ay yeterli olabilir.
+        </div>
+      </details>
+      <details class="landing-faq-item">
+        <summary>Vegan, vejetaryen ve glutensiz menü var mı?</summary>
+        <div class="answer">
+          İzmir, Ege mutfağının zeytinyağlı tabağı ve mevsim sebzeleriyle vegan/vejetaryen menüler için doğal olarak güçlü bir şehir. Onaylı firmalarımızın çoğu vegan, vejetaryen ve glutensiz menü hazırlayabilir; filtreden bu mutfak tiplerini seçerek uzmanlaşmış firmaları bulabilirsiniz.
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="landing-cta-banner">
+      <h2>İzmir'deki etkinliğiniz için hemen başlayın.</h2>
+      <p>Onaylı catering firmalarını filtreleyin, menüleri karşılaştırın, doğrudan teklif alın. Tamamen ücretsiz.</p>
+      <a href="catererlar.html?city=İzmir" class="btn btn-primary btn-lg">İzmir Firmalarını İncele</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div style="max-width:760px; margin:0 auto;">
+      <h3 style="margin-bottom:0.75rem; font-size:1.125rem;">Diğer şehirler</h3>
+      <div class="related-cities">
+        <a href="istanbul-catering.html" class="related-link">İstanbul Catering</a>
+        <a href="ankara-catering.html" class="related-link">Ankara Catering</a>
+        <a href="catererlar.html" class="related-link">Tüm Türkiye →</a>
+      </div>
+
+      <h3 style="margin:1.75rem 0 0.75rem; font-size:1.125rem;">Etkinlik türüne göre</h3>
+      <div class="related-events">
+        <a href="dugun-catering.html" class="related-link">Düğün Catering</a>
+        <a href="kurumsal-catering.html" class="related-link">Kurumsal Catering</a>
+        <a href="ozel-sef-hizmeti.html" class="related-link">Özel Şef</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== FOOTER =============== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col footer-brand">
+        <a href="index.html" class="logo">
+          <span class="logo-mark"><svg viewBox="-60 -64 120 132" width="40" height="40" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M -36 -56 H 36 a 6 6 0 0 1 6 6 V 60 L 0 32 L -42 60 V -50 a 6 6 0 0 1 6 -6 Z" fill="#C7522A"/><path d="M 0 -22 L 9 -4 L 28 -2 L 14 12 L 18 30 L 0 22 L -18 30 L -14 12 L -28 -2 L -9 -4 Z" fill="#FFFFFF"/></svg></span>
+          <span>EventRehberi</span>
+        </a>
+        <p class="muted">Türkiye'nin catering pazaryeri. Her etkinlik için doğru firmayı bul, doğrudan teklif al.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Şehirler</h4>
+        <ul>
+          <li><a href="istanbul-catering.html">İstanbul Catering</a></li>
+          <li><a href="ankara-catering.html">Ankara Catering</a></li>
+          <li><a href="izmir-catering.html">İzmir Catering</a></li>
+          <li><a href="catererlar.html">Tüm Türkiye</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Etkinlikler</h4>
+        <ul>
+          <li><a href="dugun-catering.html">Düğün Catering</a></li>
+          <li><a href="kurumsal-catering.html">Kurumsal Catering</a></li>
+          <li><a href="ozel-sef-hizmeti.html">Özel Şef</a></li>
+          <li><a href="catererlar.html?hizmet=bar">Bar &amp; Kokteyl</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Kurumsal &amp; Yasal</h4>
+        <ul>
+          <li><a href="hakkimizda.html">Hakkımızda</a></li>
+          <li><a href="hakkimizda.html#iletisim">İletişim</a></li>
+          <li><a href="kvkk.html">KVKK Aydınlatma</a></li>
+          <li><a href="gizlilik.html">Gizlilik Politikası</a></li>
+          <li><a href="kullanim-kosullari.html">Kullanım Koşulları</a></li>
+          <li><a href="cerez-politikasi.html">Çerez Politikası</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 EventRehberi. Tüm hakları saklıdır.</span>
+      <span>İstanbul, Türkiye</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.LANDING_FILTER = { city: 'İzmir', limit: 6 };
+</script>
+<script src="favorites.js"></script>
+<script src="firms-data.js"></script>
+<script src="compare.js"></script>
+<script src="navbar-mobile.js"></script>
+<script src="auth-nav.js"></script>
+<script src="cookie-consent.js"></script>
+</body>
+</html>

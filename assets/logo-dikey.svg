@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 320" width="360" height="320">
+  <g transform="translate(180 110)">
+    <path d="M 0 -56 C -32 -56 -52 -34 -52 -8 C -52 18 -28 40 0 64 C 28 40 52 18 52 -8 C 52 -34 32 -56 0 -56 Z" fill="#C7522A"/>
+    <g transform="translate(0 -10)">
+      <rect x="-26" y="-14" width="52" height="34" rx="3" fill="#FFFFFF"/>
+      <path d="M -26 -12 L 0 8 L 26 -12" stroke="#C7522A" stroke-width="3" fill="none" stroke-linejoin="round"/>
+      <path d="M 0 22 C -6 16 -12 14 -12 8 C -12 4 -8 2 -4 4 C -2 5 0 7 0 7 C 0 7 2 5 4 4 C 8 2 12 4 12 8 C 12 14 6 16 0 22 Z" fill="#C7522A"/>
+    </g>
+  </g>
+  <text x="180" y="280" text-anchor="middle" font-family="Manrope, system-ui, sans-serif" font-weight="800" font-size="56" letter-spacing="-2" fill="#1A1A2E">bi<tspan fill="#C7522A">davet</tspan>var</text>
+</svg>

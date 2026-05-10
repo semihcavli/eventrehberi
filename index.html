@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Yemekten DJ'e, organizatörden çocuk eğlencesine — Türkiye'nin etkinlik firmalarına tek yerden ulaş. 13 kategoride onaylı firmalar, doğrudan teklif, komisyon yok.">
+<title>EventRehberi — Türkiye'nin Event Planlama Platformu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZH1F3D61N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZZH1F3D61N');
+</script>
+</head>
+<body>
+
+<!-- =============== NAVBAR =============== -->
+<nav class="navbar">
+  <div class="container navbar-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-mark"><svg viewBox="-60 -64 120 132" width="40" height="40" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M -36 -56 H 36 a 6 6 0 0 1 6 6 V 60 L 0 32 L -42 60 V -50 a 6 6 0 0 1 6 -6 Z" fill="#C7522A"/><path d="M 0 -22 L 9 -4 L 28 -2 L 14 12 L 18 30 L 0 22 L -18 30 L -14 12 L -28 -2 L -9 -4 Z" fill="#FFFFFF"/></svg></span>
+      <span>EventRehberi</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="catererlar.html">Firmalar</a></li>
+      <li><a href="fiyatlar.html">Firma Paketleri</a></li>
+      <li><a href="hakkimizda.html">Hakkımızda</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="giris.html" class="nav-auth-link">Giriş Yap</a>
+      <a href="uye-ol.html" class="btn btn-ghost btn-sm">Üye Ol</a>
+      <a href="kayit.html" class="btn btn-primary btn-sm">Firmanı Kaydet</a>
+    </div>
+  </div>
+</nav>
+
+<!-- =============== HERO =============== -->
+<section class="hero hero-image">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1510076857177-7470076d4098?w=2000&h=1100&fit=crop&crop=entropy&auto=format&q=80" alt="" loading="eager">
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="container hero-inner">
+    <p class="eyebrow hero-eyebrow">Event Planlama Platformu</p>
+    <h1>Davetinin her bileşeni, <br>tek panelde.</h1>
+    <p class="lead">Yemekten DJ'e, organizatörden çocuk eğlencesine — Türkiye'nin etkinlik firmalarına tek yerden ulaş.</p>
+
+    <form class="hero-search" id="heroSearchForm" onsubmit="return smartSearchRedirect(event)" novalidate>
+
+      <!-- Alan 1: Hizmet -->
+      <div class="hs-field">
+        <svg class="hs-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+        <select id="hs-hizmet" class="hs-select" aria-label="Hizmet türü seç">
+          <option value="">Tüm hizmetler</option>
+          <option value="yemek">Yemek Catering</option>
+          <option value="bar">Bar &amp; Kokteyl</option>
+          <option value="sef">Özel Şef</option>
+          <option value="pasta">Pasta &amp; Tatlı</option>
+          <option value="susleme">Süsleme, Dekor &amp; Çiçek</option>
+          <option value="davetiye">Davetiye Tasarımı</option>
+          <option value="organizator">Organizatör</option>
+          <option value="dj">DJ, Müzik &amp; Sanatçı</option>
+          <option value="foto">Foto &amp; Video</option>
+          <option value="garson">Garson &amp; Hostes</option>
+          <option value="ekipman">Ekipman Kiralama</option>
+          <option value="workshop">Workshop &amp; Atölye</option>
+          <option value="cocuk">Çocuk Etkinliği</option>
+        </select>
+      </div>
+
+      <div class="hs-divider" aria-hidden="true"></div>
+
+      <!-- Alan 2: Şehir -->
+      <div class="hs-field">
+        <svg class="hs-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <input type="text" id="hs-sehir" class="hs-input" list="hs-sehir-list" placeholder="Şehir... (boş = tüm Türkiye)" autocomplete="off" aria-label="Şehir gir">
+        <datalist id="hs-sehir-list">
+          <option value="İstanbul"><option value="Ankara"><option value="İzmir">
+          <option value="Bursa"><option value="Antalya"><option value="Adana">
+          <option value="Konya"><option value="Gaziantep"><option value="Kocaeli">
+          <option value="Mersin"><option value="Diyarbakır"><option value="Hatay">
+          <option value="Manisa"><option value="Kayseri"><option value="Samsun">
+          <option value="Balıkesir"><option value="Tekirdağ"><option value="Sakarya">
+          <option value="Denizli"><option value="Muğla"><option value="Eskişehir">
+          <option value="Trabzon"><option value="Malatya"><option value="Erzurum">
+          <option value="Van"><option value="Aydın"><option value="Şanlıurfa">
+          <option value="Kahramanmaraş"><option value="Afyonkarahisar"><option value="Elazığ">
+          <option value="Ordu"><option value="Sivas"><option value="Adıyaman">
+          <option value="Çanakkale"><option value="Edirne"><option value="Isparta">
+          <option value="Zonguldak"><option value="Rize"><option value="Giresun">
+          <option value="Osmaniye"><option value="Uşak"><option value="Kütahya">
+          <option value="Burdur"><option value="Tokat"><option value="Kastamonu">
+          <option value="Çorum"><option value="Yozgat"><option value="Yalova">
+          <option value="Kırklareli"><option value="Bilecik"><option value="Aksaray">
+          <option value="Niğde"><option value="Nevşehir"><option value="Kırşehir">
+          <option value="Karaman"><option value="Çankırı"><option value="Kırıkkale">
+          <option value="Düzce"><option value="Bolu"><option value="Sinop">
+          <option value="Artvin"><option value="Amasya"><option value="Bayburt">
+          <option value="Karabük"><option value="Gümüşhane"><option value="Bartın">
+          <option value="Erzincan"><option value="Ağrı"><option value="Muş">
+          <option value="Bitlis"><option value="Hakkari"><option value="Bingöl">
+          <option value="Iğdır"><option value="Ardahan"><option value="Kars">
+          <option value="Tunceli"><option value="Mardin"><option value="Batman">
+          <option value="Siirt"><option value="Şırnak"><option value="Kilis">
+        </datalist>
+      </div>
+
+      <div class="hs-divider" aria-hidden="true"></div>
+
+      <!-- Alan 3: Etkinlik -->
+      <div class="hs-field">
+        <svg class="hs-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <select id="hs-event" class="hs-select" aria-label="Etkinlik türü seç">
+          <option value="">Tüm etkinlikler</option>
+          <option value="dugun">Düğün</option>
+          <option value="nisan">Nişan &amp; Söz</option>
+          <option value="kurumsal">Kurumsal</option>
+          <option value="kokteyl">Kokteyl &amp; Davet</option>
+          <option value="dogum-gunu">Doğum Günü</option>
+          <option value="ozel-davet">Özel Davet</option>
+
+        </select>
+      </div>
+
+      <!-- Buton -->
+      <button type="submit" class="btn btn-primary hs-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Firma Bul
+      </button>
+
+    </form>
+
+    <div class="hero-popular">
+      <span class="hero-popular-label">Popüler:</span>
+      <div class="hero-popular-chips">
+        <a href="catererlar.html?hizmet=yemek" class="chip chip-glass">Yemek Catering</a>
+        <a href="catererlar.html?hizmet=bar" class="chip chip-glass">Bar &amp; Kokteyl</a>
+        <a href="catererlar.html?hizmet=sef" class="chip chip-glass">Özel Şef</a>
+        <a href="catererlar.html?hizmet=ekipman" class="chip chip-glass">Ekipman</a>
+        <a href="catererlar.html?hizmet=pasta" class="chip chip-glass">Pasta</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== SERVICE CATEGORIES (primary, scrollable rail) =============== -->
+<section class="section section-services">
+  <div class="container">
+    <div class="section-header">
+      <p class="eyebrow">Hizmetler</p>
+      <h2>13 hizmet kategorisi — davetin her bileşeni.</h2>
+      <p class="section-sub">Yemekten DJ'e, organizatörden çocuk eğlencesine — 13 kategoride onaylı firmalar tek panelde.</p>
+    </div>
+  </div>
+
+  <div class="container service-rail-wrapper">
+    <div class="service-rail" id="serviceRail">
+
+
+      <a href="catererlar.html?hizmet=yemek" class="service-rail-card">
+        <div class="service-rail-img" style="background-image:url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=700&h=500&fit=crop&q=80')">
+          <span class="service-rail-emoji">🍽️</span>
+        </div>
+        <div class="service-rail-body">
+          <h3>Yemek Catering</h3>
+          <p>Büfe, sıcak servis, finger food</p>
+          <span class="service-rail-link">Firmaları gör <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+      </a>
+
+      <a href="catererlar.html?hizmet=organizator" class="service-rail-card">
+        <div class="service-rail-img" style="background-image:url('https://images.unsplash.com/photo-1556125574-d7f27ec36a06?w=700&h=500&fit=crop&q=80')">
+          <span class="service-rail-emoji">📋</span>
+        </div>
+        <div class="service-rail-body">
+          <h3>Organizatör</h3>
+          <p>Düğün planlayıcı ve etkinlik yönetimi</p>
+          <span class="service-rail-link">Firmaları gör <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+      </a>
+
+      <a href="catererlar.html?hizmet=dj" class="service-rail-card">
+        <div class="service-rail-img" style="background-image:url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=700&h=500&fit=crop&q=80')">
+          <span class="service-rail-emoji">🎵</span>
+        </div>
+        <div class="service-rail-body">
+          <h3>DJ, Müzik & Sanatçı</h3>
+          <p>DJ, canlı grup, sanatçı, ses sistemi</p>
+          <span class="service-rail-link">Firmaları gör <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+      </a>
+
+      <a href="catererlar.html?hizmet=foto" class="service-rail-card">
+        <div class="service-rail-img" style="background-image:url('https://images.unsplash.com/photo-1554080353-a576cf803bda?w=700&h=500&fit=crop&q=80')">
+          <span class="service-rail-emoji">📸</span>
+        </div>
+        <div class="service-rail-body">
+          <h3>Foto & Video</h3>
+          <p>Düğün/etkinlik fotoğrafçısı, video</p>
+          <span class="service-rail-link">Firmaları gör <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+      </a>
+
+      <a href="catererlar.html?hizmet=sef" class="service-rail-card">
+        <div class="service-rail-img" style="background-image:url('https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=700&h=500&fit=crop&q=80')">
+          <span class="service-rail-emoji">👨‍🍳</span>
+        </div>
+        <div class="service-rail-body">
+          <h3>Özel Şef</h3>
+          <p>Evde / villada premium private chef</p>
+          <span class="service-rail-link">Firmaları gör <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+      </a>
+
+      <a href="catererlar.html?hizmet=bar" class="service-rail-card">
+        <div class="service-rail-img" style="background-image:url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=700&h=500&fit=crop&q=80')">
+          <span class="service-rail-emoji">🍸</span>
+        </div>
+        <div class="service-rail-body">
+          <h3>Bar & Kokteyl</h3>
+          <p>Mobil bar, barmen, kokteyller</p>
+          <span class="service-rail-link">Firmaları gör <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+      </a>
+
+      <a href="catererlar.html?hizmet=pasta" class="service-rail-card">
+        <div class="service-rail-img" style="background-image:url('https://images.unsplash.com/photo-1535254973040-607b474cb50d?w=700&h=500&fit=crop&q=80')">
+          <span class="service-rail-emoji">🎂</span>
+        </div>
+        <div class="service-rail-body">
+          <h3>Pasta & Tatlı</h3>
+          <p>Konsept pastalar, tatlı büfesi</p>
+          <span class="service-rail-link">Firmaları gör <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+      </a>
+
+      <a href="catererlar.html?hizmet=susleme" class="service-rail-card">
+        <div class="service-rail-img" style="background-image:url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=700&h=500&fit=crop&q=80')">
+          <span class="service-rail-emoji">🎀</span>
+        </div>
+        <div class="service-rail-body">
+          <h3>Süsleme, Dekor & Çiçek</h3>
+          <p>Düğün dekoru, gelin buketi, tören çiçekleri</p>
+          <span class="service-rail-link">Firmaları gör <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+      </a>
+
+      <a href="catererlar.html?hizmet=davetiye" class="service-rail-card">
+        <div class="service-rail-img" style="background-image:url('https://images.unsplash.com/photo-1606800052052-a08af7148866?w=700&h=500&fit=crop&q=80')">
+          <span class="service-rail-emoji">💌</span>
+        </div>
+        <div class="service-rail-body">
+          <h3>Davetiye Tasarımı</h3>
+          <p>Klasik baskı + dijital davetiye</p>
+          <span class="service-rail-link">Firmaları gör <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+      </a>
+
+      <a href="catererlar.html?hizmet=garson" class="service-rail-card">
+        <div class="service-rail-img" style="background-image:url('https://images.unsplash.com/photo-1559339352-11d035aa65de?w=700&h=500&fit=crop&q=80')">
+          <span class="service-rail-emoji">🤵</span>
+        </div>
+        <div class="service-rail-body">
+          <h3>Garson & Hostes</h3>
+          <p>Garson, barmen ve karşılama hostesi kiralama</p>
+          <span class="service-rail-link">Firmaları gör <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+      </a>
+
+      <a href="catererlar.html?hizmet=ekipman" class="service-rail-card">
+        <div class="service-rail-img" style="background-image:url('https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=700&h=500&fit=crop&q=80')">
+          <span class="service-rail-emoji">🪑</span>
+        </div>
+        <div class="service-rail-body">
+          <h3>Ekipman Kiralama</h3>
+          <p>Masa, sandalye, çadır, ışık, ses</p>
+          <span class="service-rail-link">Firmaları gör <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+      </a>
+
+      <a href="catererlar.html?hizmet=workshop" class="service-rail-card">
+        <div class="service-rail-img" style="background-image:url('https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=700&h=500&fit=crop&q=80')">
+          <span class="service-rail-emoji">🎨</span>
+        </div>
+        <div class="service-rail-body">
+          <h3>Workshop & Atölye</h3>
+          <p>Sanat, kokteyl, mutfak, team-building</p>
+          <span class="service-rail-link">Firmaları gör <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+      </a>
+
+      <a href="catererlar.html?hizmet=cocuk" class="service-rail-card">
+        <div class="service-rail-img" style="background-image:url('https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=700&h=500&fit=crop&q=80')">
+          <span class="service-rail-emoji">🎈</span>
+        </div>
+        <div class="service-rail-body">
+          <h3>Çocuk Etkinliği</h3>
+          <p>Animatör, balon dekor, doğum günü</p>
+          <span class="service-rail-link">Firmaları gör <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </div>
+      </a>
+
+    </div>
+
+    <button class="cat-rail-btn cat-rail-btn--prev" onclick="document.getElementById('serviceRail').scrollBy({left: -320, behavior: 'smooth'})" aria-label="Sola kaydır">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
+    <button class="cat-rail-btn cat-rail-btn--next" onclick="document.getElementById('serviceRail').scrollBy({left: 320, behavior: 'smooth'})" aria-label="Sağa kaydır">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+    </button>
+
+    <div class="cat-rail-fade cat-rail-fade--left" aria-hidden="true"></div>
+    <div class="cat-rail-fade cat-rail-fade--right" aria-hidden="true"></div>
+  </div>
+</section>
+
+<!-- =============== EVENT CATEGORIES (secondary rail) =============== -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <p class="eyebrow">Etkinlik türleri</p>
+      <h2>Ne tür bir etkinlik planlıyorsun?</h2>
+    </div>
+  </div>
+
+  <div class="container cat-rail-wrapper">
+    <div class="cat-rail" id="catRail">
+
+      <a href="catererlar.html?events=dugun" class="cat-card">
+        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600&h=800&fit=crop&crop=entropy&auto=format&q=80" alt="Düğün etkinliği" loading="lazy">
+        <span class="cat-card-label">Düğün</span>
+      </a>
+
+      <a href="catererlar.html?events=kurumsal" class="cat-card">
+        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=800&fit=crop&crop=entropy&auto=format&q=80" alt="Kurumsal etkinlik" loading="lazy">
+        <span class="cat-card-label">Kurumsal Toplantı</span>
+      </a>
+
+      <a href="catererlar.html?events=dogum-gunu" class="cat-card">
+        <img src="https://images.unsplash.com/photo-1558636508-e0db3814bd1d?w=600&h=800&fit=crop&crop=entropy&auto=format&q=80" alt="Doğum günü" loading="lazy">
+        <span class="cat-card-label">Doğum Günü</span>
+      </a>
+
+      <a href="catererlar.html?events=kokteyl" class="cat-card">
+        <img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=600&h=800&fit=crop&crop=entropy&auto=format&q=80" alt="Kokteyl" loading="lazy">
+        <span class="cat-card-label">Kokteyl &amp; Davet</span>
+      </a>
+
+      <a href="catererlar.html?events=nisan" class="cat-card">
+        <img src="https://images.unsplash.com/photo-1478146896981-b80fe463b330?w=600&h=800&fit=crop&crop=entropy&auto=format&q=80" alt="Nişan ve söz" loading="lazy">
+        <span class="cat-card-label">Nişan &amp; Söz</span>
+      </a>
+
+      <a href="catererlar.html?events=ozel-davet" class="cat-card">
+        <img src="https://images.unsplash.com/photo-1513885535751-8b9238bd345a?w=600&h=800&fit=crop&crop=entropy&auto=format&q=80" alt="Baby shower" loading="lazy">
+        <span class="cat-card-label">Baby Shower</span>
+      </a>
+
+      <a href="catererlar.html?events=ozel-davet" class="cat-card">
+        <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?w=600&h=800&fit=crop&crop=entropy&auto=format&q=80" alt="Kına gecesi" loading="lazy">
+        <span class="cat-card-label">Kına Gecesi</span>
+      </a>
+
+      <a href="catererlar.html?events=ozel-davet" class="cat-card">
+        <img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?w=600&h=800&fit=crop&crop=entropy&auto=format&q=80" alt="VIP davet" loading="lazy">
+        <span class="cat-card-label">VIP Davet</span>
+      </a>
+
+      <a href="catererlar.html?events=kurumsal" class="cat-card">
+        <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=600&h=800&fit=crop&crop=entropy&auto=format&q=80" alt="Kahvaltı ve brunch" loading="lazy">
+        <span class="cat-card-label">Kahvaltı &amp; Brunch</span>
+      </a>
+
+    </div>
+
+    <button class="cat-rail-btn cat-rail-btn--prev" onclick="document.getElementById('catRail').scrollBy({left: -280, behavior: 'smooth'})" aria-label="Sola kaydır">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
+    <button class="cat-rail-btn cat-rail-btn--next" onclick="document.getElementById('catRail').scrollBy({left: 280, behavior: 'smooth'})" aria-label="Sağa kaydır">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+    </button>
+
+    <div class="cat-rail-fade cat-rail-fade--left" aria-hidden="true"></div>
+    <div class="cat-rail-fade cat-rail-fade--right" aria-hidden="true"></div>
+  </div>
+</section>
+
+<!-- =============== HOW IT WORKS =============== -->
+<section class="section" id="nasil-calisir">
+  <div class="container">
+    <div class="section-header">
+      <p class="eyebrow">Nasıl çalışır?</p>
+      <h2>Üç adımda davet bileşenini bul.</h2>
+    </div>
+
+    <div class="steps steps-visual">
+      <div class="step-visual">
+        <div class="step-visual-img">
+          <img src="https://images.unsplash.com/photo-1555244162-803834f70033?w=700&amp;h=500&amp;fit=crop&amp;auto=format" alt="Davet bileşenlerini keşfet" loading="lazy">
+          <span class="step-visual-num">1</span>
+        </div>
+        <h3>Keşfet</h3>
+        <p>Etkinlik türüne, konuma, bütçeye ve hizmet kategorisine göre filtrele — yemekten DJ'ye, fotoğrafçıdan dekora doğru firmayı dakikalar içinde bul.</p>
+      </div>
+
+      <div class="step-visual">
+        <div class="step-visual-img">
+          <img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?w=700&amp;h=500&amp;fit=crop&amp;auto=format" alt="Hizmetleri karşılaştır" loading="lazy">
+          <span class="step-visual-num">2</span>
+        </div>
+        <h3>Karşılaştır</h3>
+        <p>Hizmet detaylarını, fiyatları, portfolyoları ve müşteri yorumlarını yan yana incele. Firmalarla doğrudan iletişime geç.</p>
+      </div>
+
+      <div class="step-visual">
+        <div class="step-visual-img">
+          <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=700&amp;h=500&amp;fit=crop&amp;auto=format" alt="Rezervasyon yap" loading="lazy">
+          <span class="step-visual-num">3</span>
+        </div>
+        <h3>Rezervasyon</h3>
+        <p>Seçtiğin firmalardan teklif topla, detayları netleştir ve davetinin her bileşenini güvenle rezerve et.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== FEATURED CATERERS =============== -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header-left" style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1rem;">
+      <div>
+        <p class="eyebrow">Öne Çıkan Firmalar</p>
+        <h2>Bu ay Türkiye'de beğenilen etkinlik hizmetleri</h2>
+      </div>
+      <a href="catererlar.html" class="btn btn-ghost">Tümünü gör →</a>
+    </div>
+
+    <div class="grid grid-3">
+      <a href="firma.html?id=bogaz-lezzetleri" class="caterer-card">
+        <div class="caterer-img" style="background-image: url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=600&q=80')">
+          <span class="caterer-badge">★ 4.9</span>
+        </div>
+        <div class="caterer-body">
+          <div class="caterer-name">Boğaz Lezzetleri Catering</div>
+          <p class="muted" style="font-size:0.875rem;">Geleneksel Türk mutfağı · Kurumsal &amp; özel etkinlik</p>
+          <div class="caterer-meta">
+            <span class="caterer-location">Beşiktaş</span>
+            <span class="caterer-rating">₺₺₺</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="firma.html?id=craft-bar" class="caterer-card">
+        <div class="caterer-img" style="background-image: url('https://images.unsplash.com/photo-1514361892635-6b07e31e75f9?w=600&q=80')">
+          <span class="caterer-badge">★ 4.7</span>
+        </div>
+        <div class="caterer-body">
+          <div class="caterer-name">Craft Bar Catering</div>
+          <p class="muted" style="font-size:0.875rem;">El yapımı kokteyller · Özel karışımlar</p>
+          <div class="caterer-meta">
+            <span class="caterer-location">Kadıköy</span>
+            <span class="caterer-rating">₺₺₺</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="firma.html?id=hayal-organizasyon" class="caterer-card">
+        <div class="caterer-img" style="background-image: url('https://images.unsplash.com/photo-1556125574-d7f27ec36a06?w=600&q=80')">
+          <span class="caterer-badge">★ 4.9</span>
+        </div>
+        <div class="caterer-body">
+          <div class="caterer-name">Hayal Organizasyon</div>
+          <p class="muted" style="font-size:0.875rem;">Komple düğün planlama · A'dan Z'ye yönetim</p>
+          <div class="caterer-meta">
+            <span class="caterer-location">Beşiktaş</span>
+            <span class="caterer-rating">₺₺₺₺</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="firma.html?id=studio-frame" class="caterer-card">
+        <div class="caterer-img" style="background-image: url('https://images.unsplash.com/photo-1554080353-a576cf803bda?w=600&q=80')">
+          <span class="caterer-badge">★ 4.9</span>
+        </div>
+        <div class="caterer-body">
+          <div class="caterer-name">Studio Frame · Foto &amp; Video</div>
+          <p class="muted" style="font-size:0.875rem;">Düğün fotoğrafçısı + video çekimi</p>
+          <div class="caterer-meta">
+            <span class="caterer-location">Şişli</span>
+            <span class="caterer-rating">₺₺₺</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="firma.html?id=atolye-dekor" class="caterer-card">
+        <div class="caterer-img" style="background-image: url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600&q=80')">
+          <span class="caterer-badge">★ 4.8</span>
+        </div>
+        <div class="caterer-body">
+          <div class="caterer-name">Atölye Dekor</div>
+          <p class="muted" style="font-size:0.875rem;">Düğün dekoru, masa süsleme, ışık tasarımı</p>
+          <div class="caterer-meta">
+            <span class="caterer-location">Şişli</span>
+            <span class="caterer-rating">₺₺₺</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="firma.html?id=dj-mert-ocak" class="caterer-card">
+        <div class="caterer-img" style="background-image: url('https://images.unsplash.com/photo-1506157786151-b8491531f063?w=600&q=80')">
+          <span class="caterer-badge">★ 4.8</span>
+        </div>
+        <div class="caterer-body">
+          <div class="caterer-name">DJ Mert Ocak</div>
+          <p class="muted" style="font-size:0.875rem;">DJ + ses sistemi · Düğün ve kokteyl uzmanı</p>
+          <div class="caterer-meta">
+            <span class="caterer-location">Beyoğlu</span>
+            <span class="caterer-rating">₺₺₺</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- =============== STATS =============== -->
+<section class="stats-section">
+  <div class="container">
+    <div class="section-header" style="margin-bottom: 3rem;">
+      <p class="eyebrow">Hedefimiz</p>
+      <h2>İstanbul'dan başlıyoruz, Türkiye'ye yayılıyoruz.</h2>
+      <p class="section-sub">Yeni kurulan bir platformuz — yemekten dekora, DJ'den fotoğrafçıya kalitesi onaylanmış davet hizmeti veren firmaları adım adım ekliyoruz. İlk üyelerimizden olmak için doğru zaman.</p>
+    </div>
+
+    <div class="stats stats-refined">
+      <div class="stat-item">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l1-5h16l1 5M3 9v11a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V9M3 9h18M8 14h8"/>
+          </svg>
+        </div>
+        <div class="stat-num">13</div>
+        <div class="stat-label">Hizmet kategorisi</div>
+      </div>
+
+      <div class="stat-item">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <div class="stat-num">81</div>
+        <div class="stat-label">İl kapsamı hedefi</div>
+      </div>
+
+      <div class="stat-item">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 11l3 3 8-8"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+          </svg>
+        </div>
+        <div class="stat-num">100<span class="stat-plus">%</span></div>
+        <div class="stat-label">Onaylanmış firmalar</div>
+      </div>
+
+      <div class="stat-item">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <div class="stat-num">24<span class="stat-plus">sa</span></div>
+        <div class="stat-label">Ortalama teklif yanıt süresi</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== CTA BANNER =============== -->
+<section class="section">
+  <div class="container">
+    <div class="cta-banner cta-banner-rich">
+      <div class="cta-banner-bg" aria-hidden="true">
+        <div class="cta-glow cta-glow--green"></div>
+        <div class="cta-glow cta-glow--gold"></div>
+        <svg class="cta-pattern" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="540" cy="80" r="180" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+          <circle cx="540" cy="80" r="120" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+          <circle cx="540" cy="80" r="60" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+          <circle cx="60" cy="340" r="140" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+          <circle cx="60" cy="340" r="80" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+        </svg>
+      </div>
+
+      <div class="cta-banner-content">
+        <p class="eyebrow cta-eyebrow">Davet hizmeti veren firmalar için</p>
+        <h2>Firmanı EventRehberi'de listele.</h2>
+        <p>Yemek, dekor, DJ, fotoğrafçı, organizatör — hangi alanda olursan ol, yeni müşterilere ulaş, rezervasyonlarını dijital yönet. Kayıt ücretsiz, komisyon sadece başarılı işlerden alınır.</p>
+
+        <div class="cta-actions">
+          <a href="kayit.html" class="btn btn-cta-primary btn-lg">Firmanı Kaydet</a>
+          <a href="hakkimizda.html" class="btn btn-cta-ghost btn-lg">Nasıl çalışır?</a>
+        </div>
+
+        <div class="cta-trust">
+          <div class="cta-trust-avatars" aria-hidden="true">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&amp;h=80&amp;fit=crop&amp;crop=faces&amp;auto=format&amp;q=80" alt="">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&amp;h=80&amp;fit=crop&amp;crop=faces&amp;auto=format&amp;q=80" alt="">
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&amp;h=80&amp;fit=crop&amp;crop=faces&amp;auto=format&amp;q=80" alt="">
+          </div>
+          <span class="cta-trust-text"><strong>İlk dönemine özel:</strong> İlk 50 firmaya 6 ay PRO paket ücretsiz · Başvuru onayı <strong>2 iş günü</strong></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== FOOTER =============== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col footer-brand">
+        <a href="index.html" class="logo">
+          <span class="logo-mark"><svg viewBox="-60 -64 120 132" width="40" height="40" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M -36 -56 H 36 a 6 6 0 0 1 6 6 V 60 L 0 32 L -42 60 V -50 a 6 6 0 0 1 6 -6 Z" fill="#C7522A"/><path d="M 0 -22 L 9 -4 L 28 -2 L 14 12 L 18 30 L 0 22 L -18 30 L -14 12 L -28 -2 L -9 -4 Z" fill="#FFFFFF"/></svg></span>
+          <span>EventRehberi</span>
+        </a>
+        <p class="muted">Türkiye'nin event planlama platformu. Yemekten DJ'e, organizatörden çocuk eğlencesine — 13 kategoride doğru firmayı bul, doğrudan teklif al.</p>
+      </div>
+      <details class="footer-col footer-accordion">
+        <summary class="footer-accordion-toggle">Şehirler</summary>
+        <ul>
+          <li><a href="istanbul-catering.html">İstanbul Catering</a></li>
+          <li><a href="ankara-catering.html">Ankara Catering</a></li>
+          <li><a href="izmir-catering.html">İzmir Catering</a></li>
+          <li><a href="catererlar.html">Tüm Türkiye</a></li>
+        </ul>
+      </details>
+      <details class="footer-col footer-accordion">
+        <summary class="footer-accordion-toggle">Hizmetler</summary>
+        <ul>
+          <li><a href="catererlar.html?hizmet=yemek">Yemek Catering</a></li>
+          <li><a href="catererlar.html?hizmet=dj">DJ, Müzik &amp; Sanatçı</a></li>
+          <li><a href="catererlar.html?hizmet=foto">Foto &amp; Video</a></li>
+          <li><a href="catererlar.html?hizmet=susleme">Süsleme &amp; Dekor</a></li>
+          <li><a href="catererlar.html?hizmet=workshop">Workshop &amp; Atölye</a></li>
+          <li><a href="catererlar.html?hizmet=cocuk">Çocuk Etkinliği</a></li>
+          <li><a href="catererlar.html">Tüm hizmetler</a></li>
+        </ul>
+      </details>
+      <details class="footer-col footer-accordion">
+        <summary class="footer-accordion-toggle">Etkinlikler</summary>
+        <ul>
+          <li><a href="dugun-catering.html">Düğün</a></li>
+          <li><a href="kurumsal-catering.html">Kurumsal etkinlik</a></li>
+          <li><a href="ozel-sef-hizmeti.html">Özel davet</a></li>
+          <li><a href="kayit.html">Firmanı kaydet</a></li>
+        </ul>
+      </details>
+      <details class="footer-col footer-accordion">
+        <summary class="footer-accordion-toggle">Kurumsal &amp; Yasal</summary>
+        <ul>
+          <li><a href="hakkimizda.html">Hakkımızda</a></li>
+          <li><a href="hakkimizda.html#iletisim">İletişim</a></li>
+          <li><a href="kvkk.html">KVKK Aydınlatma</a></li>
+          <li><a href="gizlilik.html">Gizlilik Politikası</a></li>
+          <li><a href="kullanim-kosullari.html">Kullanım Koşulları</a></li>
+          <li><a href="cerez-politikasi.html">Çerez Politikası</a></li>
+        </ul>
+      </details>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 EventRehberi. Tüm hakları saklıdır.</span>
+      <span>İstanbul, Türkiye</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+function smartSearchRedirect(event) {
+  event.preventDefault();
+  const hizmet = (document.getElementById('hs-hizmet').value || '').trim();
+  const sehir  = (document.getElementById('hs-sehir').value  || '').trim();
+  const events = (document.getElementById('hs-event').value  || '').trim();
+  const params = new URLSearchParams();
+  if (hizmet) params.set('hizmet', hizmet);
+  if (sehir)  params.set('sehir', sehir);
+  if (events) params.set('events', events);
+  const qs = params.toString();
+  window.location.href = 'catererlar.html' + (qs ? '?' + qs : '');
+  return false;
+}
+</script>
+<script src="compare.js"></script>
+<script src="navbar-mobile.js"></script>
+<script src="auth-nav.js"></script>
+<script src="cookie-consent.js"></script>
+</body>
+</html>

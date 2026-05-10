@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Davet hizmeti veren firmaları yan yana karşılaştır. Aynı kategorideki firmaları (DJ, fotoğrafçı, catering, dekor) puan, fiyat ve özelliklerine göre incele.">
+<title>Firmaları Karşılaştır — EventRehberi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZH1F3D61N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZZH1F3D61N');
+</script>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container navbar-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-mark"><svg viewBox="-60 -64 120 132" width="40" height="40" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M -36 -56 H 36 a 6 6 0 0 1 6 6 V 60 L 0 32 L -42 60 V -50 a 6 6 0 0 1 6 -6 Z" fill="#C7522A"/><path d="M 0 -22 L 9 -4 L 28 -2 L 14 12 L 18 30 L 0 22 L -18 30 L -14 12 L -28 -2 L -9 -4 Z" fill="#FFFFFF"/></svg></span>
+      <span>EventRehberi</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="catererlar.html">Firmalar</a></li>
+      <li><a href="fiyatlar.html">Firma Paketleri</a></li>
+      <li><a href="hakkimizda.html">Hakkımızda</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="giris.html" class="nav-auth-link">Giriş Yap</a>
+      <a href="uye-ol.html" class="btn btn-ghost btn-sm">Üye Ol</a>
+      <a href="kayit.html" class="btn btn-primary btn-sm">Firmanı Kaydet</a>
+    </div>
+  </div>
+</nav>
+
+<!-- =============== HERO =============== -->
+<section class="compare-hero">
+  <div class="container">
+    <p class="eyebrow">Karşılaştır</p>
+    <h1 id="compareTitle">Firmaları yan yana karşılaştır</h1>
+    <p class="lead muted" id="compareSub">Seçtiğin firmaların özelliklerini, puanlarını ve fiyatlarını yan yana incele. En iyi kararı vermek için.</p>
+  </div>
+</section>
+
+<!-- =============== EMPTY STATE =============== -->
+<section class="section" id="emptyState" hidden>
+  <div class="container">
+    <div class="empty-state empty-state-large">
+      <svg viewBox="0 0 24 24" width="64" height="64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="7" height="7" rx="1"/>
+        <rect x="14" y="3" width="7" height="7" rx="1"/>
+        <rect x="3" y="14" width="7" height="7" rx="1"/>
+        <line x1="16" y1="14" x2="21" y2="19"/>
+        <line x1="21" y1="14" x2="16" y2="19"/>
+      </svg>
+      <h2>Henüz karşılaştıracak firma seçmedin</h2>
+      <p>Firma listesinden en az 2 firmayı karşılaştırmaya ekle. Aynı kategorideki firmaları (örn. 2-3 DJ, 2 fotoğrafçı) yan yana inceleyerek en iyi kararı verebilirsin.</p>
+      <div class="empty-actions">
+        <a href="catererlar.html" class="btn btn-primary btn-lg">Firmalara göz at</a>
+        <a href="index.html" class="btn btn-ghost btn-lg">Anasayfaya dön</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== COMPARISON TABLE =============== -->
+<section class="section" id="compareSection" hidden>
+  <div class="container">
+    <div class="compare-toolbar">
+      <span class="compare-count" id="compareCount"></span>
+      <button class="btn btn-ghost btn-sm" id="clearCompare" type="button">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M3 6h18M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2m3 0v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6h14z"/></svg>
+        Hepsini temizle
+      </button>
+    </div>
+  </div>
+
+  <div class="container compare-table-wrapper">
+    <table class="compare-table" id="compareTable">
+      <!-- Rendered by JS -->
+    </table>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col footer-brand">
+        <a href="index.html" class="logo">
+          <span class="logo-mark"><svg viewBox="-60 -64 120 132" width="40" height="40" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M -36 -56 H 36 a 6 6 0 0 1 6 6 V 60 L 0 32 L -42 60 V -50 a 6 6 0 0 1 6 -6 Z" fill="#C7522A"/><path d="M 0 -22 L 9 -4 L 28 -2 L 14 12 L 18 30 L 0 22 L -18 30 L -14 12 L -28 -2 L -9 -4 Z" fill="#FFFFFF"/></svg></span>
+          <span>EventRehberi</span>
+        </a>
+        <p class="muted">Türkiye'nin davet pazaryeri. Yemekten dekora, DJ'den fotoğrafçıya — her etkinlik bileşeni için doğru firmayı bul, doğrudan teklif al.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Şehirler</h4>
+        <ul>
+          <li><a href="istanbul-catering.html">İstanbul</a></li>
+          <li><a href="ankara-catering.html">Ankara</a></li>
+          <li><a href="izmir-catering.html">İzmir</a></li>
+          <li><a href="catererlar.html">Tüm Türkiye</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Hizmetler</h4>
+        <ul>
+          <li><a href="catererlar.html?hizmet=yemek">Yemek Catering</a></li>
+          <li><a href="catererlar.html?hizmet=dj">DJ &amp; Müzik</a></li>
+          <li><a href="catererlar.html?hizmet=foto">Foto &amp; Video</a></li>
+          <li><a href="catererlar.html?hizmet=susleme">Süsleme &amp; Dekor</a></li>
+          <li><a href="catererlar.html?hizmet=organizator">Organizatör</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Etkinlikler</h4>
+        <ul>
+          <li><a href="dugun-catering.html">Düğün</a></li>
+          <li><a href="kurumsal-catering.html">Kurumsal etkinlik</a></li>
+          <li><a href="ozel-sef-hizmeti.html">Özel davet</a></li>
+          <li><a href="kayit.html">Firmanı kaydet</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Kurumsal &amp; Yasal</h4>
+        <ul>
+          <li><a href="hakkimizda.html">Hakkımızda</a></li>
+          <li><a href="hakkimizda.html#iletisim">İletişim</a></li>
+          <li><a href="kvkk.html">KVKK Aydınlatma</a></li>
+          <li><a href="gizlilik.html">Gizlilik Politikası</a></li>
+          <li><a href="kullanim-kosullari.html">Kullanım Koşulları</a></li>
+          <li><a href="cerez-politikasi.html">Çerez Politikası</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 EventRehberi. Tüm hakları saklıdır.</span>
+      <span>İstanbul, Türkiye</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Comparison page logic -->
+<script src="firms-data.js"></script>
+<script src="compare.js"></script>
+<script>
+(function() {
+  function init() {
+    const FIRMS = window.CS_FIRMS || [];
+    const PRICE_STR = ['', '₺', '₺₺', '₺₺₺', '₺₺₺₺'];
+    const HIZMET_LBL = {
+      yemek: 'Yemek Catering', bar: 'Bar & Kokteyl', sef: 'Özel Şef',
+      pasta: 'Pasta & Tatlı', susleme: 'Süsleme & Dekor', cicek: 'Çiçek',
+      davetiye: 'Davetiye Tasarımı', organizator: 'Organizatör',
+      dj: 'DJ & Müzik', foto: 'Foto & Video', garson: 'Garson Servisi',
+      hostes: 'Hostes', ekipman: 'Ekipman Kiralama'
+    };
+    const EVENT_LBL = {
+      dugun:'Düğün', nisan:'Nişan', kurumsal:'Kurumsal', kokteyl:'Kokteyl',
+      'dogum-gunu':'Doğum günü',
+      'baby-shower':'Baby shower', kina:'Kına', 'ozel-davet':'Özel davet',
+      'vip-davet':'VIP davet'
+    };
+
+    // Get firm IDs from URL or localStorage
+    const params = new URLSearchParams(window.location.search);
+    let ids = [];
+    if (params.has('firms')) {
+      ids = params.get('firms').split(',').filter(Boolean);
+    } else {
+      ids = window.ER_Compare ? window.ER_Compare.list() : [];
+    }
+
+    const selected = ids.map(id => FIRMS.find(f => f.id === id)).filter(Boolean);
+
+    if (selected.length < 1) {
+      document.getElementById('emptyState').hidden = false;
+      return;
+    }
+
+    document.getElementById('compareSection').hidden = false;
+    document.getElementById('compareCount').textContent =
+      selected.length + ' firma karşılaştırılıyor';
+
+    // Build table
+    const table = document.getElementById('compareTable');
+    const rows = [];
+
+    // Photo + name + remove
+    rows.push('<tr class="compare-row-head"><th class="compare-label-cell"></th>' +
+      selected.map(f => `
+        <th class="compare-firm-head">
+          <div class="compare-firm-img" style="background-image:url('${f.image}')">
+            <button class="compare-remove" data-remove-id="${f.id}" type="button" aria-label="Çıkar">×</button>
+          </div>
+          <h3 class="compare-firm-name">${f.name}</h3>
+          ${f.badge ? `<span class="firm-badge firm-badge--${f.badge.toLowerCase()}">${f.badge}</span>` : ''}
+        </th>
+      `).join('') + '</tr>');
+
+    // Hizmet kategorisi
+    rows.push(buildRow('Hizmet kategorisi', selected.map(f => HIZMET_LBL[f.hizmet] || f.hizmet)));
+
+    // Konum
+    rows.push(buildRow('Konum', selected.map(f => `${f.district}, ${f.city}`)));
+
+    // Puan
+    rows.push(buildRow('Puan', selected.map(f =>
+      `<span class="compare-rating">★ ${f.rating.toFixed(1)}</span> <small class="muted">(${f.reviews} yorum)</small>`
+    )));
+
+    // Fiyat
+    rows.push(buildRow('Fiyat segmenti', selected.map(f => PRICE_STR[f.price] || '—')));
+
+    // Min kişi
+    rows.push(buildRow('Min. kişi sayısı', selected.map(f => f.minPeople ? `${f.minPeople} kişi` : '—')));
+
+    // Mutfak (only if any firm has cuisine)
+    if (selected.some(f => f.cuisine && f.cuisine.length)) {
+      rows.push(buildRow('Mutfak / uzmanlık', selected.map(f => {
+        if (!f.cuisine || !f.cuisine.length) return '<span class="muted">—</span>';
+        return f.cuisine.map(c => `<span class="compare-chip">${c}</span>`).join(' ');
+      })));
+    }
+
+    // Etkinlik türleri
+    if (selected.some(f => f.events && f.events.length)) {
+      rows.push(buildRow('Etkinlik türleri', selected.map(f => {
+        if (!f.events || !f.events.length) return '<span class="muted">—</span>';
+        return f.events.map(e => `<span class="compare-chip">${EVENT_LBL[e] || e}</span>`).join(' ');
+      })));
+    }
+
+    // Tagline
+    rows.push(buildRow('Açıklama', selected.map(f => f.tagline || '—')));
+
+    // Action button
+    rows.push('<tr><td class="compare-label-cell"></td>' +
+      selected.map(f => `
+        <td class="compare-action">
+          <a href="firma.html?id=${f.id}" class="btn btn-primary btn-sm">Profili gör</a>
+        </td>
+      `).join('') + '</tr>');
+
+    table.innerHTML = rows.join('');
+
+    function buildRow(label, cells) {
+      return `<tr><td class="compare-label-cell">${label}</td>` +
+        cells.map(c => `<td>${c}</td>`).join('') + '</tr>';
+    }
+
+    // Remove button handler
+    table.addEventListener('click', e => {
+      const btn = e.target.closest('[data-remove-id]');
+      if (!btn) return;
+      const id = btn.dataset.removeId;
+      if (window.ER_Compare) window.ER_Compare.remove(id);
+      // Update URL & reload
+      const remaining = selected.filter(f => f.id !== id).map(f => f.id);
+      if (remaining.length) {
+        window.location.href = 'karsilastir.html?firms=' + remaining.join(',');
+      } else {
+        window.location.href = 'karsilastir.html';
+      }
+    });
+
+    // Clear all
+    document.getElementById('clearCompare').addEventListener('click', () => {
+      if (window.ER_Compare) window.ER_Compare.clear();
+      window.location.href = 'karsilastir.html';
+    });
+  }
+
+  function onFirmsReady(cb) {
+    if (window.CS_FIRMS) { cb(); }
+    else { document.addEventListener('cs-firms-ready', cb, { once: true }); }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { onFirmsReady(init); });
+  } else {
+    onFirmsReady(init);
+  }
+})();
+</script>
+
+<script src="navbar-mobile.js"></script>
+<script src="auth-nav.js"></script>
+<script src="cookie-consent.js"></script>
+</body>
+</html>

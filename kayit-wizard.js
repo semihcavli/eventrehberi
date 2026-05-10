@@ -1,0 +1,442 @@
+/* ============================================================
+   EventRehberi — Kayıt Wizard
+   Supabase: firm_applications insert + firma-fotograflari upload
+   ============================================================ */
+(function () {
+  'use strict';
+
+  const DRAFT_KEY   = 'er-firma-kayit-draft';
+  const TOTAL_STEPS = 9;
+  const FOOD_CATS   = ['yemek', 'bar', 'sef', 'pasta'];
+
+  let currentStep = 1;
+  let currentUser = null;
+
+  /* ----------------------------------------------------------
+     1. Init — wait for Supabase ready then check auth
+  ---------------------------------------------------------- */
+  document.addEventListener('er-supabase-ready', async () => {
+    const { data: { user } } = await ER_Supabase.auth.getUser();
+    if (!user) {
+      window.location.href = 'giris.html?next=/kayit.html';
+      return;
+    }
+    currentUser = user;
+    initWizard();
+  });
+
+  function initWizard() {
+    const draft = loadDraft();
+    if (draft) showDraftBanner(draft);
+    bindInputAutoSave();
+    bindNavButtons();
+    bindCharCounter();
+    bindDistrictLogic();
+    showStep(1, false);
+  }
+
+  /* ----------------------------------------------------------
+     2. Draft — localStorage
+  ---------------------------------------------------------- */
+  function saveDraft() {
+    const data = { _step: currentStep };
+    document.querySelectorAll('#wz-form [name]').forEach(el => {
+      if (el.type === 'file') return;
+      const k = el.name;
+      if (el.type === 'checkbox') {
+        if (el.checked) data[k] = [...(Array.isArray(data[k]) ? data[k] : []), el.value];
+      } else if (el.type === 'radio') {
+        if (el.checked) data[k] = el.value;
+      } else {
+        if (el.value) data[k] = el.value;
+      }
+    });
+    localStorage.setItem(DRAFT_KEY, JSON.stringify(data));
+  }
+
+  function loadDraft() {
+    try { return JSON.parse(localStorage.getItem(DRAFT_KEY)); } catch { return null; }
+  }
+
+  function restoreDraft(draft) {
+    if (!draft) return;
+    Object.entries(draft).forEach(([name, val]) => {
+      if (name === '_step') return;
+      document.querySelectorAll(`#wz-form [name="${CSS.escape(name)}"]`).forEach(el => {
+        if (el.type === 'file') return;
+        if (el.type === 'checkbox') el.checked = Array.isArray(val) && val.includes(el.value);
+        else if (el.type === 'radio') el.checked = el.value === val;
+        else el.value = val;
+      });
+    });
+  }
+
+  function showDraftBanner(draft) {
+    const banner = document.getElementById('wz-draft-banner');
+    if (!banner) return;
+    banner.hidden = false;
+    banner.querySelector('.wz-draft-continue').addEventListener('click', () => {
+      restoreDraft(draft);
+      banner.hidden = true;
+      const step = Math.max(1, Math.min(TOTAL_STEPS, draft._step || 1));
+      showStep(step, false);
+    });
+    banner.querySelector('.wz-draft-reset').addEventListener('click', () => {
+      localStorage.removeItem(DRAFT_KEY);
+      banner.hidden = true;
+    });
+  }
+
+  function bindInputAutoSave() {
+    document.getElementById('wz-form').addEventListener('input', saveDraft);
+    document.getElementById('wz-form').addEventListener('change', saveDraft);
+  }
+
+  /* ----------------------------------------------------------
+     3. Step navigation
+  ---------------------------------------------------------- */
+  function showStep(n, pushHistory) {
+    currentStep = Math.max(1, Math.min(TOTAL_STEPS, n));
+
+    // Steps
+    document.querySelectorAll('.wz-step').forEach(el => {
+      el.classList.toggle('is-active', parseInt(el.dataset.step) === currentStep);
+    });
+    // Left panels
+    document.querySelectorAll('.wz-left-panel').forEach(el => {
+      el.classList.toggle('is-active', parseInt(el.dataset.step) === currentStep);
+    });
+
+    updateProgress();
+    updateFooter();
+    clearErrors();
+
+    if (currentStep === 9) renderPreview();
+
+    // URL state
+    if (pushHistory !== false) {
+      const url = new URL(location);
+      url.searchParams.set('adim', currentStep);
+      history.pushState({ step: currentStep }, '', url);
+    }
+
+    // Scroll right panel to top
+    const right = document.querySelector('.wz-right');
+    if (right) right.scrollTop = 0;
+  }
+
+  function updateProgress() {
+    // Stage mapping
+    const stageMap = { A: [1,2,3], B: [4,5,6,7], C: [8,9] };
+    Object.entries(stageMap).forEach(([stage, steps]) => {
+      const el = document.querySelector(`.wz-stage[data-stage="${stage}"]`);
+      if (!el) return;
+      const maxStep = Math.max(...steps);
+      const minStep = Math.min(...steps);
+      el.classList.toggle('wz-stage--active',
+        currentStep >= minStep && currentStep <= maxStep);
+      steps.forEach(s => {
+        const dot = el.querySelector(`.wz-dot[data-step="${s}"]`);
+        if (!dot) return;
+        dot.classList.remove('wz-dot--done', 'wz-dot--active');
+        if (s < currentStep) dot.classList.add('wz-dot--done');
+        else if (s === currentStep) dot.classList.add('wz-dot--active');
+      });
+    });
+  }
+
+  function updateFooter() {
+    const backBtn = document.getElementById('wz-back');
+    const nextBtn = document.getElementById('wz-next');
+    backBtn.hidden = currentStep === 1;
+    nextBtn.textContent = currentStep === TOTAL_STEPS ? 'Yayınla →' : 'Devam →';
+    nextBtn.disabled = false;
+  }
+
+  function bindNavButtons() {
+    document.getElementById('wz-next').addEventListener('click', async () => {
+      if (currentStep === TOTAL_STEPS) {
+        await submitWizard();
+      } else {
+        if (!validateStep(currentStep)) return;
+        saveDraft();
+        showStep(currentStep + 1);
+      }
+    });
+
+    document.getElementById('wz-back').addEventListener('click', () => {
+      saveDraft();
+      showStep(currentStep - 1);
+    });
+
+    window.addEventListener('popstate', e => {
+      if (e.state && e.state.step) showStep(e.state.step, false);
+    });
+
+    const exitBtn = document.getElementById('wz-exit');
+    if (exitBtn) {
+      exitBtn.addEventListener('click', () => {
+        saveDraft();
+        window.location.href = 'index.html';
+      });
+    }
+  }
+
+  /* ----------------------------------------------------------
+     4. Validation (per step, inline errors)
+  ---------------------------------------------------------- */
+  function validateStep(n) {
+    clearErrors();
+    if (n === 1) {
+      if (!document.querySelector('[name="kategori"]:checked')) {
+        showError('err-1', 'Lütfen bir hizmet kategorisi seç.');
+        return false;
+      }
+    }
+    if (n === 2) {
+      if (!document.getElementById('il').value) {
+        showError('err-2', 'Şehir seçimi zorunlu.');
+        return false;
+      }
+    }
+    if (n === 3) {
+      if (!document.querySelector('[name="etkinlik"]:checked')) {
+        showError('err-3', 'En az bir etkinlik türü seç.');
+        return false;
+      }
+    }
+    if (n === 4) {
+      const ad = document.getElementById('firma-adi').value.trim();
+      const tg = document.getElementById('tagline').value.trim();
+      if (ad.length < 2) { showError('err-4', 'Firma adı en az 2 karakter olmalı.'); return false; }
+      if (tg.length < 5) { showError('err-4', 'Kısa tanıtım cümlesi en az 5 karakter olmalı.'); return false; }
+    }
+    if (n === 5) {
+      const len = document.getElementById('tanitim').value.trim().length;
+      if (len < 100) {
+        showError('err-5', `En az 100 karakter gerekli (şu an: ${len}).`);
+        return false;
+      }
+    }
+    if (n === 7) {
+      if (!document.querySelector('[name="segment"]:checked')) {
+        showError('err-7', 'Fiyat segmenti seçimi zorunlu.');
+        return false;
+      }
+      if (!document.getElementById('deneyim').value) {
+        showError('err-7', 'Deneyim süresi seçimi zorunlu.');
+        return false;
+      }
+      if (!document.getElementById('min-kisi').value) {
+        showError('err-7', 'Minimum kişi sayısı zorunlu.');
+        return false;
+      }
+    }
+    if (n === 8) {
+      const tel = document.getElementById('telefon').value.trim();
+      const mail = document.getElementById('eposta').value.trim();
+      if (!tel) { showError('err-8', 'Telefon numarası zorunlu.'); return false; }
+      if (!mail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) {
+        showError('err-8', 'Geçerli bir e-posta adresi gir.');
+        return false;
+      }
+    }
+    if (n === 9) {
+      if (!document.querySelector('[name="kvkk"]:checked')) {
+        showError('err-9', 'Devam etmek için KVKK metnini onaylamalısın.');
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function showError(id, msg) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = '';
+    el.hidden = false;
+    // Rebuild with icon
+    el.innerHTML = msg;
+    el.hidden = false;
+    el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function clearErrors() {
+    document.querySelectorAll('.wz-error').forEach(el => { el.hidden = true; });
+    const submitErr = document.getElementById('wz-submit-error');
+    if (submitErr) submitErr.hidden = true;
+  }
+
+  /* ----------------------------------------------------------
+     5. Char counter (Step 5)
+  ---------------------------------------------------------- */
+  function bindCharCounter() {
+    const ta = document.getElementById('tanitim');
+    const counter = document.getElementById('tanitim-count');
+    if (!ta || !counter) return;
+    ta.addEventListener('input', () => {
+      const len = ta.value.trim().length;
+      counter.textContent = len;
+      const wrap = counter.closest('.wz-charcount');
+      if (wrap) wrap.classList.toggle('is-ok', len >= 100);
+    });
+  }
+
+  /* ----------------------------------------------------------
+     6. District logic (Step 2)
+  ---------------------------------------------------------- */
+  const ILCELER = {
+    'İstanbul': ['Adalar','Arnavutköy','Ataşehir','Avcılar','Bağcılar','Bahçelievler','Bakırköy','Başakşehir','Bayrampaşa','Beşiktaş','Beykoz','Beylikdüzü','Beyoğlu','Büyükçekmece','Çatalca','Çekmeköy','Esenler','Esenyurt','Eyüpsultan','Fatih','Gaziosmanpaşa','Güngören','Kadıköy','Kağıthane','Kartal','Küçükçekmece','Maltepe','Pendik','Sancaktepe','Sarıyer','Şile','Şişli','Sultanbeyli','Sultangazi','Tuzla','Ümraniye','Üsküdar','Zeytinburnu'],
+    'Ankara': ['Altındağ','Akyurt','Ayaş','Balâ','Beypazarı','Çamlıdere','Çankaya','Çubuk','Elmadağ','Etimesgut','Evren','Gölbaşı','Güdül','Haymana','Kahramankazan','Kalecik','Keçiören','Kızılcahamam','Mamak','Nallıhan','Polatlı','Pursaklar','Sincan','Şereflikoçhisar','Yenimahalle'],
+    'İzmir': ['Aliağa','Balçova','Bayındır','Bayraklı','Bergama','Beydağ','Bornova','Buca','Çeşme','Çiğli','Dikili','Foça','Gaziemir','Güzelbahçe','Karabağlar','Karaburun','Karşıyaka','Kemalpaşa','Kınık','Kiraz','Konak','Menderes','Menemen','Narlıdere','Ödemiş','Seferihisar','Selçuk','Tire','Torbalı','Urla'],
+    'Antalya': ['Aksu','Alanya','Demre','Döşemealtı','Elmalı','Finike','Gazipaşa','Gündoğmuş','İbradı','Kaş','Kemer','Kepez','Konyaaltı','Korkuteli','Kumluca','Manavgat','Muratpaşa','Serik'],
+    'Bursa': ['Büyükorhan','Gemlik','Gürsu','Harmancık','İnegöl','İznik','Karacabey','Keles','Kestel','Mudanya','Mustafakemalpaşa','Nilüfer','Orhaneli','Orhangazi','Osmangazi','Yenişehir','Yıldırım'],
+    'Muğla': ['Bodrum','Dalaman','Datça','Fethiye','Kavaklıdere','Köyceğiz','Marmaris','Menteşe','Milas','Ortaca','Seydikemer','Ula','Yatağan']
+  };
+  const ILCELI_SEHIRLER = Object.keys(ILCELER);
+
+  function bindDistrictLogic() {
+    const ilSelect = document.getElementById('il');
+    const ilceGroup = document.getElementById('ilce-group');
+    const ilceList = document.getElementById('ilce-list');
+    if (!ilSelect) return;
+
+    ilSelect.addEventListener('change', () => {
+      const city = ilSelect.value;
+      if (ILCELI_SEHIRLER.includes(city)) {
+        ilceList.innerHTML = ILCELER[city]
+          .map(d => `<label class="chip-check"><input type="checkbox" name="ilce" value="${d}"><span>${d}</span></label>`)
+          .join('');
+        ilceGroup.hidden = false;
+      } else {
+        ilceGroup.hidden = true;
+        ilceList.innerHTML = '';
+      }
+    });
+  }
+
+  /* ----------------------------------------------------------
+     7. Preview (Step 9)
+  ---------------------------------------------------------- */
+  function renderPreview() {
+    const ad = document.getElementById('firma-adi')?.value.trim() || 'Firma Adı';
+    const tagline = document.getElementById('tagline')?.value.trim() || '';
+    const il = document.getElementById('il')?.value || '—';
+    const ilceler = [...document.querySelectorAll('[name="ilce"]:checked')].map(el => el.value);
+    const lokasyon = ilceler.length > 0 ? `${ilceler[0]}, ${il}` : il;
+    const segment = document.querySelector('[name="segment"]:checked')?.value || '';
+    const segSym = { Ekonomik: '₺', Orta: '₺₺', 'Orta-üst': '₺₺₺', Premium: '₺₺₺₺' }[segment] || '₺₺';
+
+    const card = document.getElementById('wz-preview-card');
+    if (!card) return;
+    card.innerHTML = `
+      <div class="firm-card" style="max-width:320px;margin:0 auto;">
+        <div class="firm-card-img wz-preview-placeholder">
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#9ca3af" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        </div>
+        <div class="firm-card-body">
+          <div class="firm-card-head">
+            <h4>${escHtml(ad)}</h4>
+            <span class="firm-badge firm-badge--pro">Pro</span>
+          </div>
+          <p class="firm-card-tagline">${escHtml(tagline)}</p>
+          <div class="firm-card-meta">
+            <span class="firm-card-loc">
+              <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              ${escHtml(lokasyon)}
+            </span>
+            <span class="firm-card-price">${segSym}</span>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  function escHtml(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  /* ----------------------------------------------------------
+     8. Photo upload
+  ---------------------------------------------------------- */
+  async function uploadPhotos(files) {
+    const urls = [];
+    for (const file of files) {
+      const ext = file.name.split('.').pop().toLowerCase() || 'jpg';
+      const uuid = crypto.randomUUID();
+      const path = `${currentUser.id}/${uuid}.${ext}`;
+      const { error } = await ER_Supabase.storage
+        .from('firma-fotograflari')
+        .upload(path, file, { cacheControl: '3600', upsert: false });
+      if (!error) {
+        const { data } = ER_Supabase.storage
+          .from('firma-fotograflari')
+          .getPublicUrl(path);
+        urls.push(data.publicUrl);
+      }
+    }
+    return urls;
+  }
+
+  /* ----------------------------------------------------------
+     9. Submit
+  ---------------------------------------------------------- */
+  async function submitWizard() {
+    if (!validateStep(9)) return;
+
+    const nextBtn = document.getElementById('wz-next');
+    nextBtn.disabled = true;
+    nextBtn.textContent = 'Gönderiliyor...';
+
+    // Photo upload
+    const fileInput = document.getElementById('galeri');
+    let photoUrls = [];
+    if (fileInput && fileInput.files.length > 0) {
+      const uploadStatus = document.getElementById('wz-upload-status');
+      if (uploadStatus) uploadStatus.hidden = false;
+      photoUrls = await uploadPhotos([...fileInput.files]);
+      if (uploadStatus) uploadStatus.hidden = true;
+    }
+
+    // Collect all data
+    const ilceler = [...document.querySelectorAll('[name="ilce"]:checked')].map(el => el.value);
+    const etkinlikler = [...document.querySelectorAll('[name="etkinlik"]:checked')].map(el => el.value);
+
+    const payload = {
+      user_id:     currentUser.id,
+      firm_name:   document.getElementById('firma-adi').value.trim(),
+      tagline:     document.getElementById('tagline').value.trim(),
+      hizmet:      document.querySelector('[name="kategori"]:checked')?.value || null,
+      city:        document.getElementById('il').value,
+      district:    ilceler.join(', '),
+      yaricap:     document.querySelector('[name="yaricap"]:checked')?.value || null,
+      etkinlik:    etkinlikler,
+      description: document.getElementById('tanitim').value.trim(),
+      phone:       document.getElementById('telefon').value.trim(),
+      email:       document.getElementById('eposta').value.trim(),
+      web:         (document.getElementById('web')?.value || '').trim() || null,
+      segment:     document.querySelector('[name="segment"]:checked')?.value || null,
+      deneyim:     document.getElementById('deneyim').value || null,
+      min_kisi:    parseInt(document.getElementById('min-kisi').value) || null,
+      paket:       document.querySelector('[name="paket"]:checked')?.value || 'Free',
+      photos:      photoUrls,
+      status:      'pending',
+    };
+
+    const { error } = await ER_Supabase.from('firm_applications').insert(payload);
+
+    if (error) {
+      nextBtn.disabled = false;
+      nextBtn.textContent = 'Yayınla →';
+      const errEl = document.getElementById('wz-submit-error');
+      if (errEl) {
+        errEl.textContent = 'Gönderim sırasında bir hata oluştu: ' + error.message;
+        errEl.hidden = false;
+      }
+      return;
+    }
+
+    localStorage.removeItem(DRAFT_KEY);
+    window.location.href = 'tesekkurler.html';
+  }
+
+})();

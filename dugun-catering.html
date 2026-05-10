@@ -1,0 +1,330 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Düğün catering — Türkiye genelinde onaylı firmalardan menü, kişi başı fiyat, deneyim referanslarını karşılaştır. Doğrudan teklif al. Saatler süren araştırmaya son.">
+<meta name="keywords" content="düğün catering, düğün yemeği, düğün menüsü, kına gecesi catering, nişan catering, düğün organizasyonu">
+<title>Düğün Catering — Menü, Fiyat ve Onaylı Firmalar Rehberi | EventRehberi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="supabase-client.js"></script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZH1F3D61N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZZH1F3D61N');
+</script>
+</head>
+<body>
+
+<!-- =============== NAVBAR =============== -->
+<nav class="navbar">
+  <div class="container navbar-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-mark"><svg viewBox="-60 -64 120 132" width="40" height="40" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M -36 -56 H 36 a 6 6 0 0 1 6 6 V 60 L 0 32 L -42 60 V -50 a 6 6 0 0 1 6 -6 Z" fill="#C7522A"/><path d="M 0 -22 L 9 -4 L 28 -2 L 14 12 L 18 30 L 0 22 L -18 30 L -14 12 L -28 -2 L -9 -4 Z" fill="#FFFFFF"/></svg></span>
+      <span>EventRehberi</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="catererlar.html">Firmalar</a></li>
+      <li><a href="fiyatlar.html">Firma Paketleri</a></li>
+      <li><a href="hakkimizda.html">Hakkımızda</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="giris.html" class="nav-auth-link">Giriş Yap</a>
+      <a href="uye-ol.html" class="btn btn-ghost btn-sm">Üye Ol</a>
+      <a href="kayit.html" class="btn btn-primary btn-sm">Firmanı Kaydet</a>
+    </div>
+  </div>
+</nav>
+
+<!-- =============== HERO =============== -->
+<section class="landing-hero">
+  <div class="landing-hero-bg" aria-hidden="true">
+    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=2000&h=1100&fit=crop&auto=format&q=80" alt="Düğün catering masası" loading="eager">
+  </div>
+  <div class="container">
+    <div class="landing-hero-inner">
+      <p class="eyebrow">Düğün · Catering Rehberi</p>
+      <h1>Düğününüz için doğru catering — menü, bütçe, firma karşılaştırması.</h1>
+      <p class="lead">Onaylı düğün catering firmalarını şehre, mutfak tarzına ve kişi başı bütçeye göre filtrele. Menüleri ve referansları yan yana incele, doğrudan teklif al.</p>
+      <div class="landing-hero-actions">
+        <a href="catererlar.html?event=dugun" class="btn btn-primary btn-lg">Düğün Firmalarını Gör</a>
+        <a href="#nasil-secilir" class="btn btn-ghost btn-lg">Nasıl seçilir?</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="landing-quick-stats">
+  <div class="container">
+    <div class="landing-quick-stats-grid">
+      <div class="landing-quick-stat">
+        <span class="num"><span id="landing-firm-count">—</span></span>
+        <span class="label">Düğün catering firması</span>
+      </div>
+      <div class="landing-quick-stat">
+        <span class="num">600-<br>2.500₺</span>
+        <span class="label">Kişi başı tipik aralık</span>
+      </div>
+      <div class="landing-quick-stat">
+        <span class="num">3-12<br>ay</span>
+        <span class="label">İdeal rezervasyon süresi</span>
+      </div>
+      <div class="landing-quick-stat">
+        <span class="num">100%</span>
+        <span class="label">Onaylanmış firmalar</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="landing-intro">
+      <h2>Düğün catering — hayatınızın en önemli sofrası</h2>
+      <p>Düğününüzün hatırlanan iki şeyi vardır: <strong>fotoğraflar</strong> ve <strong>yenilen yemekler</strong>. Doğru catering firmasını seçmek, sadece bütçe değil; misafir memnuniyeti, sunum kalitesi ve sözleşme güvencesi açısından da büyük önem taşır.</p>
+      <p>EventRehberi'de Türkiye'nin tüm büyük şehirlerinden onaylı düğün catering firmalarını topluyoruz. Klasik Türk-Osmanlı menülerinden modern fusion tabaklarına, vegan menülerden deniz ürünleri uzmanlarına kadar her zevke uygun firmaları kategorize ediyoruz. Her firma platforma katılmadan önce mutfak hijyeni, müşteri yorumları ve etkinlik referanslarıyla değerlendiriliyor.</p>
+
+      <h3>Düğün stiline göre filtreleyin</h3>
+      <p>Düğününüzün tarzı, doğru firmanın seçilmesinde belirleyici. Aşağıdaki kategorilerden tarzınıza en yakın olanı seçin:</p>
+      <div class="landing-districts">
+        <a href="catererlar.html?event=dugun&amp;cuisine=turk" class="landing-district-chip">Klasik Türk Düğünü</a>
+        <a href="catererlar.html?event=dugun&amp;cuisine=osmanli" class="landing-district-chip">Osmanlı Mutfağı</a>
+        <a href="catererlar.html?event=dugun&amp;cuisine=akdeniz" class="landing-district-chip">Akdeniz / Ege</a>
+        <a href="catererlar.html?event=dugun&amp;cuisine=italyan" class="landing-district-chip">İtalyan</a>
+        <a href="catererlar.html?event=dugun&amp;cuisine=fusion" class="landing-district-chip">Fusion</a>
+        <a href="catererlar.html?event=dugun&amp;cuisine=deniz" class="landing-district-chip">Deniz Ürünleri</a>
+        <a href="catererlar.html?event=dugun&amp;cuisine=vegan" class="landing-district-chip">Vegan / Vejetaryen</a>
+        <a href="catererlar.html?event=dugun" class="landing-district-chip">+ tümü</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header" style="text-align:left; max-width:760px; margin:0 0 2rem;">
+      <p class="eyebrow">Onaylı Firmalar</p>
+      <h2>Düğün için öne çıkan catering firmaları</h2>
+      <p class="section-sub">Düğün etkinliklerinde tecrübe, referans ve müşteri puanlarına göre sıralanan firmalar.</p>
+    </div>
+
+    <div id="landing-firms-grid" class="landing-firms-grid"></div>
+
+    <div style="text-align:center; margin-top:2.5rem;">
+      <a href="catererlar.html?event=dugun" class="btn btn-ghost btn-lg">Tüm düğün firmalarını gör →</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="nasil-secilir">
+  <div class="container">
+    <div class="section-header" style="text-align:left; max-width:760px; margin:0 0 1.5rem;">
+      <p class="eyebrow">Rehber</p>
+      <h2>Düğün catering nasıl seçilir? — 6 kritik adım</h2>
+      <p class="section-sub">Hayatınızın bu en özel sofrasını doğru kurmak için göz önünde bulundurmanız gerekenler.</p>
+    </div>
+
+    <div class="landing-guide">
+      <div class="landing-guide-card">
+        <div class="num">1</div>
+        <div>
+          <h3>Davetli sayısını ve menü tipini belirleyin</h3>
+          <p>Önce kesin bir misafir sayısı çıkarın (genelde davetiye sayısının %85-90'ı katılır). Sonra menü tipini düşünün: <strong>Açık büfe</strong> (rahat, geniş seçenek), <strong>Tabaklı (à la carte)</strong> servis (klasik, formal), <strong>Kokteyl/finger food</strong> (modern, daha az yer kaplar). Her tip farklı bütçe ve firma profili gerektirir.</p>
+        </div>
+      </div>
+      <div class="landing-guide-card">
+        <div class="num">2</div>
+        <div>
+          <h3>Bütçenizi netleştirin</h3>
+          <p>Türkiye genelinde düğün catering kişi başı maliyeti <strong>600-2.500 TL</strong> aralığında değişir. Alkol ve bar paketi eklendiğinde +400-800 TL/kişi düşünmek gerekir. Filtrelerimizdeki "kişi başı bütçe" ile uygun firmaları daraltabilirsiniz.</p>
+        </div>
+      </div>
+      <div class="landing-guide-card">
+        <div class="num">3</div>
+        <div>
+          <h3>En az 3 firmadan teklif alın</h3>
+          <p>Aynı menü için 3 farklı firmadan teklif alındığında fiyat farkı %30-50'ye varabilir. Tekliflerdeki <strong>tüm dahil kalemleri</strong> mutlaka karşılaştırın: servis ekibi sayısı, kurulum/kaldırma, sunum tabakları, çatal-kaşık, masa örtüsü, KDV.</p>
+        </div>
+      </div>
+      <div class="landing-guide-card">
+        <div class="num">4</div>
+        <div>
+          <h3>Tadım organizasyonunu mutlaka yapın</h3>
+          <p>Profesyonel firmalar tadım randevusunu (genelde 2 kişilik, ücretsiz veya sembolik ücretle) önerir. Tadımda menünün <strong>tüm aşamalarını</strong> deneyin — meze, ana yemek, tatlı, ekmek, içecek. Sunum tabakları ve servis stilini de görün.</p>
+        </div>
+      </div>
+      <div class="landing-guide-card">
+        <div class="num">5</div>
+        <div>
+          <h3>Düğün referansları ve fotoğraflar isteyin</h3>
+          <p>Firmanın daha önce düzenlediği <strong>en az 3 düğünün</strong> fotoğraflarını ve müşteri yorumlarını isteyin. Sosyal medya hesabı, Instagram'da #düğüncatering etiketi gibi araçlar gerçek deneyimleri görmenizi sağlar. Sahte yorumlardan kaçınmak için detaylı olanlara odaklanın.</p>
+        </div>
+      </div>
+      <div class="landing-guide-card">
+        <div class="num">6</div>
+        <div>
+          <h3>Sözleşme ve iptal koşullarını yazılı isteyin</h3>
+          <p>Düğün catering sözleşmesi mutlaka yazılı olmalı; <strong>kişi sayısı değişikliği maddesi</strong>, <strong>iptal hakkı</strong>, <strong>son ödeme tarihi</strong>, <strong>servis saati ve süresi</strong> mutlaka belirtilmeli. Ön ödeme tipik olarak %30-50 arasındadır; tamamı peşin isteyen firmalardan kaçının.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header" style="text-align:left; max-width:760px; margin:0 0 1.5rem;">
+      <p class="eyebrow">Sıkça Sorulanlar</p>
+      <h2>Düğün catering hakkında merak edilenler</h2>
+    </div>
+
+    <div class="landing-faq">
+      <details class="landing-faq-item">
+        <summary>Düğün catering kişi başı ortalama ne kadar?</summary>
+        <div class="answer">
+          Türkiye genelinde düğün catering kişi başı 600-2.500 TL aralığındadır. <strong>Klasik tabak servis menü</strong> (4-5 kademe, alkolsüz) 600-1.200 TL; <strong>premium fine-dining</strong> 1.500-2.500 TL; <strong>kokteyl/finger food</strong> 350-650 TL aralığındadır. Bar/alkollü içecek paketi eklendiğinde 400-800 TL/kişi ek düşünün. Sezon (Mayıs-Eylül) ücretleri %15-25 daha yüksek olabilir.
+        </div>
+      </details>
+      <details class="landing-faq-item">
+        <summary>Düğün tarihinden ne kadar önce rezervasyon yapmalıyım?</summary>
+        <div class="answer">
+          İdeal rezervasyon süresi <strong>düğün tarihinden 6-12 ay önce</strong>'dir. Sezon (Mayıs-Eylül) düğünleri ve özellikle popüler tarihler (cumartesi akşamı) için 9-12 ay öncesinden bağlanmak gerekir. Sezon dışı (Kasım-Mart) düğünler için 3-4 ay yeterli olabilir. Çok son dakika rezervasyonlarında firma seçeneği daralır ve fiyatlar artabilir.
+        </div>
+      </details>
+      <details class="landing-faq-item">
+        <summary>Açık büfe mi tabaklı servis mi daha iyi?</summary>
+        <div class="answer">
+          Bu tamamen <strong>düğününüzün stili ve misafir profilinize</strong> bağlı. Açık büfe rahat, geniş seçenek sunar; gençlerin yoğun olduğu modern düğünlerde tercih edilir. Tabaklı servis daha klasik ve formaldir; misafirlerin oturup keyif alması, profesyonel sunum öne çıkar. <strong>Hibrit menü</strong> de tercih edilebilir: meze açık büfe, ana yemek tabaklı servis gibi.
+        </div>
+      </details>
+      <details class="landing-faq-item">
+        <summary>Düğün menüsünde hangi yemekler yer almalı?</summary>
+        <div class="answer">
+          Klasik bir Türk düğün menüsü genelde 5 aşamadan oluşur: <strong>meze tabağı</strong> (humus, haydari, çoban, soğuk başlangıçlar), <strong>çorba</strong> (mercimek/düğün çorbası), <strong>ara sıcak</strong> (sigara böreği, mücver, içli köfte), <strong>ana yemek</strong> (kuzu, tavuk veya balık + pilav/bulgur + sebze), <strong>tatlı</strong> (baklava, sütlü tatlı veya düğün pastası). Ekmek, salata, içecek dahildir. Misafir tercihlerine göre vegan/glutensiz seçenek de eklenmelidir.
+        </div>
+      </details>
+      <details class="landing-faq-item">
+        <summary>Bar/alkol catering ayrıca mı düzenlenir?</summary>
+        <div class="answer">
+          Bazı firmalar yemek + bar'ı birlikte sunar; bazıları sadece yemek konusunda uzmandır. Profesyonel <strong>bar catering / mobil bar</strong> firmaları lisanslı barmen, kokteyl menüsü, içecek paketi, soğutma ekipmanı gibi spesifik hizmetler sunar. Düğünde içecek tüketimi yoğunsa <a href="catererlar.html?hizmet=bar">ayrı bir bar firması</a> tutmak genelde daha kaliteli sonuç verir.
+        </div>
+      </details>
+      <details class="landing-faq-item">
+        <summary>Vegan/vejetaryen misafirlerim için menü hazırlanabilir mi?</summary>
+        <div class="answer">
+          Evet, kesinlikle. İyi catering firmaları davetiye iletilirken misafirlerin diyet tercihleri ve alerjileri sorulur ve buna göre <strong>özel tabaklar</strong> hazırlanır. Tamamen vegan düğünler için uzmanlaşmış firmalar da var; filtreden "Vegan" mutfak seçeneğini işaretleyebilirsiniz.
+        </div>
+      </details>
+      <details class="landing-faq-item">
+        <summary>Düğün catering için mekân catering'i kabul ediyor mu?</summary>
+        <div class="answer">
+          Bu mekânın politikasına bağlıdır. Bazı düğün salonları kendi catering hizmetini zorunlu tutar; bazıları "outside catering" kabul eder ama korkage ücreti talep eder. Mekânla anlaşmadan önce bunu kesin olarak öğrenin. Kendi catering'inizi getirmek istediğiniz mekânlar için EventRehberi'deki firmalar deneyimlidir; mekâna giriş, kurulum, kaldırma süreçlerini bilirler.
+        </div>
+      </details>
+      <details class="landing-faq-item">
+        <summary>Yağmur/hava sürprizi için yedek plan nasıl olmalı?</summary>
+        <div class="answer">
+          Açık hava düğünlerinde mutlaka <strong>yağmur/sıcaklık alternatif planı</strong> sözleşmede belirtilmelidir. İyi firmalar tente kurulumu, kapalı alana taşıma, sıcak servis koruma çözümleri sunar. Açık hava bir düğün planlıyorsanız bu detayları teklif aşamasında konuşun.
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="landing-cta-banner">
+      <h2>Düğününüz için doğru catering firmasını bulun.</h2>
+      <p>Onaylı düğün catering firmalarını filtreleyin, menüleri karşılaştırın, doğrudan teklif alın. Tamamen ücretsiz.</p>
+      <a href="catererlar.html?event=dugun" class="btn btn-primary btn-lg">Düğün Firmalarını İncele</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div style="max-width:760px; margin:0 auto;">
+      <h3 style="margin-bottom:0.75rem; font-size:1.125rem;">Şehre göre düğün catering</h3>
+      <div class="related-cities">
+        <a href="istanbul-catering.html" class="related-link">İstanbul Düğün</a>
+        <a href="ankara-catering.html" class="related-link">Ankara Düğün</a>
+        <a href="izmir-catering.html" class="related-link">İzmir Düğün</a>
+        <a href="catererlar.html?event=dugun" class="related-link">Tüm Türkiye →</a>
+      </div>
+
+      <h3 style="margin:1.75rem 0 0.75rem; font-size:1.125rem;">Diğer etkinlikler</h3>
+      <div class="related-events">
+        <a href="kurumsal-catering.html" class="related-link">Kurumsal Catering</a>
+        <a href="ozel-sef-hizmeti.html" class="related-link">Özel Şef Hizmeti</a>
+        <a href="catererlar.html?hizmet=bar" class="related-link">Bar &amp; Kokteyl</a>
+        <a href="catererlar.html?hizmet=pasta" class="related-link">Pasta &amp; Tatlı</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== FOOTER =============== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col footer-brand">
+        <a href="index.html" class="logo">
+          <span class="logo-mark"><svg viewBox="-60 -64 120 132" width="40" height="40" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M -36 -56 H 36 a 6 6 0 0 1 6 6 V 60 L 0 32 L -42 60 V -50 a 6 6 0 0 1 6 -6 Z" fill="#C7522A"/><path d="M 0 -22 L 9 -4 L 28 -2 L 14 12 L 18 30 L 0 22 L -18 30 L -14 12 L -28 -2 L -9 -4 Z" fill="#FFFFFF"/></svg></span>
+          <span>EventRehberi</span>
+        </a>
+        <p class="muted">Türkiye'nin catering pazaryeri. Her etkinlik için doğru firmayı bul, doğrudan teklif al.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Şehirler</h4>
+        <ul>
+          <li><a href="istanbul-catering.html">İstanbul Catering</a></li>
+          <li><a href="ankara-catering.html">Ankara Catering</a></li>
+          <li><a href="izmir-catering.html">İzmir Catering</a></li>
+          <li><a href="catererlar.html">Tüm Türkiye</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Etkinlikler</h4>
+        <ul>
+          <li><a href="dugun-catering.html">Düğün Catering</a></li>
+          <li><a href="kurumsal-catering.html">Kurumsal Catering</a></li>
+          <li><a href="ozel-sef-hizmeti.html">Özel Şef</a></li>
+          <li><a href="catererlar.html?hizmet=bar">Bar &amp; Kokteyl</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Kurumsal &amp; Yasal</h4>
+        <ul>
+          <li><a href="hakkimizda.html">Hakkımızda</a></li>
+          <li><a href="hakkimizda.html#iletisim">İletişim</a></li>
+          <li><a href="kvkk.html">KVKK Aydınlatma</a></li>
+          <li><a href="gizlilik.html">Gizlilik Politikası</a></li>
+          <li><a href="kullanim-kosullari.html">Kullanım Koşulları</a></li>
+          <li><a href="cerez-politikasi.html">Çerez Politikası</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 EventRehberi. Tüm hakları saklıdır.</span>
+      <span>İstanbul, Türkiye</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.LANDING_FILTER = { event: 'dugun', limit: 6 };
+</script>
+<script src="favorites.js"></script>
+<script src="firms-data.js"></script>
+<script src="compare.js"></script>
+<script src="navbar-mobile.js"></script>
+<script src="auth-nav.js"></script>
+<script src="cookie-consent.js"></script>
+</body>
+</html>

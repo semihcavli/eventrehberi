@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Etkinlik firmanı EventRehberi'de listele. 9 adımda profilini oluştur, Türkiye genelinden müşterilere ulaş. Başlangıç ücretsiz.">
+<title>Firmanı Kaydet — EventRehberi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZH1F3D61N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZZH1F3D61N');
+</script>
+</head>
+<body class="wz-page">
+
+<!-- ===== MINIMAL NAV ===== -->
+<nav class="wz-nav">
+  <a href="index.html" class="logo">
+    <span class="logo-mark">
+      <svg viewBox="-60 -64 120 132" width="32" height="32" xmlns="http://www.w3.org/2000/svg" fill="none">
+        <path d="M -36 -56 H 36 a 6 6 0 0 1 6 6 V 60 L 0 32 L -42 60 V -50 a 6 6 0 0 1 6 -6 Z" fill="#C7522A"/>
+        <path d="M 0 -22 L 9 -4 L 28 -2 L 14 12 L 18 30 L 0 22 L -18 30 L -14 12 L -28 -2 L -9 -4 Z" fill="#FFFFFF"/>
+      </svg>
+    </span>
+    <span>EventRehberi</span>
+  </a>
+  <button type="button" id="wz-exit" class="wz-nav-exit">Kaydet ve çık</button>
+</nav>
+
+<!-- ===== PROGRESS BAR ===== -->
+<div class="wz-progress">
+  <div class="wz-stage wz-stage--active" data-stage="A">
+    <span class="wz-stage-label">Hizmetin</span>
+    <div class="wz-dots">
+      <span class="wz-dot wz-dot--active" data-step="1"></span>
+      <span class="wz-dot" data-step="2"></span>
+      <span class="wz-dot" data-step="3"></span>
+    </div>
+  </div>
+  <div class="wz-stage" data-stage="B">
+    <span class="wz-stage-label">Firman</span>
+    <div class="wz-dots">
+      <span class="wz-dot" data-step="4"></span>
+      <span class="wz-dot" data-step="5"></span>
+      <span class="wz-dot" data-step="6"></span>
+      <span class="wz-dot" data-step="7"></span>
+    </div>
+  </div>
+  <div class="wz-stage" data-stage="C">
+    <span class="wz-stage-label">Yayın</span>
+    <div class="wz-dots">
+      <span class="wz-dot" data-step="8"></span>
+      <span class="wz-dot" data-step="9"></span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SPLIT BODY ===== -->
+<div class="wz-body">
+
+  <!-- LEFT: Visual panels -->
+  <div class="wz-left" aria-hidden="true">
+
+    <!-- Step 1 -->
+    <div class="wz-left-panel is-active" data-step="1">
+      <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=900&h=1200&fit=crop&crop=entropy&auto=format&q=80" alt="">
+      <div class="wz-left-overlay"></div>
+      <div class="wz-left-text">
+        <div class="wz-left-badge">
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Başlangıç ücretsiz
+        </div>
+        <h3>Türkiye genelinde seni bekleyen müşteriler var.</h3>
+        <p>13 kategoride 40+ onaylı firma arasına katıl. Hangi hizmeti veriyorsun?</p>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="wz-left-panel" data-step="2">
+      <img src="https://images.unsplash.com/photo-1527838832700-5059252407fa?w=900&h=1200&fit=crop&crop=entropy&auto=format&q=80" alt="">
+      <div class="wz-left-overlay"></div>
+      <div class="wz-left-text">
+        <h3>İstanbul'dan Bodrum'a, Ankara'dan İzmir'e.</h3>
+        <p>Yakın çevreni veya tüm Türkiye'yi kapsa — hizmet alanın sana göre.</p>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="wz-left-panel" data-step="3">
+      <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=900&h=1200&fit=crop&crop=entropy&auto=format&q=80" alt="">
+      <div class="wz-left-overlay"></div>
+      <div class="wz-left-text">
+        <h3>Düğünden kurumsal etkinliğe, her organizasyonda.</h3>
+        <p>Birden fazla etkinlik türünde uzman olabilirsin. Müşteriler seni doğru etkinlik için bulacak.</p>
+      </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="wz-left-panel" data-step="4">
+      <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=900&h=1200&fit=crop&crop=entropy&auto=format&q=80" alt="">
+      <div class="wz-left-overlay"></div>
+      <div class="wz-left-text">
+        <h3>İlk izlenim her şeydir.</h3>
+        <p>İyi bir isim ve özlü bir cümle, müşterinin seni seçme şansını artırır.</p>
+      </div>
+    </div>
+
+    <!-- Step 5 -->
+    <div class="wz-left-panel" data-step="5">
+      <img src="https://images.unsplash.com/photo-1556125574-d7f27ec36a06?w=900&h=1200&fit=crop&crop=entropy&auto=format&q=80" alt="">
+      <div class="wz-left-overlay"></div>
+      <div class="wz-left-text">
+        <blockquote style="border-left:3px solid rgba(255,255,255,.4);padding-left:1rem;margin:0 0 1rem;font-style:italic;font-size:0.9375rem;color:rgba(255,255,255,.9);line-height:1.6;">
+          "Detaylı profilimiz sayesinde müşteriler bizi bulmadan önce çoktan karar vermişti."
+        </blockquote>
+        <div style="font-size:0.8125rem;color:rgba(255,255,255,.7);">— Hayal Organizasyon, İstanbul</div>
+      </div>
+    </div>
+
+    <!-- Step 6 -->
+    <div class="wz-left-panel" data-step="6">
+      <img src="https://images.unsplash.com/photo-1554080353-a576cf803bda?w=900&h=1200&fit=crop&crop=entropy&auto=format&q=80" alt="">
+      <div class="wz-left-overlay"></div>
+      <div class="wz-left-text">
+        <h3>Fotoğraflı profiller 3× daha fazla teklif alıyor.</h3>
+        <p>Gerçek etkinliklerden çekimler, müşterinin güvenini anında kazanır.</p>
+      </div>
+    </div>
+
+    <!-- Step 7 -->
+    <div class="wz-left-panel" data-step="7">
+      <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&h=1200&fit=crop&crop=entropy&auto=format&q=80" alt="">
+      <div class="wz-left-overlay"></div>
+      <div class="wz-left-text">
+        <h3>Doğru müşteriye, doğru fiyatla ulaş.</h3>
+        <p>Fiyat segmentin müşteri filtreleme sonuçlarında seni doğru kitleyle eşleştirir.</p>
+      </div>
+    </div>
+
+    <!-- Step 8 -->
+    <div class="wz-left-panel" data-step="8">
+      <img src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=900&h=1200&fit=crop&crop=entropy&auto=format&q=80" alt="">
+      <div class="wz-left-overlay"></div>
+      <div class="wz-left-text">
+        <h3>WhatsApp numarası olan firmalar anlık teklif alıyor.</h3>
+        <p>Müşteriler profil sayfandan doğrudan sana ulaşacak — telefon, e-posta veya WhatsApp.</p>
+      </div>
+    </div>
+
+    <!-- Step 9 -->
+    <div class="wz-left-panel" data-step="9">
+      <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=900&h=1200&fit=crop&crop=entropy&auto=format&q=80" alt="">
+      <div class="wz-left-overlay"></div>
+      <div class="wz-left-text">
+        <div class="wz-left-badge">
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          2 iş gününde onay
+        </div>
+        <h3>Son adım — profilini yayınla.</h3>
+        <p>Ekibimiz başvurunu inceler, 2 iş günü içinde profilin canlıya alınır.</p>
+      </div>
+    </div>
+
+  </div>
+  <!-- /wz-left -->
+
+  <!-- RIGHT: Form steps -->
+  <div class="wz-right">
+
+    <!-- Draft restore banner -->
+    <div id="wz-draft-banner" class="wz-draft-banner" hidden>
+      <span><strong>Taslağın kaldığı yerden devam et.</strong> Daha önce başladığın başvurun kaydedildi.</span>
+      <div class="wz-draft-actions">
+        <button type="button" class="wz-draft-continue">Devam et</button>
+        <button type="button" class="wz-draft-reset">Sıfırla</button>
+      </div>
+    </div>
+
+    <form id="wz-form" novalidate>
+
+      <!-- ======= STEP 1: Kategori ======= -->
+      <div class="wz-step is-active" data-step="1">
+        <p class="wz-step-label">Adım 1 / 9 — Hizmet türü</p>
+        <h2 class="wz-step-q">Ne tür hizmet veriyorsun?</h2>
+        <p class="wz-step-hint">Birincil hizmet kategorini seç.</p>
+
+        <div class="wz-cat-grid">
+          <label class="wz-cat-card">
+            <input type="radio" name="kategori" value="yemek">
+            <div class="wz-cat-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+            </div>
+            <span class="wz-cat-name">Yemek Catering</span>
+          </label>
+          <label class="wz-cat-card">
+            <input type="radio" name="kategori" value="bar">
+            <div class="wz-cat-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 22h8M12 11v11M20 2H4l4 9a4 4 0 0 0 8 0l4-9z"/></svg>
+            </div>
+            <span class="wz-cat-name">Bar &amp; Kokteyl</span>
+          </label>
+          <label class="wz-cat-card">
+            <input type="radio" name="kategori" value="sef">
+            <div class="wz-cat-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6z"/><line x1="6" y1="17" x2="18" y2="17"/></svg>
+            </div>
+            <span class="wz-cat-name">Özel Şef</span>
+          </label>
+          <label class="wz-cat-card">
+            <input type="radio" name="kategori" value="pasta">
+            <div class="wz-cat-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"/><path d="M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2 1 2 1"/><line x1="2" y1="21" x2="22" y2="21"/><line x1="7" y1="8" x2="7" y2="11"/><line x1="12" y1="8" x2="12" y2="11"/><line x1="17" y1="8" x2="17" y2="11"/><path d="M7 8a2 2 0 0 1 0-4 2 2 0 0 1 4 0 2 2 0 0 1 4 0 2 2 0 0 1 4 0"/></svg>
+            </div>
+            <span class="wz-cat-name">Pasta &amp; Tatlı</span>
+          </label>
+          <label class="wz-cat-card">
+            <input type="radio" name="kategori" value="susleme">
+            <div class="wz-cat-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a9 9 0 0 1 0 18M12 2a9 9 0 0 0 0 18M12 2v18M4.22 4.22l15.56 15.56M19.78 4.22 4.22 19.78"/></svg>
+            </div>
+            <span class="wz-cat-name">Süsleme &amp; Dekor</span>
+          </label>
+          <label class="wz-cat-card">
+            <input type="radio" name="kategori" value="davetiye">
+            <div class="wz-cat-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <span class="wz-cat-name">Davetiye</span>
+          </label>
+          <label class="wz-cat-card">
+            <input type="radio" name="kategori" value="organizator">
+            <div class="wz-cat-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </div>
+            <span class="wz-cat-name">Organizatör</span>
+          </label>
+          <label class="wz-cat-card">
+            <input type="radio" name="kategori" value="dj">
+            <div class="wz-cat-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+            </div>
+            <span class="wz-cat-name">DJ &amp; Müzik</span>
+          </label>
+          <label class="wz-cat-card">
+            <input type="radio" name="kategori" value="foto">
+            <div class="wz-cat-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            </div>
+            <span class="wz-cat-name">Foto &amp; Video</span>
+          </label>
+          <label class="wz-cat-card">
+            <input type="radio" name="kategori" value="garson">
+            <div class="wz-cat-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <span class="wz-cat-name">Garson &amp; Hostes</span>
+          </label>
+          <label class="wz-cat-card">
+            <input type="radio" name="kategori" value="ekipman">
+            <div class="wz-cat-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            </div>
+            <span class="wz-cat-name">Ekipman Kiralama</span>
+          </label>
+          <label class="wz-cat-card">
+            <input type="radio" name="kategori" value="workshop">
+            <div class="wz-cat-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            </div>
+            <span class="wz-cat-name">Workshop &amp; Atölye</span>
+          </label>
+          <label class="wz-cat-card">
+            <input type="radio" name="kategori" value="cocuk">
+            <div class="wz-cat-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+            </div>
+            <span class="wz-cat-name">Çocuk Etkinliği</span>
+          </label>
+        </div>
+        <div class="wz-error" id="err-1" hidden></div>
+      </div>
+
+      <!-- ======= STEP 2: Konum ======= -->
+      <div class="wz-step" data-step="2">
+        <p class="wz-step-label">Adım 2 / 9 — Konum</p>
+        <h2 class="wz-step-q">Hangi şehirde hizmet veriyorsun?</h2>
+        <p class="wz-step-hint">Ana operasyon şehrini ve hizmet aralığını belirt.</p>
+
+        <div class="form-group wz-field">
+          <label for="il">Merkez il <span class="req">*</span></label>
+          <select id="il" name="il" required>
+            <option value="">Seçiniz...</option>
+            <optgroup label="Marmara">
+              <option>İstanbul</option><option>Bursa</option><option>Kocaeli</option><option>Tekirdağ</option><option>Sakarya</option><option>Balıkesir</option><option>Çanakkale</option><option>Yalova</option><option>Edirne</option><option>Kırklareli</option><option>Bilecik</option>
+            </optgroup>
+            <optgroup label="Ege">
+              <option>İzmir</option><option>Manisa</option><option>Aydın</option><option>Muğla</option><option>Denizli</option><option>Uşak</option><option>Afyonkarahisar</option><option>Kütahya</option>
+            </optgroup>
+            <optgroup label="Akdeniz">
+              <option>Antalya</option><option>Mersin</option><option>Adana</option><option>Hatay</option><option>Osmaniye</option><option>Kahramanmaraş</option><option>Burdur</option><option>Isparta</option>
+            </optgroup>
+            <optgroup label="İç Anadolu">
+              <option>Ankara</option><option>Konya</option><option>Kayseri</option><option>Eskişehir</option><option>Sivas</option><option>Yozgat</option><option>Aksaray</option><option>Niğde</option><option>Nevşehir</option><option>Kırşehir</option><option>Karaman</option><option>Çankırı</option><option>Kırıkkale</option>
+            </optgroup>
+            <optgroup label="Karadeniz">
+              <option>Samsun</option><option>Trabzon</option><option>Ordu</option><option>Rize</option><option>Giresun</option><option>Zonguldak</option><option>Düzce</option><option>Bolu</option><option>Kastamonu</option><option>Sinop</option><option>Artvin</option><option>Tokat</option><option>Amasya</option><option>Çorum</option><option>Bayburt</option><option>Karabük</option><option>Gümüşhane</option><option>Bartın</option>
+            </optgroup>
+            <optgroup label="Doğu Anadolu">
+              <option>Erzurum</option><option>Van</option><option>Malatya</option><option>Elazığ</option><option>Erzincan</option><option>Ağrı</option><option>Muş</option><option>Bitlis</option><option>Hakkari</option><option>Bingöl</option><option>Iğdır</option><option>Ardahan</option><option>Kars</option><option>Tunceli</option>
+            </optgroup>
+            <optgroup label="Güneydoğu Anadolu">
+              <option>Gaziantep</option><option>Şanlıurfa</option><option>Diyarbakır</option><option>Mardin</option><option>Batman</option><option>Siirt</option><option>Şırnak</option><option>Kilis</option><option>Adıyaman</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div class="form-group wz-field" id="ilce-group" hidden>
+          <label>İlçeler <span class="muted-small">(hizmet verdiğin bölgeler)</span></label>
+          <div class="chip-check-group" id="ilce-list"></div>
+        </div>
+
+        <div class="form-group wz-field">
+          <label>Hizmet yarıçapı</label>
+          <div class="chip-check-group" role="radiogroup">
+            <label class="chip-check"><input type="radio" name="yaricap" value="Sadece kendi ilçem" checked><span>Sadece kendi ilçem</span></label>
+            <label class="chip-check"><input type="radio" name="yaricap" value="Tüm il"><span>Tüm il geneli</span></label>
+            <label class="chip-check"><input type="radio" name="yaricap" value="Komşu iller dahil"><span>Komşu illere de gidiyorum</span></label>
+            <label class="chip-check"><input type="radio" name="yaricap" value="Türkiye geneli"><span>Türkiye geneli</span></label>
+          </div>
+        </div>
+        <div class="wz-error" id="err-2" hidden></div>
+      </div>
+
+      <!-- ======= STEP 3: Etkinlikler ======= -->
+      <div class="wz-step" data-step="3">
+        <p class="wz-step-label">Adım 3 / 9 — Etkinlik türleri</p>
+        <h2 class="wz-step-q">Hangi etkinliklerde çalışıyorsun?</h2>
+        <p class="wz-step-hint">Birden fazla seçebilirsin.</p>
+
+        <div class="wz-event-grid">
+          <label class="wz-event-card">
+            <input type="checkbox" name="etkinlik" value="Düğün">
+            <svg class="wz-cat-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span class="wz-event-name">Düğün</span>
+          </label>
+          <label class="wz-event-card">
+            <input type="checkbox" name="etkinlik" value="Kurumsal">
+            <svg class="wz-cat-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            <span class="wz-event-name">Kurumsal etkinlik</span>
+          </label>
+          <label class="wz-event-card">
+            <input type="checkbox" name="etkinlik" value="Nişan">
+            <svg class="wz-cat-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+            <span class="wz-event-name">Nişan &amp; Söz</span>
+          </label>
+          <label class="wz-event-card">
+            <input type="checkbox" name="etkinlik" value="Doğum günü">
+            <svg class="wz-cat-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"/><path d="M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2 1 2 1"/><line x1="2" y1="21" x2="22" y2="21"/><line x1="7" y1="8" x2="7" y2="11"/><line x1="12" y1="8" x2="12" y2="11"/><line x1="17" y1="8" x2="17" y2="11"/></svg>
+            <span class="wz-event-name">Doğum Günü</span>
+          </label>
+          <label class="wz-event-card">
+            <input type="checkbox" name="etkinlik" value="Kokteyl">
+            <svg class="wz-cat-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 22h8M12 11v11M20 2H4l4 9a4 4 0 0 0 8 0l4-9z"/></svg>
+            <span class="wz-event-name">Kokteyl &amp; Davet</span>
+          </label>
+          <label class="wz-event-card">
+            <input type="checkbox" name="etkinlik" value="Özel davet">
+            <svg class="wz-cat-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <span class="wz-event-name">Özel Davet</span>
+          </label>
+        </div>
+        <div class="wz-error" id="err-3" hidden></div>
+      </div>
+
+      <!-- ======= STEP 4: Firma adı + tagline ======= -->
+      <div class="wz-step" data-step="4">
+        <p class="wz-step-label">Adım 4 / 9 — Kimliğin</p>
+        <h2 class="wz-step-q">Firmanın adı ne?</h2>
+
+        <div class="form-group wz-field">
+          <label for="firma-adi">Firma adı <span class="req">*</span></label>
+          <input type="text" id="firma-adi" name="firma-adi" placeholder="Örn. Boğaz Lezzetleri Catering" required autocomplete="organization">
+        </div>
+        <div class="form-group wz-field">
+          <label for="tagline">Tek cümleyle ne yapıyorsunuz? <span class="req">*</span></label>
+          <input type="text" id="tagline" name="tagline" placeholder="Örn. İstanbul'da düğün & kurumsal için yemek catering" maxlength="80" required>
+          <small class="form-hint">Profil listesinde firma adının hemen altında görünür. Kısa, özlü, dikkat çekici.</small>
+        </div>
+        <div class="wz-error" id="err-4" hidden></div>
+      </div>
+
+      <!-- ======= STEP 5: Açıklama ======= -->
+      <div class="wz-step" data-step="5">
+        <p class="wz-step-label">Adım 5 / 9 — Tanıtım</p>
+        <h2 class="wz-step-q">Firmanı müşterilere tanıt.</h2>
+        <p class="wz-step-hint">Mutfak tarzın, farklı yanın, geçmiş referansların... Müşteriler seçim yaparken bunu okuyor.</p>
+
+        <div class="form-group wz-field">
+          <label for="tanitim">Hakkımızda <span class="req">*</span></label>
+          <textarea id="tanitim" name="tanitim" rows="7" placeholder="Örn: 2015'ten bu yana İstanbul'da düğün ve kurumsal catering hizmeti veriyoruz. Osmanlı ve Akdeniz mutfağı uzmanlığıyla 200+ kişilik organizasyonlar dahil..." minlength="100" required></textarea>
+          <span class="wz-charcount"><span id="tanitim-count">0</span> / 100 karakter minimum</span>
+        </div>
+        <div class="wz-error" id="err-5" hidden></div>
+      </div>
+
+      <!-- ======= STEP 6: Fotoğraflar ======= -->
+      <div class="wz-step" data-step="6">
+        <p class="wz-step-label">Adım 6 / 9 — Galeri</p>
+        <h2 class="wz-step-q">Birkaç fotoğraf ekle.</h2>
+        <p class="wz-step-hint">Opsiyonel — sonradan da yükleyebilirsin. Gerçek etkinliklerden çekimler en iyi sonucu verir.</p>
+
+        <label class="gallery-dropzone" for="galeri" style="cursor:pointer;">
+          <div class="gallery-dropzone-content">
+            <div class="gallery-dropzone-icon">
+              <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            </div>
+            <p><strong>Fotoğraf seç</strong> veya buraya sürükle</p>
+            <small>JPG / PNG / WEBP — max 5 MB / dosya</small>
+          </div>
+        </label>
+        <input type="file" id="galeri" name="galeri" accept="image/*" multiple class="file-input-hidden">
+        <div id="wz-upload-status" class="wz-uploading" hidden>
+          <div class="wz-spinner"></div>
+          <span>Fotoğraflar yükleniyor...</span>
+        </div>
+        <div id="galeri-preview" class="gallery-preview-grid" style="margin-top:1rem;"></div>
+      </div>
+
+      <!-- ======= STEP 7: Fiyat + Deneyim ======= -->
+      <div class="wz-step" data-step="7">
+        <p class="wz-step-label">Adım 7 / 9 — Fiyat &amp; Kapasite</p>
+        <h2 class="wz-step-q">Hangi fiyat segmentindesin?</h2>
+        <p class="wz-step-hint">Müşteriler bu kritere göre filtreliyor.</p>
+
+        <div class="wz-price-grid">
+          <label class="wz-price-card">
+            <input type="radio" name="segment" value="Ekonomik" required>
+            <span class="wz-price-sym">₺</span>
+            <span class="wz-price-name">Ekonomik</span>
+            <span class="wz-price-hint">Bütçe dostu</span>
+          </label>
+          <label class="wz-price-card">
+            <input type="radio" name="segment" value="Orta">
+            <span class="wz-price-sym">₺₺</span>
+            <span class="wz-price-name">Orta</span>
+            <span class="wz-price-hint">En yaygın</span>
+          </label>
+          <label class="wz-price-card">
+            <input type="radio" name="segment" value="Orta-üst">
+            <span class="wz-price-sym">₺₺₺</span>
+            <span class="wz-price-name">Orta-üst</span>
+            <span class="wz-price-hint">Kaliteli</span>
+          </label>
+          <label class="wz-price-card">
+            <input type="radio" name="segment" value="Premium">
+            <span class="wz-price-sym">₺₺₺₺</span>
+            <span class="wz-price-name">Premium</span>
+            <span class="wz-price-hint">Lüks</span>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group wz-field">
+            <label for="deneyim">Kaç yıldır faaliyettesiniz? <span class="req">*</span></label>
+            <select id="deneyim" name="deneyim" required>
+              <option value="">Seçiniz...</option>
+              <option>1 yıldan az</option>
+              <option>1-3 yıl</option>
+              <option>3-5 yıl</option>
+              <option>5-10 yıl</option>
+              <option>10+ yıl</option>
+            </select>
+          </div>
+          <div class="form-group wz-field">
+            <label for="min-kisi">Min. kişi kapasitesi <span class="req">*</span></label>
+            <input type="number" id="min-kisi" name="min-kisi" placeholder="20" min="1">
+          </div>
+        </div>
+        <div class="wz-error" id="err-7" hidden></div>
+      </div>
+
+      <!-- ======= STEP 8: İletişim ======= -->
+      <div class="wz-step" data-step="8">
+        <p class="wz-step-label">Adım 8 / 9 — İletişim</p>
+        <h2 class="wz-step-q">Müşteriler sana nasıl ulaşsın?</h2>
+
+        <div class="form-group wz-field">
+          <label for="yetkili">Yetkili ad soyad <span class="req">*</span></label>
+          <input type="text" id="yetkili" name="yetkili" placeholder="Ad Soyad" required autocomplete="name">
+        </div>
+        <div class="form-group wz-field">
+          <label for="telefon">Telefon / WhatsApp <span class="req">*</span></label>
+          <input type="tel" id="telefon" name="telefon" placeholder="05XX XXX XX XX" required autocomplete="tel">
+        </div>
+        <div class="form-group wz-field">
+          <label for="eposta">E-posta <span class="req">*</span></label>
+          <input type="email" id="eposta" name="eposta" placeholder="firma@ornek.com" required autocomplete="email">
+        </div>
+        <div class="form-group wz-field">
+          <label for="web">Website veya Instagram <span class="muted-small">(opsiyonel)</span></label>
+          <input type="text" id="web" name="web" placeholder="instagram.com/firma veya www.firma.com">
+        </div>
+        <div class="wz-error" id="err-8" hidden></div>
+      </div>
+
+      <!-- ======= STEP 9: Önizleme + Yayınla ======= -->
+      <div class="wz-step" data-step="9">
+        <p class="wz-step-label">Adım 9 / 9 — Önizleme</p>
+        <h2 class="wz-step-q">Profilin böyle görünecek.</h2>
+        <p class="wz-step-hint">Ekibimiz 2 iş günü içinde inceler ve yayına alır.</p>
+
+        <div class="wz-preview-wrap">
+          <div id="wz-preview-card"></div>
+        </div>
+
+        <!-- Paket seçimi -->
+        <div style="margin-bottom:1.5rem;">
+          <h4 style="margin:0 0 0.75rem;font-size:1rem;">Paket seçimi</h4>
+          <div class="paket-radio-grid">
+            <label class="paket-radio-card">
+              <input type="radio" name="paket" value="Free" checked>
+              <div class="paket-radio-inner">
+                <div class="paket-radio-head">
+                  <strong>Free</strong>
+                  <span class="paket-radio-price">Ücretsiz</span>
+                </div>
+                <ul>
+                  <li>Firma profili &amp; dijital kartvizit</li>
+                  <li>5 menü / paket</li>
+                  <li>Temel arama sıralaması</li>
+                </ul>
+              </div>
+            </label>
+            <label class="paket-radio-card paket-radio-card--featured">
+              <input type="radio" name="paket" value="Pro">
+              <div class="paket-radio-inner">
+                <div class="paket-radio-head">
+                  <strong>Pro</strong>
+                  <span class="paket-radio-price">₺499<small>/ay</small></span>
+                </div>
+                <ul>
+                  <li><strong>Verified rozet</strong></li>
+                  <li>Üst sıralama (3× görünürlük)</li>
+                  <li>Sınırsız fotoğraf + video</li>
+                  <li>Profil analitiği</li>
+                </ul>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- KVKK -->
+        <label class="check-inline" style="margin-bottom:1rem;display:flex;gap:0.5rem;align-items:flex-start;cursor:pointer;">
+          <input type="checkbox" name="kvkk" required style="margin-top:3px;flex-shrink:0;">
+          <span style="font-size:0.9rem;line-height:1.5;"><a href="kvkk.html" target="_blank" style="color:var(--color-accent);">KVKK Aydınlatma Metni</a>'ni okudum ve kabul ediyorum.</span>
+        </label>
+
+        <div class="wz-error" id="err-9" hidden></div>
+        <div id="wz-submit-error" class="wz-submit-error" hidden></div>
+      </div>
+
+    </form>
+  </div>
+  <!-- /wz-right -->
+
+</div>
+<!-- /wz-body -->
+
+<!-- ===== STICKY FOOTER ===== -->
+<div class="wz-footer">
+  <div class="wz-footer-inner">
+    <button type="button" id="wz-back" class="btn btn-ghost" hidden>← Geri</button>
+    <button type="button" id="wz-next" class="btn btn-primary">Devam →</button>
+  </div>
+</div>
+
+<script src="supabase-client.js"></script>
+<script src="kayit-wizard.js"></script>
+
+<!-- Photo preview script -->
+<script>
+document.getElementById('galeri').addEventListener('change', function() {
+  const preview = document.getElementById('galeri-preview');
+  preview.innerHTML = '';
+  [...this.files].slice(0, 10).forEach(file => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = document.createElement('img');
+      img.src = e.target.result;
+      img.style.cssText = 'width:80px;height:80px;object-fit:cover;border-radius:8px;border:1px solid #e5e7eb;';
+      preview.appendChild(img);
+    };
+    reader.readAsDataURL(file);
+  });
+  preview.style.display = this.files.length ? 'flex' : 'none';
+  preview.style.flexWrap = 'wrap';
+  preview.style.gap = '0.5rem';
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Türkiye genelindeki onaylı catering firmalarını şehir, etkinlik türü, mutfak ve bütçeye göre filtrele. Doğru firmayı dakikalar içinde bul, doğrudan teklif al.">
+<title>Catering Firmaları — Türkiye Geneli Onaylı Liste | EventRehberi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZH1F3D61N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZZH1F3D61N');
+</script>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="container navbar-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-mark"><svg viewBox="-60 -64 120 132" width="40" height="40" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M -36 -56 H 36 a 6 6 0 0 1 6 6 V 60 L 0 32 L -42 60 V -50 a 6 6 0 0 1 6 -6 Z" fill="#C7522A"/><path d="M 0 -22 L 9 -4 L 28 -2 L 14 12 L 18 30 L 0 22 L -18 30 L -14 12 L -28 -2 L -9 -4 Z" fill="#FFFFFF"/></svg></span>
+      <span>EventRehberi</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="catererlar.html" class="active">Firmalar</a></li>
+      <li><a href="fiyatlar.html">Firma Paketleri</a></li>
+      <li><a href="hakkimizda.html">Hakkımızda</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="giris.html" class="nav-auth-link">Giriş Yap</a>
+      <a href="uye-ol.html" class="btn btn-ghost btn-sm">Üye Ol</a>
+      <a href="kayit.html" class="btn btn-primary btn-sm">Firmanı Kaydet</a>
+    </div>
+  </div>
+</nav>
+
+<!-- SERVICE CATEGORY TABS -->
+<div class="service-tabs-bar">
+  <div class="container">
+    <div class="service-tabs" role="tablist" id="service-tabs">
+      <button class="service-tab active" data-hizmet="all" role="tab">
+        <span class="service-tab-icon">🎯</span>
+        <span>Tümü</span>
+      </button>
+      <button class="service-tab" data-hizmet="yemek" role="tab">
+        <span class="service-tab-icon">🍽️</span>
+        <span>Yemek Catering</span>
+      </button>
+      <button class="service-tab" data-hizmet="organizator" role="tab">
+        <span class="service-tab-icon">📋</span>
+        <span>Organizatör</span>
+      </button>
+      <button class="service-tab" data-hizmet="dj" role="tab">
+        <span class="service-tab-icon">🎵</span>
+        <span>DJ, Müzik & Sanatçı</span>
+      </button>
+      <button class="service-tab" data-hizmet="foto" role="tab">
+        <span class="service-tab-icon">📸</span>
+        <span>Foto & Video</span>
+      </button>
+      <button class="service-tab" data-hizmet="sef" role="tab">
+        <span class="service-tab-icon">👨‍🍳</span>
+        <span>Özel Şef</span>
+      </button>
+      <button class="service-tab" data-hizmet="bar" role="tab">
+        <span class="service-tab-icon">🍸</span>
+        <span>Bar & Kokteyl</span>
+      </button>
+      <button class="service-tab" data-hizmet="pasta" role="tab">
+        <span class="service-tab-icon">🎂</span>
+        <span>Pasta & Tatlı</span>
+      </button>
+      <button class="service-tab" data-hizmet="susleme" role="tab">
+        <span class="service-tab-icon">🎀</span>
+        <span>Süsleme, Dekor & Çiçek</span>
+      </button>
+      <button class="service-tab" data-hizmet="davetiye" role="tab">
+        <span class="service-tab-icon">💌</span>
+        <span>Davetiye Tasarımı</span>
+      </button>
+      <button class="service-tab" data-hizmet="garson" role="tab">
+        <span class="service-tab-icon">🤵</span>
+        <span>Garson & Hostes</span>
+      </button>
+      <button class="service-tab" data-hizmet="ekipman" role="tab">
+        <span class="service-tab-icon">🪑</span>
+        <span>Ekipman Kiralama</span>
+      </button>
+      <button class="service-tab" data-hizmet="workshop" role="tab">
+        <span class="service-tab-icon">🎨</span>
+        <span>Workshop & Atölye</span>
+      </button>
+      <button class="service-tab" data-hizmet="cocuk" role="tab">
+        <span class="service-tab-icon">🎈</span>
+        <span>Çocuk Etkinliği</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="filter-page-header">
+  <div class="container">
+    <div class="fph-top">
+      <h1 id="page-title">Tüm firmalar</h1>
+      <p class="muted" id="page-subtitle">Türkiye genelinde onaylı catering firmaları — filtrele, karşılaştır, teklif al.</p>
+    </div>
+
+    <!-- Quick filter strip -->
+    <div class="quick-filters">
+      <button class="quick-filter-btn" id="city-picker-btn" type="button">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span class="quick-filter-label">Konum</span>
+        <span class="quick-filter-value" id="city-picker-value">Tüm Türkiye</span>
+      </button>
+
+      <div class="quick-filter-divider"></div>
+
+      <div class="search-wrapper">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" class="search-input" id="search-input" placeholder="Firma, menü veya hizmet ara...">
+      </div>
+
+      <button class="btn btn-primary filter-more-btn" id="open-filters-mobile" type="button">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+        <span>Filtreler</span>
+        <span class="filter-count-badge" id="filter-count-badge" hidden>0</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN LAYOUT -->
+<section class="filter-layout">
+  <div class="container filter-layout-inner">
+
+    <!-- FILTER SIDEBAR (v2) -->
+    <aside class="filter-sidebar v2" id="filter-sidebar">
+
+      <!-- Sticky header: live count + clear all -->
+      <div class="fs-stickyhead">
+        <div class="fs-head-row">
+          <h3>Filtreler</h3>
+          <button class="filter-close" id="filter-close" type="button" aria-label="Kapat">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <div class="fs-result-pill">
+          <strong id="fs-result-count">0</strong>
+          <span>firma eşleşiyor</span>
+          <button class="fs-clear-all" id="fs-clear-all" type="button" hidden>Temizle</button>
+        </div>
+      </div>
+
+      <!-- Smart presets — one-tap filter combinations -->
+      <div class="fs-presets">
+        <div class="fs-section-title">⚡ Hızlı seçim</div>
+        <div class="fs-preset-chips" id="fs-presets">
+          <button type="button" class="fs-preset-chip" data-preset="dugun">💍 Düğün için ideal</button>
+          <button type="button" class="fs-preset-chip" data-preset="kurumsal">🏢 Kurumsal favorisi</button>
+          <button type="button" class="fs-preset-chip" data-preset="dogum-gunu">🎂 Doğum günü</button>
+          <button type="button" class="fs-preset-chip" data-preset="kokteyl">🥂 Kokteyl gecesi</button>
+          <button type="button" class="fs-preset-chip" data-preset="vegan">🌱 Vegan &amp; sağlıklı</button>
+          <button type="button" class="fs-preset-chip" data-preset="butce">💸 Bütçe dostu</button>
+          <button type="button" class="fs-preset-chip" data-preset="premium">✨ Premium</button>
+        </div>
+      </div>
+
+      <!-- Event type -->
+      <details class="fs-group" data-group="event" open>
+        <summary>
+          <span class="fs-group-icon">🎉</span>
+          <span class="fs-group-title">Etkinlik türü</span>
+          <span class="fs-group-count" data-count-for="event"></span>
+          <span class="fs-group-chev">›</span>
+        </summary>
+        <div class="fs-group-body">
+          <div class="filter-chips" data-filter="event">
+            <label class="filter-chip"><input type="checkbox" value="dugun"><span>💍 Düğün</span></label>
+            <label class="filter-chip"><input type="checkbox" value="nisan"><span>💐 Nişan</span></label>
+            <label class="filter-chip"><input type="checkbox" value="kurumsal"><span>🏢 Kurumsal</span></label>
+            <label class="filter-chip"><input type="checkbox" value="kokteyl"><span>🥂 Kokteyl</span></label>
+            <label class="filter-chip"><input type="checkbox" value="dogum-gunu"><span>🎂 Doğum günü</span></label>
+            <label class="filter-chip"><input type="checkbox" value="ozel-davet"><span>✨ Özel davet</span></label>
+          </div>
+        </div>
+      </details>
+
+      <!-- Price -->
+      <details class="fs-group" data-group="price" open>
+        <summary>
+          <span class="fs-group-icon">💰</span>
+          <span class="fs-group-title">Bütçe segmenti</span>
+          <span class="fs-group-count" data-count-for="price"></span>
+          <span class="fs-group-chev">›</span>
+        </summary>
+        <div class="fs-group-body">
+          <div class="fs-price-grid" data-filter="price">
+            <label class="fs-price-cell"><input type="checkbox" value="1"><span class="fs-price-mark">₺</span><span class="fs-price-name">Ekonomik</span></label>
+            <label class="fs-price-cell"><input type="checkbox" value="2"><span class="fs-price-mark">₺₺</span><span class="fs-price-name">Orta</span></label>
+            <label class="fs-price-cell"><input type="checkbox" value="3"><span class="fs-price-mark">₺₺₺</span><span class="fs-price-name">Orta-üst</span></label>
+            <label class="fs-price-cell"><input type="checkbox" value="4"><span class="fs-price-mark">₺₺₺₺</span><span class="fs-price-name">Premium</span></label>
+          </div>
+        </div>
+      </details>
+
+      <!-- Cuisine — only for food-related services. Now grouped by region. -->
+      <details class="fs-group" data-group="cuisine" data-show-for="yemek,sef,pasta,bar">
+        <summary>
+          <span class="fs-group-icon">🍽️</span>
+          <span class="fs-group-title">Mutfak</span>
+          <span class="fs-group-count" data-count-for="cuisine"></span>
+          <span class="fs-group-chev">›</span>
+        </summary>
+        <div class="fs-group-body">
+          <div data-filter="cuisine">
+            <div class="fs-cuisine-cat">
+              <span class="fs-cat-label">🇹🇷 Türkiye</span>
+              <div class="filter-chips">
+                <label class="filter-chip"><input type="checkbox" value="turk"><span>Türk</span></label>
+                <label class="filter-chip"><input type="checkbox" value="osmanli"><span>Osmanlı</span></label>
+                <label class="filter-chip"><input type="checkbox" value="ege"><span>Ege</span></label>
+                <label class="filter-chip"><input type="checkbox" value="lubnan"><span>Lübnan / Orta Doğu</span></label>
+              </div>
+            </div>
+            <div class="fs-cuisine-cat">
+              <span class="fs-cat-label">🌊 Akdeniz / Avrupa</span>
+              <div class="filter-chips">
+                <label class="filter-chip"><input type="checkbox" value="akdeniz"><span>Akdeniz</span></label>
+                <label class="filter-chip"><input type="checkbox" value="italyan"><span>İtalyan</span></label>
+                <label class="filter-chip"><input type="checkbox" value="fransiz"><span>Fransız</span></label>
+                <label class="filter-chip"><input type="checkbox" value="deniz"><span>Deniz ürünleri</span></label>
+              </div>
+            </div>
+            <div class="fs-cuisine-cat">
+              <span class="fs-cat-label">🌏 Asya / Dünya</span>
+              <div class="filter-chips">
+                <label class="filter-chip"><input type="checkbox" value="japon"><span>Japon</span></label>
+                <label class="filter-chip"><input type="checkbox" value="cin"><span>Çin</span></label>
+                <label class="filter-chip"><input type="checkbox" value="hint"><span>Hint</span></label>
+                <label class="filter-chip"><input type="checkbox" value="meksika"><span>Meksika</span></label>
+                <label class="filter-chip"><input type="checkbox" value="fusion"><span>Fusion</span></label>
+              </div>
+            </div>
+            <div class="fs-cuisine-cat">
+              <span class="fs-cat-label">🌱 Özel diyet &amp; uzmanlık</span>
+              <div class="filter-chips">
+                <label class="filter-chip"><input type="checkbox" value="vegan"><span>Vegan</span></label>
+                <label class="filter-chip"><input type="checkbox" value="vejetaryen"><span>Vejetaryen</span></label>
+                <label class="filter-chip"><input type="checkbox" value="glutensiz"><span>Glutensiz</span></label>
+                <label class="filter-chip"><input type="checkbox" value="bbq"><span>BBQ / Izgara</span></label>
+                <label class="filter-chip"><input type="checkbox" value="kokteyl-cuisine"><span>Kokteyl</span></label>
+                <label class="filter-chip"><input type="checkbox" value="pastacilik"><span>Pastacılık</span></label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- Min rating -->
+      <details class="fs-group" data-group="rating">
+        <summary>
+          <span class="fs-group-icon">⭐</span>
+          <span class="fs-group-title">Minimum puan</span>
+          <span class="fs-group-count" data-count-for="rating"></span>
+          <span class="fs-group-chev">›</span>
+        </summary>
+        <div class="fs-group-body">
+          <div class="filter-chips" data-filter="rating">
+            <label class="filter-chip"><input type="radio" name="rating" value="0" checked><span>Hepsi</span></label>
+            <label class="filter-chip"><input type="radio" name="rating" value="4.5"><span>4.5+ ★</span></label>
+            <label class="filter-chip"><input type="radio" name="rating" value="4.7"><span>4.7+ ★</span></label>
+            <label class="filter-chip"><input type="radio" name="rating" value="4.9"><span>4.9+ ★</span></label>
+          </div>
+        </div>
+      </details>
+
+      <!-- Min people -->
+      <details class="fs-group" data-group="minPeople">
+        <summary>
+          <span class="fs-group-icon">👥</span>
+          <span class="fs-group-title">Min. kişi sayısı</span>
+          <span class="fs-group-count" data-count-for="minPeople"></span>
+          <span class="fs-group-chev">›</span>
+        </summary>
+        <div class="fs-group-body">
+          <div class="fs-range-head">
+            <span class="fs-range-label">En az</span>
+            <span class="fs-range-display" id="min-people-display">Hepsi</span>
+          </div>
+          <input type="range" id="min-people" class="filter-range" min="0" max="200" step="10" value="0">
+          <div class="filter-range-labels">
+            <span>0</span>
+            <span>100</span>
+            <span>200+</span>
+          </div>
+        </div>
+      </details>
+
+      <!-- Sticky footer: clear + apply -->
+      <div class="fs-sticky-footer">
+        <button class="btn btn-ghost btn-sm" id="reset-filters" type="button">Sıfırla</button>
+        <button class="btn btn-primary btn-sm filter-apply" id="apply-filters" type="button">
+          <span>Sonuçları gör</span>
+          <span class="fs-apply-num" id="fs-apply-num">0</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- RESULTS -->
+    <div class="filter-results">
+      <div class="results-header">
+        <div>
+          <span class="results-count"><strong id="result-count">0</strong> firma bulundu</span>
+          <div class="active-chips" id="active-chips"></div>
+        </div>
+        <select class="sort-select" id="sort-select">
+          <option value="recommended">Önerilen sıralama</option>
+          <option value="rating">Puan: yüksekten düşüğe</option>
+          <option value="price-asc">Fiyat: düşükten yükseğe</option>
+          <option value="price-desc">Fiyat: yüksekten düşüğe</option>
+          <option value="reviews">En çok yorum alan</option>
+        </select>
+      </div>
+
+      <div class="firm-grid" id="firm-grid"></div>
+
+      <!-- Empty state -->
+      <div class="empty-state" id="empty-state" hidden>
+        <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <h3>Bu kriterlere uyan firma yok</h3>
+        <p id="empty-suggestion">Filtrelerini genişletmeyi dene. Başka bir şehir, hizmet veya daha az kriter seçebilirsin.</p>
+        <div class="empty-actions">
+          <button class="btn btn-primary" id="empty-reset" type="button">Filtreleri temizle</button>
+          <a href="catererlar.html" class="btn btn-ghost">Tüm firmalara dön</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CITY PICKER MODAL -->
+<div class="city-modal" id="city-modal" hidden role="dialog" aria-modal="true">
+  <div class="city-modal-backdrop" id="city-modal-backdrop"></div>
+  <div class="city-modal-panel">
+    <div class="city-modal-header">
+      <div>
+        <h2>Konum seç</h2>
+        <p class="muted" style="font-size:0.875rem;">Türkiye genelinde 81 il. Şehir seç, büyük şehirlerde ilçe de belirle.</p>
+      </div>
+      <button class="city-modal-close" id="city-modal-close" type="button" aria-label="Kapat">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <div class="city-modal-search">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="city-search" placeholder="İl veya ilçe ara — örn. 'Beşiktaş', 'Bodrum'...">
+    </div>
+
+    <div class="city-modal-tabs">
+      <button class="cm-tab active" data-tab="popular" type="button">Popüler</button>
+      <button class="cm-tab" data-tab="region" type="button">Bölgeye göre</button>
+      <button class="cm-tab" data-tab="all" type="button">Tüm iller (A-Z)</button>
+    </div>
+
+    <div class="city-modal-content">
+      <!-- Popular -->
+      <div class="cm-panel active" data-panel="popular">
+        <p class="cm-hint">En çok tercih edilen şehirler</p>
+        <div class="popular-cities">
+          <button class="popular-city-card" data-city="istanbul" data-name="İstanbul" type="button">
+            <div class="pc-img" style="background-image:url('https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=400&amp;h=300&amp;fit=crop&amp;crop=entropy&amp;auto=format&amp;q=80')"></div>
+            <div class="pc-body">
+              <div class="pc-name">İstanbul</div>
+              <div class="pc-meta">39 ilçe · 12 firma</div>
+            </div>
+          </button>
+          <button class="popular-city-card" data-city="ankara" data-name="Ankara" type="button">
+            <div class="pc-img" style="background-image:url('https://images.unsplash.com/photo-1589307357824-e57b9cd5a2ef?w=400&amp;h=300&amp;fit=crop&amp;crop=entropy&amp;auto=format&amp;q=80')"></div>
+            <div class="pc-body">
+              <div class="pc-name">Ankara</div>
+              <div class="pc-meta">25 ilçe · 5 firma</div>
+            </div>
+          </button>
+          <button class="popular-city-card" data-city="izmir" data-name="İzmir" type="button">
+            <div class="pc-img" style="background-image:url('https://images.unsplash.com/photo-1589807755489-67faaed5fa30?w=400&amp;h=300&amp;fit=crop&amp;crop=entropy&amp;auto=format&amp;q=80')"></div>
+            <div class="pc-body">
+              <div class="pc-name">İzmir</div>
+              <div class="pc-meta">30 ilçe · 3 firma</div>
+            </div>
+          </button>
+          <button class="popular-city-card" data-city="antalya" data-name="Antalya" type="button">
+            <div class="pc-img" style="background-image:url('https://images.unsplash.com/photo-1589491106922-a8e488b87759?w=400&amp;h=300&amp;fit=crop&amp;crop=entropy&amp;auto=format&amp;q=80')"></div>
+            <div class="pc-body">
+              <div class="pc-name">Antalya</div>
+              <div class="pc-meta">19 ilçe · 2 firma</div>
+            </div>
+          </button>
+          <button class="popular-city-card" data-city="bursa" data-name="Bursa" type="button">
+            <div class="pc-img" style="background-image:url('https://images.unsplash.com/photo-1604608672516-2e3e234a0bdc?w=400&amp;h=300&amp;fit=crop&amp;crop=entropy&amp;auto=format&amp;q=80')"></div>
+            <div class="pc-body">
+              <div class="pc-name">Bursa</div>
+              <div class="pc-meta">17 ilçe · 1 firma</div>
+            </div>
+          </button>
+          <button class="popular-city-card" data-city="mugla" data-name="Muğla" type="button">
+            <div class="pc-img" style="background-image:url('https://images.unsplash.com/photo-1597074866923-dc0589150358?w=400&amp;h=300&amp;fit=crop&amp;crop=entropy&amp;auto=format&amp;q=80')"></div>
+            <div class="pc-body">
+              <div class="pc-name">Muğla</div>
+              <div class="pc-meta">13 ilçe · 1 firma</div>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <!-- By Region -->
+      <div class="cm-panel" data-panel="region">
+        <p class="cm-hint">Bölgeye göre iller</p>
+        <div class="regions" id="regions-container"></div>
+      </div>
+
+      <!-- All A-Z -->
+      <div class="cm-panel" data-panel="all">
+        <p class="cm-hint">81 il alfabetik sırayla</p>
+        <div class="all-cities" id="all-cities"></div>
+      </div>
+    </div>
+
+    <!-- District picker (shown when a city is selected) -->
+    <div class="district-panel" id="district-panel" hidden>
+      <div class="district-back">
+        <button type="button" id="district-back-btn" class="link-muted">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          Tüm şehirler
+        </button>
+      </div>
+      <div class="district-head">
+        <h3 id="district-city-name">İstanbul</h3>
+        <p class="muted" style="font-size:0.875rem;">İlçeleri seçebilir veya tümünü kapsayabilirsin.</p>
+      </div>
+      <button class="btn btn-ghost btn-block district-all" id="district-all-btn" type="button">Tüm ilçeleri kapsa</button>
+      <div class="district-grid" id="district-grid"></div>
+      <div class="district-footer">
+        <button class="btn btn-primary btn-block" id="district-apply" type="button">Seçimi uygula</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col footer-brand">
+        <a href="index.html" class="logo">
+          <span class="logo-mark"><svg viewBox="-60 -64 120 132" width="40" height="40" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M -36 -56 H 36 a 6 6 0 0 1 6 6 V 60 L 0 32 L -42 60 V -50 a 6 6 0 0 1 6 -6 Z" fill="#C7522A"/><path d="M 0 -22 L 9 -4 L 28 -2 L 14 12 L 18 30 L 0 22 L -18 30 L -14 12 L -28 -2 L -9 -4 Z" fill="#FFFFFF"/></svg></span>
+          <span>EventRehberi</span>
+        </a>
+        <p class="muted">Türkiye'nin catering pazaryeri. Her etkinlik için doğru firmayı bul, doğrudan teklif al.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Keşfet</h4>
+        <ul>
+          <li><a href="catererlar.html">Yemek Catering</a></li>
+          <li><a href="catererlar.html">Bar &amp; Kokteyl</a></li>
+          <li><a href="catererlar.html">Özel Şef</a></li>
+          <li><a href="catererlar.html">Ekipman Kiralama</a></li>
+          <li><a href="catererlar.html">Pasta &amp; Tatlı</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>İşletmeler</h4>
+        <ul>
+          <li><a href="kayit.html">Firmanı kaydet</a></li>
+          <li><a href="fiyatlar.html">Firma paketleri</a></li>
+          <li><a href="hakkimizda.html">Nasıl çalışır?</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Kurumsal &amp; Yasal</h4>
+        <ul>
+          <li><a href="hakkimizda.html">Hakkımızda</a></li>
+          <li><a href="hakkimizda.html#iletisim">İletişim</a></li>
+          <li><a href="kvkk.html">KVKK Aydınlatma</a></li>
+          <li><a href="gizlilik.html">Gizlilik Politikası</a></li>
+          <li><a href="kullanim-kosullari.html">Kullanım Koşulları</a></li>
+          <li><a href="cerez-politikasi.html">Çerez Politikası</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 EventRehberi. Tüm hakları saklıdır.</span>
+      <span>Türkiye</span>
+    </div>
+  </div>
+</footer>
+
+<script src="firms-data.js"></script>
+<script>
+/* =========================================
+   Turkish Cities Data
+   ========================================= */
+const TR_REGIONS = {
+  'Marmara': ['İstanbul', 'Bursa', 'Kocaeli', 'Tekirdağ', 'Sakarya', 'Balıkesir', 'Çanakkale', 'Yalova', 'Edirne', 'Kırklareli', 'Bilecik'],
+  'Ege': ['İzmir', 'Manisa', 'Aydın', 'Muğla', 'Denizli', 'Uşak', 'Afyonkarahisar', 'Kütahya'],
+  'Akdeniz': ['Antalya', 'Mersin', 'Adana', 'Hatay', 'Osmaniye', 'Kahramanmaraş', 'Burdur', 'Isparta'],
+  'İç Anadolu': ['Ankara', 'Konya', 'Kayseri', 'Eskişehir', 'Sivas', 'Yozgat', 'Aksaray', 'Niğde', 'Nevşehir', 'Kırşehir', 'Karaman', 'Çankırı', 'Kırıkkale'],
+  'Karadeniz': ['Samsun', 'Trabzon', 'Ordu', 'Rize', 'Giresun', 'Zonguldak', 'Düzce', 'Bolu', 'Kastamonu', 'Sinop', 'Artvin', 'Tokat', 'Amasya', 'Çorum', 'Bayburt', 'Karabük', 'Gümüşhane', 'Bartın'],
+  'Doğu Anadolu': ['Erzurum', 'Van', 'Malatya', 'Elazığ', 'Erzincan', 'Ağrı', 'Muş', 'Bitlis', 'Hakkari', 'Bingöl', 'Iğdır', 'Ardahan', 'Kars', 'Tunceli'],
+  'Güneydoğu Anadolu': ['Gaziantep', 'Şanlıurfa', 'Diyarbakır', 'Mardin', 'Batman', 'Siirt', 'Şırnak', 'Kilis', 'Adıyaman']
+};
+
+const DISTRICTS = {
+  'İstanbul': ['Adalar', 'Arnavutköy', 'Ataşehir', 'Avcılar', 'Bağcılar', 'Bahçelievler', 'Bakırköy', 'Başakşehir', 'Bayrampaşa', 'Beşiktaş', 'Beykoz', 'Beylikdüzü', 'Beyoğlu', 'Büyükçekmece', 'Çatalca', 'Çekmeköy', 'Esenler', 'Esenyurt', 'Eyüpsultan', 'Fatih', 'Gaziosmanpaşa', 'Güngören', 'Kadıköy', 'Kağıthane', 'Kartal', 'Küçükçekmece', 'Maltepe', 'Pendik', 'Sancaktepe', 'Sarıyer', 'Silivri', 'Sultanbeyli', 'Sultangazi', 'Şile', 'Şişli', 'Tuzla', 'Ümraniye', 'Üsküdar', 'Zeytinburnu'],
+  'Ankara': ['Akyurt', 'Altındağ', 'Ayaş', 'Bala', 'Beypazarı', 'Çamlıdere', 'Çankaya', 'Çubuk', 'Elmadağ', 'Etimesgut', 'Evren', 'Gölbaşı', 'Güdül', 'Haymana', 'Kalecik', 'Keçiören', 'Kızılcahamam', 'Mamak', 'Nallıhan', 'Polatlı', 'Pursaklar', 'Sincan', 'Şereflikoçhisar', 'Yenimahalle'],
+  'İzmir': ['Aliağa', 'Balçova', 'Bayındır', 'Bayraklı', 'Bergama', 'Beydağ', 'Bornova', 'Buca', 'Çeşme', 'Çiğli', 'Dikili', 'Foça', 'Gaziemir', 'Güzelbahçe', 'Karabağlar', 'Karaburun', 'Karşıyaka', 'Kemalpaşa', 'Kınık', 'Kiraz', 'Konak', 'Menderes', 'Menemen', 'Narlıdere', 'Ödemiş', 'Seferihisar', 'Selçuk', 'Tire', 'Torbalı', 'Urla'],
+  'Antalya': ['Aksu', 'Alanya', 'Demre', 'Döşemealtı', 'Elmalı', 'Finike', 'Gazipaşa', 'Gündoğmuş', 'İbradı', 'Kaş', 'Kemer', 'Kepez', 'Konyaaltı', 'Korkuteli', 'Kumluca', 'Manavgat', 'Muratpaşa', 'Serik'],
+  'Bursa': ['Büyükorhan', 'Gemlik', 'Gürsu', 'Harmancık', 'İnegöl', 'İznik', 'Karacabey', 'Keles', 'Kestel', 'Mudanya', 'Mustafakemalpaşa', 'Nilüfer', 'Orhaneli', 'Orhangazi', 'Osmangazi', 'Yenişehir', 'Yıldırım'],
+  'Muğla': ['Bodrum', 'Dalaman', 'Datça', 'Fethiye', 'Kavaklıdere', 'Köyceğiz', 'Marmaris', 'Menteşe', 'Milas', 'Ortaca', 'Seydikemer', 'Ula', 'Yatağan']
+};
+
+function onFirmsReady(cb) {
+  if (window.CS_FIRMS) { cb(); }
+  else { document.addEventListener('cs-firms-ready', cb, { once: true }); }
+}
+
+/* =========================================
+   Filter State & Rendering
+   ========================================= */
+const state = {
+  hizmet: 'all',
+  city: null,
+  districts: [],
+  events: [],
+  cuisine: [],
+  price: [],
+  minPeople: 0,
+  rating: 0,
+  query: '',
+  sort: 'recommended'
+};
+
+// Parse URL params for deep linking
+(function initFromURL() {
+  const p = new URLSearchParams(window.location.search);
+  const validHizmet = ['all','yemek','organizator','dj','foto','sef','bar','pasta','susleme','davetiye','garson','ekipman','workshop','cocuk'];
+  if (p.has('hizmet') && validHizmet.includes(p.get('hizmet'))) state.hizmet = p.get('hizmet');
+  if (p.has('sehir')) state.city = p.get('sehir');
+  if (p.has('events')) state.events = p.get('events').split(',').filter(Boolean);
+  if (p.has('cuisine')) state.cuisine = p.get('cuisine').split(',').filter(Boolean);
+  if (p.has('price')) state.price = p.get('price').split(',').filter(Boolean);
+  if (p.has('rating')) state.rating = parseFloat(p.get('rating')) || 0;
+  if (p.has('minp')) state.minPeople = parseInt(p.get('minp')) || 0;
+  if (p.has('q')) state.query = p.get('q');
+  if (p.has('sort')) state.sort = p.get('sort');
+})();
+
+function writeURL() {
+  const p = new URLSearchParams();
+  if (state.hizmet !== 'all') p.set('hizmet', state.hizmet);
+  if (state.city) p.set('sehir', state.city);
+  if (state.events.length) p.set('events', state.events.join(','));
+  if (state.cuisine.length) p.set('cuisine', state.cuisine.join(','));
+  if (state.price.length) p.set('price', state.price.join(','));
+  if (state.rating) p.set('rating', state.rating);
+  if (state.minPeople) p.set('minp', state.minPeople);
+  if (state.query) p.set('q', state.query);
+  if (state.sort !== 'recommended') p.set('sort', state.sort);
+  const url = window.location.pathname + (p.toString() ? '?' + p.toString() : '');
+  window.history.replaceState(null, '', url);
+}
+
+const $grid = document.getElementById('firm-grid');
+const $count = document.getElementById('result-count');
+const $empty = document.getElementById('empty-state');
+const $chips = document.getElementById('active-chips');
+const $countBadge = document.getElementById('filter-count-badge');
+const $cityValue = document.getElementById('city-picker-value');
+const $pageTitle = document.getElementById('page-title');
+const $pageSubtitle = document.getElementById('page-subtitle');
+
+const HIZMET_LABELS = {
+  all: 'Tüm firmalar',
+  yemek: 'Yemek Catering',
+  organizator: 'Organizatör',
+  dj: 'DJ, Müzik & Sanatçı',
+  foto: 'Foto & Video',
+  sef: 'Özel Şef',
+  bar: 'Bar & Kokteyl',
+  pasta: 'Pasta & Tatlı',
+  susleme: 'Süsleme, Dekor & Çiçek',
+  davetiye: 'Davetiye Tasarımı',
+  garson: 'Garson & Hostes',
+  ekipman: 'Ekipman Kiralama',
+  workshop: 'Workshop & Atölye',
+  cocuk: 'Çocuk Etkinliği'
+};
+
+const HIZMET_SUBS = {
+  all: 'Türkiye genelinde onaylı etkinlik firmaları — 13 kategoride filtrele, karşılaştır, teklif al.',
+  yemek: 'Düğün, kurumsal, özel davet için yemek catering firmaları.',
+  organizator: 'Düğün planlayıcı ve etkinlik organizasyon firmaları.',
+  dj: 'DJ, canlı müzik grubu, solo sanatçı ve ses sistemi kiralama.',
+  foto: 'Düğün ve etkinlik fotoğrafçısı, video çekimi.',
+  sef: 'Evde veya villada premium private chef hizmeti.',
+  bar: 'Mobil bar, lisanslı barmen, signature kokteyl menüleri.',
+  pasta: 'Düğün, doğum günü pastaları ve tatlı büfeleri.',
+  susleme: 'Düğün dekoru, masa süslemesi, gelin buketi ve tören çiçekleri.',
+  davetiye: 'Klasik baskı ve dijital davetiye tasarımcıları.',
+  garson: 'Profesyonel garson, barmen ve karşılama hostesi kiralama.',
+  ekipman: 'Masa, sandalye, çadır, ışık, ses ekipmanı kiralama.',
+  workshop: 'Sanat atölyesi, kokteyl workshop\'u, mutfak deneyimi, team-building & daha fazlası.',
+  cocuk: 'Animatör, balon dekor, yüz boyama, şişme oyun parkı — çocuk doğum günü & etkinlikleri.'
+};
+
+function setActiveServiceTab() {
+  document.querySelectorAll('.service-tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.hizmet === state.hizmet);
+  });
+  $pageTitle.textContent = HIZMET_LABELS[state.hizmet];
+  $pageSubtitle.textContent = HIZMET_SUBS[state.hizmet];
+  // Service-aware filter visibility (fade transition)
+  document.querySelectorAll('[data-show-for]').forEach(el => {
+    const showFor = el.dataset.showFor.split(',');
+    const visible = showFor.includes('all') || showFor.includes(state.hizmet);
+    if (visible) {
+      el.style.display = '';
+      // Ensure opacity resets after any pending hide
+      clearTimeout(el._hideTimer);
+      requestAnimationFrame(() => { el.style.opacity = '1'; });
+    } else {
+      el.style.opacity = '0';
+      el._hideTimer = setTimeout(() => { el.style.display = 'none'; }, 200);
+      el.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => { cb.checked = false; });
+    }
+  });
+  if (state.hizmet !== 'all' && !['yemek','sef','pasta','bar'].includes(state.hizmet)) {
+    state.cuisine = [];
+  }
+}
+
+/* =========================================
+   Filter Presets — one-tap combinations
+   ========================================= */
+const PRESETS = {
+  // Düğün için ideal: high-rated dugun firms
+  'dugun':       { events:['dugun'],         rating: 4.7 },
+  'kurumsal':    { events:['kurumsal'],      rating: 4.6 },
+  'dogum-gunu':  { events:['dogum-gunu'] },
+  'kokteyl':     { events:['kokteyl'] },
+  'vegan':       { cuisine:['vegan','vejetaryen','glutensiz'] },
+  'butce':       { price:['1','2'] },
+  'premium':     { price:['3','4'], rating: 4.7 }
+};
+
+function applyPreset(key) {
+  const def = PRESETS[key];
+  if (!def) return;
+  // Reset relevant axes first so preset is "fresh"
+  state.events = def.events ? [...def.events] : [];
+  state.cuisine = def.cuisine ? [...def.cuisine] : [];
+  state.price = def.price ? [...def.price] : [];
+  state.rating = def.rating || 0;
+  syncSidebarFromState();
+  render();
+}
+
+/* When state changes (preset or chip-removal), update the sidebar
+   checkboxes/radios so the UI reflects state. */
+function syncSidebarFromState() {
+  // Events
+  document.querySelectorAll('[data-filter="event"] input[type="checkbox"]').forEach(cb => {
+    cb.checked = state.events.includes(cb.value);
+  });
+  // Cuisine (across all subgroups)
+  document.querySelectorAll('[data-filter="cuisine"] input[type="checkbox"]').forEach(cb => {
+    cb.checked = state.cuisine.includes(cb.value);
+  });
+  // Price
+  document.querySelectorAll('[data-filter="price"] input[type="checkbox"]').forEach(cb => {
+    cb.checked = state.price.includes(cb.value);
+  });
+  // Rating (radio)
+  const r = document.querySelector(`[data-filter="rating"] input[value="${state.rating || 0}"]`);
+  if (r) r.checked = true;
+  // Min people
+  const $mp = document.getElementById('min-people');
+  const $mpd = document.getElementById('min-people-display');
+  if ($mp && $mpd) {
+    $mp.value = state.minPeople || 0;
+    $mpd.textContent = !state.minPeople ? 'Hepsi' : (state.minPeople >= 200 ? '200+ kişi' : state.minPeople + '+ kişi');
+  }
+}
+
+/* Update per-group active counts and the live result pill in sidebar */
+function updateSidebarMeta(filtered) {
+  const counts = {
+    event: state.events.length,
+    cuisine: state.cuisine.length,
+    price: state.price.length,
+    rating: state.rating ? 1 : 0,
+    minPeople: state.minPeople ? 1 : 0
+  };
+  document.querySelectorAll('[data-count-for]').forEach(el => {
+    const k = el.dataset.countFor;
+    const n = counts[k] || 0;
+    el.textContent = n > 0 ? n : '';
+    el.classList.toggle('is-on', n > 0);
+  });
+
+  const $sideCount = document.getElementById('fs-result-count');
+  const $applyNum = document.getElementById('fs-apply-num');
+  const $clearAll = document.getElementById('fs-clear-all');
+  if ($sideCount) $sideCount.textContent = filtered.length;
+  if ($applyNum) $applyNum.textContent = filtered.length;
+  if ($clearAll) {
+    const totalActive = counts.event + counts.cuisine + counts.price + counts.rating + counts.minPeople +
+      (state.city ? 1 : 0) + (state.query ? 1 : 0);
+    $clearAll.hidden = totalActive === 0;
+  }
+
+  // Mark which preset (if any) is currently "active" — exact match
+  document.querySelectorAll('.fs-preset-chip').forEach(btn => {
+    const def = PRESETS[btn.dataset.preset];
+    if (!def) return;
+    const events = (def.events || []).slice().sort().join(',');
+    const cuisine = (def.cuisine || []).slice().sort().join(',');
+    const price = (def.price || []).slice().sort().join(',');
+    const rating = def.rating || 0;
+    const match =
+      events === state.events.slice().sort().join(',') &&
+      cuisine === state.cuisine.slice().sort().join(',') &&
+      price === state.price.slice().sort().join(',') &&
+      rating === state.rating;
+    btn.classList.toggle('is-active', match);
+  });
+}
+
+function matchesFilter(f) {
+  if (state.hizmet !== 'all' && f.hizmet !== state.hizmet) return false;
+  if (state.city && f.city !== state.city) return false;
+  if (state.districts.length && !state.districts.includes(f.district)) return false;
+  if (state.events.length && !state.events.some(e => f.events.includes(e))) return false;
+  if (state.cuisine.length && !state.cuisine.some(c => f.cuisine.includes(c))) return false;
+  if (state.price.length && !state.price.includes(String(f.price))) return false;
+  if (state.minPeople && f.minPeople > state.minPeople) return false;
+  if (state.rating && f.rating < state.rating) return false;
+  if (state.query) {
+    const q = state.query.toLowerCase();
+    const hay = (f.name + ' ' + f.tagline + ' ' + f.city + ' ' + f.district).toLowerCase();
+    if (!hay.includes(q)) return false;
+  }
+  return true;
+}
+
+function sortFirms(list) {
+  const arr = [...list];
+  switch(state.sort) {
+    case 'rating': arr.sort((a,b) => b.rating - a.rating); break;
+    case 'price-asc': arr.sort((a,b) => a.price - b.price); break;
+    case 'price-desc': arr.sort((a,b) => b.price - a.price); break;
+    case 'reviews': arr.sort((a,b) => b.reviews - a.reviews); break;
+    default: // recommended: featured first, then rating
+      arr.sort((a,b) => (b.featured?1:0) - (a.featured?1:0) || b.rating - a.rating);
+  }
+  return arr;
+}
+
+const PRICE_STR = ['', '₺', '₺₺', '₺₺₺', '₺₺₺₺'];
+
+function renderCard(f) {
+  const badgeHtml = f.badge === 'Elite'
+    ? '<span class="firm-badge firm-badge--elite"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5L18.2 21 12 16.5 5.8 21l2.4-7.1L2 9.4h7.6L12 2z"/></svg> Elite</span>'
+    : f.badge === 'Pro' ? '<span class="firm-badge firm-badge--pro">Pro</span>' : '';
+  const featuredStripe = f.featured ? '<span class="firm-sponsored">Öne çıkan</span>' : '';
+  const favPayload = JSON.stringify({
+    id: f.id, name: f.name, city: f.city, district: f.district,
+    rating: f.rating, reviews: f.reviews, image: f.image,
+    tagline: f.tagline, badge: f.badge || '',
+    cuisines: f.cuisine || [], events: f.events || [],
+    price: f.price, hizmet: f.hizmet
+  }).replace(/"/g, '&quot;');
+  return `
+    <a href="firma.html?id=${f.id}" class="firm-card ${f.featured ? 'firm-card--featured' : ''}">
+      <div class="firm-card-img" style="background-image:url('${f.image}')">
+        ${featuredStripe}
+        <button type="button" class="firm-card-compare" data-er-compare-toggle data-firm-id="${f.id}" aria-label="Karşılaştırmaya ekle" aria-pressed="false" title="Karşılaştırmaya ekle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></button>
+        <button type="button" class="firm-card-fav" data-fav-toggle data-fav-id="${f.id}" data-fav="${favPayload}" aria-label="Favorilere ekle" aria-pressed="false" title="Favorilere ekle">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </button>
+        <span class="firm-card-rating">★ ${f.rating.toFixed(1)}</span>
+      </div>
+      <div class="firm-card-body">
+        <div class="firm-card-head">
+          <h4>${f.name}</h4>
+          ${badgeHtml}
+        </div>
+        <p class="firm-card-tagline">${f.tagline}</p>
+        <div class="firm-card-meta">
+          <span class="firm-card-loc">
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            ${f.district}, ${f.city}
+          </span>
+          <span class="firm-card-price">${PRICE_STR[f.price]}</span>
+        </div>
+        <div class="firm-card-foot">
+          <span class="firm-card-reviews">${f.reviews} yorum</span>
+          <span class="firm-card-min">Min ${f.minPeople} kişi</span>
+        </div>
+      </div>
+    </a>
+  `;
+}
+
+function renderChips() {
+  const chips = [];
+  if (state.city) {
+    const distText = state.districts.length ? ` · ${state.districts.length} ilçe` : '';
+    chips.push({k: 'city', l: `📍 ${state.city}${distText}`});
+  }
+  state.events.forEach(e => chips.push({k: 'event', v: e, l: eventLabel(e)}));
+  state.cuisine.forEach(c => chips.push({k: 'cuisine', v: c, l: cuisineLabel(c)}));
+  state.price.forEach(p => chips.push({k: 'price', v: p, l: PRICE_STR[Number(p)]}));
+  if (state.rating) chips.push({k: 'rating', l: `${state.rating}+ ★`});
+  if (state.minPeople) chips.push({k: 'minPeople', l: `${state.minPeople}+ kişi`});
+
+  $chips.innerHTML = chips.length === 0 ? '' :
+    chips.map(c => `<button class="active-chip" type="button" data-k="${c.k}" data-v="${c.v||''}">${c.l} <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>`).join('');
+
+  const total = chips.length + (state.hizmet !== 'all' ? 1 : 0);
+  if (total > 0) {
+    $countBadge.hidden = false;
+    $countBadge.textContent = total;
+  } else {
+    $countBadge.hidden = true;
+  }
+}
+
+function eventLabel(v) {
+  return {dugun:'Düğün', nisan:'Nişan', kurumsal:'Kurumsal', kokteyl:'Kokteyl', 'dogum-gunu':'Doğum günü', 'ozel-davet':'Özel davet'}[v] || v;
+}
+function cuisineLabel(v) {
+  return {turk:'Türk', osmanli:'Osmanlı', ege:'Ege', akdeniz:'Akdeniz', italyan:'İtalyan', fransiz:'Fransız', japon:'Japon', cin:'Çin', meksika:'Meksika', hint:'Hint', lubnan:'Lübnan', deniz:'Deniz ürünleri', fusion:'Fusion', bbq:'BBQ', vejetaryen:'Vejetaryen', vegan:'Vegan', glutensiz:'Glutensiz', 'kokteyl-cuisine':'Kokteyl', pastacilik:'Pastacılık'}[v] || v;
+}
+
+function render() {
+  writeURL();
+  setActiveServiceTab();
+  const filtered = sortFirms((window.CS_FIRMS || []).filter(matchesFilter));
+  $count.textContent = filtered.length;
+  if (filtered.length === 0) {
+    $grid.innerHTML = '';
+    $empty.hidden = false;
+  } else {
+    $empty.hidden = true;
+    $grid.innerHTML = filtered.map(renderCard).join('');
+    if (window.CSFavorites) window.CSFavorites.bindButtons($grid);
+  }
+  renderChips();
+  updateSidebarMeta(filtered);
+  if (state.city) {
+    $cityValue.textContent = state.districts.length
+      ? `${state.city} · ${state.districts.length} ilçe`
+      : state.city;
+  } else {
+    $cityValue.textContent = 'Tüm Türkiye';
+  }
+}
+
+/* =========================================
+   Event Wiring
+   ========================================= */
+document.querySelectorAll('.service-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    state.hizmet = tab.dataset.hizmet;
+    render();
+  });
+});
+
+/* Filter change handler — aggregates across ALL groups sharing the same
+   data-filter (cuisine is split into subcategories visually but one logical
+   filter), so toggling any chip recomputes from the global truth. */
+document.querySelectorAll('[data-filter]').forEach(group => {
+  const kind = group.dataset.filter;
+  group.addEventListener('change', () => {
+    if (kind === 'rating') {
+      const checked = document.querySelector('[data-filter="rating"] input:checked');
+      state.rating = checked ? parseFloat(checked.value) : 0;
+    } else {
+      const checked = [...document.querySelectorAll(`[data-filter="${kind}"] input:checked`)].map(i => i.value);
+      state[kind === 'event' ? 'events' : kind] = checked;
+    }
+    render();
+  });
+});
+
+/* Preset chips — one-tap apply common filter combos */
+document.querySelectorAll('.fs-preset-chip').forEach(btn => {
+  btn.addEventListener('click', () => {
+    // Toggle behaviour: if already active, clear it; else apply
+    if (btn.classList.contains('is-active')) {
+      state.events = []; state.cuisine = []; state.price = []; state.rating = 0;
+      syncSidebarFromState();
+      render();
+    } else {
+      applyPreset(btn.dataset.preset);
+    }
+  });
+});
+
+/* Live count + clear-all in the sidebar header */
+const $clearAllBtn = document.getElementById('fs-clear-all');
+if ($clearAllBtn) $clearAllBtn.addEventListener('click', () => resetAll());
+
+const $minPeople = document.getElementById('min-people');
+const $minPeopleDisplay = document.getElementById('min-people-display');
+$minPeople.addEventListener('input', () => {
+  state.minPeople = parseInt($minPeople.value);
+  $minPeopleDisplay.textContent = state.minPeople === 0 ? 'Hepsi' : (state.minPeople >= 200 ? '200+ kişi' : state.minPeople + '+ kişi');
+  render();
+});
+
+const $search = document.getElementById('search-input');
+$search.addEventListener('input', () => {
+  state.query = $search.value.trim();
+  render();
+});
+
+const $sort = document.getElementById('sort-select');
+$sort.addEventListener('change', () => {
+  state.sort = $sort.value;
+  render();
+});
+
+// Active chip remove
+$chips.addEventListener('click', (e) => {
+  const btn = e.target.closest('.active-chip');
+  if (!btn) return;
+  const k = btn.dataset.k;
+  const v = btn.dataset.v;
+  if (k === 'city') {
+    state.city = null;
+    state.districts = [];
+  } else if (k === 'event') {
+    state.events = state.events.filter(x => x !== v);
+    const cb = document.querySelector(`[data-filter="event"] input[value="${v}"]`);
+    if (cb) cb.checked = false;
+  } else if (k === 'cuisine') {
+    state.cuisine = state.cuisine.filter(x => x !== v);
+    const cb = document.querySelector(`[data-filter="cuisine"] input[value="${v}"]`);
+    if (cb) cb.checked = false;
+  } else if (k === 'price') {
+    state.price = state.price.filter(x => x !== v);
+    const cb = document.querySelector(`[data-filter="price"] input[value="${v}"]`);
+    if (cb) cb.checked = false;
+  } else if (k === 'rating') {
+    state.rating = 0;
+    const r = document.querySelector('[data-filter="rating"] input[value="0"]');
+    if (r) r.checked = true;
+  } else if (k === 'minPeople') {
+    state.minPeople = 0;
+    $minPeople.value = 0;
+    $minPeopleDisplay.textContent = 'Hepsi';
+  }
+  render();
+});
+
+// Reset all
+function resetAll() {
+  state.city = null;
+  state.districts = [];
+  state.events = [];
+  state.cuisine = [];
+  state.price = [];
+  state.minPeople = 0;
+  state.rating = 0;
+  state.query = '';
+  document.querySelectorAll('.filter-sidebar input[type="checkbox"]').forEach(i => i.checked = false);
+  document.querySelector('[data-filter="rating"] input[value="0"]').checked = true;
+  $minPeople.value = 0;
+  $minPeopleDisplay.textContent = 'Hepsi';
+  $search.value = '';
+  render();
+}
+document.getElementById('reset-filters').addEventListener('click', resetAll);
+document.getElementById('empty-reset').addEventListener('click', resetAll);
+
+// Mobile filter drawer
+const $sidebar = document.getElementById('filter-sidebar');
+document.getElementById('open-filters-mobile').addEventListener('click', () => {
+  $sidebar.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+});
+document.getElementById('filter-close').addEventListener('click', () => {
+  $sidebar.classList.remove('is-open');
+  document.body.style.overflow = '';
+});
+document.getElementById('apply-filters').addEventListener('click', () => {
+  $sidebar.classList.remove('is-open');
+  document.body.style.overflow = '';
+});
+
+/* =========================================
+   City Picker Modal
+   ========================================= */
+const $cityModal = document.getElementById('city-modal');
+const $cityBtn = document.getElementById('city-picker-btn');
+const $cityClose = document.getElementById('city-modal-close');
+const $cityBackdrop = document.getElementById('city-modal-backdrop');
+const $citySearch = document.getElementById('city-search');
+const $districtPanel = document.getElementById('district-panel');
+const $districtGrid = document.getElementById('district-grid');
+const $districtCityName = document.getElementById('district-city-name');
+
+function openCityModal() {
+  $cityModal.hidden = false;
+  document.body.style.overflow = 'hidden';
+  requestAnimationFrame(() => $cityModal.classList.add('is-open'));
+}
+function closeCityModal() {
+  $cityModal.classList.remove('is-open');
+  setTimeout(() => {
+    $cityModal.hidden = true;
+    document.body.style.overflow = '';
+    $districtPanel.hidden = true;
+  }, 250);
+}
+
+$cityBtn.addEventListener('click', openCityModal);
+$cityClose.addEventListener('click', closeCityModal);
+$cityBackdrop.addEventListener('click', closeCityModal);
+
+// Render regions
+const $regions = document.getElementById('regions-container');
+$regions.innerHTML = Object.entries(TR_REGIONS).map(([region, cities]) => `
+  <details class="region-details" open>
+    <summary><span>${region}</span><span class="region-count">${cities.length} il</span></summary>
+    <div class="region-cities">
+      ${cities.map(c => `<button class="city-pill" data-city="${c}" type="button">${c}</button>`).join('')}
+    </div>
+  </details>
+`).join('');
+
+// Render A-Z list
+const allCities = Object.values(TR_REGIONS).flat().sort((a,b) => a.localeCompare(b,'tr'));
+const $allCities = document.getElementById('all-cities');
+$allCities.innerHTML = allCities.map(c => `<button class="city-pill" data-city="${c}" type="button">${c}</button>`).join('');
+
+// Tab switching
+document.querySelectorAll('.cm-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.cm-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    document.querySelectorAll('.cm-panel').forEach(p => p.classList.toggle('active', p.dataset.panel === tab.dataset.tab));
+  });
+});
+
+// City search
+$citySearch.addEventListener('input', () => {
+  const q = $citySearch.value.trim().toLowerCase();
+  document.querySelectorAll('.city-pill').forEach(p => {
+    p.style.display = !q || p.dataset.city.toLowerCase().includes(q) ? '' : 'none';
+  });
+  document.querySelectorAll('.popular-city-card').forEach(p => {
+    p.style.display = !q || p.dataset.name.toLowerCase().includes(q) ? '' : 'none';
+  });
+});
+
+// City selection (delegated)
+document.addEventListener('click', (e) => {
+  const cityBtn = e.target.closest('.city-pill, .popular-city-card');
+  if (!cityBtn) return;
+  if (cityBtn.closest('#city-modal')) {
+    const city = cityBtn.dataset.city || cityBtn.dataset.name;
+    selectCity(city);
+  }
+});
+
+function selectCity(city) {
+  if (DISTRICTS[city]) {
+    // Show district picker for major cities
+    $districtPanel.hidden = false;
+    $districtCityName.textContent = city;
+    $districtGrid.innerHTML = DISTRICTS[city].map(d => `<label class="district-pill"><input type="checkbox" value="${d}"><span>${d}</span></label>`).join('');
+    $districtPanel.dataset.city = city;
+  } else {
+    // Smaller city — apply directly
+    state.city = city;
+    state.districts = [];
+    render();
+    closeCityModal();
+  }
+}
+
+// District apply
+document.getElementById('district-back-btn').addEventListener('click', () => {
+  $districtPanel.hidden = true;
+});
+document.getElementById('district-all-btn').addEventListener('click', () => {
+  state.city = $districtPanel.dataset.city;
+  state.districts = [];
+  render();
+  closeCityModal();
+});
+document.getElementById('district-apply').addEventListener('click', () => {
+  state.city = $districtPanel.dataset.city;
+  state.districts = [...$districtGrid.querySelectorAll('input:checked')].map(i => i.value);
+  render();
+  closeCityModal();
+});
+
+// Escape key to close modal
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && !$cityModal.hidden) closeCityModal();
+});
+
+// Initial render — wait for firm data, then sync sidebar and render
+onFirmsReady(function () {
+  syncSidebarFromState();
+  if (state.query) $search.value = state.query;
+  render();
+});
+</script>
+
+<script src="favorites.js"></script>
+<script src="compare.js"></script>
+<script src="navbar-mobile.js"></script>
+<script src="auth-nav.js"></script>
+<script src="cookie-consent.js"></script>
+</body>
+</html>

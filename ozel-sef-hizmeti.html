@@ -1,0 +1,330 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Özel şef hizmeti — evinizde, villanızda veya yatınızda profesyonel chef. Yıldönümü, doğum günü, intim akşam yemekleri için Michelin deneyimli şefler. Doğrudan teklif al.">
+<meta name="keywords" content="özel şef, private chef, evde şef, villa şef, omakase, fine dining evde">
+<title>Özel Şef Hizmeti — Evde Private Chef &amp; İntim Davet | EventRehberi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="supabase-client.js"></script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZH1F3D61N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZZH1F3D61N');
+</script>
+</head>
+<body>
+
+<!-- =============== NAVBAR =============== -->
+<nav class="navbar">
+  <div class="container navbar-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-mark"><svg viewBox="-60 -64 120 132" width="40" height="40" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M -36 -56 H 36 a 6 6 0 0 1 6 6 V 60 L 0 32 L -42 60 V -50 a 6 6 0 0 1 6 -6 Z" fill="#C7522A"/><path d="M 0 -22 L 9 -4 L 28 -2 L 14 12 L 18 30 L 0 22 L -18 30 L -14 12 L -28 -2 L -9 -4 Z" fill="#FFFFFF"/></svg></span>
+      <span>EventRehberi</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="catererlar.html">Firmalar</a></li>
+      <li><a href="fiyatlar.html">Firma Paketleri</a></li>
+      <li><a href="hakkimizda.html">Hakkımızda</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="giris.html" class="nav-auth-link">Giriş Yap</a>
+      <a href="uye-ol.html" class="btn btn-ghost btn-sm">Üye Ol</a>
+      <a href="kayit.html" class="btn btn-primary btn-sm">Firmanı Kaydet</a>
+    </div>
+  </div>
+</nav>
+
+<!-- =============== HERO =============== -->
+<section class="landing-hero">
+  <div class="landing-hero-bg" aria-hidden="true">
+    <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=2000&h=1100&fit=crop&auto=format&q=80" alt="Özel şef hizmeti" loading="eager">
+  </div>
+  <div class="container">
+    <div class="landing-hero-inner">
+      <p class="eyebrow">Özel Şef · Private Chef</p>
+      <h1>Evinizde profesyonel şef — restoran deneyimini ev rahatlığında yaşayın.</h1>
+      <p class="lead">Yıldönümü, doğum günü, intim akşam yemekleri ya da villada özel davet için Michelin deneyimli şefler. 4-15 kişilik gruplar, kişiye özel menüler. Doğrudan teklif al.</p>
+      <div class="landing-hero-actions">
+        <a href="catererlar.html?hizmet=sef" class="btn btn-primary btn-lg">Şefleri Gör</a>
+        <a href="#nasil-secilir" class="btn btn-ghost btn-lg">Nasıl çalışır?</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="landing-quick-stats">
+  <div class="container">
+    <div class="landing-quick-stats-grid">
+      <div class="landing-quick-stat">
+        <span class="num"><span id="landing-firm-count">—</span></span>
+        <span class="label">Onaylı özel şef</span>
+      </div>
+      <div class="landing-quick-stat">
+        <span class="num">1.500-<br>5.000₺</span>
+        <span class="label">Kişi başı tipik aralık</span>
+      </div>
+      <div class="landing-quick-stat">
+        <span class="num">4-15</span>
+        <span class="label">Tipik grup büyüklüğü</span>
+      </div>
+      <div class="landing-quick-stat">
+        <span class="num">2-4sa</span>
+        <span class="label">Ortalama servis süresi</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="landing-intro">
+      <h2>Özel şef hizmeti — restoran deneyimi, evin rahatlığı</h2>
+      <p>Özel şef hizmeti son yıllarda Türkiye'de hızla yaygınlaşan bir lüks hizmet. Restoranlardaki rezervasyon stresi, gürültü ve servis kalabalığı yerine; profesyonel bir şefi kendi mekânınıza davet ediyorsunuz. Şef alışverişi yapıyor, mutfağınızda yemekleri hazırlıyor, sunumunu kendisi yapıyor — siz ve misafirleriniz sadece deneyimi yaşıyor.</p>
+      <p>EventRehberi'de Türkiye'nin <strong>Michelin tecrübeli</strong>, <strong>fine dining geçmişli</strong> ve <strong>belirli bir mutfakta uzmanlaşmış</strong> şeflerini topluyoruz. Yıldönümü, doğum günü, evlilik teklifi, butik kurumsal toplantı, villa daveti — hayatınızın özel anları için.</p>
+
+      <h3>Mutfak tarzına göre şef seçin</h3>
+      <p>Her şef kendi uzmanlık alanına sahip. Hayalinizdeki menüye en yakın olanı seçin:</p>
+      <div class="landing-districts">
+        <a href="catererlar.html?hizmet=sef&amp;cuisine=fransiz" class="landing-district-chip">Fransız Mutfağı</a>
+        <a href="catererlar.html?hizmet=sef&amp;cuisine=italyan" class="landing-district-chip">İtalyan</a>
+        <a href="catererlar.html?hizmet=sef&amp;cuisine=japon" class="landing-district-chip">Japon / Omakase</a>
+        <a href="catererlar.html?hizmet=sef&amp;cuisine=osmanli" class="landing-district-chip">Osmanlı Saray</a>
+        <a href="catererlar.html?hizmet=sef&amp;cuisine=akdeniz" class="landing-district-chip">Akdeniz</a>
+        <a href="catererlar.html?hizmet=sef&amp;cuisine=fusion" class="landing-district-chip">Modern Fusion</a>
+        <a href="catererlar.html?hizmet=sef&amp;cuisine=turk" class="landing-district-chip">Klasik Türk</a>
+        <a href="catererlar.html?hizmet=sef" class="landing-district-chip">+ tümü</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header" style="text-align:left; max-width:760px; margin:0 0 2rem;">
+      <p class="eyebrow">Onaylı Şefler</p>
+      <h2>Öne çıkan özel şefler</h2>
+      <p class="section-sub">Mutfak tecrübesi, müşteri puanı ve uzmanlık alanlarına göre seçilen özel şefler.</p>
+    </div>
+
+    <div id="landing-firms-grid" class="landing-firms-grid"></div>
+
+    <div style="text-align:center; margin-top:2.5rem;">
+      <a href="catererlar.html?hizmet=sef" class="btn btn-ghost btn-lg">Tüm şefleri gör →</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="nasil-secilir">
+  <div class="container">
+    <div class="section-header" style="text-align:left; max-width:760px; margin:0 0 1.5rem;">
+      <p class="eyebrow">Süreç</p>
+      <h2>Özel şef hizmeti nasıl çalışır?</h2>
+      <p class="section-sub">Rezervasyondan akşam yemeğine — adım adım süreç.</p>
+    </div>
+
+    <div class="landing-guide">
+      <div class="landing-guide-card">
+        <div class="num">1</div>
+        <div>
+          <h3>Şefi seçin ve menüyü konuşun</h3>
+          <p>Profil sayfasından beğendiğiniz şefe teklif istiyorsunuz. Şef sizi arayarak <strong>misafir profilinizi, diyet kısıtlarını, beklenen menü tarzını</strong> konuşur. Genelde 3-7 günlük bir hazırlık süresi olur.</p>
+        </div>
+      </div>
+      <div class="landing-guide-card">
+        <div class="num">2</div>
+        <div>
+          <h3>Menü ve fiyat onayı</h3>
+          <p>Şef size <strong>5-9 aşamalı tasting menüsü</strong> önerir; fiyatlandırma kişi başı ya da paket olarak sunulur. Beğendiğinizde sözleşme imzalanır, ön ödeme yapılır (genelde %50).</p>
+        </div>
+      </div>
+      <div class="landing-guide-card">
+        <div class="num">3</div>
+        <div>
+          <h3>Şef alışverişi yapar</h3>
+          <p>Etkinlik gününde şef taze ürünleri kendi tedarikçilerinden, balıkçısından, kasabından alır. Hammaddenin <strong>kalitesi şefin sorumluluğu</strong>; alışveriş ücreti genelde menü fiyatına dahildir.</p>
+        </div>
+      </div>
+      <div class="landing-guide-card">
+        <div class="num">4</div>
+        <div>
+          <h3>Mutfağınıza gelir, hazırlığa başlar</h3>
+          <p>Şef etkinlikten <strong>2-3 saat önce</strong> mekânınıza gelir; mutfağınızı kendi araç-gereçleriyle birlikte kullanır. Yemekler taze hazırlanır; misafirler geldiğinde her şey hazır olur.</p>
+        </div>
+      </div>
+      <div class="landing-guide-card">
+        <div class="num">5</div>
+        <div>
+          <h3>Sunum ve servis</h3>
+          <p>Şef yemekleri kendisi servis eder ya da kendi servis ekibini getirir (büyük gruplarda). Her tabağı <strong>masaya getirirken kısa anlatım yapar</strong> — malzemeler, hikâye, tatlar. Bu fine-dining deneyiminin en sevilen parçasıdır.</p>
+        </div>
+      </div>
+      <div class="landing-guide-card">
+        <div class="num">6</div>
+        <div>
+          <h3>Mutfak temizliği şefe ait</h3>
+          <p>Etkinlik bittiğinde şef <strong>mutfağınızı tamamen temiz bırakır</strong>. Bulaşık, çöp, fazla malzeme — hepsi onun sorumluluğunda. Siz misafirlerinizle akşamın tadını çıkarmaya devam edersiniz.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header" style="text-align:left; max-width:760px; margin:0 0 1.5rem;">
+      <p class="eyebrow">Sıkça Sorulanlar</p>
+      <h2>Özel şef hizmeti hakkında merak edilenler</h2>
+    </div>
+
+    <div class="landing-faq">
+      <details class="landing-faq-item">
+        <summary>Özel şef hizmeti kişi başı ne kadar?</summary>
+        <div class="answer">
+          Özel şef hizmeti <strong>kişi başı 1.500-5.000 TL</strong> aralığında değişir. Standart 5-7 aşamalı menü 1.500-2.500 TL/kişi; <strong>Michelin deneyimli şef</strong> ile 7-9 aşamalı premium menü 3.000-5.000 TL/kişi. Şef alışverişi, mutfak ekipmanı, sunum ve temizlik dahildir. Şarap eşleşme paketi ek ücretlidir.
+        </div>
+      </details>
+      <details class="landing-faq-item">
+        <summary>Kaç kişilik gruplar için uygun?</summary>
+        <div class="answer">
+          Özel şef hizmeti tipik olarak <strong>4-15 kişilik intim gruplar</strong> içindir. Daha az (2-3 kişi) için bazı şefler özel paket sunar; daha fazlası için (15+) genelde catering firması daha uygundur. Omakase tarzı sushi şefi 4-6 kişiyle sınırlıdır; klasik tasting menüsü 8-12 kişide ideal deneyim sunar.
+        </div>
+      </details>
+      <details class="landing-faq-item">
+        <summary>Mutfağımın yeterli olup olmadığını nasıl bilirim?</summary>
+        <div class="answer">
+          Şef teklif aşamasında <strong>mutfak teftişi</strong> yapar (genelde fotoğrafla veya kısa video çağrı ile). Standart bir ev mutfağı yeterlidir; profesyonel ekipman gerekmez. İhtiyaç olursa şef kendi ekipmanını (özel pişiriciler, tabak, servis takımı) getirir. Çok küçük mutfaklarda menü ona göre uyarlanır.
+        </div>
+      </details>
+      <details class="landing-faq-item">
+        <summary>Diyet kısıtları, alerji, vegan tercih edilebilir mi?</summary>
+        <div class="answer">
+          Evet — özel şef hizmetinin en güçlü yanı kişiselleştirme. Tüm misafirlerin diyet bilgilerini önceden iletirseniz şef ona göre menü hazırlar. Vegan, glutensiz, helal, koşer — hiçbiri sürpriz olmaz. Hatta <strong>tüm menü vegan</strong> olarak da hazırlanabilir.
+        </div>
+      </details>
+      <details class="landing-faq-item">
+        <summary>Servis ekibi de gelir mi?</summary>
+        <div class="answer">
+          Küçük gruplarda (4-8 kişi) şef genelde tek başına servis yapar. 10+ kişilik etkinliklerde şef yanında <strong>1-2 servis personeli</strong> getirir; bu ücrete dahildir. Çok büyük etkinliklerde özel şef yerine <a href="catererlar.html?event=ozel-davet">özel davet catering firması</a> daha uygun olabilir.
+        </div>
+      </details>
+      <details class="landing-faq-item">
+        <summary>Şef restoran tarzı yemekleri evde aynı kalitede yapabilir mi?</summary>
+        <div class="answer">
+          Evet — Michelin deneyimli şefler ev mutfağı kısıtlarına alışkındır. Bazı yemekler önceden temel hazırlığı (mise en place) restoran/atölyede yapılır, son bitirmeleri evde yapılır. Sonuç restorandakine çok yakındır; üstelik daha taze, çünkü tabak servisten 30 saniye önce hazırlanmıştır.
+        </div>
+      </details>
+      <details class="landing-faq-item">
+        <summary>İptal/erteleme politikası nasıl?</summary>
+        <div class="answer">
+          Şef genelde sözleşmesinde <strong>iptal koşullarını</strong> belirtir: 7+ gün önce iptal — ön ödeme iadesi; 3-7 gün — %50 kesinti (taze gıda alındığı için); 3 gün altı — iade yok ama yeni tarihe ertelenebilir. Bu maddeleri rezervasyon öncesi netleştirin.
+        </div>
+      </details>
+      <details class="landing-faq-item">
+        <summary>Hangi şehirlerde özel şef hizmeti var?</summary>
+        <div class="answer">
+          Şu an Türkiye'de en geniş özel şef ağı <strong>İstanbul</strong>'dadır (50+ aktif şef). <strong>Ankara, İzmir, Bodrum, Çeşme, Antalya</strong> şehirlerinde de butik seçenekler vardır. Yaz aylarında Bodrum/Çeşme villalarında özel şef hizmeti çok popülerdir.
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="landing-cta-banner">
+      <h2>Özel akşamınız için profesyonel şef bulun.</h2>
+      <p>Onaylı özel şefleri uzmanlık alanı, mutfak ve müşteri puanına göre filtreleyin. Doğrudan teklif alın.</p>
+      <a href="catererlar.html?hizmet=sef" class="btn btn-primary btn-lg">Şefleri İncele</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div style="max-width:760px; margin:0 auto;">
+      <h3 style="margin-bottom:0.75rem; font-size:1.125rem;">Şehre göre özel şef</h3>
+      <div class="related-cities">
+        <a href="istanbul-catering.html" class="related-link">İstanbul</a>
+        <a href="ankara-catering.html" class="related-link">Ankara</a>
+        <a href="izmir-catering.html" class="related-link">İzmir</a>
+        <a href="catererlar.html?hizmet=sef" class="related-link">Tüm Türkiye →</a>
+      </div>
+
+      <h3 style="margin:1.75rem 0 0.75rem; font-size:1.125rem;">Diğer hizmetler</h3>
+      <div class="related-events">
+        <a href="dugun-catering.html" class="related-link">Düğün Catering</a>
+        <a href="kurumsal-catering.html" class="related-link">Kurumsal Catering</a>
+        <a href="catererlar.html?hizmet=bar" class="related-link">Bar &amp; Kokteyl</a>
+        <a href="catererlar.html?hizmet=pasta" class="related-link">Pasta &amp; Tatlı</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== FOOTER =============== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col footer-brand">
+        <a href="index.html" class="logo">
+          <span class="logo-mark"><svg viewBox="-60 -64 120 132" width="40" height="40" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M -36 -56 H 36 a 6 6 0 0 1 6 6 V 60 L 0 32 L -42 60 V -50 a 6 6 0 0 1 6 -6 Z" fill="#C7522A"/><path d="M 0 -22 L 9 -4 L 28 -2 L 14 12 L 18 30 L 0 22 L -18 30 L -14 12 L -28 -2 L -9 -4 Z" fill="#FFFFFF"/></svg></span>
+          <span>EventRehberi</span>
+        </a>
+        <p class="muted">Türkiye'nin catering pazaryeri. Her etkinlik için doğru firmayı bul, doğrudan teklif al.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Şehirler</h4>
+        <ul>
+          <li><a href="istanbul-catering.html">İstanbul Catering</a></li>
+          <li><a href="ankara-catering.html">Ankara Catering</a></li>
+          <li><a href="izmir-catering.html">İzmir Catering</a></li>
+          <li><a href="catererlar.html">Tüm Türkiye</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Etkinlikler</h4>
+        <ul>
+          <li><a href="dugun-catering.html">Düğün Catering</a></li>
+          <li><a href="kurumsal-catering.html">Kurumsal Catering</a></li>
+          <li><a href="ozel-sef-hizmeti.html">Özel Şef</a></li>
+          <li><a href="catererlar.html?hizmet=bar">Bar &amp; Kokteyl</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Kurumsal &amp; Yasal</h4>
+        <ul>
+          <li><a href="hakkimizda.html">Hakkımızda</a></li>
+          <li><a href="hakkimizda.html#iletisim">İletişim</a></li>
+          <li><a href="kvkk.html">KVKK Aydınlatma</a></li>
+          <li><a href="gizlilik.html">Gizlilik Politikası</a></li>
+          <li><a href="kullanim-kosullari.html">Kullanım Koşulları</a></li>
+          <li><a href="cerez-politikasi.html">Çerez Politikası</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 EventRehberi. Tüm hakları saklıdır.</span>
+      <span>İstanbul, Türkiye</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.LANDING_FILTER = { service: 'sef', limit: 6 };
+</script>
+<script src="favorites.js"></script>
+<script src="firms-data.js"></script>
+<script src="compare.js"></script>
+<script src="navbar-mobile.js"></script>
+<script src="auth-nav.js"></script>
+<script src="cookie-consent.js"></script>
+</body>
+</html>

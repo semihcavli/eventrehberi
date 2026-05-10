@@ -1,0 +1,45 @@
+# EventRehberi — robots.txt
+# Domain: eventrehberi.com
+# Son güncelleme: 25 Nisan 2026
+
+# Tüm arama motorları için varsayılan kurallar
+User-agent: *
+Allow: /
+
+# Kullanıcıya özel sayfalar — Google bunları indexlemesin
+Disallow: /giris.html
+Disallow: /uye-ol.html
+Disallow: /hesabim.html
+Disallow: /tesekkurler.html
+
+# Geliştirme/iç dosyalar
+Disallow: /logo-secenekleri.html
+Disallow: /BENI-OKU.md
+Disallow: /*.js$
+Disallow: /*.json$
+
+# Açıkça izin verilenler (önemli sayfaların tarama önceliği için)
+Allow: /catererlar.html
+Allow: /firma.html
+Allow: /fiyatlar.html
+Allow: /hakkimizda.html
+Allow: /kayit.html
+Allow: /istanbul-catering.html
+Allow: /ankara-catering.html
+Allow: /izmir-catering.html
+Allow: /dugun-catering.html
+Allow: /kurumsal-catering.html
+Allow: /ozel-sef-hizmeti.html
+
+# Kötü amaçlı veya gereksiz tarayıcıları engelle
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+# Sitemap konumu
+Sitemap: https://eventrehberi.com/sitemap.xml

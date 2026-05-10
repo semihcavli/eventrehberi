@@ -1,0 +1,15 @@
+# Cowork / Claude skill files — local only, not for deploy
+.claude/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Node (in case uipro-cli ever drops anything here)
+node_modules/
+
+# Logs
+*.log
+npm-debug.log*

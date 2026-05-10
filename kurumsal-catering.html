@@ -1,0 +1,329 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Kurumsal catering — toplantı, lansman, gala yemeği, ofis kahvaltısı için onaylı firmalar. Fatura, KDV, sözleşme uyumlu profesyonel hizmet. Doğrudan teklif al.">
+<meta name="keywords" content="kurumsal catering, ofis catering, toplantı catering, lansman catering, gala yemeği, kurumsal yemek, ofis kahvaltısı">
+<title>Kurumsal Catering — Toplantı, Lansman &amp; Ofis Yemeği Firmaları | EventRehberi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="supabase-client.js"></script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZH1F3D61N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZZH1F3D61N');
+</script>
+</head>
+<body>
+
+<!-- =============== NAVBAR =============== -->
+<nav class="navbar">
+  <div class="container navbar-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-mark"><svg viewBox="-60 -64 120 132" width="40" height="40" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M -36 -56 H 36 a 6 6 0 0 1 6 6 V 60 L 0 32 L -42 60 V -50 a 6 6 0 0 1 6 -6 Z" fill="#C7522A"/><path d="M 0 -22 L 9 -4 L 28 -2 L 14 12 L 18 30 L 0 22 L -18 30 L -14 12 L -28 -2 L -9 -4 Z" fill="#FFFFFF"/></svg></span>
+      <span>EventRehberi</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="catererlar.html">Firmalar</a></li>
+      <li><a href="fiyatlar.html">Firma Paketleri</a></li>
+      <li><a href="hakkimizda.html">Hakkımızda</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="giris.html" class="nav-auth-link">Giriş Yap</a>
+      <a href="uye-ol.html" class="btn btn-ghost btn-sm">Üye Ol</a>
+      <a href="kayit.html" class="btn btn-primary btn-sm">Firmanı Kaydet</a>
+    </div>
+  </div>
+</nav>
+
+<!-- =============== HERO =============== -->
+<section class="landing-hero">
+  <div class="landing-hero-bg" aria-hidden="true">
+    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=2000&h=1100&fit=crop&auto=format&q=80" alt="Kurumsal catering toplantı" loading="eager">
+  </div>
+  <div class="container">
+    <div class="landing-hero-inner">
+      <p class="eyebrow">Kurumsal · Catering Rehberi</p>
+      <h1>Kurumsal etkinliğiniz için profesyonel catering.</h1>
+      <p class="lead">Toplantı, lansman, gala yemeği, ofis kahvaltısı, eğitim seminerleri — fatura, KDV ve sözleşme uyumlu, dakik ve diskret onaylı firmaları karşılaştır, doğrudan teklif al.</p>
+      <div class="landing-hero-actions">
+        <a href="catererlar.html?event=kurumsal" class="btn btn-primary btn-lg">Kurumsal Firmaları Gör</a>
+        <a href="#nasil-secilir" class="btn btn-ghost btn-lg">Nasıl seçilir?</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="landing-quick-stats">
+  <div class="container">
+    <div class="landing-quick-stats-grid">
+      <div class="landing-quick-stat">
+        <span class="num"><span id="landing-firm-count">—</span></span>
+        <span class="label">Kurumsal catering firması</span>
+      </div>
+      <div class="landing-quick-stat">
+        <span class="num">200-<br>1.500₺</span>
+        <span class="label">Kişi başı tipik aralık</span>
+      </div>
+      <div class="landing-quick-stat">
+        <span class="num">100%</span>
+        <span class="label">Faturalı &amp; KDV dahil</span>
+      </div>
+      <div class="landing-quick-stat">
+        <span class="num">24sa</span>
+        <span class="label">Ortalama teklif yanıt süresi</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="landing-intro">
+      <h2>Kurumsal catering — kurumsal kimliğinizin sofradaki yansıması</h2>
+      <p>Bir toplantı sırasında ikram edilen kahveden, yıllık galanın ana yemeğine kadar; kurumsal catering şirketinizin <strong>profesyonelliğini, özenini ve standardını</strong> yansıtır. Yanlış seçim sadece misafir memnuniyetsizliği değil; aynı zamanda imaj, güven ve iş ilişkilerini etkileyebilir.</p>
+      <p>EventRehberi'de kurumsal catering konusunda uzmanlaşmış, <strong>fatura ve KDV uyumlu</strong>, <strong>protokol kurallarına hâkim</strong>, <strong>dakik ve diskret</strong> firmaları topluyoruz. Düzenli ofis yemeği, anlık toplantı ikramı, büyük ölçekli lansman organizasyonu — her ihtiyacınız için doğru firmayı bulun.</p>
+
+      <h3>Kurumsal etkinlik tipine göre filtreleyin</h3>
+      <p>Etkinliğinizin tipi catering ihtiyacını da belirler. Aşağıdan ihtiyacınıza en yakın olanı seçin:</p>
+      <div class="landing-districts">
+        <a href="catererlar.html?event=kurumsal" class="landing-district-chip">Şirket Toplantısı</a>
+        <a href="catererlar.html?event=kurumsal" class="landing-district-chip">Lansman / Tanıtım</a>
+        <a href="catererlar.html?event=kurumsal" class="landing-district-chip">Gala Yemeği</a>
+
+        <a href="catererlar.html?event=kurumsal" class="landing-district-chip">Eğitim / Seminer</a>
+        <a href="catererlar.html?event=kokteyl" class="landing-district-chip">Kokteyl Daveti</a>
+        <a href="catererlar.html?event=kurumsal" class="landing-district-chip">Bayram / Yıl Sonu</a>
+        <a href="catererlar.html?event=kurumsal" class="landing-district-chip">Konferans</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header" style="text-align:left; max-width:760px; margin:0 0 2rem;">
+      <p class="eyebrow">Onaylı Firmalar</p>
+      <h2>Kurumsal etkinliklerde öne çıkan catering firmaları</h2>
+      <p class="section-sub">Kurumsal deneyim, fatura uyumu, dakiklik ve müşteri puanlarına göre sıralanan firmalar.</p>
+    </div>
+
+    <div id="landing-firms-grid" class="landing-firms-grid"></div>
+
+    <div style="text-align:center; margin-top:2.5rem;">
+      <a href="catererlar.html?event=kurumsal" class="btn btn-ghost btn-lg">Tüm kurumsal firmaları gör →</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="nasil-secilir">
+  <div class="container">
+    <div class="section-header" style="text-align:left; max-width:760px; margin:0 0 1.5rem;">
+      <p class="eyebrow">Rehber</p>
+      <h2>Kurumsal catering firması nasıl seçilir?</h2>
+      <p class="section-sub">Şirket etkinlikleri için doğru firmayı seçerken dikkat etmeniz gereken 6 nokta.</p>
+    </div>
+
+    <div class="landing-guide">
+      <div class="landing-guide-card">
+        <div class="num">1</div>
+        <div>
+          <h3>Fatura ve KDV uyumunu sorgulayın</h3>
+          <p>Şirket harcaması olarak gider yazılabilmesi için <strong>e-fatura veya kâğıt fatura</strong> kesilebiliyor olması şarttır. Bazı küçük firmalar sadece dekont verir — bu kurumsal harcamalarda problem yaratır. Sözleşme öncesi fatura formatını netleştirin.</p>
+        </div>
+      </div>
+      <div class="landing-guide-card">
+        <div class="num">2</div>
+        <div>
+          <h3>Dakikliği ve protokol bilgisini test edin</h3>
+          <p>Toplantı/lansman saatleri kurumsal etkinliklerde kritiktir. İyi firmalar mekana etkinlikten <strong>en az 1.5-2 saat önce</strong> ulaşır, kurulumu sessizce tamamlar. Geçmiş kurumsal etkinlik referanslarını ve dakiklik konusunda yorumlarını sorgulayın.</p>
+        </div>
+      </div>
+      <div class="landing-guide-card">
+        <div class="num">3</div>
+        <div>
+          <h3>Servis personelinin profesyonelliğini değerlendirin</h3>
+          <p>Servis ekibinin <strong>üniforması, davranışları ve dili</strong> kurumsal imajı yansıtır. Tadım sırasında veya referans firmalardaki ekibi gözlemleyin. Şirket diline ve marka tonuna uygun davranan ekipler tercih edilmeli.</p>
+        </div>
+      </div>
+      <div class="landing-guide-card">
+        <div class="num">4</div>
+        <div>
+          <h3>Diyet ve özel ihtiyaçları önceden bildirin</h3>
+          <p>Yöneticilerin/misafirlerin diyet kısıtları (vegan, glutensiz, helal, koşer, alerji) önceden firmaya iletilmeli. İyi firmalar her diyet için özel etiketli tabaklar hazırlar. Bu konuda sistemli olmayan firmalardan kaçının.</p>
+        </div>
+      </div>
+      <div class="landing-guide-card">
+        <div class="num">5</div>
+        <div>
+          <h3>Şirket sözleşme şartlarına uyumunu kontrol edin</h3>
+          <p>Büyük şirketlerin tedarikçi seçim kriterleri vardır: <strong>vergi levhası</strong>, <strong>SGK yükümlülüklerinde temizlik</strong>, <strong>imza sirküleri</strong>, <strong>sigorta belgeleri</strong>. Bunları ibraz edebilen firmalar tercih edilir; satın alma departmanınızın bu belgeleri talep ettiğini varsayın.</p>
+        </div>
+      </div>
+      <div class="landing-guide-card">
+        <div class="num">6</div>
+        <div>
+          <h3>Düzenli/aylık abonelik için pilot dönem deneyin</h3>
+          <p>Düzenli ofis yemeği için firma seçerken önce <strong>1 haftalık pilot dönem</strong> uygulayın. Çalışan memnuniyetini, menü çeşitliliğini, dakikliği ve tabağa yansıyan kaliteyi ölçün. Memnuniyetsiz çıkarsa kolay sözleşme iptali şartı aramayın — pilot ile riski sınırlayın.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header" style="text-align:left; max-width:760px; margin:0 0 1.5rem;">
+      <p class="eyebrow">Sıkça Sorulanlar</p>
+      <h2>Kurumsal catering hakkında merak edilenler</h2>
+    </div>
+
+    <div class="landing-faq">
+      <details class="landing-faq-item">
+        <summary>Kurumsal catering kişi başı ortalama ne kadar?</summary>
+        <div class="answer">
+          Etkinlik tipine göre değişir: <strong>Kahve molası / atıştırmalık</strong> 80-180 TL/kişi; <strong>ofis öğle yemeği</strong> 200-400 TL/kişi; <strong>kokteyl daveti</strong> 350-700 TL/kişi; <strong>gala yemeği</strong> 700-1.500 TL/kişi; <strong>premium lansman</strong> 1.000-2.000 TL/kişi. KDV dahildir; bar/alkol genelde ayrı paket.
+        </div>
+      </details>
+      <details class="landing-faq-item">
+        <summary>Düzenli ofis yemeği aboneliği nasıl yapılır?</summary>
+        <div class="answer">
+          Düzenli kurumsal yemek için firma <strong>haftalık veya aylık menü planı</strong> sunar. Genelde 30+ kişiden başlar. Sözleşme ile dönemsel olarak (genelde 3 veya 6 aylık) bağlanır. Ödemeler ay sonu fatura ile yapılır. Pilot dönem (1 hafta) önerilir; sonra genişletilir. <a href="catererlar.html?event=kurumsal">Kurumsal catering firmalarını gör</a>.
+        </div>
+      </details>
+      <details class="landing-faq-item">
+        <summary>Toplantı için kahve molası hangi ürünleri içermeli?</summary>
+        <div class="answer">
+          Klasik kurumsal kahve molası şunları içerir: <strong>çay, kahve, türk kahvesi, su, gazlı içecek, taze sıkılmış meyve suyu</strong> + <strong>tuzlu/tatlı atıştırmalık</strong> (kuru pasta, börek, kek, mevsim meyvesi). Premium versiyonlar smoothie, espresso bar, butik tatlı seçenekleri ekler. Kişi başı ortalama 80-180 TL.
+        </div>
+      </details>
+      <details class="landing-faq-item">
+        <summary>Lansman/açılış için catering nasıl planlanır?</summary>
+        <div class="answer">
+          Lansman/açılış catering'i tipik olarak <strong>kokteyl + finger food</strong> formatındadır: misafirler ayakta dolaşırken servis edilebilen 6-12 çeşit küçük tabak. Bar servisi neredeyse zorunludur. Sunum estetiği marka kimliğinizle uyumlu olmalı. Etkinlik süresine göre (2-4 saat) menü hesaplanır.
+        </div>
+      </details>
+      <details class="landing-faq-item">
+        <summary>Vejetaryen, vegan, helal, koşer ihtiyaçları nasıl yönetilir?</summary>
+        <div class="answer">
+          Profesyonel kurumsal firmalar her diyet için ayrı, etiketli tabaklar hazırlar. Etkinlik öncesi <strong>katılımcı listesi</strong>nde diyet bilgileri toplanmalı ve firmaya iletilmelidir. Helal sertifikası talep ediyorsanız firma resmi sertifikasını gösterebilmelidir. Filtreden ilgili mutfak/diyet seçeneklerini işaretleyerek uzmanlaşmış firmaları görebilirsiniz.
+        </div>
+      </details>
+      <details class="landing-faq-item">
+        <summary>Şirket sözleşmesi ve fatura sürecinde sorun yaşanır mı?</summary>
+        <div class="answer">
+          EventRehberi'de listelenen onaylı firmaların hepsi <strong>vergi levhası, e-fatura, sözleşmeli çalışma</strong> standardına sahiptir. Şirket satın alma departmanınızla protokollü çalışmaya alışkındırlar. Yine de sözleşme öncesi vergi levhası, ticaret sicil bilgisi, imza sirküleri talep edebilirsiniz.
+        </div>
+      </details>
+      <details class="landing-faq-item">
+        <summary>Etkinlik son dakika iptal/erteleme olursa ne olur?</summary>
+        <div class="answer">
+          Sözleşmede <strong>iptal süreleri ve ücretleri</strong> yazılı olmalıdır. Genelde: 7+ gün önce iptal — ön ödemenin %100 iadesi; 3-7 gün arası iptal — %50 iade; 3 gün altı iptal — iade yok ama menü başka tarihe ertelenebilir. Bu maddeleri sözleşme imzalamadan netleştirin.
+        </div>
+      </details>
+      <details class="landing-faq-item">
+        <summary>Yıl sonu / bayram organizasyonu için ne kadar önceden planlamalıyım?</summary>
+        <div class="answer">
+          Yıl sonu (Aralık) ve büyük bayram dönemleri kurumsal catering için <strong>en yoğun aylar</strong>dır. İdeal rezervasyon süresi <strong>2-3 ay öncesi</strong>'dir; özellikle Aralık'ın son 2 haftası için Ekim'de bağlamak gerekir, aksi halde popüler firmalar dolu olur.
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="landing-cta-banner">
+      <h2>Şirket etkinliğiniz için profesyonel catering bulun.</h2>
+      <p>Onaylı kurumsal catering firmalarını filtreleyin, fiyat ve menüleri karşılaştırın, doğrudan teklif alın. Tamamen ücretsiz.</p>
+      <a href="catererlar.html?event=kurumsal" class="btn btn-primary btn-lg">Kurumsal Firmaları İncele</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div style="max-width:760px; margin:0 auto;">
+      <h3 style="margin-bottom:0.75rem; font-size:1.125rem;">Şehre göre kurumsal catering</h3>
+      <div class="related-cities">
+        <a href="istanbul-catering.html" class="related-link">İstanbul</a>
+        <a href="ankara-catering.html" class="related-link">Ankara</a>
+        <a href="izmir-catering.html" class="related-link">İzmir</a>
+        <a href="catererlar.html?event=kurumsal" class="related-link">Tüm Türkiye →</a>
+      </div>
+
+      <h3 style="margin:1.75rem 0 0.75rem; font-size:1.125rem;">Diğer etkinlikler</h3>
+      <div class="related-events">
+        <a href="dugun-catering.html" class="related-link">Düğün Catering</a>
+        <a href="ozel-sef-hizmeti.html" class="related-link">Özel Şef</a>
+        <a href="catererlar.html?hizmet=bar" class="related-link">Bar &amp; Kokteyl</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== FOOTER =============== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col footer-brand">
+        <a href="index.html" class="logo">
+          <span class="logo-mark"><svg viewBox="-60 -64 120 132" width="40" height="40" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M -36 -56 H 36 a 6 6 0 0 1 6 6 V 60 L 0 32 L -42 60 V -50 a 6 6 0 0 1 6 -6 Z" fill="#C7522A"/><path d="M 0 -22 L 9 -4 L 28 -2 L 14 12 L 18 30 L 0 22 L -18 30 L -14 12 L -28 -2 L -9 -4 Z" fill="#FFFFFF"/></svg></span>
+          <span>EventRehberi</span>
+        </a>
+        <p class="muted">Türkiye'nin catering pazaryeri. Her etkinlik için doğru firmayı bul, doğrudan teklif al.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Şehirler</h4>
+        <ul>
+          <li><a href="istanbul-catering.html">İstanbul Catering</a></li>
+          <li><a href="ankara-catering.html">Ankara Catering</a></li>
+          <li><a href="izmir-catering.html">İzmir Catering</a></li>
+          <li><a href="catererlar.html">Tüm Türkiye</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Etkinlikler</h4>
+        <ul>
+          <li><a href="dugun-catering.html">Düğün Catering</a></li>
+          <li><a href="kurumsal-catering.html">Kurumsal Catering</a></li>
+          <li><a href="ozel-sef-hizmeti.html">Özel Şef</a></li>
+          <li><a href="catererlar.html?hizmet=bar">Bar &amp; Kokteyl</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Kurumsal &amp; Yasal</h4>
+        <ul>
+          <li><a href="hakkimizda.html">Hakkımızda</a></li>
+          <li><a href="hakkimizda.html#iletisim">İletişim</a></li>
+          <li><a href="kvkk.html">KVKK Aydınlatma</a></li>
+          <li><a href="gizlilik.html">Gizlilik Politikası</a></li>
+          <li><a href="kullanim-kosullari.html">Kullanım Koşulları</a></li>
+          <li><a href="cerez-politikasi.html">Çerez Politikası</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 EventRehberi. Tüm hakları saklıdır.</span>
+      <span>İstanbul, Türkiye</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.LANDING_FILTER = { event: 'kurumsal', limit: 6 };
+</script>
+<script src="favorites.js"></script>
+<script src="firms-data.js"></script>
+<script src="compare.js"></script>
+<script src="navbar-mobile.js"></script>
+<script src="auth-nav.js"></script>
+<script src="cookie-consent.js"></script>
+</body>
+</html>

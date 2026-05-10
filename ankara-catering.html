@@ -1,0 +1,298 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Ankara'da catering firmaları — Çankaya, Yenimahalle, Keçiören ve diğer ilçelerde kurumsal toplantı, düğün ve özel etkinlik için onaylı catering firmalarını karşılaştır, doğrudan teklif al.">
+<meta name="keywords" content="Ankara catering, Ankara kurumsal catering, Ankara düğün catering, Çankaya catering, Yenimahalle catering">
+<title>Ankara Catering Firmaları — Kurumsal, Düğün &amp; Özel Etkinlik | EventRehberi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="supabase-client.js"></script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZH1F3D61N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZZH1F3D61N');
+</script>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container navbar-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-mark"><svg viewBox="-60 -64 120 132" width="40" height="40" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M -36 -56 H 36 a 6 6 0 0 1 6 6 V 60 L 0 32 L -42 60 V -50 a 6 6 0 0 1 6 -6 Z" fill="#C7522A"/><path d="M 0 -22 L 9 -4 L 28 -2 L 14 12 L 18 30 L 0 22 L -18 30 L -14 12 L -28 -2 L -9 -4 Z" fill="#FFFFFF"/></svg></span>
+      <span>EventRehberi</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="catererlar.html">Firmalar</a></li>
+      <li><a href="fiyatlar.html">Firma Paketleri</a></li>
+      <li><a href="hakkimizda.html">Hakkımızda</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="giris.html" class="nav-auth-link">Giriş Yap</a>
+      <a href="uye-ol.html" class="btn btn-ghost btn-sm">Üye Ol</a>
+      <a href="kayit.html" class="btn btn-primary btn-sm">Firmanı Kaydet</a>
+    </div>
+  </div>
+</nav>
+
+<section class="landing-hero">
+  <div class="landing-hero-bg" aria-hidden="true">
+    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=2000&h=1100&fit=crop&auto=format&q=80" alt="Ankara'da kurumsal catering" loading="eager">
+  </div>
+  <div class="container">
+    <div class="landing-hero-inner">
+      <p class="eyebrow">Ankara · Catering Pazaryeri</p>
+      <h1>Ankara'da catering firmaları — kurumsal etkinliklerin başkenti.</h1>
+      <p class="lead">Çankaya'dan Yenimahalle'ye, kamu etkinliklerinden özel düğünlere — Ankara'nın onaylı catering firmalarını karşılaştır, menüleri incele, doğrudan teklif al.</p>
+      <div class="landing-hero-actions">
+        <a href="catererlar.html?city=Ankara" class="btn btn-primary btn-lg">Ankara Firmalarını Gör</a>
+        <a href="#nasil-secilir" class="btn btn-ghost btn-lg">Nasıl seçilir?</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="landing-quick-stats">
+  <div class="container">
+    <div class="landing-quick-stats-grid">
+      <div class="landing-quick-stat">
+        <span class="num"><span id="landing-firm-count">—</span></span>
+        <span class="label">Onaylı Ankara firması</span>
+      </div>
+      <div class="landing-quick-stat">
+        <span class="num">5</span>
+        <span class="label">Catering hizmet türü</span>
+      </div>
+      <div class="landing-quick-stat">
+        <span class="num">25</span>
+        <span class="label">Hizmet alanı (ilçe)</span>
+      </div>
+      <div class="landing-quick-stat">
+        <span class="num">24sa</span>
+        <span class="label">Ortalama teklif yanıt süresi</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="landing-intro">
+      <h2>Ankara'nın kurumsal etkinlik şehri olma kimliği</h2>
+      <p>Ankara, Türkiye'nin başkenti olmanın getirdiği yoğun kamu kurumu, bakanlık ve kurumsal etkinlik trafiğine sahip. Diplomatik resepsiyonlardan, üniversite mezuniyet törenlerine, şirket toplantılarından bayramlık iftar organizasyonlarına kadar her gün yüzlerce etkinlik düzenleniyor. Bu yoğun trafik, catering firmalarının <strong>protokol kurallarına hâkim, dakik ve diskret</strong> olmasını gerektiriyor.</p>
+      <p>EventRehberi olarak Ankara'daki catering firmalarını <strong>kurumsal etkinlik deneyimi</strong>, <strong>protokol bilgisi</strong> ve <strong>özel günlerde dakiklik</strong> ölçütleriyle değerlendiriyoruz. Klasik Türk mutfağından modern fusion menülerine, vegan seçeneklerden glutensiz menülere kadar geniş bir yelpaze sunan firmalarla çalışıyoruz.</p>
+
+      <h3 id="ilceler">Ankara'da popüler catering bölgeleri</h3>
+      <p>Aşağıdaki ilçelerde özellikle yoğun hizmet ağımız var:</p>
+      <div class="landing-districts">
+        <a href="catererlar.html?city=Ankara&amp;district=Çankaya" class="landing-district-chip">Çankaya</a>
+        <a href="catererlar.html?city=Ankara&amp;district=Yenimahalle" class="landing-district-chip">Yenimahalle</a>
+        <a href="catererlar.html?city=Ankara&amp;district=Keçiören" class="landing-district-chip">Keçiören</a>
+        <a href="catererlar.html?city=Ankara&amp;district=Mamak" class="landing-district-chip">Mamak</a>
+        <a href="catererlar.html?city=Ankara&amp;district=Etimesgut" class="landing-district-chip">Etimesgut</a>
+        <a href="catererlar.html?city=Ankara&amp;district=Pursaklar" class="landing-district-chip">Pursaklar</a>
+        <a href="catererlar.html?city=Ankara&amp;district=Gölbaşı" class="landing-district-chip">Gölbaşı</a>
+        <a href="catererlar.html?city=Ankara" class="landing-district-chip">+ tüm ilçeler</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header" style="text-align:left; max-width:760px; margin:0 0 2rem;">
+      <p class="eyebrow">Onaylı Firmalar</p>
+      <h2>Ankara'da öne çıkan catering firmaları</h2>
+      <p class="section-sub">Kurumsal deneyim, müşteri puanı ve referanslarına göre öne çıkan Ankara firmaları.</p>
+    </div>
+
+    <div id="landing-firms-grid" class="landing-firms-grid"></div>
+
+    <div style="text-align:center; margin-top:2.5rem;">
+      <a href="catererlar.html?city=Ankara" class="btn btn-ghost btn-lg">Tüm Ankara firmalarını gör →</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="nasil-secilir">
+  <div class="container">
+    <div class="section-header" style="text-align:left; max-width:760px; margin:0 0 1.5rem;">
+      <p class="eyebrow">Rehber</p>
+      <h2>Ankara'da catering firması nasıl seçilir?</h2>
+      <p class="section-sub">Ankara'nın kurumsal yoğunluğu ve protokol kuralları, doğru firmayı seçmeyi diğer şehirlerden farklılaştırıyor.</p>
+    </div>
+
+    <div class="landing-guide">
+      <div class="landing-guide-card">
+        <div class="num">1</div>
+        <div>
+          <h3>Kurumsal etkinlik deneyimini sorgulayın</h3>
+          <p>Bakanlık, büyükelçilik, üniversite ve kurumsal şirket etkinliklerinde tecrübe protokol kurallarına hâkimiyet anlamına gelir. Referans listesini istemeyi unutmayın.</p>
+        </div>
+      </div>
+      <div class="landing-guide-card">
+        <div class="num">2</div>
+        <div>
+          <h3>Mutfak hijyeni ve sertifikalarını sorgulayın</h3>
+          <p>Ankara Büyükşehir Belediyesi gıda denetim raporu, HACCP sertifikası ve çalışan sağlık karneleri firmadan talep edilebilir bilgilerdir. Platformumuzdaki onaylı firmalar bu belgeleri ibraz etmiştir.</p>
+        </div>
+      </div>
+      <div class="landing-guide-card">
+        <div class="num">3</div>
+        <div>
+          <h3>En az 3 firmadan teklif alın</h3>
+          <p>Kurumsal projelerde fiyat aralığı %20-30 farklılık gösterebilir. Aynı menü için 3 farklı firma teklifi karşılaştırın — hem fiyat hem servis kalitesi konusunda somut bilgi edinilir.</p>
+        </div>
+      </div>
+      <div class="landing-guide-card">
+        <div class="num">4</div>
+        <div>
+          <h3>Protokol gereksinimlerini önceden konuşun</h3>
+          <p>Diplomatik etkinlik veya yüksek protokol gerektiren toplantılarda menü, sunum ve servis ekibinin giyim/davranışı sözleşmede belirtilmelidir. İyi firmalar bunu sormadan önerir.</p>
+        </div>
+      </div>
+      <div class="landing-guide-card">
+        <div class="num">5</div>
+        <div>
+          <h3>Sözleşme ve iptal koşullarını yazılı isteyin</h3>
+          <p>Kişi sayısı değişikliği, iptal hakkı ve son teslim koşullarının yazılı olması, beklenmedik durumlarda korumadır. Sadece sözel anlaşma yapan firmalardan kaçınılmalıdır.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header" style="text-align:left; max-width:760px; margin:0 0 1.5rem;">
+      <p class="eyebrow">Sıkça Sorulanlar</p>
+      <h2>Ankara'da catering hakkında bilinmesi gerekenler</h2>
+    </div>
+
+    <div class="landing-faq">
+      <details class="landing-faq-item">
+        <summary>Ankara'da catering kişi başı ortalama ne kadar tutar?</summary>
+        <div class="answer">
+          Ankara'da catering fiyatları menüye, kişi sayısına ve hizmet türüne göre 300 TL ile 1.200 TL arasında değişir. Kurumsal kahve molası 80-150 TL, kurumsal öğle yemeği 250-450 TL, tam servis düğün menüleri 500-1.200 TL aralığındadır. İstanbul'a göre ortalama %10-15 daha avantajlıdır.
+        </div>
+      </details>
+      <details class="landing-faq-item">
+        <summary>Ankara'nın hangi ilçelerinde catering bulunur?</summary>
+        <div class="answer">
+          Onaylı firmalar Ankara'nın tüm 25 ilçesinde hizmet verebilir. Yoğunluk Çankaya, Yenimahalle, Keçiören, Etimesgut ve Mamak'tadır. Pursaklar, Gölbaşı, Polatlı gibi çevre ilçelerde de seçenekler mevcuttur.
+        </div>
+      </details>
+      <details class="landing-faq-item">
+        <summary>Bakanlık ve kamu etkinliği için özel hizmet alabilir miyim?</summary>
+        <div class="answer">
+          Evet. Ankara'daki firmalarımızın büyük kısmı bakanlık, üniversite ve büyükelçilik etkinliklerinde deneyimlidir. Protokol gereksinimlerinizi (servis ekibi giyimi, menü kısıtlamaları, alkol politikası) firmaya açıkça iletmeniz yeterlidir.
+        </div>
+      </details>
+      <details class="landing-faq-item">
+        <summary>Düğün catering için ne kadar önceden rezervasyon yapmalıyım?</summary>
+        <div class="answer">
+          Ankara'da düğün sezonu Mayıs-Eylül arasıdır ve popüler firmalar 2-4 ay önceden dolar. İdeal rezervasyon süresi düğün tarihinden en az <strong>2 ay önce</strong>, off-season'da (Kasım-Mart) 3-4 hafta yeterli olabilir.
+        </div>
+      </details>
+      <details class="landing-faq-item">
+        <summary>Kurumsal toplantı için günlük catering hizmeti var mı?</summary>
+        <div class="answer">
+          Evet, Ankara'daki firmaların büyük çoğunluğu kurumsal toplantılar için <strong>kahve molası, öğle ikramı, gala yemeği</strong> gibi farklı paketler sunar. Aynı gün talepleri bile 4-6 saat öncesinden alınıp karşılanabilir, ancak menü çeşitliliği için bir gün önceden talep ideal olur.
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="landing-cta-banner">
+      <h2>Ankara'daki etkinliğiniz için hemen başlayın.</h2>
+      <p>Onaylı catering firmalarını filtreleyin, menüleri karşılaştırın, doğrudan teklif alın. Tamamen ücretsiz.</p>
+      <a href="catererlar.html?city=Ankara" class="btn btn-primary btn-lg">Ankara Firmalarını İncele</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div style="max-width:760px; margin:0 auto;">
+      <h3 style="margin-bottom:0.75rem; font-size:1.125rem;">Diğer şehirler</h3>
+      <div class="related-cities">
+        <a href="istanbul-catering.html" class="related-link">İstanbul Catering</a>
+        <a href="izmir-catering.html" class="related-link">İzmir Catering</a>
+        <a href="catererlar.html" class="related-link">Tüm Türkiye →</a>
+      </div>
+
+      <h3 style="margin:1.75rem 0 0.75rem; font-size:1.125rem;">Etkinlik türüne göre</h3>
+      <div class="related-events">
+        <a href="dugun-catering.html" class="related-link">Düğün Catering</a>
+        <a href="kurumsal-catering.html" class="related-link">Kurumsal Catering</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col footer-brand">
+        <a href="index.html" class="logo">
+          <span class="logo-mark"><svg viewBox="-60 -64 120 132" width="40" height="40" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M -36 -56 H 36 a 6 6 0 0 1 6 6 V 60 L 0 32 L -42 60 V -50 a 6 6 0 0 1 6 -6 Z" fill="#C7522A"/><path d="M 0 -22 L 9 -4 L 28 -2 L 14 12 L 18 30 L 0 22 L -18 30 L -14 12 L -28 -2 L -9 -4 Z" fill="#FFFFFF"/></svg></span>
+          <span>EventRehberi</span>
+        </a>
+        <p class="muted">Türkiye'nin catering pazaryeri. Her etkinlik için doğru firmayı bul, doğrudan teklif al.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Şehirler</h4>
+        <ul>
+          <li><a href="istanbul-catering.html">İstanbul Catering</a></li>
+          <li><a href="ankara-catering.html">Ankara Catering</a></li>
+          <li><a href="izmir-catering.html">İzmir Catering</a></li>
+          <li><a href="catererlar.html">Tüm Türkiye</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Etkinlikler</h4>
+        <ul>
+          <li><a href="dugun-catering.html">Düğün Catering</a></li>
+          <li><a href="kurumsal-catering.html">Kurumsal Catering</a></li>
+          <li><a href="catererlar.html?hizmet=bar">Bar &amp; Kokteyl</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Kurumsal &amp; Yasal</h4>
+        <ul>
+          <li><a href="hakkimizda.html">Hakkımızda</a></li>
+          <li><a href="hakkimizda.html#iletisim">İletişim</a></li>
+          <li><a href="kvkk.html">KVKK Aydınlatma</a></li>
+          <li><a href="gizlilik.html">Gizlilik Politikası</a></li>
+          <li><a href="kullanim-kosullari.html">Kullanım Koşulları</a></li>
+          <li><a href="cerez-politikasi.html">Çerez Politikası</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 EventRehberi. Tüm hakları saklıdır.</span>
+      <span>İstanbul, Türkiye</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.LANDING_FILTER = { city: 'Ankara', limit: 6 };
+</script>
+<script src="favorites.js"></script>
+<script src="firms-data.js"></script>
+<script src="compare.js"></script>
+<script src="navbar-mobile.js"></script>
+<script src="auth-nav.js"></script>
+<script src="cookie-consent.js"></script>
+</body>
+</html>

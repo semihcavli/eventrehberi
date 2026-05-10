@@ -1,0 +1,260 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="EventRehberi Kullanım Koşulları — platformu kullanırken üye, ziyaretçi ve catering firmalarının uyması gereken kurallar.">
+<title>Kullanım Koşulları — EventRehberi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="supabase-client.js"></script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZH1F3D61N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZZH1F3D61N');
+</script>
+</head>
+<body>
+
+<!-- =============== NAVBAR =============== -->
+<nav class="navbar">
+  <div class="container navbar-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-mark"><svg viewBox="-60 -64 120 132" width="40" height="40" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M -36 -56 H 36 a 6 6 0 0 1 6 6 V 60 L 0 32 L -42 60 V -50 a 6 6 0 0 1 6 -6 Z" fill="#C7522A"/><path d="M 0 -22 L 9 -4 L 28 -2 L 14 12 L 18 30 L 0 22 L -18 30 L -14 12 L -28 -2 L -9 -4 Z" fill="#FFFFFF"/></svg></span>
+      <span>EventRehberi</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="catererlar.html">Firmalar</a></li>
+      <li><a href="fiyatlar.html">Firma Paketleri</a></li>
+      <li><a href="hakkimizda.html">Hakkımızda</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="giris.html" class="nav-auth-link">Giriş Yap</a>
+      <a href="uye-ol.html" class="btn btn-ghost btn-sm">Üye Ol</a>
+      <a href="kayit.html" class="btn btn-primary btn-sm">Firmanı Kaydet</a>
+    </div>
+  </div>
+</nav>
+
+<!-- =============== HERO =============== -->
+<section class="legal-hero">
+  <div class="container">
+    <p class="eyebrow">Yasal · Sözleşme</p>
+    <h1>Kullanım Koşulları</h1>
+    <p class="legal-meta">Yürürlülük tarihi: <strong>25 Nisan 2026</strong> · Son güncelleme: 25 Nisan 2026</p>
+  </div>
+</section>
+
+<!-- =============== CONTENT =============== -->
+<section class="legal-page">
+  <div class="container">
+    <div class="legal-content">
+
+      <div class="legal-notice">
+        <strong>Önemli not:</strong> Bu Kullanım Koşulları genel bir sözleşme şablonudur. Yasal yükümlülüklerinin tam ve yerel mevzuata uygun olduğundan emin olmak için lütfen bir avukata danışınız.
+      </div>
+
+      <p>Bu Kullanım Koşulları (kısaca "<strong>Sözleşme</strong>"), <strong>EventRehberi</strong> ("<strong>Platform</strong>", "<strong>biz</strong>") tarafından işletilen www.eventrehberi.com web sitesinin ("<strong>Site</strong>") kullanımına ilişkin koşulları belirler. Siteyi ziyaret eden, üye olan veya catering firması olarak kayıt yaptıran herkes ("<strong>Kullanıcı</strong>" veya "<strong>siz</strong>") bu Sözleşme'yi kabul etmiş sayılır.</p>
+      <p>Sözleşme'yi kabul etmiyorsanız lütfen Site'yi kullanmayınız.</p>
+
+      <div class="legal-toc">
+        <h4>İçerik</h4>
+        <ol>
+          <li><a href="#k1">Tanımlar</a></li>
+          <li><a href="#k2">Hizmetin kapsamı</a></li>
+          <li><a href="#k3">Üyelik ve hesap güvenliği</a></li>
+          <li><a href="#k4">Kullanıcı yükümlülükleri</a></li>
+          <li><a href="#k5">Catering firması yükümlülükleri</a></li>
+          <li><a href="#k6">Yasaklı davranışlar</a></li>
+          <li><a href="#k7">İçerik mülkiyeti ve fikri haklar</a></li>
+          <li><a href="#k8">Teklif süreci ve sözleşmeler</a></li>
+          <li><a href="#k9">Ücretler ve ödeme</a></li>
+          <li><a href="#k10">Sorumluluğun sınırlandırılması</a></li>
+          <li><a href="#k11">Hesabın askıya alınması ve fesih</a></li>
+          <li><a href="#k12">Değişiklikler</a></li>
+          <li><a href="#k13">Uygulanacak hukuk ve uyuşmazlık çözümü</a></li>
+          <li><a href="#k14">İletişim</a></li>
+        </ol>
+      </div>
+
+      <h2 id="k1">1. Tanımlar</h2>
+      <ul>
+        <li><strong>Platform / Site / Biz:</strong> EventRehberi ve www.eventrehberi.com adresinde sunulan tüm hizmetler.</li>
+        <li><strong>Kullanıcı / Siz:</strong> Site'yi ziyaret eden, üye olan veya catering firması olarak kayıt yapan tüm gerçek ve tüzel kişiler.</li>
+        <li><strong>Üye:</strong> Etkinlik planlamak için Site'ye üye olan bireysel kullanıcı.</li>
+        <li><strong>Firma:</strong> Catering hizmetleri sunan ve Platform'a kayıtlı işletme.</li>
+        <li><strong>Hizmet:</strong> Platform tarafından sunulan listeleme, arama, teklif iletme, üyelik ve diğer tüm dijital hizmetler.</li>
+        <li><strong>İçerik:</strong> Site'de yer alan tüm metin, görsel, video, logo, menü ve benzeri öğeler.</li>
+      </ul>
+
+      <h2 id="k2">2. Hizmetin kapsamı</h2>
+      <p>EventRehberi, etkinlik planlayan kullanıcılar ile catering firmaları arasında <strong>doğrudan iletişimi kolaylaştıran bir aracı pazaryeridir</strong>. Platform:</p>
+      <ul>
+        <li>Catering firmalarının profillerini, menülerini ve görsel içeriklerini sergiler.</li>
+        <li>Kullanıcıların etkinlik özelliklerine göre firmaları filtrelemesini, karşılaştırmasını ve teklif istemesini sağlar.</li>
+        <li>Üye kullanıcılara favori, etkinlik ve öneri yönetimi araçları sunar.</li>
+      </ul>
+      <p><strong>EventRehberi catering hizmetinin kendisini sunmaz.</strong> Sözleşme, ödeme, teslimat ve tüm hizmet detayları doğrudan Üye ile Firma arasında kurulur. Platform bu işlemlerin tarafı değildir.</p>
+
+      <h2 id="k3">3. Üyelik ve hesap güvenliği</h2>
+      <ul>
+        <li>Üye olabilmek için <strong>en az 18 yaşında</strong> olmanız gerekmektedir.</li>
+        <li>Üyelik sırasında verdiğiniz bilgilerin doğru, güncel ve eksiksiz olduğunu taahhüt edersiniz.</li>
+        <li>Hesabınızın güvenliğinden — şifrenizin gizli tutulması, başkalarıyla paylaşılmaması dahil — siz sorumlusunuz.</li>
+        <li>Hesabınızda yetkisiz bir erişim veya kullanım fark ederseniz, bunu derhal bize bildirmeniz gerekir.</li>
+        <li>Kişi başına yalnızca bir hesap açabilirsiniz; sahte veya başka bir kişinin kimliğiyle hesap açılamaz.</li>
+      </ul>
+
+      <h2 id="k4">4. Kullanıcı yükümlülükleri</h2>
+      <p>Platform'u kullanırken şunları kabul edersiniz:</p>
+      <ul>
+        <li>Site'yi yalnızca yasal amaçlarla ve bu Sözleşme'ye uygun şekilde kullanacaksınız.</li>
+        <li>Verdiğiniz tüm bilgilerin (etkinlik tarihi, kişi sayısı, iletişim bilgileri vb.) doğru olduğunu taahhüt edersiniz.</li>
+        <li>Aldığınız teklifleri yalnızca kendi etkinliğiniz için kullanacak; pazarlama, rekabet veya kötüye kullanım amacıyla başka taraflarla paylaşmayacaksınız.</li>
+        <li>Kullandığınız diğer üyelerin veya firmaların verilerini izinsiz toplayamaz, kopyalayamaz veya başka bir platforma aktaramazsınız.</li>
+      </ul>
+
+      <h2 id="k5">5. Catering firması yükümlülükleri</h2>
+      <p>Catering firması olarak kayıt olduğunuzda ek olarak:</p>
+      <ul>
+        <li>Kayıt yaptırırken sunduğunuz tüm bilgilerin (firma adı, vergi numarası, adres, hizmet alanı, menüler, fiyatlar) doğru ve güncel olduğunu taahhüt edersiniz.</li>
+        <li>Türkiye'de catering hizmeti sunmak için gerekli tüm yasal izinlere, ruhsatlara ve sertifikalara sahip olduğunuzu beyan edersiniz.</li>
+        <li>Profil sayfanıza yüklediğiniz görsellerin telif haklarına sahip olduğunuzu veya kullanım iznine sahip olduğunuzu beyan edersiniz.</li>
+        <li>Müşteri tekliflerine makul bir süre içinde — pratik olarak 24-48 saat içinde — dönüş yapacağınızı taahhüt edersiniz.</li>
+        <li>Yorumlara ve değerlendirmelere müdahale etmek (sahte yorum yazmak, başkalarına yazdırmak veya yorumları silmek için baskı yapmak) yasaktır.</li>
+        <li>Müşteri ile yaptığınız sözleşmenin yerine getirilmesinden, hizmet kalitesinden ve ortaya çıkabilecek herhangi bir uyuşmazlıktan tek başına siz sorumlusunuz.</li>
+      </ul>
+
+      <h2 id="k6">6. Yasaklı davranışlar</h2>
+      <p>Aşağıdaki davranışlar kesinlikle yasaktır ve Sözleşme'nin ihlali sayılır:</p>
+      <ul>
+        <li>Yasaya, ahlaka veya kamu düzenine aykırı, ırkçı, ayrımcı, hakaret içeren veya yanıltıcı içerik paylaşmak</li>
+        <li>Telif hakkı veya marka haklarına aykırı içerik yüklemek</li>
+        <li>Site'yi otomatik bot, scraper veya benzeri araçlarla kazımak; içeriği toplu olarak indirmek</li>
+        <li>Site'nin güvenliğini test etmek, açıklarını araştırmak veya kötüye kullanmak (yetkili güvenlik araştırmacılarının önceden bizim onayımızla yapması hariç)</li>
+        <li>Başka bir kullanıcının hesabını ele geçirmeye çalışmak veya kimliğine bürünmek</li>
+        <li>Spam, zararlı yazılım, virüs veya istenmeyen reklam göndermek</li>
+        <li>Platform'u rakip bir hizmet kurma amacıyla kullanmak veya verilerini bu amaçla toplamak</li>
+      </ul>
+      <p>Bu kuralları ihlal eden hesapları uyarmadan askıya alma veya silme hakkımızı saklı tutarız.</p>
+
+      <h2 id="k7">7. İçerik mülkiyeti ve fikri haklar</h2>
+      <p>Site üzerindeki tüm içerikler aşağıdaki şekilde sınıflandırılır:</p>
+      <ul>
+        <li><strong>Platform içerikleri:</strong> Logo, marka, tasarım, metin, kod ve diğer öğelerin tüm fikri mülkiyet hakları EventRehberi'e aittir. İzinsiz kopyalanamaz, dağıtılamaz veya türev eserler oluşturulamaz.</li>
+        <li><strong>Catering firması içerikleri:</strong> Firma profillerine yüklenen menü, görsel ve metinler ilgili firmaya aittir. Firma, bu içerikleri Platform üzerinde sergileme hakkını EventRehberi'e münhasır olmayan biçimde verir.</li>
+        <li><strong>Kullanıcı içerikleri:</strong> Yorum, etkinlik açıklaması veya iletişim formu üzerinden ilettiğiniz tüm bilgiler size aittir. Ancak bu içerikleri Platform üzerinde sergilememiz, çoğaltmamız ve hizmetimizi sürdürmemiz için bize münhasır olmayan, ücretsiz, dünya çapında geçerli bir kullanım hakkı verirsiniz.</li>
+      </ul>
+
+      <h2 id="k8">8. Teklif süreci ve sözleşmeler</h2>
+      <ul>
+        <li>Bir Üye, bir Firma'dan teklif istediğinde, bu yalnızca <strong>iletişim talebi</strong> niteliğindedir; bağlayıcı bir sözleşme oluşturmaz.</li>
+        <li>Bağlayıcı sözleşme yalnızca Üye ile Firma arasında, ayrı bir anlaşma yapılmasıyla kurulur.</li>
+        <li>Sözleşmenin tüm tarafları, fiyatları, ödeme koşullarını ve teslimat detaylarını belirleme sorumluluğu Üye ve Firma'ya aittir.</li>
+        <li>Platform, taraflar arasındaki uyuşmazlıklardan, hizmet kalitesinden, gecikmelerden veya iptallerden sorumlu değildir.</li>
+      </ul>
+
+      <h2 id="k9">9. Ücretler ve ödeme</h2>
+      <ul>
+        <li>Üyelik ve teklif istemek <strong>Üyeler için tamamen ücretsizdir</strong>.</li>
+        <li>Catering firmaları için ücretli paketler (PRO, ELITE) ve isteğe bağlı öne çıkarma hizmetleri mevcuttur. Detaylar için <a href="fiyatlar.html">Firma Paketleri</a> sayfasına bakınız.</li>
+        <li>Tüm ücretler aksi belirtilmedikçe Türk Lirası (TL) cinsindendir ve KDV dahildir.</li>
+        <li>Aboneliğinizi her zaman iptal edebilirsiniz; iptal sonrası geri ödeme koşulları paket sayfasında belirtilmiştir.</li>
+      </ul>
+
+      <h2 id="k10">10. Sorumluluğun sınırlandırılması</h2>
+      <p>Platform'u "olduğu gibi" sunarız. Yürürlükteki hukukun izin verdiği azami ölçüde:</p>
+      <ul>
+        <li>Hizmetin kesintisiz, hatasız veya tüm beklentilerinizi karşılayacak şekilde sürdürülmesini garanti etmeyiz.</li>
+        <li>Üye ile Firma arasındaki sözleşmelerin yerine getirilmemesinden veya hizmet kalitesinden sorumlu değiliz.</li>
+        <li>Hizmetlerin kullanımından doğan dolaylı, özel, sonuçsal veya cezai zararlardan sorumlu değiliz.</li>
+        <li>Doğrudan zararlardaki sorumluluğumuz, son 12 ay içinde ödediğiniz toplam ücreti aşamaz (ücretsiz kullanıcılarda 1.000 TL ile sınırlıdır).</li>
+      </ul>
+      <p>Bu sınırlamalar tüketici mevzuatının verdiği zorunlu hakları ortadan kaldırmaz.</p>
+
+      <h2 id="k11">11. Hesabın askıya alınması ve fesih</h2>
+      <ul>
+        <li>Bu Sözleşme'yi ihlal etmeniz halinde hesabınızı uyarmadan askıya alabilir veya silebiliriz.</li>
+        <li>Hesabınızı her zaman, sebep göstermeksizin <a href="hakkimizda.html#iletisim">iletişim sayfasından</a> bize ileterek silebilirsiniz.</li>
+        <li>Hesabın silinmesi sonrasında verileriniz <a href="kvkk.html">KVKK Aydınlatma Metni</a>'nde belirtilen saklama süreleri kapsamında işlenir, sonra anonimleştirilir veya silinir.</li>
+        <li>Catering firmalarının hesapları silinse dahi, açık olan teklif yükümlülükleri ve ödenmemiş ücretler söz konusu olduğunda bunlar geçerliliğini korur.</li>
+      </ul>
+
+      <h2 id="k12">12. Değişiklikler</h2>
+      <p>Bu Sözleşme'yi zaman zaman güncelleyebiliriz. Önemli değişikliklerde sayfanın en üstündeki "yürürlülük tarihi"ni güncelleriz ve gerekirse e-posta yoluyla haber veririz. Değişiklik sonrası Site'yi kullanmaya devam etmeniz, güncellenmiş Sözleşme'yi kabul ettiğiniz anlamına gelir.</p>
+
+      <h2 id="k13">13. Uygulanacak hukuk ve uyuşmazlık çözümü</h2>
+      <p>Bu Sözleşme <strong>Türkiye Cumhuriyeti hukukuna</strong> tabidir.</p>
+      <p>Uyuşmazlıkların çözümünde önceliği dostane görüşmelere veririz. Uzlaşmaya varılamaması halinde, <strong>İstanbul Anadolu Mahkemeleri ve İcra Daireleri</strong> yetkilidir. Tüketici mevzuatına tabi tüketiciler için, kendi yerleşim yerlerindeki Tüketici Hakem Heyetlerine veya Tüketici Mahkemelerine başvurma hakları saklıdır.</p>
+
+      <h2 id="k14">14. İletişim</h2>
+      <p>Bu Sözleşme veya Site hakkında sorularınız için bizimle iletişime geçebilirsiniz:</p>
+
+      <div class="legal-contact-card">
+        <div><span class="label">Genel iletişim</span> <span class="value">info@eventrehberi.com</span></div>
+        <div><span class="label">Hukuki konular</span> <span class="value">hukuk@eventrehberi.com</span></div>
+        <div><span class="label">KVKK</span> <span class="value">kvkk@eventrehberi.com</span></div>
+      </div>
+
+      <p style="margin-top: 2.5rem; font-size: 0.875rem; color: #6b7568;">Bu Sözleşme 25 Nisan 2026 tarihinde güncellenmiştir.</p>
+
+    </div>
+  </div>
+</section>
+
+<!-- =============== FOOTER =============== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col footer-brand">
+        <a href="index.html" class="logo">
+          <span class="logo-mark"><svg viewBox="-60 -64 120 132" width="40" height="40" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M -36 -56 H 36 a 6 6 0 0 1 6 6 V 60 L 0 32 L -42 60 V -50 a 6 6 0 0 1 6 -6 Z" fill="#C7522A"/><path d="M 0 -22 L 9 -4 L 28 -2 L 14 12 L 18 30 L 0 22 L -18 30 L -14 12 L -28 -2 L -9 -4 Z" fill="#FFFFFF"/></svg></span>
+          <span>EventRehberi</span>
+        </a>
+        <p class="muted">Türkiye'nin catering pazaryeri. Her etkinlik için doğru firmayı bul, doğrudan teklif al.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Keşfet</h4>
+        <ul>
+          <li><a href="catererlar.html">Tüm firmalar</a></li>
+          <li><a href="catererlar.html?hizmet=yemek">Yemek Catering</a></li>
+          <li><a href="catererlar.html?hizmet=bar">Bar &amp; Kokteyl</a></li>
+          <li><a href="catererlar.html?hizmet=pasta">Pasta &amp; Tatlı</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>İşletmeler</h4>
+        <ul>
+          <li><a href="kayit.html">Firmanı kaydet</a></li>
+          <li><a href="fiyatlar.html">Firma paketleri</a></li>
+          <li><a href="hakkimizda.html">Nasıl çalışır?</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Yasal</h4>
+        <ul>
+          <li><a href="kvkk.html">KVKK Aydınlatma</a></li>
+          <li><a href="gizlilik.html">Gizlilik Politikası</a></li>
+          <li><a href="kullanim-kosullari.html">Kullanım Koşulları</a></li>
+          <li><a href="cerez-politikasi.html">Çerez Politikası</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 EventRehberi. Tüm hakları saklıdır.</span>
+      <span>İstanbul, Türkiye</span>
+    </div>
+  </div>
+</footer>
+
+<script src="favorites.js"></script>
+<script src="navbar-mobile.js"></script>
+<script src="auth-nav.js"></script>
+<script src="cookie-consent.js"></script>
+</body>
+</html>

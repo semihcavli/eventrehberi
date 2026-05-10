@@ -1,0 +1,1018 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Kişisel EventRehberi panelin: favori firmalar, planladığın etkinlikler, tercihlerine göre öneriler.">
+<meta name="robots" content="noindex, nofollow">
+<title>Hesabım — EventRehberi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="supabase-client.js"></script>
+<script src="favorites.js"></script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZH1F3D61N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZZH1F3D61N');
+</script>
+</head>
+<body>
+
+<!-- =============== NAVBAR =============== -->
+<nav class="navbar">
+  <div class="container navbar-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-mark"><svg viewBox="-60 -64 120 132" width="40" height="40" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M -36 -56 H 36 a 6 6 0 0 1 6 6 V 60 L 0 32 L -42 60 V -50 a 6 6 0 0 1 6 -6 Z" fill="#C7522A"/><path d="M 0 -22 L 9 -4 L 28 -2 L 14 12 L 18 30 L 0 22 L -18 30 L -14 12 L -28 -2 L -9 -4 Z" fill="#FFFFFF"/></svg></span>
+      <span>EventRehberi</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="catererlar.html">Firmalar</a></li>
+      <li><a href="fiyatlar.html">Firma Paketleri</a></li>
+      <li><a href="hakkimizda.html">Hakkımızda</a></li>
+    </ul>
+    <div class="nav-cta" id="nav-cta">
+      <a href="hesabim.html" class="nav-auth-link active" id="nav-account">Hesabım</a>
+      <button class="btn btn-ghost btn-sm" id="btn-logout-nav" type="button">Çıkış Yap</button>
+    </div>
+  </div>
+</nav>
+
+<!-- =============== LOADING =============== -->
+<div class="account-loading" id="account-loading">
+  <div class="account-loading-inner">
+    <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#1F4D33" stroke-width="2.5" stroke-linecap="round" class="spin"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+    <p>Hesap bilgilerin yükleniyor...</p>
+  </div>
+</div>
+
+<!-- =============== ACCOUNT PAGE =============== -->
+<div class="account-v2" id="account-page" hidden>
+
+  <!-- HERO -->
+  <section class="acc-hero">
+    <div class="acc-hero-bg" aria-hidden="true"></div>
+    <div class="acc-hero-orb acc-hero-orb-1" aria-hidden="true"></div>
+    <div class="acc-hero-orb acc-hero-orb-2" aria-hidden="true"></div>
+    <div class="container">
+      <div class="acc-hero-inner">
+        <div class="acc-avatar-wrap">
+          <div class="acc-avatar-ring"></div>
+          <div class="acc-avatar" id="acc-avatar">S</div>
+          <div class="acc-avatar-dot" title="Çevrimiçi"></div>
+        </div>
+        <div class="acc-hero-text">
+          <span class="acc-greeting" id="acc-greeting">Hoş geldin 👋</span>
+          <h1 id="acc-name">Kullanıcı</h1>
+          <p class="acc-hero-meta">
+            <span id="acc-email-txt">—</span>
+            <span class="dot-sep">·</span>
+            <span id="acc-since-txt">—</span>
+          </p>
+          <p class="acc-tagline" id="acc-tagline">Bugün güzel bir etkinlik planlamaya ne dersin?</p>
+        </div>
+        <div class="acc-hero-actions">
+          <button class="btn btn-ghost-white" id="btn-edit-profile-hero" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+            Profili düzenle
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROFILE COMPLETION -->
+  <section class="pc-strip" id="pc-strip" hidden>
+    <div class="container">
+      <div class="pc-inner">
+        <div class="pc-meta">
+          <div class="pc-title">
+            <strong>Profilin <span id="pc-percent">0</span>% tamamlandı</strong>
+            <span class="pc-sub" id="pc-sub">Birkaç bilgi ekle, teklifleri daha hızlı al.</span>
+          </div>
+          <div class="pc-bar"><div class="pc-fill" id="pc-fill" style="width:0%"></div></div>
+        </div>
+        <div class="pc-steps" id="pc-steps">
+          <!-- populated by JS -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="section-sm">
+    <div class="container">
+      <div class="stats-v2">
+        <a href="#favorites" class="stat-v2 stat-v2--fav">
+          <div class="stat-v2-top">
+            <span class="stat-v2-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.35-9.5-8.5C.5 8 3 4 7 4c2 0 3.5 1 5 2.5C13.5 5 15 4 17 4c4 0 6.5 4 4.5 8.5C19 16.65 12 21 12 21z"/></svg>
+            </span>
+            <span class="stat-v2-chev">→</span>
+          </div>
+          <div class="stat-v2-num" id="stat-fav">0</div>
+          <div class="stat-v2-label">Favori firma</div>
+          <div class="stat-v2-hint" id="stat-fav-hint">Henüz favori eklemedin</div>
+        </a>
+        <a href="#events" class="stat-v2 stat-v2--evt">
+          <div class="stat-v2-top">
+            <span class="stat-v2-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </span>
+            <span class="stat-v2-chev">→</span>
+          </div>
+          <div class="stat-v2-num" id="stat-evt">0</div>
+          <div class="stat-v2-label">Planladığın etkinlik</div>
+          <div class="stat-v2-hint" id="stat-evt-hint">Yeni etkinlik ekle</div>
+        </a>
+        <a href="#recs" class="stat-v2 stat-v2--rec">
+          <div class="stat-v2-top">
+            <span class="stat-v2-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 8.5 22 9.3 17 14 18.3 21 12 17.8 5.7 21 7 14 2 9.3 9 8.5 12 2"/></svg>
+            </span>
+            <span class="stat-v2-chev">→</span>
+          </div>
+          <div class="stat-v2-num" id="stat-rec">—</div>
+          <div class="stat-v2-label">Sana özel öneri</div>
+          <div class="stat-v2-hint" id="stat-rec-hint">Tercihlerini ekle, kişiselleşsin</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN GRID -->
+  <section class="section-sm">
+    <div class="container">
+      <div class="acc-grid">
+
+        <!-- LEFT COL -->
+        <div class="acc-main">
+
+          <!-- FAVORITES -->
+          <div class="acc-card" id="favorites">
+            <div class="acc-card-head">
+              <div>
+                <h3>Favori firmalarım</h3>
+                <p class="muted-sm">Beğendiğin firmalara tek yerden ulaş.</p>
+              </div>
+              <a href="catererlar.html" class="link-muted">Tümünü gör →</a>
+            </div>
+            <div class="acc-card-body" id="favorites-body">
+              <!-- rendered by JS -->
+            </div>
+          </div>
+
+          <!-- EVENTS -->
+          <div class="acc-card" id="events">
+            <div class="acc-card-head">
+              <div>
+                <h3>Etkinliklerim</h3>
+                <p class="muted-sm">Düğün, kurumsal, doğum günü — planını burada tut.</p>
+              </div>
+              <button class="btn btn-ghost btn-sm" type="button" id="btn-add-event">+ Yeni etkinlik</button>
+            </div>
+            <div class="acc-card-body" id="events-body">
+              <!-- rendered by JS -->
+            </div>
+          </div>
+
+          <!-- RECOMMENDATIONS -->
+          <div class="acc-card" id="recs">
+            <div class="acc-card-head">
+              <div>
+                <h3>Sana özel öneriler</h3>
+                <p class="muted-sm" id="recs-desc">Tercihlerine göre seçildi.</p>
+              </div>
+              <button class="btn btn-ghost btn-sm" type="button" id="btn-edit-prefs-recs">Tercihleri güncelle</button>
+            </div>
+            <div class="acc-card-body" id="recs-body">
+              <!-- rendered by JS -->
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT COL -->
+        <div class="acc-side">
+
+          <!-- PROFILE -->
+          <div class="acc-card">
+            <div class="acc-card-head">
+              <h3>Profilim</h3>
+              <button class="acc-icon-btn" id="btn-edit-profile" title="Düzenle" aria-label="Düzenle">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+              </button>
+            </div>
+            <div class="acc-card-body acc-info-list">
+              <div class="acc-info-row">
+                <span class="acc-info-label">Ad Soyad</span>
+                <span class="acc-info-val" id="info-name">—</span>
+              </div>
+              <div class="acc-info-row">
+                <span class="acc-info-label">E-posta</span>
+                <span class="acc-info-val" id="info-email">—</span>
+              </div>
+              <div class="acc-info-row">
+                <span class="acc-info-label">Doğrulama</span>
+                <span class="acc-info-val" id="info-verified">—</span>
+              </div>
+              <div class="acc-info-row">
+                <span class="acc-info-label">Telefon</span>
+                <span class="acc-info-val" id="info-phone">—</span>
+              </div>
+              <div class="acc-info-row">
+                <span class="acc-info-label">Şehir</span>
+                <span class="acc-info-val" id="info-city">—</span>
+              </div>
+              <div class="acc-info-row">
+                <span class="acc-info-label">Üyelik</span>
+                <span class="acc-info-val" id="info-since">—</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- PREFERENCES -->
+          <div class="acc-card">
+            <div class="acc-card-head">
+              <h3>Tercihlerim</h3>
+              <button class="acc-icon-btn" id="btn-edit-prefs" title="Düzenle" aria-label="Düzenle">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+              </button>
+            </div>
+            <div class="acc-card-body">
+              <div class="pref-block">
+                <div class="pref-lbl">Etkinlik türü</div>
+                <div class="pref-chips" id="pref-events-view"><span class="pref-empty">Henüz seçilmedi</span></div>
+              </div>
+              <div class="pref-block">
+                <div class="pref-lbl">Mutfak tarzı</div>
+                <div class="pref-chips" id="pref-cuisines-view"><span class="pref-empty">Henüz seçilmedi</span></div>
+              </div>
+              <div class="pref-block">
+                <div class="pref-lbl">Bütçe aralığı</div>
+                <div class="pref-chips" id="pref-budget-view"><span class="pref-empty">Henüz seçilmedi</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SETTINGS -->
+          <div class="acc-card">
+            <div class="acc-card-head">
+              <h3>Ayarlar</h3>
+            </div>
+            <div class="acc-card-body acc-settings-list">
+              <button class="acc-set-row" type="button" id="btn-change-password">
+                <span class="acc-set-ico">🔒</span>
+                <div class="acc-set-txt">
+                  <strong>Şifre değiştir</strong>
+                  <span>E-posta ile sıfırlama linki gönderilir</span>
+                </div>
+                <span class="acc-set-chev">›</span>
+              </button>
+              <a class="acc-set-row" href="kayit.html">
+                <span class="acc-set-ico">🏢</span>
+                <div class="acc-set-txt">
+                  <strong>Firmanı kaydet</strong>
+                  <span>Catering firman varsa listelet</span>
+                </div>
+                <span class="acc-set-chev">›</span>
+              </a>
+              <a class="acc-set-row" href="hakkimizda.html#iletisim">
+                <span class="acc-set-ico">💬</span>
+                <div class="acc-set-txt">
+                  <strong>Destek</strong>
+                  <span>Bir sorun varsa bize yaz</span>
+                </div>
+                <span class="acc-set-chev">›</span>
+              </a>
+              <button class="acc-set-row acc-set-row--danger" type="button" id="btn-logout">
+                <span class="acc-set-ico">🚪</span>
+                <div class="acc-set-txt">
+                  <strong>Çıkış yap</strong>
+                  <span>Oturumunu kapat</span>
+                </div>
+                <span class="acc-set-chev">›</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- =============== EDIT PROFILE MODAL =============== -->
+<div class="acc-modal" id="modal-profile" hidden>
+  <div class="acc-modal-bg" data-close-modal="modal-profile"></div>
+  <div class="acc-modal-box">
+    <button class="acc-modal-close" type="button" data-close-modal="modal-profile" aria-label="Kapat">×</button>
+    <h2>Profili düzenle</h2>
+    <p class="muted-sm">Bilgilerin sadece sana gösterilir, firmalarla teklif isteği gönderirken paylaşılır.</p>
+    <form id="profile-form" class="acc-form">
+      <div class="form-group">
+        <label for="pf-name">Ad Soyad</label>
+        <input type="text" id="pf-name" name="full_name" placeholder="Adın Soyadın" required>
+      </div>
+      <div class="form-group">
+        <label for="pf-phone">Telefon <span class="optional">(opsiyonel)</span></label>
+        <input type="tel" id="pf-phone" name="phone" placeholder="0 5xx xxx xx xx">
+      </div>
+      <div class="form-group">
+        <label for="pf-city">Şehir <span class="optional">(opsiyonel)</span></label>
+        <select id="pf-city" name="city">
+          <option value="">Seç...</option>
+        </select>
+      </div>
+      <div class="acc-form-error" id="pf-err" hidden></div>
+      <div class="acc-modal-actions">
+        <button type="button" class="btn btn-ghost" data-close-modal="modal-profile">İptal</button>
+        <button type="submit" class="btn btn-primary" id="pf-submit">
+          <span class="btn-label">Kaydet</span>
+          <span class="btn-spinner" hidden>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          </span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- =============== EDIT PREFERENCES MODAL =============== -->
+<div class="acc-modal" id="modal-prefs" hidden>
+  <div class="acc-modal-bg" data-close-modal="modal-prefs"></div>
+  <div class="acc-modal-box acc-modal-box--wide">
+    <button class="acc-modal-close" type="button" data-close-modal="modal-prefs" aria-label="Kapat">×</button>
+    <h2>Tercihlerim</h2>
+    <p class="muted-sm">Bu bilgilerle sana özel firma önerileri hazırlıyoruz.</p>
+    <form id="prefs-form" class="acc-form">
+      <div class="form-group">
+        <label>Hangi etkinlikler için catering arıyorsun?</label>
+        <div class="chip-pick" id="chip-events">
+          <label class="chip-pick-item"><input type="checkbox" name="events" value="Düğün"><span>💍 Düğün</span></label>
+          <label class="chip-pick-item"><input type="checkbox" name="events" value="Kurumsal"><span>🏢 Kurumsal</span></label>
+          <label class="chip-pick-item"><input type="checkbox" name="events" value="Doğum Günü"><span>🎂 Doğum günü</span></label>
+          <label class="chip-pick-item"><input type="checkbox" name="events" value="Nişan"><span>💐 Nişan</span></label>
+          <label class="chip-pick-item"><input type="checkbox" name="events" value="Mezuniyet"><span>🎓 Mezuniyet</span></label>
+          <label class="chip-pick-item"><input type="checkbox" name="events" value="Cenaze"><span>🕊️ Cenaze yemeği</span></label>
+          <label class="chip-pick-item"><input type="checkbox" name="events" value="Kokteyl"><span>🥂 Kokteyl / davet</span></label>
+          <label class="chip-pick-item"><input type="checkbox" name="events" value="Lansman"><span>🚀 Lansman</span></label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Sevdiğin mutfak tarzları</label>
+        <div class="chip-pick" id="chip-cuisines">
+          <label class="chip-pick-item"><input type="checkbox" name="cuisines" value="Türk"><span>🇹🇷 Türk</span></label>
+          <label class="chip-pick-item"><input type="checkbox" name="cuisines" value="Dünya"><span>🌍 Dünya</span></label>
+          <label class="chip-pick-item"><input type="checkbox" name="cuisines" value="İtalyan"><span>🍝 İtalyan</span></label>
+          <label class="chip-pick-item"><input type="checkbox" name="cuisines" value="Uzakdoğu"><span>🥢 Uzakdoğu</span></label>
+          <label class="chip-pick-item"><input type="checkbox" name="cuisines" value="Deniz"><span>🦐 Deniz ürünleri</span></label>
+          <label class="chip-pick-item"><input type="checkbox" name="cuisines" value="Vegan"><span>🌱 Vegan / vejetaryen</span></label>
+          <label class="chip-pick-item"><input type="checkbox" name="cuisines" value="Tatlı"><span>🍰 Pasta / tatlı</span></label>
+          <label class="chip-pick-item"><input type="checkbox" name="cuisines" value="Meyve"><span>🍇 Meyve / sunum</span></label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Bütçe aralığın (kişi başı)</label>
+        <div class="chip-pick chip-pick--radio" id="chip-budget">
+          <label class="chip-pick-item"><input type="radio" name="budget" value="economic"><span>Ekonomik · ₺150-300</span></label>
+          <label class="chip-pick-item"><input type="radio" name="budget" value="mid"><span>Orta · ₺300-600</span></label>
+          <label class="chip-pick-item"><input type="radio" name="budget" value="premium"><span>Premium · ₺600-1.200</span></label>
+          <label class="chip-pick-item"><input type="radio" name="budget" value="luxury"><span>Lüks · ₺1.200+</span></label>
+        </div>
+      </div>
+      <div class="acc-form-error" id="pref-err" hidden></div>
+      <div class="acc-modal-actions">
+        <button type="button" class="btn btn-ghost" data-close-modal="modal-prefs">İptal</button>
+        <button type="submit" class="btn btn-primary" id="pref-submit">
+          <span class="btn-label">Kaydet</span>
+          <span class="btn-spinner" hidden>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          </span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- =============== ADD EVENT MODAL =============== -->
+<div class="acc-modal" id="modal-event" hidden>
+  <div class="acc-modal-bg" data-close-modal="modal-event"></div>
+  <div class="acc-modal-box">
+    <button class="acc-modal-close" type="button" data-close-modal="modal-event" aria-label="Kapat">×</button>
+    <h2>Yeni etkinlik ekle</h2>
+    <p class="muted-sm">Etkinliğin yaklaşırken sana bildirim gönderelim, doğru firmaları önerelim.</p>
+    <form id="event-form" class="acc-form">
+      <div class="form-group">
+        <label for="ev-name">Etkinlik adı</label>
+        <input type="text" id="ev-name" name="name" placeholder="Örn: Ayşe & Ali'nin düğünü" required>
+      </div>
+      <div class="form-row-2">
+        <div class="form-group">
+          <label for="ev-type">Etkinlik türü</label>
+          <select id="ev-type" name="type" required>
+            <option value="Düğün">Düğün</option>
+            <option value="Kurumsal">Kurumsal</option>
+            <option value="Doğum Günü">Doğum günü</option>
+            <option value="Nişan">Nişan</option>
+            <option value="Mezuniyet">Mezuniyet</option>
+            <option value="Kokteyl">Kokteyl</option>
+            <option value="Diğer">Diğer</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="ev-date">Tarih</label>
+          <input type="date" id="ev-date" name="date" required>
+        </div>
+      </div>
+      <div class="form-row-2">
+        <div class="form-group">
+          <label for="ev-guests">Davetli sayısı</label>
+          <input type="number" id="ev-guests" name="guests" min="1" max="5000" placeholder="150">
+        </div>
+        <div class="form-group">
+          <label for="ev-city">Şehir</label>
+          <input type="text" id="ev-city" name="city" placeholder="İstanbul">
+        </div>
+      </div>
+      <div class="acc-modal-actions">
+        <button type="button" class="btn btn-ghost" data-close-modal="modal-event">İptal</button>
+        <button type="submit" class="btn btn-primary">Ekle</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- =============== FOOTER =============== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom" style="padding-top:1.5rem;">
+      <span>© 2026 EventRehberi. Tüm hakları saklıdır.</span>
+      <span>Türkiye</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* =======================================================================
+   HESABIM — Netlify Identity + kişisel panel
+   ======================================================================= */
+
+const CITIES = ["Adana","Adıyaman","Afyonkarahisar","Ağrı","Aksaray","Amasya","Ankara","Antalya","Ardahan","Artvin","Aydın","Balıkesir","Bartın","Batman","Bayburt","Bilecik","Bingöl","Bitlis","Bolu","Burdur","Bursa","Çanakkale","Çankırı","Çorum","Denizli","Diyarbakır","Düzce","Edirne","Elazığ","Erzincan","Erzurum","Eskişehir","Gaziantep","Giresun","Gümüşhane","Hakkari","Hatay","Iğdır","Isparta","İstanbul","İzmir","Kahramanmaraş","Karabük","Karaman","Kars","Kastamonu","Kayseri","Kilis","Kırıkkale","Kırklareli","Kırşehir","Kocaeli","Konya","Kütahya","Malatya","Manisa","Mardin","Mersin","Muğla","Muş","Nevşehir","Niğde","Ordu","Osmaniye","Rize","Sakarya","Samsun","Şanlıurfa","Siirt","Sinop","Sivas","Şırnak","Tekirdağ","Tokat","Trabzon","Tunceli","Uşak","Van","Yalova","Yozgat","Zonguldak"];
+
+const $ = (id) => document.getElementById(id);
+const loadingEl = $('account-loading');
+const pageEl = $('account-page');
+
+let CURRENT = null;
+function storageKey(suffix) {
+  const key = CURRENT ? CURRENT.id : 'anon';
+  return `cs_${suffix}_${key}`;
+}
+/* Favorites delegate to shared CSFavorites library (favorites.js).
+   Stored as full firm snapshots so any page (catererlar, firma, hesabim)
+   can render them — keyed by Netlify user id. */
+function getFavorites() {
+  return window.CSFavorites ? window.CSFavorites.getAll() : [];
+}
+function isFavorite(id) {
+  return window.CSFavorites ? window.CSFavorites.has(id) : false;
+}
+function getEvents() {
+  try { return JSON.parse(localStorage.getItem(storageKey('events')) || '[]'); } catch(e) { return []; }
+}
+function setEvents(arr) { localStorage.setItem(storageKey('events'), JSON.stringify(arr)); }
+
+function getGreeting() {
+  const h = new Date().getHours();
+  if (h < 6)  return 'İyi geceler 🌙';
+  if (h < 11) return 'Günaydın ☀️';
+  if (h < 17) return 'İyi günler 👋';
+  if (h < 22) return 'İyi akşamlar 🌆';
+  return 'İyi geceler 🌙';
+}
+
+/* Turkish ablative suffix for years — picks the right -dan/-den/-tan/-ten
+   based on how the year is read. e.g. 2026 → "altı" → "dan". */
+function yearAblative(year) {
+  const last = year % 10;
+  if (last === 1 || last === 2 || last === 7 || last === 8) return 'den';
+  if (last === 3 || last === 4 || last === 5) return 'ten';
+  if (last === 6 || last === 9) return 'dan';
+  // last digit is 0 — fall back to the tens digit pronunciation
+  const tens = year % 100;
+  if (tens === 10 || tens === 30 || tens === 90) return 'dan';
+  if (tens === 20 || tens === 50 || tens === 80) return 'den';
+  if (tens === 40 || tens === 60) return 'tan';
+  if (tens === 70) return 'ten';
+  return 'den';
+}
+
+function getTagline(firstName) {
+  const pool = [
+    `Bugün güzel bir etkinlik planlamaya ne dersin?`,
+    `Nereyi merak ediyorsun bugün, ${firstName}?`,
+    `İyi hazırlık, güzel etkinlik demek — başlayalım.`,
+    `Doğru firma seni bekliyor olabilir.`,
+    `Sana özel önerilerimiz hazır.`
+  ];
+  const day = new Date().getDate();
+  return pool[day % pool.length];
+}
+
+(function fillCities() {
+  const sel = $('pf-city');
+  if (!sel) return;
+  CITIES.forEach(c => {
+    const opt = document.createElement('option');
+    opt.value = c;
+    opt.textContent = c;
+    sel.appendChild(opt);
+  });
+})();
+
+function renderUser(user) {
+  if (!user) { window.location.href = 'giris.html'; return; }
+  CURRENT = user;
+  const meta = user.user_metadata || {};
+  const name = meta.full_name || (user.email ? user.email.split('@')[0] : 'Kullanıcı');
+  const firstName = name.split(' ')[0];
+  const email = user.email || '—';
+  const phone = meta.phone || '';
+  const city = meta.city || '';
+  const initial = (name.trim()[0] || '?').toUpperCase();
+
+  $('acc-avatar').textContent = initial;
+  $('acc-name').textContent = firstName;
+  $('acc-greeting').textContent = getGreeting();
+  $('acc-email-txt').textContent = email;
+  $('acc-tagline').textContent = getTagline(firstName);
+  if (user.created_at) {
+    const d = new Date(user.created_at);
+    const monthYear = d.toLocaleDateString('tr-TR',{month:'long', year:'numeric'});
+    $('acc-since-txt').textContent = `Üye ${monthYear}'${yearAblative(d.getFullYear())} beri`;
+    $('info-since').textContent = d.toLocaleDateString('tr-TR',{day:'numeric', month:'long', year:'numeric'});
+  }
+
+  $('info-name').textContent = name;
+  $('info-email').textContent = email;
+  $('info-phone').textContent = phone || '—';
+  $('info-city').textContent = city || '—';
+
+  const verified = !!(user.confirmed_at || user.email_confirmed_at);
+  $('info-verified').innerHTML = verified
+    ? '<span class="verified-chip verified-chip--ok">✓ Doğrulandı</span>'
+    : '<span class="verified-chip verified-chip--warn">Doğrulanmadı</span>';
+
+  renderPrefsView(meta);
+  renderProfileCompletion(meta);
+  renderFavorites();
+  renderEvents();
+  renderRecommendations(meta);
+
+  $('pf-name').value = name;
+  $('pf-phone').value = phone;
+  $('pf-city').value = city;
+  prefillPrefsForm(meta);
+
+  loadingEl.hidden = true;
+  pageEl.hidden = false;
+}
+
+function renderProfileCompletion(meta) {
+  const strip = $('pc-strip');
+  const checks = [
+    { done: !!(meta.full_name && meta.full_name.length >= 3),            label:'Ad soyadını ekle',              cta:'open-profile' },
+    { done: !!(meta.phone && meta.phone.replace(/\D/g,'').length >= 10), label:'Telefon ekle',                  cta:'open-profile' },
+    { done: !!meta.city,                                                 label:'Şehir seç',                     cta:'open-profile' },
+    { done: Array.isArray(meta.event_types) && meta.event_types.length>0,label:'İlgilendiğin etkinlikleri seç', cta:'open-prefs' },
+    { done: Array.isArray(meta.cuisines) && meta.cuisines.length>0,      label:'Sevdiğin mutfağı seç',          cta:'open-prefs' },
+    { done: !!meta.budget_range,                                         label:'Bütçe aralığını seç',           cta:'open-prefs' }
+  ];
+  const doneCount = checks.filter(c=>c.done).length;
+  const percent = Math.round((doneCount / checks.length) * 100);
+
+  if (percent >= 100) { strip.hidden = true; return; }
+  strip.hidden = false;
+
+  $('pc-percent').textContent = percent;
+  $('pc-fill').style.width = percent + '%';
+
+  const nextSteps = checks.filter(c => !c.done);
+  $('pc-sub').textContent = `${nextSteps.length} adım kaldı — profilinle daha iyi eşleşmeler çıkar.`;
+
+  const stepsEl = $('pc-steps');
+  stepsEl.innerHTML = nextSteps.slice(0,3).map(s =>
+    `<button class="pc-step" type="button" data-action="${s.cta}">
+      <span class="pc-step-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+      <span>${s.label}</span>
+      <span class="pc-step-chev">→</span>
+    </button>`
+  ).join('');
+
+  stepsEl.querySelectorAll('[data-action]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (btn.dataset.action === 'open-profile') openModal('modal-profile');
+      if (btn.dataset.action === 'open-prefs') openModal('modal-prefs');
+    });
+  });
+}
+
+function renderPrefsView(meta) {
+  const events = meta.event_types || [];
+  const cuisines = meta.cuisines || [];
+  const budget = meta.budget_range || '';
+
+  $('pref-events-view').innerHTML = events.length
+    ? events.map(e => `<span class="chip-soft">${e}</span>`).join('')
+    : '<span class="pref-empty">Henüz seçilmedi</span>';
+
+  $('pref-cuisines-view').innerHTML = cuisines.length
+    ? cuisines.map(c => `<span class="chip-soft">${c}</span>`).join('')
+    : '<span class="pref-empty">Henüz seçilmedi</span>';
+
+  const budgetLabels = {
+    economic:'Ekonomik · ₺150-300',
+    mid:'Orta · ₺300-600',
+    premium:'Premium · ₺600-1.200',
+    luxury:'Lüks · ₺1.200+'
+  };
+  $('pref-budget-view').innerHTML = budget
+    ? `<span class="chip-soft">${budgetLabels[budget] || budget}</span>`
+    : '<span class="pref-empty">Henüz seçilmedi</span>';
+}
+
+function prefillPrefsForm(meta) {
+  const events = meta.event_types || [];
+  const cuisines = meta.cuisines || [];
+  document.querySelectorAll('#chip-events input').forEach(inp => { inp.checked = events.includes(inp.value); });
+  document.querySelectorAll('#chip-cuisines input').forEach(inp => { inp.checked = cuisines.includes(inp.value); });
+  if (meta.budget_range) {
+    const r = document.querySelector(`#chip-budget input[value="${meta.budget_range}"]`);
+    if (r) r.checked = true;
+  }
+}
+
+function renderFavorites() {
+  const favs = getFavorites();
+  const body = $('favorites-body');
+  $('stat-fav').textContent = favs.length;
+  $('stat-fav-hint').textContent = favs.length ? `${favs.length} firma kayıtlı` : 'Henüz favori eklemedin';
+
+  if (!favs.length) {
+    body.innerHTML = `
+      <div class="acc-empty">
+        <div class="acc-empty-icon">💛</div>
+        <h4>Henüz favori firman yok</h4>
+        <p>Firmaları incelerken kalp simgesine tıklayınca buraya kaydolur — böylece sonra tekrar arama yapmaktan kurtulursun.</p>
+        <a href="catererlar.html" class="btn btn-primary btn-sm">Firmaları keşfet →</a>
+      </div>`;
+    return;
+  }
+
+  body.innerHTML = `<div class="firm-mini-grid">${favs.map(firmCard).join('')}</div>`;
+}
+
+function firmCard(f) {
+  const link = `firma.html?id=${encodeURIComponent(f.id)}`;
+  const img = f.image || f.img || '';
+  const cuisines = Array.isArray(f.cuisines) ? f.cuisines.slice(0, 2) : [];
+  const tagText = cuisines.length
+    ? cuisines.map(c => `<span>${cuisineLabel(c)}</span>`).join('')
+    : (f.tagline ? `<span>${f.tagline.slice(0, 32)}</span>` : '');
+  const meta = [f.city, (f.reviews ? `${f.reviews} değerlendirme` : null)].filter(Boolean).join(' · ');
+  return `
+    <article class="firm-mini">
+      <a href="${link}" class="firm-mini-img">
+        <img src="${img}" alt="${f.name}" loading="lazy">
+      </a>
+      <div class="firm-mini-body">
+        <div class="firm-mini-top">
+          <h4><a href="${link}">${f.name}</a></h4>
+          <span class="firm-mini-rating">★ ${(typeof f.rating === 'number' ? f.rating.toFixed(1) : f.rating || '-')}</span>
+        </div>
+        <div class="firm-mini-meta">${meta}</div>
+        <div class="firm-mini-tags">${tagText}</div>
+        <div class="firm-mini-actions">
+          <a href="${link}" class="btn btn-primary btn-sm">Teklif al</a>
+          <button type="button" class="btn-icon-ghost" data-remove-fav="${f.id}" title="Favorilerden çıkar" aria-label="Favorilerden çıkar">✕</button>
+        </div>
+      </div>
+    </article>`;
+}
+
+/* Map known cuisine codes to readable Turkish labels (catererlar uses codes
+   like 'turk', 'osmanli'; some sources already pass readable text). */
+function cuisineLabel(v) {
+  const map = {
+    turk:'Türk', osmanli:'Osmanlı', ege:'Ege', akdeniz:'Akdeniz',
+    italyan:'İtalyan', fransiz:'Fransız', japon:'Japon', cin:'Çin',
+    meksika:'Meksika', hint:'Hint', lubnan:'Lübnan', deniz:'Deniz ürünleri',
+    fusion:'Fusion', bbq:'BBQ', vejetaryen:'Vejetaryen', vegan:'Vegan',
+    glutensiz:'Glutensiz', 'kokteyl-cuisine':'Kokteyl', pastacilik:'Pastacılık'
+  };
+  return map[v] || v;
+}
+
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('[data-remove-fav]');
+  if (!btn) return;
+  const id = btn.dataset.removeFav;
+  if (window.CSFavorites) window.CSFavorites.remove(id);
+  renderFavorites();
+  if (CURRENT) renderRecommendations(CURRENT.user_metadata || {});
+});
+
+/* Re-render when favorites change from anywhere on the page (heart toggle, etc.) */
+document.addEventListener('cs-favorites-changed', () => {
+  renderFavorites();
+  if (CURRENT) renderRecommendations(CURRENT.user_metadata || {});
+});
+
+function renderEvents() {
+  const events = getEvents().sort((a,b) => new Date(a.date) - new Date(b.date));
+  const body = $('events-body');
+  const upcoming = events.filter(e => new Date(e.date) >= new Date(new Date().toDateString()));
+  $('stat-evt').textContent = upcoming.length;
+
+  if (!upcoming.length) {
+    $('stat-evt-hint').textContent = 'Yeni etkinlik ekle';
+    body.innerHTML = `
+      <div class="acc-empty">
+        <div class="acc-empty-icon">🗓️</div>
+        <h4>Etkinlik planın yok</h4>
+        <p>Düğün, kurumsal yemek ya da doğum günü — yaklaşan etkinliğini ekleyelim, sana uygun firmaları bulalım.</p>
+        <button type="button" class="btn btn-primary btn-sm" id="btn-add-event-2">+ Etkinlik ekle</button>
+      </div>`;
+    const add2 = $('btn-add-event-2');
+    if (add2) add2.addEventListener('click', () => openModal('modal-event'));
+    return;
+  }
+
+  const next = upcoming[0];
+  const daysUntil = Math.ceil((new Date(next.date) - new Date()) / (1000*60*60*24));
+  $('stat-evt-hint').textContent = daysUntil <= 0 ? 'Bugün!' : `En yakın: ${daysUntil} gün sonra`;
+
+  body.innerHTML = `<div class="event-list">${upcoming.map(eventCard).join('')}</div>`;
+}
+
+function eventCard(e) {
+  const d = new Date(e.date);
+  const day = d.getDate();
+  const mon = d.toLocaleDateString('tr-TR', { month:'short' }).toUpperCase();
+  const daysUntil = Math.ceil((d - new Date()) / (1000*60*60*24));
+  const countdown = daysUntil <= 0 ? 'Bugün' : `${daysUntil} gün sonra`;
+  return `
+    <div class="event-row">
+      <div class="event-date">
+        <span class="event-day">${day}</span>
+        <span class="event-mon">${mon}</span>
+      </div>
+      <div class="event-info">
+        <div class="event-title">${escapeHtml(e.name)}</div>
+        <div class="event-meta">${e.type}${e.guests ? ' · ' + e.guests + ' kişi' : ''}${e.city ? ' · ' + escapeHtml(e.city) : ''}</div>
+      </div>
+      <div class="event-countdown">${countdown}</div>
+      <button class="btn-icon-ghost" type="button" data-remove-event="${e.id}" title="Sil" aria-label="Sil">✕</button>
+    </div>`;
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('[data-remove-event]');
+  if (!btn) return;
+  if (!confirm('Bu etkinliği silmek istediğine emin misin?')) return;
+  const id = btn.dataset.removeEvent;
+  setEvents(getEvents().filter(x => x.id !== id));
+  renderEvents();
+});
+
+function renderRecommendations(meta) {
+  const body = $('recs-body');
+  const events = meta.event_types || [];
+  const cuisines = meta.cuisines || [];
+  const budget = meta.budget_range || '';   // 'mid' | 'premium' | 'luxury'
+  const hasPrefs = events.length || cuisines.length || budget;
+
+  const BUDGET_PRICE = { mid: [1, 2], premium: [3], luxury: [4] };
+  const firms = window.CS_FIRMS || [];
+
+  const scored = firms.map(f => {
+    let score = 0;
+    events.forEach(e => { if (f.events && f.events.includes(e)) score += 3; });
+    cuisines.forEach(c => { if (f.cuisine && f.cuisine.includes(c)) score += 2; });
+    if (budget && BUDGET_PRICE[budget] && BUDGET_PRICE[budget].includes(f.price)) score += 2;
+    score += (f.rating - 4.5) * 2;
+    return { f, score };
+  }).sort((a, b) => b.score - a.score);
+
+  const top = scored.slice(0, 3);
+  $('stat-rec').textContent = top.length;
+  $('stat-rec-hint').textContent = hasPrefs ? 'Tercihlerine göre' : 'En çok tercih edilenler';
+  $('recs-desc').textContent = hasPrefs ? 'Etkinlik türün ve mutfak zevkine göre seçildi.' : 'Tercihlerini ekle — sana özel öneriler çıksın.';
+
+  body.innerHTML = `<div class="firm-mini-grid">${top.map(({ f }) => recCard(f)).join('')}</div>`;
+  if (window.CSFavorites) window.CSFavorites.bindButtons(body);
+}
+
+function recCard(f) {
+  const isFav = isFavorite(f.id);
+  const link = `firma.html?id=${encodeURIComponent(f.id)}`;
+  const cuisine = f.cuisine || [];
+  const snapshot = JSON.stringify({
+    id: f.id, name: f.name, city: f.city, rating: f.rating,
+    reviews: f.reviews, image: f.image, cuisines: cuisine,
+    events: f.events, badge: f.badge || ''
+  }).replace(/"/g, '&quot;');
+  return `
+    <article class="firm-mini">
+      <a href="${link}" class="firm-mini-img">
+        <img src="${f.image}" alt="${f.name}" loading="lazy">
+        <button type="button" class="firm-fav-btn ${isFav ? 'firm-fav-btn--on is-fav' : ''}" data-fav-toggle data-fav-id="${f.id}" data-fav="${snapshot}" aria-label="Favorilere ekle" aria-pressed="${isFav}">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+      </a>
+      <div class="firm-mini-body">
+        <div class="firm-mini-top">
+          <h4><a href="${link}">${f.name}</a></h4>
+          <span class="firm-mini-rating">★ ${f.rating}</span>
+        </div>
+        <div class="firm-mini-meta">${f.city} · ${f.reviews} değerlendirme</div>
+        <div class="firm-mini-tags">${cuisine.slice(0, 2).map(c => `<span>${c}</span>`).join('')}</div>
+        <div class="firm-mini-actions">
+          <a href="${link}" class="btn btn-primary btn-sm">Teklif al</a>
+        </div>
+      </div>
+    </article>`;
+}
+
+function openModal(id) {
+  const m = document.getElementById(id);
+  if (!m) return;
+  m.hidden = false;
+  document.body.style.overflow = 'hidden';
+  requestAnimationFrame(() => m.classList.add('is-open'));
+}
+function closeModal(id) {
+  const m = document.getElementById(id);
+  if (!m) return;
+  m.classList.remove('is-open');
+  document.body.style.overflow = '';
+  setTimeout(() => { m.hidden = true; }, 220);
+}
+document.addEventListener('click', (e) => {
+  const closer = e.target.closest('[data-close-modal]');
+  if (closer) closeModal(closer.dataset.closeModal);
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.acc-modal.is-open').forEach(m => closeModal(m.id));
+  }
+});
+
+$('btn-edit-profile').addEventListener('click', () => openModal('modal-profile'));
+$('btn-edit-profile-hero').addEventListener('click', () => openModal('modal-profile'));
+
+$('profile-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const submitBtn = $('pf-submit');
+  const errEl = $('pf-err');
+  errEl.hidden = true;
+  submitBtn.disabled = true;
+  submitBtn.querySelector('.btn-label').textContent = 'Kaydediliyor...';
+  submitBtn.querySelector('.btn-spinner').hidden = false;
+
+  const full_name = $('pf-name').value.trim();
+  const phone = $('pf-phone').value.trim();
+  const city = $('pf-city').value;
+
+  try {
+    const sb = window.ER_Supabase;
+    if (!sb || !CURRENT) throw new Error('Oturum kapalı.');
+    const { data: { user: updated }, error } = await sb.auth.updateUser({ data: { ...(CURRENT.user_metadata || {}), full_name, phone, city } });
+    if (error) throw error;
+    CURRENT = updated;
+    renderUser(updated);
+    closeModal('modal-profile');
+  } catch (err) {
+    console.error(err);
+    errEl.textContent = 'Kaydedilemedi: ' + (err.message || 'bilinmeyen hata');
+    errEl.hidden = false;
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.querySelector('.btn-label').textContent = 'Kaydet';
+    submitBtn.querySelector('.btn-spinner').hidden = true;
+  }
+});
+
+$('btn-edit-prefs').addEventListener('click', () => openModal('modal-prefs'));
+$('btn-edit-prefs-recs').addEventListener('click', () => openModal('modal-prefs'));
+
+$('prefs-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const submitBtn = $('pref-submit');
+  const errEl = $('pref-err');
+  errEl.hidden = true;
+  submitBtn.disabled = true;
+  submitBtn.querySelector('.btn-label').textContent = 'Kaydediliyor...';
+  submitBtn.querySelector('.btn-spinner').hidden = false;
+
+  const event_types = Array.from(document.querySelectorAll('#chip-events input:checked')).map(i => i.value);
+  const cuisines    = Array.from(document.querySelectorAll('#chip-cuisines input:checked')).map(i => i.value);
+  const budgetInput = document.querySelector('#chip-budget input:checked');
+  const budget_range = budgetInput ? budgetInput.value : '';
+
+  try {
+    const sb = window.ER_Supabase;
+    if (!sb || !CURRENT) throw new Error('Oturum kapalı.');
+    const { data: { user: updated }, error } = await sb.auth.updateUser({ data: { ...(CURRENT.user_metadata || {}), event_types, cuisines, budget_range } });
+    if (error) throw error;
+    CURRENT = updated;
+    renderUser(updated);
+    closeModal('modal-prefs');
+  } catch (err) {
+    console.error(err);
+    errEl.textContent = 'Kaydedilemedi: ' + (err.message || 'bilinmeyen hata');
+    errEl.hidden = false;
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.querySelector('.btn-label').textContent = 'Kaydet';
+    submitBtn.querySelector('.btn-spinner').hidden = true;
+  }
+});
+
+$('btn-add-event').addEventListener('click', () => openModal('modal-event'));
+
+$('event-form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const ev = {
+    id: 'evt_' + Date.now(),
+    name: form.name.value.trim(),
+    type: form.type.value,
+    date: form.date.value,
+    guests: form.guests.value ? parseInt(form.guests.value,10) : null,
+    city: form.city.value.trim(),
+    created_at: new Date().toISOString()
+  };
+  const events = getEvents();
+  events.push(ev);
+  setEvents(events);
+  form.reset();
+  renderEvents();
+  closeModal('modal-event');
+});
+
+$('btn-change-password').addEventListener('click', () => {
+  if (!CURRENT) return;
+  if (!confirm(`${CURRENT.email} adresine şifre sıfırlama linki göndermek istiyor musun?`)) return;
+  window.ER_Supabase.auth.resetPasswordForEmail(CURRENT.email)
+    .then(({ error }) => {
+      if (error) alert('Hata: ' + (error.message || 'tekrar deneyin'));
+      else alert('Şifre sıfırlama bağlantısı e-postana gönderildi.');
+    });
+});
+
+async function doLogout() {
+  const sb = window.ER_Supabase;
+  if (sb) await sb.auth.signOut();
+  window.location.href = 'index.html';
+}
+$('btn-logout').addEventListener('click', doLogout);
+$('btn-logout-nav').addEventListener('click', doLogout);
+
+function initAccountPage() {
+  const sb = window.ER_Supabase;
+  if (!sb) {
+    loadingEl.innerHTML = '<div class="account-loading-inner"><p style="color:#C0392B;">Auth servisi yüklenemedi.<br>Sayfayı yenile veya <a href="index.html">ana sayfaya dön</a>.</p></div>';
+    return;
+  }
+  sb.auth.getSession().then(({ data: { session } }) => {
+    renderUser(session ? session.user : null);
+  });
+  sb.auth.onAuthStateChange((_event, session) => {
+    if (_event === 'SIGNED_OUT') window.location.href = 'index.html';
+  });
+}
+
+if (window.ER_Supabase) {
+  initAccountPage();
+} else {
+  document.addEventListener('er-supabase-ready', initAccountPage, { once: true });
+}
+</script>
+
+<script src="firms-data.js"></script>
+<script src="navbar-mobile.js"></script>
+<script src="cookie-consent.js"></script>
+</body>
+</html>

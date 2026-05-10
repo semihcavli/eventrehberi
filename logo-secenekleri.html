@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Logo Seçenekleri — Renkli Versiyonlar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #FAFAF7;
+    color: #0F0F0F;
+    padding: 3rem 1.5rem;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 1180px; margin: 0 auto; }
+  h1 {
+    font-size: 2rem; font-weight: 600; letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+  .sub { color: #6B6B6B; margin-bottom: 2.5rem; font-size: 1rem; max-width: 600px; }
+
+  .section-title {
+    font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.1em;
+    color: #6B6B6B; font-weight: 600; margin: 2rem 0 1.25rem;
+    padding-top: 1.5rem; border-top: 1px solid #E8E6E1;
+  }
+  .section-title:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+
+  .options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  @media (max-width: 980px) { .options { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .options { grid-template-columns: 1fr; } }
+
+  .option {
+    background: white;
+    border: 1px solid #E8E6E1;
+    border-radius: 14px;
+    padding: 1.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .option:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,0.07); }
+
+  .num {
+    display: inline-block;
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em;
+    padding: 0.25rem 0.625rem; border-radius: 999px;
+    background: #F1EEE5; color: #0F0F0F;
+    margin-bottom: 0.75rem;
+  }
+  .title { font-size: 1rem; font-weight: 600; margin-bottom: 0.25rem; }
+  .palette { font-size: 0.8125rem; color: #6B6B6B; margin-bottom: 1rem; }
+
+  .preview {
+    background: #FAFAF7;
+    border-radius: 10px;
+    padding: 1.25rem;
+    margin-bottom: 0.5rem;
+    display: flex; align-items: center; justify-content: center;
+    min-height: 80px;
+  }
+  .preview-dark { background: #0F0F0F; }
+
+  /* Shared logo structure */
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    font-size: 1.0625rem;
+    letter-spacing: -0.02em;
+  }
+  .logo svg { width: 30px; height: 30px; display: block; }
+  .logo-dark { color: white; }
+  .logo-light { color: #0F0F0F; }
+</style>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZH1F3D61N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZZH1F3D61N');
+</script>
+</head>
+<body>
+<div class="container">
+  <h1>Logo — renkli versiyonlar</h1>
+  <p class="sub">1. (Cloche) ve 4. (Çatal + Yaprak) konseptlerinin farklı renk paletleriyle yorumları. 3 cloche + 3 sprig = 6 seçenek.</p>
+
+  <!-- ====== CLOCHE ====== -->
+  <div class="section-title">Cloche (Servis kapağı) — renkli versiyonlar</div>
+  <div class="options">
+
+    <!-- 1A -->
+    <div class="option">
+      <span class="num">1A</span>
+      <div class="title">Koyu Yeşil + Safran</div>
+      <div class="palette">#1F4D33 · #E8A630</div>
+      <div class="preview">
+        <div class="logo logo-light">
+          <svg viewBox="0 0 40 40" fill="none">
+            <path d="M7 27 Q20 11, 33 27" stroke="#1F4D33" stroke-width="2.6" stroke-linecap="round"/>
+            <line x1="5" y1="29.5" x2="35" y2="29.5" stroke="#1F4D33" stroke-width="2.6" stroke-linecap="round"/>
+            <circle cx="20" cy="10.5" r="2" fill="#E8A630"/>
+          </svg>
+          <span>eventrehberi</span>
+        </div>
+      </div>
+      <div class="preview preview-dark">
+        <div class="logo logo-dark">
+          <svg viewBox="0 0 40 40" fill="none">
+            <path d="M7 27 Q20 11, 33 27" stroke="white" stroke-width="2.6" stroke-linecap="round"/>
+            <line x1="5" y1="29.5" x2="35" y2="29.5" stroke="white" stroke-width="2.6" stroke-linecap="round"/>
+            <circle cx="20" cy="10.5" r="2" fill="#E8A630"/>
+          </svg>
+          <span>eventrehberi</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1B -->
+    <div class="option">
+      <span class="num">1B</span>
+      <div class="title">Terracotta Dome</div>
+      <div class="palette">#C65D3C dome · #0F0F0F yazı</div>
+      <div class="preview">
+        <div class="logo logo-light">
+          <svg viewBox="0 0 40 40" fill="none">
+            <path d="M7 27 Q20 11, 33 27 Z" fill="#C65D3C"/>
+            <line x1="5" y1="29.5" x2="35" y2="29.5" stroke="#0F0F0F" stroke-width="2.6" stroke-linecap="round"/>
+            <circle cx="20" cy="9" r="2" fill="#C65D3C"/>
+          </svg>
+          <span>eventrehberi</span>
+        </div>
+      </div>
+      <div class="preview preview-dark">
+        <div class="logo logo-dark">
+          <svg viewBox="0 0 40 40" fill="none">
+            <path d="M7 27 Q20 11, 33 27 Z" fill="#E57E58"/>
+            <line x1="5" y1="29.5" x2="35" y2="29.5" stroke="white" stroke-width="2.6" stroke-linecap="round"/>
+            <circle cx="20" cy="9" r="2" fill="#E57E58"/>
+          </svg>
+          <span>eventrehberi</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1C -->
+    <div class="option">
+      <span class="num">1C</span>
+      <div class="title">Sunset Gradient</div>
+      <div class="palette">Yeşil → mercan gradient</div>
+      <div class="preview">
+        <div class="logo logo-light">
+          <svg viewBox="0 0 40 40" fill="none">
+            <defs>
+              <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#1F4D33"/>
+                <stop offset="100%" stop-color="#F47B5B"/>
+              </linearGradient>
+            </defs>
+            <path d="M7 27 Q20 11, 33 27" stroke="url(#g1)" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+            <line x1="5" y1="29.5" x2="35" y2="29.5" stroke="url(#g1)" stroke-width="2.8" stroke-linecap="round"/>
+            <circle cx="20" cy="10.5" r="2.2" fill="#F47B5B"/>
+          </svg>
+          <span>eventrehberi</span>
+        </div>
+      </div>
+      <div class="preview preview-dark">
+        <div class="logo logo-dark">
+          <svg viewBox="0 0 40 40" fill="none">
+            <defs>
+              <linearGradient id="g1d" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#8FCFA6"/>
+                <stop offset="100%" stop-color="#F47B5B"/>
+              </linearGradient>
+            </defs>
+            <path d="M7 27 Q20 11, 33 27" stroke="url(#g1d)" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+            <line x1="5" y1="29.5" x2="35" y2="29.5" stroke="url(#g1d)" stroke-width="2.8" stroke-linecap="round"/>
+            <circle cx="20" cy="10.5" r="2.2" fill="#F47B5B"/>
+          </svg>
+          <span>eventrehberi</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ====== SPRIG ====== -->
+  <div class="section-title">Çatal + Zeytin Yaprağı — renkli versiyonlar</div>
+  <div class="options">
+
+    <!-- 4A -->
+    <div class="option">
+      <span class="num">4A</span>
+      <div class="title">Zeytin + Domates</div>
+      <div class="palette">Olive #7A8B4F · Tomato #D64545</div>
+      <div class="preview">
+        <div class="logo logo-light">
+          <svg viewBox="0 0 34 34" fill="none">
+            <line x1="13" y1="8" x2="13" y2="26" stroke="#7A8B4F" stroke-width="2" stroke-linecap="round"/>
+            <line x1="9" y1="8" x2="9" y2="15" stroke="#7A8B4F" stroke-width="2" stroke-linecap="round"/>
+            <line x1="17" y1="8" x2="17" y2="15" stroke="#7A8B4F" stroke-width="2" stroke-linecap="round"/>
+            <path d="M24 13 Q29 17, 24 23 Q19 19, 24 13 Z" fill="#D64545"/>
+          </svg>
+          <span>eventrehberi</span>
+        </div>
+      </div>
+      <div class="preview preview-dark">
+        <div class="logo logo-dark">
+          <svg viewBox="0 0 34 34" fill="none">
+            <line x1="13" y1="8" x2="13" y2="26" stroke="#B8C88A" stroke-width="2" stroke-linecap="round"/>
+            <line x1="9" y1="8" x2="9" y2="15" stroke="#B8C88A" stroke-width="2" stroke-linecap="round"/>
+            <line x1="17" y1="8" x2="17" y2="15" stroke="#B8C88A" stroke-width="2" stroke-linecap="round"/>
+            <path d="M24 13 Q29 17, 24 23 Q19 19, 24 13 Z" fill="#EC6B6B"/>
+          </svg>
+          <span>eventrehberi</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4B -->
+    <div class="option">
+      <span class="num">4B</span>
+      <div class="title">Koyu + Canlı Yeşil</div>
+      <div class="palette">#0F0F0F · #3DB06C</div>
+      <div class="preview">
+        <div class="logo logo-light">
+          <svg viewBox="0 0 34 34" fill="none">
+            <line x1="13" y1="8" x2="13" y2="26" stroke="#0F0F0F" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="9" y1="8" x2="9" y2="15" stroke="#0F0F0F" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="17" y1="8" x2="17" y2="15" stroke="#0F0F0F" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M24 13 Q29 17, 24 23 Q19 19, 24 13 Z" fill="#3DB06C"/>
+          </svg>
+          <span>eventrehberi</span>
+        </div>
+      </div>
+      <div class="preview preview-dark">
+        <div class="logo logo-dark">
+          <svg viewBox="0 0 34 34" fill="none">
+            <line x1="13" y1="8" x2="13" y2="26" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="9" y1="8" x2="9" y2="15" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="17" y1="8" x2="17" y2="15" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M24 13 Q29 17, 24 23 Q19 19, 24 13 Z" fill="#4DD386"/>
+          </svg>
+          <span>eventrehberi</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4C -->
+    <div class="option">
+      <span class="num">4C</span>
+      <div class="title">Pirinç + Zümrüt</div>
+      <div class="palette">Brass #C99A2E · Emerald #1F7A4D</div>
+      <div class="preview">
+        <div class="logo logo-light">
+          <svg viewBox="0 0 34 34" fill="none">
+            <line x1="13" y1="8" x2="13" y2="26" stroke="#C99A2E" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="9" y1="8" x2="9" y2="15" stroke="#C99A2E" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="17" y1="8" x2="17" y2="15" stroke="#C99A2E" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M24 13 Q29 17, 24 23 Q19 19, 24 13 Z" fill="#1F7A4D"/>
+          </svg>
+          <span>eventrehberi</span>
+        </div>
+      </div>
+      <div class="preview preview-dark">
+        <div class="logo logo-dark">
+          <svg viewBox="0 0 34 34" fill="none">
+            <line x1="13" y1="8" x2="13" y2="26" stroke="#E4B748" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="9" y1="8" x2="9" y2="15" stroke="#E4B748" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="17" y1="8" x2="17" y2="15" stroke="#E4B748" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M24 13 Q29 17, 24 23 Q19 19, 24 13 Z" fill="#3DB06C"/>
+          </svg>
+          <span>eventrehberi</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ====== BONUS: Mixed ====== -->
+  <div class="section-title">Bonus — karma konsept (cloche + yaprak)</div>
+  <div class="options">
+
+    <!-- Bonus: Cloche with fork under -->
+    <div class="option">
+      <span class="num">5</span>
+      <div class="title">Dome + Yaprak Karışımı</div>
+      <div class="palette">Koyu yeşil + terracotta + safran</div>
+      <div class="preview">
+        <div class="logo logo-light">
+          <svg viewBox="0 0 40 40" fill="none">
+            <!-- cloche -->
+            <path d="M8 25 Q20 12, 32 25" stroke="#1F4D33" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+            <line x1="6" y1="27.5" x2="34" y2="27.5" stroke="#1F4D33" stroke-width="2.4" stroke-linecap="round"/>
+            <!-- leaf instead of dot -->
+            <path d="M20 7 Q23 10, 20 13 Q17 10, 20 7 Z" fill="#C65D3C"/>
+            <!-- steam -->
+            <circle cx="15" cy="11" r="1.2" fill="#E8A630"/>
+            <circle cx="25" cy="11" r="1.2" fill="#E8A630"/>
+          </svg>
+          <span>eventrehberi</span>
+        </div>
+      </div>
+      <div class="preview preview-dark">
+        <div class="logo logo-dark">
+          <svg viewBox="0 0 40 40" fill="none">
+            <path d="M8 25 Q20 12, 32 25" stroke="white" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+            <line x1="6" y1="27.5" x2="34" y2="27.5" stroke="white" stroke-width="2.4" stroke-linecap="round"/>
+            <path d="M20 7 Q23 10, 20 13 Q17 10, 20 7 Z" fill="#E57E58"/>
+            <circle cx="15" cy="11" r="1.2" fill="#E8A630"/>
+            <circle cx="25" cy="11" r="1.2" fill="#E8A630"/>
+          </svg>
+          <span>eventrehberi</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bonus: Vivid -->
+    <div class="option">
+      <span class="num">6</span>
+      <div class="title">Mercan Dome</div>
+      <div class="palette">Coral #F47B5B · Emerald #1F7A4D</div>
+      <div class="preview">
+        <div class="logo logo-light">
+          <svg viewBox="0 0 40 40" fill="none">
+            <path d="M7 27 Q20 11, 33 27 Z" fill="#F47B5B"/>
+            <line x1="5" y1="29.5" x2="35" y2="29.5" stroke="#1F7A4D" stroke-width="2.6" stroke-linecap="round"/>
+            <circle cx="20" cy="9" r="2" fill="#1F7A4D"/>
+          </svg>
+          <span>eventrehberi</span>
+        </div>
+      </div>
+      <div class="preview preview-dark">
+        <div class="logo logo-dark">
+          <svg viewBox="0 0 40 40" fill="none">
+            <path d="M7 27 Q20 11, 33 27 Z" fill="#F47B5B"/>
+            <line x1="5" y1="29.5" x2="35" y2="29.5" stroke="#4DD386" stroke-width="2.6" stroke-linecap="round"/>
+            <circle cx="20" cy="9" r="2" fill="#4DD386"/>
+          </svg>
+          <span>eventrehberi</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bonus: Playful -->
+    <div class="option">
+      <span class="num">7</span>
+      <div class="title">Şenlikli</div>
+      <div class="palette">3 renk — yeşil, safran, mercan</div>
+      <div class="preview">
+        <div class="logo logo-light">
+          <svg viewBox="0 0 34 34" fill="none">
+            <line x1="13" y1="8" x2="13" y2="26" stroke="#1F4D33" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="9" y1="8" x2="9" y2="15" stroke="#E8A630" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="17" y1="8" x2="17" y2="15" stroke="#F47B5B" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M24 13 Q29 17, 24 23 Q19 19, 24 13 Z" fill="#1F4D33"/>
+          </svg>
+          <span>eventrehberi</span>
+        </div>
+      </div>
+      <div class="preview preview-dark">
+        <div class="logo logo-dark">
+          <svg viewBox="0 0 34 34" fill="none">
+            <line x1="13" y1="8" x2="13" y2="26" stroke="#8FCFA6" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="9" y1="8" x2="9" y2="15" stroke="#E8A630" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="17" y1="8" x2="17" y2="15" stroke="#F47B5B" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M24 13 Q29 17, 24 23 Q19 19, 24 13 Z" fill="#8FCFA6"/>
+          </svg>
+          <span>eventrehberi</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="margin-top:2.5rem; padding:1.75rem; background:white; border:1px solid #E8E6E1; border-radius:14px; text-align:center;">
+    <p style="color:#0F0F0F; font-weight:500; margin-bottom:0.5rem;">Hangisi sende "işte bu!" dedirtti?</p>
+    <p style="color:#6B6B6B; font-size:0.9375rem;">Numarasını söyle (ör. <strong style="color:#0F0F0F;">1A</strong>, <strong style="color:#0F0F0F;">4C</strong>, <strong style="color:#0F0F0F;">7</strong>) — hemen siteye uygulayayım. İstersen karıştırabiliriz de ("1A'nın yeşil yerine daha açık olsun" gibi).</p>
+  </div>
+</div>
+</body>
+</html>
