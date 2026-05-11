@@ -295,24 +295,131 @@
   };
   const ILCELI_SEHIRLER = Object.keys(ILCELER);
 
+  const ISTANBUL_ANADOLU = new Set(['Adalar','Ataşehir','Beykoz','Çekmeköy','Kadıköy','Kartal','Maltepe','Pendik','Sancaktepe','Şile','Sultanbeyli','Tuzla','Ümraniye','Üsküdar']);
+  const ISTANBUL_AVRUPA  = new Set(['Arnavutköy','Avcılar','Bağcılar','Bahçelievler','Bakırköy','Başakşehir','Bayrampaşa','Beşiktaş','Beylikdüzü','Beyoğlu','Büyükçekmece','Çatalca','Esenler','Esenyurt','Eyüpsultan','Fatih','Gaziosmanpaşa','Güngören','Kağıthane','Küçükçekmece','Sarıyer','Şişli','Sultangazi','Zeytinburnu']);
+
+  /* Selected set persists while city is active */
+  const selectedIlceler = new Set();
+
+  function renderDistricts(city) {
+    const ilceList = document.getElementById('ilce-list');
+    const q = (document.getElementById('ilce-search')?.value || '').toLowerCase().trim();
+    const all = ILCELER[city] || [];
+    const filtered = q ? all.filter(d => d.toLowerCase().includes(q)) : all;
+
+    if (!filtered.length) {
+      ilceList.innerHTML = `<div class="ilce-empty-msg">Sonuç bulunamadı.</div>`;
+      return;
+    }
+    ilceList.innerHTML = filtered.map(d => {
+      const sel = selectedIlceler.has(d);
+      return `<div class="ilce-list-item" role="option" aria-selected="${sel}" tabindex="-1" data-value="${d}">${d}</div>`;
+    }).join('');
+
+    ilceList.querySelectorAll('.ilce-list-item').forEach(item => {
+      item.addEventListener('click', () => toggleIlce(item.dataset.value, city));
+      item.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleIlce(item.dataset.value, city); }
+        if (e.key === 'ArrowDown') { e.preventDefault(); (item.nextElementSibling || item.parentElement.firstElementChild)?.focus(); }
+        if (e.key === 'ArrowUp')   { e.preventDefault(); (item.previousElementSibling || item.parentElement.lastElementChild)?.focus(); }
+        if (e.key === 'Escape') { document.getElementById('ilce-search').value = ''; renderDistricts(city); document.getElementById('ilce-search').focus(); }
+      });
+    });
+  }
+
+  function toggleIlce(val, city) {
+    if (selectedIlceler.has(val)) selectedIlceler.delete(val);
+    else selectedIlceler.add(val);
+    renderDistricts(city);
+    updateSelectedChips(city);
+    syncIlceHiddenInputs();
+  }
+
+  function updateSelectedChips(city) {
+    const container = document.getElementById('ilce-selected-chips');
+    if (!container) return;
+    container.innerHTML = [...selectedIlceler].map(d =>
+      `<span class="ilce-selected-chip">${d}<button type="button" aria-label="${d} kaldır" data-val="${d}">×</button></span>`
+    ).join('');
+    container.querySelectorAll('button').forEach(btn => {
+      btn.addEventListener('click', () => { selectedIlceler.delete(btn.dataset.val); renderDistricts(city); updateSelectedChips(city); syncIlceHiddenInputs(); });
+    });
+  }
+
+  function syncIlceHiddenInputs() {
+    document.querySelectorAll('input[type="hidden"][name="ilce"]').forEach(el => el.remove());
+    const form = document.querySelector('form');
+    selectedIlceler.forEach(val => {
+      const inp = document.createElement('input');
+      inp.type = 'hidden'; inp.name = 'ilce'; inp.value = val;
+      form?.appendChild(inp);
+    });
+  }
+
+  function renderPresets(city) {
+    const container = document.getElementById('ilce-presets');
+    if (!container) return;
+    const presets = [{ label: 'Tümünü temizle', key: 'clear' }];
+    if (city === 'İstanbul') {
+      presets.push({ label: 'Avrupa Yakası', key: 'avrupa' });
+      presets.push({ label: 'Anadolu Yakası', key: 'anadolu' });
+    }
+    container.innerHTML = presets.map(p =>
+      `<button type="button" class="ilce-preset-btn" data-preset="${p.key}">${p.label}</button>`
+    ).join('');
+    container.querySelectorAll('.ilce-preset-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const preset = btn.dataset.preset;
+        if (preset === 'clear') { selectedIlceler.clear(); }
+        else if (preset === 'avrupa') { ISTANBUL_AVRUPA.forEach(d => selectedIlceler.add(d)); }
+        else if (preset === 'anadolu') { ISTANBUL_ANADOLU.forEach(d => selectedIlceler.add(d)); }
+        renderDistricts(city);
+        updateSelectedChips(city);
+        syncIlceHiddenInputs();
+      });
+    });
+  }
+
   function bindDistrictLogic() {
     const ilSelect = document.getElementById('il');
     const ilceGroup = document.getElementById('ilce-group');
+    const searchInput = document.getElementById('ilce-search');
     const ilceList = document.getElementById('ilce-list');
     if (!ilSelect) return;
 
     ilSelect.addEventListener('change', () => {
       const city = ilSelect.value;
+      selectedIlceler.clear();
       if (ILCELI_SEHIRLER.includes(city)) {
-        ilceList.innerHTML = ILCELER[city]
-          .map(d => `<label class="chip-check"><input type="checkbox" name="ilce" value="${d}"><span>${d}</span></label>`)
-          .join('');
+        if (searchInput) searchInput.value = '';
+        renderPresets(city);
+        renderDistricts(city);
+        updateSelectedChips(city);
+        syncIlceHiddenInputs();
         ilceGroup.hidden = false;
       } else {
         ilceGroup.hidden = true;
-        ilceList.innerHTML = '';
       }
     });
+
+    if (searchInput) {
+      searchInput.addEventListener('input', () => {
+        const city = ilSelect.value;
+        if (city) renderDistricts(city);
+      });
+      searchInput.addEventListener('keydown', e => {
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          ilceList?.querySelector('.ilce-list-item')?.focus();
+        }
+      });
+    }
+
+    if (ilceList) {
+      ilceList.addEventListener('keydown', e => {
+        if (e.key === 'ArrowDown') { e.preventDefault(); ilceList.querySelector('.ilce-list-item')?.focus(); }
+      });
+    }
   }
 
   /* ----------------------------------------------------------
@@ -322,7 +429,7 @@
     const ad = document.getElementById('firma-adi')?.value.trim() || 'Firma Adı';
     const tagline = document.getElementById('tagline')?.value.trim() || '';
     const il = document.getElementById('il')?.value || '—';
-    const ilceler = [...document.querySelectorAll('[name="ilce"]:checked')].map(el => el.value);
+    const ilceler = [...document.querySelectorAll('input[type="hidden"][name="ilce"]')].map(el => el.value);
     const lokasyon = ilceler.length > 0 ? `${ilceler[0]}, ${il}` : il;
     const segment = document.querySelector('[name="segment"]:checked')?.value || '';
     const segSym = { Ekonomik: '₺', Orta: '₺₺', 'Orta-üst': '₺₺₺', Premium: '₺₺₺₺' }[segment] || '₺₺';
@@ -398,7 +505,7 @@
     }
 
     // Collect all data
-    const ilceler = [...document.querySelectorAll('[name="ilce"]:checked')].map(el => el.value);
+    const ilceler = [...document.querySelectorAll('input[type="hidden"][name="ilce"]')].map(el => el.value);
     const etkinlikler = [...document.querySelectorAll('[name="etkinlik"]:checked')].map(el => el.value);
 
     const payload = {

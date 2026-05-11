@@ -323,7 +323,13 @@
 
         <div class="form-group wz-field" id="ilce-group" hidden>
           <label>İlçeler <span class="muted-small">(hizmet verdiğin bölgeler)</span></label>
-          <div class="chip-check-group" id="ilce-list"></div>
+          <div class="ilce-selected" id="ilce-selected-chips"></div>
+          <div class="ilce-presets" id="ilce-presets"></div>
+          <div class="ilce-search-wrap">
+            <svg class="ilce-search-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="ilce-search" placeholder="İlçe ara..." class="ilce-search-input" autocomplete="off">
+          </div>
+          <div class="ilce-scroll-list" id="ilce-list" role="listbox" aria-multiselectable="true" tabindex="0"></div>
         </div>
 
         <div class="form-group wz-field">
@@ -521,9 +527,11 @@
         </div>
 
         <!-- Paket seçimi -->
-        <div style="margin-bottom:1.5rem;">
-          <h4 style="margin:0 0 0.75rem;font-size:1rem;">Paket seçimi</h4>
+        <div class="paket-section">
+          <h4 class="paket-title">Paket seçimi</h4>
+          <p class="paket-social-proof">Pro firmalar ortalamada <strong>5× daha fazla teklif</strong> alıyor.</p>
           <div class="paket-radio-grid">
+            <!-- Free -->
             <label class="paket-radio-card">
               <input type="radio" name="paket" value="Free" checked>
               <div class="paket-radio-inner">
@@ -538,22 +546,37 @@
                 </ul>
               </div>
             </label>
+            <!-- Pro -->
             <label class="paket-radio-card paket-radio-card--featured">
+              <span class="paket-tag">En çok tercih edilen</span>
               <input type="radio" name="paket" value="Pro">
               <div class="paket-radio-inner">
                 <div class="paket-radio-head">
                   <strong>Pro</strong>
                   <span class="paket-radio-price">₺499<small>/ay</small></span>
                 </div>
-                <ul>
-                  <li><strong>Verified rozet</strong></li>
-                  <li>Üst sıralama (3× görünürlük)</li>
-                  <li>Sınırsız fotoğraf + video</li>
-                  <li>Profil analitiği</li>
+                <ul class="paket-feature-list">
+                  <li class="paket-feature-row">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                    <div><strong>Verified rozet</strong><span>Profilin 'doğrulanmış' işaretiyle çıkar, müşteri güveni artar</span></div>
+                  </li>
+                  <li class="paket-feature-row">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                    <div><strong>Üst sıralama</strong><span>Arama sonuçlarında ilk 3 firma içinde yer al</span></div>
+                  </li>
+                  <li class="paket-feature-row">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                    <div><strong>Sınırsız fotoğraf</strong><span>50+ fotoğrafla galerin, müşteri kararını kolaylaştırır</span></div>
+                  </li>
+                  <li class="paket-feature-row">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                    <div><strong>Profil analitiği</strong><span>Kim baktı, ne arıyor, hangi gün popüler</span></div>
+                  </li>
                 </ul>
               </div>
             </label>
           </div>
+          <p class="paket-upgrade-note">Free seçsen bile istediğin zaman Pro'ya yükseltebilirsin.</p>
         </div>
 
         <!-- KVKK -->
