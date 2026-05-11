@@ -71,14 +71,13 @@
     var sb = window.ER_Supabase;
     if (!sb) return;
 
-    sb.auth.getSession().then(function(res) {
-      var session = res.data && res.data.session;
-      updateNav(session ? session.user : null);
-    });
-
     sb.auth.onAuthStateChange(function(event, session) {
-      if (event === 'SIGNED_IN')  updateNav(session.user);
-      if (event === 'SIGNED_OUT') window.location.reload();
+      if (session) {
+        updateNav(session.user);
+      } else {
+        updateNav(null);
+        if (event === 'SIGNED_OUT') window.location.reload();
+      }
     });
   }
 

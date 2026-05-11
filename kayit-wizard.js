@@ -512,7 +512,7 @@
       user_id:     currentUser.id,
       firm_name:   document.getElementById('firma-adi').value.trim(),
       tagline:     document.getElementById('tagline').value.trim(),
-      hizmet:      document.querySelector('[name="kategori"]:checked')?.value || null,
+      hizmet:      [document.querySelector('[name="kategori"]:checked')?.value].filter(Boolean),
       city:        document.getElementById('il').value,
       district:    ilceler.join(', '),
       yaricap:     document.querySelector('[name="yaricap"]:checked')?.value || null,
