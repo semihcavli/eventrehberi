@@ -147,12 +147,26 @@
 </footer>
 
 <!-- Comparison page logic -->
-<script src="firms-data.js"></script>
 <script src="compare.js"></script>
 <script>
 (function() {
-  function init() {
-    const FIRMS = window.CS_FIRMS || [];
+  function normalizeFromRow(row) {
+    return Object.assign({}, row, { minPeople: row.min_people || 0 });
+  }
+
+  async function init() {
+    const params = new URLSearchParams(window.location.search);
+    let ids = params.has('firms')
+      ? params.get('firms').split(',').filter(Boolean)
+      : (window.ER_Compare ? window.ER_Compare.list() : []);
+
+    if (!ids.length) {
+      document.getElementById('emptyState').hidden = false;
+      return;
+    }
+
+    const { data } = await ER_Supabase.from('firms').select('*').in('id', ids);
+    const FIRMS = (data || []).map(normalizeFromRow);
     const PRICE_STR = ['', '₺', '₺₺', '₺₺₺', '₺₺₺₺'];
     const HIZMET_LBL = {
       yemek: 'Yemek Catering', bar: 'Bar & Kokteyl', sef: 'Özel Şef',
@@ -168,16 +182,7 @@
       'vip-davet':'VIP davet'
     };
 
-    // Get firm IDs from URL or localStorage
-    const params = new URLSearchParams(window.location.search);
-    let ids = [];
-    if (params.has('firms')) {
-      ids = params.get('firms').split(',').filter(Boolean);
-    } else {
-      ids = window.ER_Compare ? window.ER_Compare.list() : [];
-    }
-
-    const selected = ids.map(id => FIRMS.find(f => f.id === id)).filter(Boolean);
+    const selected = FIRMS.filter(f => ids.includes(f.id));
 
     if (selected.length < 1) {
       document.getElementById('emptyState').hidden = false;
@@ -277,16 +282,7 @@
     });
   }
 
-  function onFirmsReady(cb) {
-    if (window.CS_FIRMS) { cb(); }
-    else { document.addEventListener('cs-firms-ready', cb, { once: true }); }
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function () { onFirmsReady(init); });
-  } else {
-    onFirmsReady(init);
-  }
+  document.addEventListener('er-supabase-ready', function() { init(); }, { once: true });
 })();
 </script>
 

@@ -12,14 +12,18 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Data Architecture
 
-### Hybrid: hardcoded list + Supabase
+### Tam Supabase (Round 9.6'dan itibaren)
 
-Currently the site reads firms from **two sources**:
+Firma verisi artık yalnızca **Supabase `firms` tablosundan** dinamik olarak fetch edilir. `firms-data.js` silinmiştir.
 
-1. **`firms-data.js`** — `window.CS_FIRMS` array, hardcoded 38 firms used by `catererlar.html`, `firma.html`, `karsilastir.html` for fast rendering.
-2. **Supabase `firms` table** — same 38 firms migrated via `supabase-schema.sql`, source of truth for any future dynamic features. RLS allows public SELECT where `approved = true`.
+- `catererlar.html` → `er-supabase-ready` event'inde `ER_Supabase.from('firms').select('*').eq('approved', true)`
+- `firma.html` → `ER_Supabase.from('firms').select('*').eq('id', firmId).single()`
+- `karsilastir.html` → `ER_Supabase.from('firms').select('*').in('id', ids)`
 
-The hardcoded list is the active runtime source until full migration. To add a firm short-term, edit `firms-data.js` AND insert into the `firms` table.
+**Dikkat:** Supabase `firms` tablosunda `min_people` (snake_case) kullanılır; render kodu `minPeople` bekler. Her sayfada `normalizeFromRow()` helper'ı `min_people → minPeople` dönüşümünü yapar.
+
+**Firma eklemek için:** Yalnızca Supabase `firms` tablosuna INSERT yap. `catererlar.html`'den render otomatik olarak gelir.
+**Yönetim:** `yonetim.html` admin panelinden başvuruları onaylayıp firmalar tablosuna ekleyebilirsin.
 
 Each firm object has:
 - `id` — used in URLs, localStorage keys, and comparison params

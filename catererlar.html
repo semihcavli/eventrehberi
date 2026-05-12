@@ -503,7 +503,6 @@
   </div>
 </footer>
 
-<script src="firms-data.js"></script>
 <script>
 /* =========================================
    Turkish Cities Data
@@ -527,9 +526,8 @@ const DISTRICTS = {
   'Muğla': ['Bodrum', 'Dalaman', 'Datça', 'Fethiye', 'Kavaklıdere', 'Köyceğiz', 'Marmaris', 'Menteşe', 'Milas', 'Ortaca', 'Seydikemer', 'Ula', 'Yatağan']
 };
 
-function onFirmsReady(cb) {
-  if (window.CS_FIRMS) { cb(); }
-  else { document.addEventListener('cs-firms-ready', cb, { once: true }); }
+function normalizeFromRow(row) {
+  return Object.assign({}, row, { minPeople: row.min_people || 0 });
 }
 
 /* =========================================
@@ -1122,12 +1120,20 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && !$cityModal.hidden) closeCityModal();
 });
 
-// Initial render — wait for firm data, then sync sidebar and render
-onFirmsReady(function () {
+// Initial render — fetch from Supabase then render
+document.addEventListener('er-supabase-ready', async function() {
+  const $grid = document.getElementById('firm-grid');
+  if ($grid) $grid.innerHTML = '<p style="padding:2rem;text-align:center;color:#8A8A8A;">Firmalar yükleniyor…</p>';
+  const { data, error } = await ER_Supabase.from('firms').select('*').eq('approved', true);
+  if (error) {
+    if ($grid) $grid.innerHTML = '<p style="padding:2rem;text-align:center;color:#c0392b;">Firmalar yüklenemedi. Lütfen sayfayı yenileyin.</p>';
+    return;
+  }
+  window.CS_FIRMS = (data || []).map(normalizeFromRow);
   syncSidebarFromState();
   if (state.query) $search.value = state.query;
   render();
-});
+}, { once: true });
 </script>
 
 <script src="favorites.js"></script>

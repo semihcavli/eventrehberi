@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Başvuru Yönetimi — EventRehberi Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZH1F3D61N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZZH1F3D61N');
+</script>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container navbar-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-mark"><svg viewBox="-60 -64 120 132" width="40" height="40" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M -36 -56 H 36 a 6 6 0 0 1 6 6 V 60 L 0 32 L -42 60 V -50 a 6 6 0 0 1 6 -6 Z" fill="#C7522A"/><path d="M 0 -22 L 9 -4 L 28 -2 L 14 12 L 18 30 L 0 22 L -18 30 L -14 12 L -28 -2 L -9 -4 Z" fill="#FFFFFF"/></svg></span>
+      <span>EventRehberi</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="catererlar.html">Firmalar</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="giris.html" class="nav-auth-link">Giriş Yap</a>
+    </div>
+  </div>
+</nav>
+
+<div class="admin-page-wrap" id="admin-wrap">
+
+  <div class="admin-header">
+    <h1>Başvuru Yönetimi</h1>
+    <button type="button" class="btn btn-ghost btn-sm" id="admin-logout-btn">Çıkış</button>
+  </div>
+
+  <div class="admin-stats-bar" id="admin-stats-bar"></div>
+
+  <div class="admin-filters">
+    <div class="admin-filter-tabs" id="filter-tabs">
+      <button class="admin-filter-tab active" data-status="all">Tümü</button>
+      <button class="admin-filter-tab" data-status="pending">Beklemede</button>
+      <button class="admin-filter-tab" data-status="approved">Onaylı</button>
+      <button class="admin-filter-tab" data-status="rejected">Reddedildi</button>
+    </div>
+    <select class="admin-filter-select" id="filter-hizmet">
+      <option value="">Tüm kategoriler</option>
+      <option value="yemek">Yemek Catering</option>
+      <option value="bar">Bar & Kokteyl</option>
+      <option value="sef">Özel Şef</option>
+      <option value="pasta">Pasta & Tatlı</option>
+      <option value="susleme">Süsleme & Dekor</option>
+      <option value="cicek">Çiçek</option>
+      <option value="davetiye">Davetiye Tasarımı</option>
+      <option value="organizator">Organizatör</option>
+      <option value="dj">DJ & Müzik</option>
+      <option value="foto">Foto & Video</option>
+      <option value="garson">Garson Servisi</option>
+      <option value="hostes">Hostes</option>
+      <option value="ekipman">Ekipman Kiralama</option>
+    </select>
+    <input type="text" class="admin-filter-select" id="filter-city" placeholder="Şehir filtrele…" style="max-width:160px;">
+  </div>
+
+  <div class="admin-cards" id="admin-cards">
+    <p style="color:var(--color-text-muted);padding:2rem 0;">Yükleniyor…</p>
+  </div>
+
+</div>
+
+<!-- Edit modal -->
+<div class="admin-modal-overlay" id="edit-modal-overlay" hidden>
+  <div class="admin-modal" role="dialog" aria-modal="true" aria-label="Başvuru düzenle">
+    <h3>Başvuru Düzenle</h3>
+    <input type="hidden" id="edit-app-id">
+    <div class="form-group">
+      <label for="edit-firm-name">Firma adı</label>
+      <input type="text" id="edit-firm-name">
+    </div>
+    <div class="form-group">
+      <label for="edit-city">Şehir</label>
+      <input type="text" id="edit-city">
+    </div>
+    <div class="form-group">
+      <label for="edit-phone">Telefon</label>
+      <input type="tel" id="edit-phone">
+    </div>
+    <div class="form-group">
+      <label for="edit-email">E-posta</label>
+      <input type="email" id="edit-email">
+    </div>
+    <div class="form-group">
+      <label for="edit-description">Açıklama</label>
+      <textarea id="edit-description" rows="4"></textarea>
+    </div>
+    <div class="admin-modal-actions">
+      <button type="button" class="btn btn-ghost btn-sm" id="edit-cancel-btn">İptal</button>
+      <button type="button" class="btn btn-primary btn-sm" id="edit-save-btn">Kaydet</button>
+    </div>
+  </div>
+</div>
+
+<!-- Reject modal -->
+<div class="admin-modal-overlay" id="reject-modal-overlay" hidden>
+  <div class="admin-modal" role="dialog" aria-modal="true" aria-label="Başvuru reddet">
+    <h3>Başvuruyu Reddet</h3>
+    <input type="hidden" id="reject-app-id">
+    <div class="form-group">
+      <label for="reject-reason">Reddetme sebebi <span style="color:var(--color-text-muted);font-weight:400;">(opsiyonel)</span></label>
+      <textarea id="reject-reason" rows="3" placeholder="Firma başvurusunda eksik veya uygunsuz bilgi varsa belirt…"></textarea>
+    </div>
+    <div class="admin-modal-actions">
+      <button type="button" class="btn btn-ghost btn-sm" id="reject-cancel-btn">İptal</button>
+      <button type="button" class="admin-btn-reject" id="reject-confirm-btn">Reddet</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="admin-toast" id="admin-toast" role="status" aria-live="polite"></div>
+
+<script src="supabase-client.js"></script>
+<script src="navbar-mobile.js"></script>
+<script src="auth-nav.js"></script>
+<script>
+/* =====================================================
+   Admin panel — yonetim.html
+   ===================================================== */
+const ADMIN_EMAILS = ['rertovi@gmail.com', 'info@eventrehberi.com'];
+const HIZMET_LBL = {
+  yemek:'Yemek Catering', bar:'Bar & Kokteyl', sef:'Özel Şef',
+  pasta:'Pasta & Tatlı', susleme:'Süsleme & Dekor', cicek:'Çiçek',
+  davetiye:'Davetiye Tasarımı', organizator:'Organizatör',
+  dj:'DJ & Müzik', foto:'Foto & Video', garson:'Garson Servisi',
+  hostes:'Hostes', ekipman:'Ekipman Kiralama'
+};
+const SEGMENT_MAP = { 'Ekonomik':1, 'Orta':2, 'Orta-üst':3, 'Premium':4 };
+
+let currentStatus = 'all';
+let allApplications = [];
+let adminUser = null;
+
+/* ---- slugify ---- */
+function slugify(str) {
+  return (str || '').toLowerCase()
+    .replace(/ğ/g,'g').replace(/ü/g,'u').replace(/ş/g,'s')
+    .replace(/ı/g,'i').replace(/ö/g,'o').replace(/ç/g,'c')
+    .replace(/[^a-z0-9\s-]/g,'').trim().replace(/\s+/g,'-');
+}
+
+/* ---- toast ---- */
+function showToast(msg, isError) {
+  const t = document.getElementById('admin-toast');
+  t.textContent = msg;
+  t.className = 'admin-toast' + (isError ? ' error' : '');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+/* ---- fetch & render ---- */
+async function loadApplications() {
+  const { data, error } = await ER_Supabase
+    .from('firm_applications')
+    .select('*')
+    .order('created_at', { ascending: false });
+  if (error) { showToast('Başvurular yüklenemedi: ' + error.message, true); return; }
+  allApplications = data || [];
+  renderStats();
+  applyFiltersAndRender();
+}
+
+function renderStats() {
+  const pending  = allApplications.filter(a => a.status === 'pending').length;
+  const approved = allApplications.filter(a => a.status === 'approved').length;
+  const rejected = allApplications.filter(a => a.status === 'rejected').length;
+  document.getElementById('admin-stats-bar').innerHTML = [
+    `<span class="admin-stat-chip">Beklemede: ${pending}</span>`,
+    `<span class="admin-stat-chip green">Onaylı: ${approved}</span>`,
+    `<span class="admin-stat-chip red">Reddedildi: ${rejected}</span>`,
+  ].join('');
+}
+
+function applyFiltersAndRender() {
+  const hizmet = document.getElementById('filter-hizmet').value;
+  const city   = document.getElementById('filter-city').value.toLowerCase().trim();
+
+  let filtered = allApplications;
+  if (currentStatus !== 'all') filtered = filtered.filter(a => a.status === currentStatus);
+  if (hizmet) filtered = filtered.filter(a => (a.hizmet || []).includes(hizmet));
+  if (city)   filtered = filtered.filter(a => (a.city || '').toLowerCase().includes(city));
+
+  const container = document.getElementById('admin-cards');
+  if (!filtered.length) {
+    container.innerHTML = '<p style="color:var(--color-text-muted);padding:2rem 0;">Başvuru bulunamadı.</p>';
+    return;
+  }
+  container.innerHTML = filtered.map(renderCard).join('');
+  bindCardEvents();
+}
+
+function renderCard(app) {
+  const date   = new Date(app.created_at).toLocaleDateString('tr-TR');
+  const hizmet = (app.hizmet || [])[0];
+  const photos = app.photos || [];
+  const desc   = app.description || '';
+
+  return `
+  <div class="admin-card" data-id="${app.id}">
+    <div class="admin-card-head">
+      <div>
+        <h3 class="admin-card-name">${esc(app.firm_name || '—')}
+          <span class="admin-status-badge ${app.status}">${statusLabel(app.status)}</span>
+          ${app.paket === 'Pro' ? '<span class="admin-status-badge" style="background:#FFF8E8;color:#A06000;border:1px solid #F0D890;margin-left:4px;">Pro</span>' : ''}
+        </h3>
+      </div>
+      <span class="admin-card-date">${date}</span>
+    </div>
+
+    <div class="admin-card-meta">
+      ${hizmet ? `<span class="admin-meta-item"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>${HIZMET_LBL[hizmet] || hizmet}</span>` : ''}
+      ${app.city ? `<span class="admin-meta-item"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${esc(app.city)}</span>` : ''}
+      ${app.phone ? `<span class="admin-meta-item"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.29 6.29l.92-.92a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>${esc(app.phone)}</span>` : ''}
+      ${app.email ? `<span class="admin-meta-item"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>${esc(app.email)}</span>` : ''}
+      ${app.segment ? `<span class="admin-meta-item">Segment: ${esc(app.segment)}</span>` : ''}
+    </div>
+
+    ${desc ? `<div class="admin-card-desc" id="desc-${app.id}">${esc(desc)}</div>
+    <button type="button" class="admin-desc-toggle" data-desc="${app.id}">Daha fazla göster</button>` : ''}
+
+    ${photos.length ? `<div class="admin-card-photos">${photos.map(url =>
+      `<img class="admin-photo-thumb" src="${esc(url)}" alt="Firma fotoğrafı" loading="lazy" onclick="window.open('${esc(url)}','_blank')">`
+    ).join('')}</div>` : ''}
+
+    ${app.rejection_reason ? `<div style="font-size:0.8125rem;color:#C0392B;background:#FFF0F0;border:1px solid #F5B7B1;border-radius:8px;padding:0.5rem 0.75rem;margin-bottom:0.75rem;">Ret sebebi: ${esc(app.rejection_reason)}</div>` : ''}
+
+    <div class="admin-card-actions">
+      ${app.status !== 'approved' ? `<button type="button" class="admin-btn-approve" data-action="approve" data-id="${app.id}">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        Onayla
+      </button>` : ''}
+      ${app.status !== 'rejected' ? `<button type="button" class="admin-btn-reject" data-action="reject" data-id="${app.id}">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        Reddet
+      </button>` : ''}
+      <button type="button" class="admin-btn-edit" data-action="edit" data-id="${app.id}">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        Düzenle
+      </button>
+    </div>
+  </div>`;
+}
+
+function statusLabel(s) {
+  return { pending:'Beklemede', approved:'Onaylı', rejected:'Reddedildi' }[s] || s;
+}
+
+function esc(str) {
+  return String(str || '')
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+/* ---- bind events ---- */
+function bindCardEvents() {
+  document.getElementById('admin-cards').addEventListener('click', function(e) {
+    const btn = e.target.closest('[data-action]');
+    if (!btn) {
+      // desc toggle
+      const tog = e.target.closest('[data-desc]');
+      if (tog) {
+        const el = document.getElementById('desc-' + tog.dataset.desc);
+        if (el) {
+          el.classList.toggle('expanded');
+          tog.textContent = el.classList.contains('expanded') ? 'Daha az göster' : 'Daha fazla göster';
+        }
+      }
+      return;
+    }
+
+    const id  = btn.dataset.id;
+    const app = allApplications.find(a => a.id === id);
+    if (!app) return;
+
+    if (btn.dataset.action === 'approve') approveApplication(app, btn);
+    if (btn.dataset.action === 'reject')  openRejectModal(app);
+    if (btn.dataset.action === 'edit')    openEditModal(app);
+  }, { once: false });
+}
+
+/* ---- approve ---- */
+async function approveApplication(app, btn) {
+  btn.disabled = true;
+  btn.textContent = 'Onaylanıyor…';
+
+  const firmId = slugify(app.firm_name) + '-' + app.id.substring(0, 4);
+  const firmRow = {
+    id:         firmId,
+    name:       app.firm_name,
+    hizmet:     (app.hizmet || [])[0] || null,
+    city:       app.city,
+    district:   app.district || null,
+    phone:      app.phone || null,
+    tagline:    (app.description || '').substring(0, 120),
+    events:     app.etkinlik  || [],
+    cuisine:    app.mutfak    || [],
+    price:      SEGMENT_MAP[app.segment] || 2,
+    min_people: app.min_kisi  || 0,
+    image:      (app.photos   || [])[0] || null,
+    badge:      app.paket === 'Pro' ? 'Pro' : null,
+    approved:   true,
+    rating:     0,
+    reviews:    0,
+  };
+
+  const { error: fErr } = await ER_Supabase.from('firms').insert(firmRow);
+  if (fErr) {
+    showToast('Firma eklenemedi: ' + fErr.message, true);
+    btn.disabled = false;
+    btn.textContent = 'Onayla';
+    return;
+  }
+
+  const { error: aErr } = await ER_Supabase.from('firm_applications')
+    .update({ status: 'approved', reviewed_at: new Date().toISOString(), reviewed_by: adminUser?.id })
+    .eq('id', app.id);
+  if (aErr) showToast('Durum güncellenemedi: ' + aErr.message, true);
+  else showToast('Firma yayınlandı ✓');
+
+  loadApplications();
+}
+
+/* ---- reject modal ---- */
+function openRejectModal(app) {
+  document.getElementById('reject-app-id').value = app.id;
+  document.getElementById('reject-reason').value = '';
+  document.getElementById('reject-modal-overlay').hidden = false;
+}
+
+document.getElementById('reject-cancel-btn').addEventListener('click', () => {
+  document.getElementById('reject-modal-overlay').hidden = true;
+});
+
+document.getElementById('reject-confirm-btn').addEventListener('click', async function() {
+  const id     = document.getElementById('reject-app-id').value;
+  const reason = document.getElementById('reject-reason').value.trim();
+  this.disabled = true;
+
+  const { error } = await ER_Supabase.from('firm_applications').update({
+    status: 'rejected',
+    rejection_reason: reason || null,
+    reviewed_at: new Date().toISOString(),
+    reviewed_by: adminUser?.id,
+  }).eq('id', id);
+
+  document.getElementById('reject-modal-overlay').hidden = true;
+  this.disabled = false;
+
+  if (error) showToast('Ret kaydedilemedi: ' + error.message, true);
+  else { showToast('Başvuru reddedildi'); loadApplications(); }
+});
+
+/* ---- edit modal ---- */
+function openEditModal(app) {
+  document.getElementById('edit-app-id').value       = app.id;
+  document.getElementById('edit-firm-name').value    = app.firm_name || '';
+  document.getElementById('edit-city').value         = app.city || '';
+  document.getElementById('edit-phone').value        = app.phone || '';
+  document.getElementById('edit-email').value        = app.email || '';
+  document.getElementById('edit-description').value  = app.description || '';
+  document.getElementById('edit-modal-overlay').hidden = false;
+}
+
+document.getElementById('edit-cancel-btn').addEventListener('click', () => {
+  document.getElementById('edit-modal-overlay').hidden = true;
+});
+
+document.getElementById('edit-save-btn').addEventListener('click', async function() {
+  const id = document.getElementById('edit-app-id').value;
+  this.disabled = true;
+
+  const { error } = await ER_Supabase.from('firm_applications').update({
+    firm_name:   document.getElementById('edit-firm-name').value.trim(),
+    city:        document.getElementById('edit-city').value.trim(),
+    phone:       document.getElementById('edit-phone').value.trim(),
+    email:       document.getElementById('edit-email').value.trim(),
+    description: document.getElementById('edit-description').value.trim(),
+  }).eq('id', id);
+
+  document.getElementById('edit-modal-overlay').hidden = true;
+  this.disabled = false;
+
+  if (error) showToast('Güncelleme başarısız: ' + error.message, true);
+  else { showToast('Başvuru güncellendi'); loadApplications(); }
+});
+
+/* ---- close modals on overlay click ---- */
+['edit-modal-overlay','reject-modal-overlay'].forEach(id => {
+  document.getElementById(id).addEventListener('click', function(e) {
+    if (e.target === this) this.hidden = true;
+  });
+});
+
+/* ---- filter UI ---- */
+document.getElementById('filter-tabs').addEventListener('click', function(e) {
+  const btn = e.target.closest('.admin-filter-tab');
+  if (!btn) return;
+  document.querySelectorAll('.admin-filter-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentStatus = btn.dataset.status;
+  applyFiltersAndRender();
+});
+
+document.getElementById('filter-hizmet').addEventListener('change', applyFiltersAndRender);
+document.getElementById('filter-city').addEventListener('input', applyFiltersAndRender);
+
+/* ---- logout ---- */
+document.getElementById('admin-logout-btn').addEventListener('click', async function() {
+  await ER_Supabase.auth.signOut();
+  window.location.href = 'giris.html';
+});
+
+/* ---- boot ---- */
+document.addEventListener('er-supabase-ready', async function() {
+  const { data: { user } } = await ER_Supabase.auth.getUser();
+  if (!user || !ADMIN_EMAILS.includes(user.email)) {
+    document.getElementById('admin-wrap').innerHTML =
+      '<div class="admin-unauthorized"><p>Yetkisiz erişim.</p><p style="font-size:0.875rem;">Yönlendiriliyor…</p></div>';
+    setTimeout(() => window.location.href = 'hesabim.html', 2000);
+    return;
+  }
+  adminUser = user;
+  loadApplications();
+}, { once: true });
+</script>
+</body>
+</html>

@@ -67,6 +67,19 @@
     }
   }
 
+  /* FOUC guard: localStorage'dan sync session oku, SDK beklenmez */
+  (function foucGuard() {
+    try {
+      var raw = localStorage.getItem('sb-mzkbvqdvyyivawqwvosu-auth-token');
+      if (!raw) return;
+      var data = JSON.parse(raw);
+      var session = data.access_token ? data : (data.session || null);
+      if (!session) return;
+      var expires = session.expires_at || 0;
+      if (Date.now() / 1000 < expires) updateNav(session.user);
+    } catch(e) {}
+  })();
+
   function initAuthNav() {
     var sb = window.ER_Supabase;
     if (!sb) return;

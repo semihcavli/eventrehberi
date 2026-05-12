@@ -1070,25 +1070,29 @@ document.querySelectorAll('.tab[data-panel]').forEach(tab => {
 });
 </script>
 
-<script src="firms-data.js"></script>
 <script>
 /* =========================================
-   Hydrate firma.html from CS_FIRMS by ?id=
+   Hydrate firma.html from Supabase by ?id=
    The page's static content is the demo for "bogaz-lezzetleri".
-   For any other id, swap the title, hero, breadcrumb, header, fav button
-   and the about paragraph. Menus stay as example content with a notice.
    ========================================= */
 (function hydrateFirma() {
   const params = new URLSearchParams(window.location.search);
   const id = params.get('id');
   if (!id) return;
 
-  function run() {
-    if (!window.CS_FIRMS) return;
+  function normalizeFromRow(row) {
+    return Object.assign({}, row, { minPeople: row.min_people || 0 });
+  }
 
-  const firm = window.CS_FIRMS.find(f => f.id === id);
-  if (!firm) return; // unknown id — keep example page as-is
-  if (firm.id === 'bogaz-lezzetleri') return; // example firm — no swap
+  document.addEventListener('er-supabase-ready', async function() {
+    const { data, error } = await ER_Supabase.from('firms').select('*').eq('id', id).single();
+    if (error || !data) return;
+    const firm = normalizeFromRow(data);
+    if (firm.id === 'bogaz-lezzetleri') return; // example firm — no swap
+    run(firm);
+  }, { once: true });
+
+  function run(firm) {
 
   const PRICE_LABEL = ['', '₺ Ekonomik', '₺₺ Orta', '₺₺₺ Orta-üst', '₺₺₺₺ Premium'];
   const HIZMET_LABEL = {
@@ -1214,9 +1218,6 @@ document.querySelectorAll('.tab[data-panel]').forEach(tab => {
     if (sidebarWa && firm.phone) sidebarWa.href = `https://wa.me/${firm.phone}`;
   }
   } // end run()
-
-  if (window.CS_FIRMS) { run(); }
-  else { document.addEventListener('cs-firms-ready', run, { once: true }); }
 })();
 </script>
 <script src="favorites.js"></script>
