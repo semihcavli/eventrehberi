@@ -4,9 +4,26 @@
 (function () {
   'use strict';
 
+  function doLogout() {
+    window.ER_Supabase.auth.signOut().then(function() {
+      Object.keys(localStorage).forEach(function(k) {
+        if (k.indexOf('sb-') === 0) localStorage.removeItem(k);
+      });
+      window.location.href = '/';
+    });
+  }
+
   function updateNav(user) {
     var navCta = document.querySelector('.nav-cta');
     if (!navCta) return;
+
+    if (!user) {
+      navCta.innerHTML =
+        '<a href="giris.html" class="nav-auth-link">Giriş Yap</a>' +
+        '<a href="uye-ol.html" class="btn btn-ghost btn-sm">Üye Ol</a>' +
+        '<a href="kayit.html" class="btn btn-primary btn-sm">Firmanı Kaydet</a>';
+      return;
+    }
 
     if (user) {
       var meta      = user.user_metadata || {};
@@ -58,11 +75,8 @@
       });
 
       document.getElementById('nav-logout-btn').addEventListener('click', function() {
-        if (window.ER_Supabase) {
-          window.ER_Supabase.auth.signOut().then(function() {
-            window.location.reload();
-          });
-        }
+        if (window.ER_Supabase) doLogout();
+        else document.addEventListener('er-supabase-ready', doLogout, { once: true });
       });
     }
   }
@@ -89,7 +103,6 @@
         updateNav(session.user);
       } else {
         updateNav(null);
-        if (event === 'SIGNED_OUT') window.location.reload();
       }
     });
   }
