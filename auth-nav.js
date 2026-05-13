@@ -30,6 +30,14 @@
       var name      = meta.full_name || (user.email ? user.email.split('@')[0] : 'Hesabım');
       var initial   = (name.trim()[0] || '?').toUpperCase();
       var firstName = name.split(' ')[0];
+      var ADMIN_EMAILS = ['rertovi@gmail.com', 'info@eventrehberi.com'];
+      var isAdmin = user.email && ADMIN_EMAILS.indexOf(user.email.toLowerCase()) !== -1;
+      var adminLink = isAdmin
+        ? '<a href="yonetim.html" class="nav-user-item">' +
+            '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5l-8-3z"/></svg>' +
+            ' Yönetim' +
+          '</a>'
+        : '';
 
       navCta.innerHTML = [
         '<div class="nav-user-wrapper" id="nav-user-wrapper">',
@@ -47,6 +55,7 @@
               '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/></svg>',
               ' Firmanı kaydet',
             '</a>',
+            adminLink,
             '<div class="nav-user-divider"></div>',
             '<button type="button" class="nav-user-item nav-user-item-danger" id="nav-logout-btn">',
               '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>',
