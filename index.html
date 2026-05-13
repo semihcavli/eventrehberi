@@ -81,36 +81,104 @@
       <!-- Alan 2: Şehir -->
       <div class="hs-field">
         <svg class="hs-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        <input type="text" id="hs-sehir" class="hs-input" list="hs-sehir-list" placeholder="Şehir... (boş = tüm Türkiye)" autocomplete="off" aria-label="Şehir gir">
-        <datalist id="hs-sehir-list">
-          <option value="İstanbul"><option value="Ankara"><option value="İzmir">
-          <option value="Bursa"><option value="Antalya"><option value="Adana">
-          <option value="Konya"><option value="Gaziantep"><option value="Kocaeli">
-          <option value="Mersin"><option value="Diyarbakır"><option value="Hatay">
-          <option value="Manisa"><option value="Kayseri"><option value="Samsun">
-          <option value="Balıkesir"><option value="Tekirdağ"><option value="Sakarya">
-          <option value="Denizli"><option value="Muğla"><option value="Eskişehir">
-          <option value="Trabzon"><option value="Malatya"><option value="Erzurum">
-          <option value="Van"><option value="Aydın"><option value="Şanlıurfa">
-          <option value="Kahramanmaraş"><option value="Afyonkarahisar"><option value="Elazığ">
-          <option value="Ordu"><option value="Sivas"><option value="Adıyaman">
-          <option value="Çanakkale"><option value="Edirne"><option value="Isparta">
-          <option value="Zonguldak"><option value="Rize"><option value="Giresun">
-          <option value="Osmaniye"><option value="Uşak"><option value="Kütahya">
-          <option value="Burdur"><option value="Tokat"><option value="Kastamonu">
-          <option value="Çorum"><option value="Yozgat"><option value="Yalova">
-          <option value="Kırklareli"><option value="Bilecik"><option value="Aksaray">
-          <option value="Niğde"><option value="Nevşehir"><option value="Kırşehir">
-          <option value="Karaman"><option value="Çankırı"><option value="Kırıkkale">
-          <option value="Düzce"><option value="Bolu"><option value="Sinop">
-          <option value="Artvin"><option value="Amasya"><option value="Bayburt">
-          <option value="Karabük"><option value="Gümüşhane"><option value="Bartın">
-          <option value="Erzincan"><option value="Ağrı"><option value="Muş">
-          <option value="Bitlis"><option value="Hakkari"><option value="Bingöl">
-          <option value="Iğdır"><option value="Ardahan"><option value="Kars">
-          <option value="Tunceli"><option value="Mardin"><option value="Batman">
-          <option value="Siirt"><option value="Şırnak"><option value="Kilis">
-        </datalist>
+        <select id="hs-sehir" class="hs-select" aria-label="Şehir seç">
+          <option value="">Tüm Türkiye</option>
+          <optgroup label="Marmara">
+            <option>Balıkesir</option>
+            <option>Bilecik</option>
+            <option>Bursa</option>
+            <option>Çanakkale</option>
+            <option>Edirne</option>
+            <option>İstanbul</option>
+            <option>Kırklareli</option>
+            <option>Kocaeli</option>
+            <option>Sakarya</option>
+            <option>Tekirdağ</option>
+            <option>Yalova</option>
+          </optgroup>
+          <optgroup label="Ege">
+            <option>Afyonkarahisar</option>
+            <option>Aydın</option>
+            <option>Denizli</option>
+            <option>İzmir</option>
+            <option>Kütahya</option>
+            <option>Manisa</option>
+            <option>Muğla</option>
+            <option>Uşak</option>
+          </optgroup>
+          <optgroup label="Akdeniz">
+            <option>Adana</option>
+            <option>Antalya</option>
+            <option>Burdur</option>
+            <option>Hatay</option>
+            <option>Isparta</option>
+            <option>Kahramanmaraş</option>
+            <option>Mersin</option>
+            <option>Osmaniye</option>
+          </optgroup>
+          <optgroup label="İç Anadolu">
+            <option>Aksaray</option>
+            <option>Ankara</option>
+            <option>Çankırı</option>
+            <option>Eskişehir</option>
+            <option>Karaman</option>
+            <option>Kayseri</option>
+            <option>Kırıkkale</option>
+            <option>Kırşehir</option>
+            <option>Konya</option>
+            <option>Nevşehir</option>
+            <option>Niğde</option>
+            <option>Sivas</option>
+            <option>Yozgat</option>
+          </optgroup>
+          <optgroup label="Karadeniz">
+            <option>Amasya</option>
+            <option>Artvin</option>
+            <option>Bartın</option>
+            <option>Bayburt</option>
+            <option>Bolu</option>
+            <option>Çorum</option>
+            <option>Düzce</option>
+            <option>Giresun</option>
+            <option>Gümüşhane</option>
+            <option>Karabük</option>
+            <option>Kastamonu</option>
+            <option>Ordu</option>
+            <option>Rize</option>
+            <option>Samsun</option>
+            <option>Sinop</option>
+            <option>Tokat</option>
+            <option>Trabzon</option>
+            <option>Zonguldak</option>
+          </optgroup>
+          <optgroup label="Doğu Anadolu">
+            <option>Ağrı</option>
+            <option>Ardahan</option>
+            <option>Bingöl</option>
+            <option>Bitlis</option>
+            <option>Elazığ</option>
+            <option>Erzincan</option>
+            <option>Erzurum</option>
+            <option>Hakkari</option>
+            <option>Iğdır</option>
+            <option>Kars</option>
+            <option>Malatya</option>
+            <option>Muş</option>
+            <option>Tunceli</option>
+            <option>Van</option>
+          </optgroup>
+          <optgroup label="Güneydoğu Anadolu">
+            <option>Adıyaman</option>
+            <option>Batman</option>
+            <option>Diyarbakır</option>
+            <option>Gaziantep</option>
+            <option>Kilis</option>
+            <option>Mardin</option>
+            <option>Siirt</option>
+            <option>Şanlıurfa</option>
+            <option>Şırnak</option>
+          </optgroup>
+        </select>
       </div>
 
       <div class="hs-divider" aria-hidden="true"></div>

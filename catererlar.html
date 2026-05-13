@@ -527,7 +527,15 @@ const DISTRICTS = {
 };
 
 function normalizeFromRow(row) {
-  return Object.assign({}, row, { minPeople: row.min_people || 0 });
+  return Object.assign({}, row, {
+    minPeople: row.min_people || 0,
+    events:  Array.isArray(row.events)  ? row.events  : [],
+    cuisine: Array.isArray(row.cuisine) ? row.cuisine : [],
+    name:     row.name     || '',
+    tagline:  row.tagline  || '',
+    city:     row.city     || '',
+    district: row.district || ''
+  });
 }
 
 /* =========================================
@@ -1121,19 +1129,25 @@ document.addEventListener('keydown', (e) => {
 });
 
 // Initial render — fetch from Supabase then render
-document.addEventListener('er-supabase-ready', async function() {
+async function getFirms() {
   const $grid = document.getElementById('firm-grid');
   if ($grid) $grid.innerHTML = '<p style="padding:2rem;text-align:center;color:#8A8A8A;">Firmalar yükleniyor…</p>';
-  const { data, error } = await ER_Supabase.from('firms').select('*').eq('approved', true);
-  if (error) {
+  try {
+    const { data, error } = await ER_Supabase.from('firms').select('*').eq('approved', true);
+    if (error) throw error;
+    const firms = (data || []).map(normalizeFromRow);
+    console.log('[ER] Firms loaded:', firms.length, firms);
+    window.CS_FIRMS = firms;
+    syncSidebarFromState();
+    if (state.query) $search.value = state.query;
+    render();
+  } catch (err) {
+    console.error('[ER] Firms fetch error:', err);
     if ($grid) $grid.innerHTML = '<p style="padding:2rem;text-align:center;color:#c0392b;">Firmalar yüklenemedi. Lütfen sayfayı yenileyin.</p>';
-    return;
   }
-  window.CS_FIRMS = (data || []).map(normalizeFromRow);
-  syncSidebarFromState();
-  if (state.query) $search.value = state.query;
-  render();
-}, { once: true });
+}
+
+document.addEventListener('er-supabase-ready', getFirms, { once: true });
 </script>
 
 <script src="favorites.js"></script>
