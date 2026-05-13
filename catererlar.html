@@ -802,7 +802,7 @@ function renderCard(f) {
         <button type="button" class="firm-card-fav" data-fav-toggle data-fav-id="${f.id}" data-fav="${favPayload}" aria-label="Favorilere ekle" aria-pressed="false" title="Favorilere ekle">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
         </button>
-        <span class="firm-card-rating">★ ${f.rating.toFixed(1)}</span>
+        <span class="firm-card-rating">★ ${f.rating != null ? Number(f.rating).toFixed(1) : '-'}</span>
       </div>
       <div class="firm-card-body">
         <div class="firm-card-head">
@@ -815,10 +815,10 @@ function renderCard(f) {
             <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
             ${f.district}, ${f.city}
           </span>
-          <span class="firm-card-price">${PRICE_STR[f.price]}</span>
+          <span class="firm-card-price">${PRICE_STR[f.price] || '-'}</span>
         </div>
         <div class="firm-card-foot">
-          <span class="firm-card-reviews">${f.reviews} yorum</span>
+          <span class="firm-card-reviews">${f.reviews != null ? f.reviews : 0} yorum</span>
           <span class="firm-card-min">Min ${f.minPeople} kişi</span>
         </div>
       </div>
