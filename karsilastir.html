@@ -151,7 +151,15 @@
 <script>
 (function() {
   function normalizeFromRow(row) {
-    return Object.assign({}, row, { minPeople: row.min_people || 0 });
+    return Object.assign({}, row, {
+      minPeople: row.min_people || 0,
+      events:  Array.isArray(row.events)  ? row.events  : [],
+      cuisine: Array.isArray(row.cuisine) ? row.cuisine : [],
+      name:     row.name     || '',
+      tagline:  row.tagline  || '',
+      city:     row.city     || '',
+      district: row.district || ''
+    });
   }
 
   async function init() {
@@ -217,7 +225,7 @@
 
     // Puan
     rows.push(buildRow('Puan', selected.map(f =>
-      `<span class="compare-rating">★ ${f.rating.toFixed(1)}</span> <small class="muted">(${f.reviews} yorum)</small>`
+      `<span class="compare-rating">★ ${f.rating != null ? Number(f.rating).toFixed(1) : '-'}</span> <small class="muted">(${f.reviews != null ? f.reviews : 0} yorum)</small>`
     )));
 
     // Fiyat
