@@ -560,6 +560,7 @@ const state = {
   const validHizmet = ['all','yemek','organizator','dj','foto','sef','bar','pasta','susleme','davetiye','garson','ekipman','workshop','cocuk'];
   if (p.has('hizmet') && validHizmet.includes(p.get('hizmet'))) state.hizmet = p.get('hizmet');
   if (p.has('sehir')) state.city = decodeURIComponent(p.get('sehir'));
+  if (p.has('district')) state.districts = decodeURIComponent(p.get('district')).split(',').filter(Boolean);
   if (p.has('events')) state.events = p.get('events').split(',').filter(Boolean);
   if (p.has('cuisine')) state.cuisine = p.get('cuisine').split(',').filter(Boolean);
   if (p.has('price')) state.price = p.get('price').split(',').filter(Boolean);
