@@ -249,8 +249,8 @@
                 <div class="pref-chips" id="pref-events-view"><span class="pref-empty">Henüz seçilmedi</span></div>
               </div>
               <div class="pref-block">
-                <div class="pref-lbl">Mutfak tarzı</div>
-                <div class="pref-chips" id="pref-cuisines-view"><span class="pref-empty">Henüz seçilmedi</span></div>
+                <div class="pref-lbl">İlgilendiğin hizmetler</div>
+                <div class="pref-chips" id="pref-services-view"><span class="pref-empty">Henüz seçilmedi</span></div>
               </div>
               <div class="pref-block">
                 <div class="pref-lbl">Bütçe aralığı</div>
@@ -353,38 +353,43 @@
     <p class="muted-sm">Bu bilgilerle sana özel firma önerileri hazırlıyoruz.</p>
     <form id="prefs-form" class="acc-form">
       <div class="form-group">
-        <label>Hangi etkinlikler için catering arıyorsun?</label>
+        <label>Hangi etkinlikleri planlıyorsun?</label>
         <div class="chip-pick" id="chip-events">
-          <label class="chip-pick-item"><input type="checkbox" name="events" value="Düğün"><span>💍 Düğün</span></label>
-          <label class="chip-pick-item"><input type="checkbox" name="events" value="Kurumsal"><span>🏢 Kurumsal</span></label>
-          <label class="chip-pick-item"><input type="checkbox" name="events" value="Doğum Günü"><span>🎂 Doğum günü</span></label>
-          <label class="chip-pick-item"><input type="checkbox" name="events" value="Nişan"><span>💐 Nişan</span></label>
-          <label class="chip-pick-item"><input type="checkbox" name="events" value="Mezuniyet"><span>🎓 Mezuniyet</span></label>
-          <label class="chip-pick-item"><input type="checkbox" name="events" value="Cenaze"><span>🕊️ Cenaze yemeği</span></label>
-          <label class="chip-pick-item"><input type="checkbox" name="events" value="Kokteyl"><span>🥂 Kokteyl / davet</span></label>
-          <label class="chip-pick-item"><input type="checkbox" name="events" value="Lansman"><span>🚀 Lansman</span></label>
+          <label class="chip-pick-item"><input type="checkbox" name="events" value="dugun"><span>💍 Düğün</span></label>
+          <label class="chip-pick-item"><input type="checkbox" name="events" value="nisan"><span>💐 Nişan</span></label>
+          <label class="chip-pick-item"><input type="checkbox" name="events" value="dogum-gunu"><span>🎂 Doğum günü</span></label>
+          <label class="chip-pick-item"><input type="checkbox" name="events" value="kurumsal"><span>🏢 Kurumsal</span></label>
+          <label class="chip-pick-item"><input type="checkbox" name="events" value="kokteyl"><span>🥂 Kokteyl</span></label>
+          <label class="chip-pick-item"><input type="checkbox" name="events" value="ozel-davet"><span>🎉 Özel davet</span></label>
+          <label class="chip-pick-item"><input type="checkbox" name="events" value="ofis-yemegi"><span>🍽️ Ofis yemeği</span></label>
+          <label class="chip-pick-item"><input type="checkbox" name="events" value="mezuniyet"><span>🎓 Mezuniyet</span></label>
         </div>
       </div>
       <div class="form-group">
-        <label>Sevdiğin mutfak tarzları</label>
-        <div class="chip-pick" id="chip-cuisines">
-          <label class="chip-pick-item"><input type="checkbox" name="cuisines" value="Türk"><span>🇹🇷 Türk</span></label>
-          <label class="chip-pick-item"><input type="checkbox" name="cuisines" value="Dünya"><span>🌍 Dünya</span></label>
-          <label class="chip-pick-item"><input type="checkbox" name="cuisines" value="İtalyan"><span>🍝 İtalyan</span></label>
-          <label class="chip-pick-item"><input type="checkbox" name="cuisines" value="Uzakdoğu"><span>🥢 Uzakdoğu</span></label>
-          <label class="chip-pick-item"><input type="checkbox" name="cuisines" value="Deniz"><span>🦐 Deniz ürünleri</span></label>
-          <label class="chip-pick-item"><input type="checkbox" name="cuisines" value="Vegan"><span>🌱 Vegan / vejetaryen</span></label>
-          <label class="chip-pick-item"><input type="checkbox" name="cuisines" value="Tatlı"><span>🍰 Pasta / tatlı</span></label>
-          <label class="chip-pick-item"><input type="checkbox" name="cuisines" value="Meyve"><span>🍇 Meyve / sunum</span></label>
+        <label>Hangi hizmetleri arıyorsun?</label>
+        <div class="chip-pick" id="chip-services">
+          <label class="chip-pick-item"><input type="checkbox" name="services" value="yemek"><span>🍽️ Catering</span></label>
+          <label class="chip-pick-item"><input type="checkbox" name="services" value="bar"><span>🍹 Bar</span></label>
+          <label class="chip-pick-item"><input type="checkbox" name="services" value="sef"><span>👨‍🍳 Özel Şef</span></label>
+          <label class="chip-pick-item"><input type="checkbox" name="services" value="pasta"><span>🎂 Pasta</span></label>
+          <label class="chip-pick-item"><input type="checkbox" name="services" value="susleme"><span>🎀 Süsleme</span></label>
+          <label class="chip-pick-item"><input type="checkbox" name="services" value="cicek"><span>💐 Çiçekçi</span></label>
+          <label class="chip-pick-item"><input type="checkbox" name="services" value="davetiye"><span>📜 Davetiye</span></label>
+          <label class="chip-pick-item"><input type="checkbox" name="services" value="organizator"><span>📋 Organizatör</span></label>
+          <label class="chip-pick-item"><input type="checkbox" name="services" value="dj"><span>🎵 DJ & Müzik</span></label>
+          <label class="chip-pick-item"><input type="checkbox" name="services" value="foto"><span>📷 Fotoğraf & Video</span></label>
+          <label class="chip-pick-item"><input type="checkbox" name="services" value="garson"><span>🤵 Garson</span></label>
+          <label class="chip-pick-item"><input type="checkbox" name="services" value="hostes"><span>💼 Hostes</span></label>
+          <label class="chip-pick-item"><input type="checkbox" name="services" value="ekipman"><span>🏗️ Ekipman</span></label>
         </div>
       </div>
       <div class="form-group">
-        <label>Bütçe aralığın (kişi başı)</label>
+        <label>Bütçe aralığın</label>
         <div class="chip-pick chip-pick--radio" id="chip-budget">
-          <label class="chip-pick-item"><input type="radio" name="budget" value="economic"><span>Ekonomik · ₺150-300</span></label>
-          <label class="chip-pick-item"><input type="radio" name="budget" value="mid"><span>Orta · ₺300-600</span></label>
-          <label class="chip-pick-item"><input type="radio" name="budget" value="premium"><span>Premium · ₺600-1.200</span></label>
-          <label class="chip-pick-item"><input type="radio" name="budget" value="luxury"><span>Lüks · ₺1.200+</span></label>
+          <label class="chip-pick-item"><input type="radio" name="budget" value="economic"><span>Ekonomik (₺)</span></label>
+          <label class="chip-pick-item"><input type="radio" name="budget" value="mid"><span>Orta (₺₺)</span></label>
+          <label class="chip-pick-item"><input type="radio" name="budget" value="premium"><span>Premium (₺₺₺)</span></label>
+          <label class="chip-pick-item"><input type="radio" name="budget" value="luxury"><span>Lüks (₺₺₺₺)</span></label>
         </div>
       </div>
       <div class="acc-form-error" id="pref-err" hidden></div>
@@ -592,7 +597,7 @@ function renderProfileCompletion(meta) {
     { done: !!(meta.phone && meta.phone.replace(/\D/g,'').length >= 10), label:'Telefon ekle',                  cta:'open-profile' },
     { done: !!meta.city,                                                 label:'Şehir seç',                     cta:'open-profile' },
     { done: Array.isArray(meta.event_types) && meta.event_types.length>0,label:'İlgilendiğin etkinlikleri seç', cta:'open-prefs' },
-    { done: Array.isArray(meta.cuisines) && meta.cuisines.length>0,      label:'Sevdiğin mutfağı seç',          cta:'open-prefs' },
+    { done: Array.isArray(meta.service_types) && meta.service_types.length>0, label:'İlgilendiğin hizmetleri seç', cta:'open-prefs' },
     { done: !!meta.budget_range,                                         label:'Bütçe aralığını seç',           cta:'open-prefs' }
   ];
   const doneCount = checks.filter(c=>c.done).length;
@@ -626,23 +631,30 @@ function renderProfileCompletion(meta) {
 
 function renderPrefsView(meta) {
   const events = meta.event_types || [];
-  const cuisines = meta.cuisines || [];
+  const services = meta.service_types || [];
   const budget = meta.budget_range || '';
 
-  $('pref-events-view').innerHTML = events.length
-    ? events.map(e => `<span class="chip-soft">${e}</span>`).join('')
-    : '<span class="pref-empty">Henüz seçilmedi</span>';
-
-  $('pref-cuisines-view').innerHTML = cuisines.length
-    ? cuisines.map(c => `<span class="chip-soft">${c}</span>`).join('')
-    : '<span class="pref-empty">Henüz seçilmedi</span>';
-
-  const budgetLabels = {
-    economic:'Ekonomik · ₺150-300',
-    mid:'Orta · ₺300-600',
-    premium:'Premium · ₺600-1.200',
-    luxury:'Lüks · ₺1.200+'
+  const EVENT_LABELS = {
+    dugun:'Düğün', nisan:'Nişan', 'dogum-gunu':'Doğum günü',
+    kurumsal:'Kurumsal', kokteyl:'Kokteyl', 'ozel-davet':'Özel davet',
+    'ofis-yemegi':'Ofis yemeği', mezuniyet:'Mezuniyet'
   };
+  const SERVICE_LABELS = {
+    yemek:'Catering', bar:'Bar', sef:'Özel Şef', pasta:'Pasta',
+    susleme:'Süsleme', cicek:'Çiçekçi', davetiye:'Davetiye',
+    organizator:'Organizatör', dj:'DJ & Müzik', foto:'Fotoğraf & Video',
+    garson:'Garson', hostes:'Hostes', ekipman:'Ekipman'
+  };
+
+  $('pref-events-view').innerHTML = events.length
+    ? events.map(e => `<span class="chip-soft">${EVENT_LABELS[e] || e}</span>`).join('')
+    : '<span class="pref-empty">Henüz seçilmedi</span>';
+
+  $('pref-services-view').innerHTML = services.length
+    ? services.map(s => `<span class="chip-soft">${SERVICE_LABELS[s] || s}</span>`).join('')
+    : '<span class="pref-empty">Henüz seçilmedi</span>';
+
+  const budgetLabels = { economic:'Ekonomik (₺)', mid:'Orta (₺₺)', premium:'Premium (₺₺₺)', luxury:'Lüks (₺₺₺₺)' };
   $('pref-budget-view').innerHTML = budget
     ? `<span class="chip-soft">${budgetLabels[budget] || budget}</span>`
     : '<span class="pref-empty">Henüz seçilmedi</span>';
@@ -650,9 +662,9 @@ function renderPrefsView(meta) {
 
 function prefillPrefsForm(meta) {
   const events = meta.event_types || [];
-  const cuisines = meta.cuisines || [];
+  const services = meta.service_types || [];
   document.querySelectorAll('#chip-events input').forEach(inp => { inp.checked = events.includes(inp.value); });
-  document.querySelectorAll('#chip-cuisines input').forEach(inp => { inp.checked = cuisines.includes(inp.value); });
+  document.querySelectorAll('#chip-services input').forEach(inp => { inp.checked = services.includes(inp.value); });
   if (meta.budget_range) {
     const r = document.querySelector(`#chip-budget input[value="${meta.budget_range}"]`);
     if (r) r.checked = true;
@@ -799,17 +811,17 @@ document.addEventListener('click', (e) => {
 function renderRecommendations(meta) {
   const body = $('recs-body');
   const events = meta.event_types || [];
-  const cuisines = meta.cuisines || [];
-  const budget = meta.budget_range || '';   // 'mid' | 'premium' | 'luxury'
-  const hasPrefs = events.length || cuisines.length || budget;
+  const services = meta.service_types || [];
+  const budget = meta.budget_range || '';
+  const hasPrefs = events.length || services.length || budget;
 
-  const BUDGET_PRICE = { mid: [1, 2], premium: [3], luxury: [4] };
+  const BUDGET_PRICE = { economic: [1], mid: [1, 2], premium: [3], luxury: [4] };
   const firms = window.CS_FIRMS || [];
 
   const scored = firms.map(f => {
     let score = 0;
     events.forEach(e => { if (f.events && f.events.includes(e)) score += 3; });
-    cuisines.forEach(c => { if (f.cuisine && f.cuisine.includes(c)) score += 2; });
+    services.forEach(s => { if (f.hizmet === s) score += 3; });
     if (budget && BUDGET_PRICE[budget] && BUDGET_PRICE[budget].includes(f.price)) score += 2;
     score += (f.rating - 4.5) * 2;
     return { f, score };
@@ -818,7 +830,7 @@ function renderRecommendations(meta) {
   const top = scored.slice(0, 3);
   $('stat-rec').textContent = top.length;
   $('stat-rec-hint').textContent = hasPrefs ? 'Tercihlerine göre' : 'En çok tercih edilenler';
-  $('recs-desc').textContent = hasPrefs ? 'Etkinlik türün ve mutfak zevkine göre seçildi.' : 'Tercihlerini ekle — sana özel öneriler çıksın.';
+  $('recs-desc').textContent = hasPrefs ? 'Etkinlik türün ve hizmet tercihlerine göre seçildi.' : 'Tercihlerini ekle — sana özel öneriler çıksın.';
 
   body.innerHTML = `<div class="firm-mini-grid">${top.map(({ f }) => recCard(f)).join('')}</div>`;
   if (window.CSFavorites) window.CSFavorites.bindButtons(body);
@@ -926,15 +938,15 @@ $('prefs-form').addEventListener('submit', async (e) => {
   submitBtn.querySelector('.btn-label').textContent = 'Kaydediliyor...';
   submitBtn.querySelector('.btn-spinner').hidden = false;
 
-  const event_types = Array.from(document.querySelectorAll('#chip-events input:checked')).map(i => i.value);
-  const cuisines    = Array.from(document.querySelectorAll('#chip-cuisines input:checked')).map(i => i.value);
+  const event_types   = Array.from(document.querySelectorAll('#chip-events input:checked')).map(i => i.value);
+  const service_types = Array.from(document.querySelectorAll('#chip-services input:checked')).map(i => i.value);
   const budgetInput = document.querySelector('#chip-budget input:checked');
   const budget_range = budgetInput ? budgetInput.value : '';
 
   try {
     const sb = window.ER_Supabase;
     if (!sb || !CURRENT) throw new Error('Oturum kapalı.');
-    const { data: { user: updated }, error } = await sb.auth.updateUser({ data: { ...(CURRENT.user_metadata || {}), event_types, cuisines, budget_range } });
+    const { data: { user: updated }, error } = await sb.auth.updateUser({ data: { ...(CURRENT.user_metadata || {}), event_types, service_types, budget_range } });
     if (error) throw error;
     CURRENT = updated;
     renderUser(updated);

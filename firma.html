@@ -787,18 +787,12 @@
       <form
         name="firma-teklif"
         method="POST"
-        data-netlify="true"
-        data-netlify-honeypot="bot-field"
-        action="/tesekkurler.html?tip=teklif"
+        action="/api/form?tip=teklif"
         class="quote-form"
       >
-        <input type="hidden" name="form-name" value="firma-teklif">
         <input type="hidden" name="firma" value="Boğaz Lezzetleri Catering">
         <input type="hidden" name="secilen-menu" id="secilen-menu" value="">
         <input type="hidden" name="tahmini-tutar" id="tahmini-tutar" value="">
-        <p class="honeypot-field" aria-hidden="true">
-          <label>Bu alanı boş bırakın: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
-        </p>
 
         <div class="form-row">
           <div class="form-group">
