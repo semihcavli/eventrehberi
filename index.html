@@ -756,14 +756,13 @@
 function smartSearchRedirect(event) {
   event.preventDefault();
   const hizmet = (document.getElementById('hs-hizmet').value || '').trim();
-  const sehir  = (document.getElementById('hs-sehir').value  || '').trim();
+  const sehir  = decodeURIComponent((document.getElementById('hs-sehir').value || '').trim());
   const events = (document.getElementById('hs-event').value  || '').trim();
-  const params = new URLSearchParams();
-  if (hizmet) params.set('hizmet', hizmet);
-  if (sehir)  params.set('sehir', sehir);
-  if (events) params.set('events', events);
-  const qs = params.toString();
-  window.location.href = 'catererlar.html' + (qs ? '?' + qs : '');
+  const parts  = [];
+  if (hizmet) parts.push('hizmet=' + encodeURIComponent(hizmet));
+  if (sehir)  parts.push('sehir='  + encodeURIComponent(sehir));
+  if (events) parts.push('events=' + encodeURIComponent(events));
+  window.location.href = 'catererlar.html' + (parts.length ? '?' + parts.join('&') : '');
   return false;
 }
 </script>
