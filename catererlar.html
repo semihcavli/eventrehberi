@@ -559,7 +559,7 @@ const state = {
   const p = new URLSearchParams(window.location.search);
   const validHizmet = ['all','yemek','organizator','dj','foto','sef','bar','pasta','susleme','davetiye','garson','ekipman','workshop','cocuk'];
   if (p.has('hizmet') && validHizmet.includes(p.get('hizmet'))) state.hizmet = p.get('hizmet');
-  if (p.has('sehir')) state.city = p.get('sehir');
+  if (p.has('sehir')) state.city = decodeURIComponent(p.get('sehir'));
   if (p.has('events')) state.events = p.get('events').split(',').filter(Boolean);
   if (p.has('cuisine')) state.cuisine = p.get('cuisine').split(',').filter(Boolean);
   if (p.has('price')) state.price = p.get('price').split(',').filter(Boolean);
@@ -752,7 +752,7 @@ function updateSidebarMeta(filtered) {
 
 function matchesFilter(f) {
   if (state.hizmet !== 'all' && f.hizmet !== state.hizmet) return false;
-  if (state.city && f.city !== state.city) return false;
+  if (state.city && f.city.toLocaleLowerCase('tr') !== state.city.toLocaleLowerCase('tr')) return false;
   if (state.districts.length && !state.districts.includes(f.district)) return false;
   if (state.events.length && !state.events.some(e => f.events.includes(e))) return false;
   if (state.cuisine.length && !state.cuisine.some(c => f.cuisine.includes(c))) return false;
@@ -1085,7 +1085,7 @@ document.addEventListener('click', (e) => {
   const cityBtn = e.target.closest('.city-pill, .popular-city-card');
   if (!cityBtn) return;
   if (cityBtn.closest('#city-modal')) {
-    const city = cityBtn.dataset.city || cityBtn.dataset.name;
+    const city = cityBtn.dataset.name || cityBtn.dataset.city;
     selectCity(city);
   }
 });
