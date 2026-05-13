@@ -1075,7 +1075,15 @@ document.querySelectorAll('.tab[data-panel]').forEach(tab => {
   if (!id) return;
 
   function normalizeFromRow(row) {
-    return Object.assign({}, row, { minPeople: row.min_people || 0 });
+    return Object.assign({}, row, {
+      minPeople: row.min_people || 0,
+      events:  Array.isArray(row.events)  ? row.events  : [],
+      cuisine: Array.isArray(row.cuisine) ? row.cuisine : [],
+      name:     row.name     || '',
+      tagline:  row.tagline  || '',
+      city:     row.city     || '',
+      district: row.district || ''
+    });
   }
 
   document.addEventListener('er-supabase-ready', async function() {
@@ -1115,7 +1123,7 @@ document.querySelectorAll('.tab[data-panel]').forEach(tab => {
   const meta = document.getElementById('firm-meta');
   if (meta) {
     meta.innerHTML = `
-      <span>★ ${firm.rating.toFixed(1)} (${firm.reviews} değerlendirme)</span>
+      <span>★ ${firm.rating != null ? Number(firm.rating).toFixed(1) : '-'} (${firm.reviews != null ? firm.reviews : 0} değerlendirme)</span>
       <span>📍 ${firm.district}, ${firm.city}</span>
       <span>${PRICE_LABEL[firm.price] || ''}</span>
       <span>Min. sipariş: ${firm.minPeople} kişi</span>`;
@@ -1141,7 +1149,7 @@ document.querySelectorAll('.tab[data-panel]').forEach(tab => {
     about.textContent =
       `${firm.name}, ${firm.district} (${firm.city}) merkezli onaylı bir ${hizmet} firması. ` +
       `${firm.tagline}. ` +
-      `Ortalama ★ ${firm.rating.toFixed(1)} puanla ${firm.reviews} değerlendirmeye sahip; ` +
+      `Ortalama ★ ${firm.rating != null ? Number(firm.rating).toFixed(1) : '-'} puanla ${firm.reviews != null ? firm.reviews : 0} değerlendirmeye sahip; ` +
       `minimum ${firm.minPeople} kişi siparişten itibaren çalışıyor. ` +
       `Bütçe segmenti: ${PRICE_LABEL[firm.price] || '—'}.`;
   }
