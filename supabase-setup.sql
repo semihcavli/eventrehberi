@@ -32,10 +32,16 @@ CREATE POLICY "profiles: own update"
   USING (auth.uid() = id);
 
 -- --------------------------------------------------------------------------
--- 2. Admin ataması — b79dd123-9df3-499b-a9ea-1f99d50059ae
+-- 2. Admin atamaları (user_id ile)
 -- --------------------------------------------------------------------------
+-- semihcavli@gmail.com
 INSERT INTO public.profiles (id, role)
 VALUES ('b79dd123-9df3-499b-a9ea-1f99d50059ae', 'admin')
+ON CONFLICT (id) DO UPDATE SET role = 'admin';
+
+-- info@eventrehberi.com (email üzerinden bul)
+INSERT INTO public.profiles (id, role)
+SELECT id, 'admin' FROM auth.users WHERE email = 'info@eventrehberi.com'
 ON CONFLICT (id) DO UPDATE SET role = 'admin';
 
 -- --------------------------------------------------------------------------
@@ -88,7 +94,7 @@ CREATE POLICY "contact_requests: anon insert"
   ON public.contact_requests FOR INSERT TO anon, authenticated
   WITH CHECK (true);
 
--- Sadece admin okuyabilir
+-- role = 'admin' olan herkes okuyabilir (belirli user_id'ye bağlı değil)
 CREATE POLICY "contact_requests: admin select"
   ON public.contact_requests FOR SELECT TO authenticated
   USING (
@@ -98,7 +104,7 @@ CREATE POLICY "contact_requests: admin select"
     )
   );
 
--- Admin okundu alanını güncelleyebilir
+-- role = 'admin' olan herkes okundu alanını güncelleyebilir
 CREATE POLICY "contact_requests: admin update"
   ON public.contact_requests FOR UPDATE TO authenticated
   USING (
