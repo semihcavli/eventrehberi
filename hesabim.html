@@ -1140,7 +1140,6 @@ $('profile-form').addEventListener('submit', async (e) => {
     renderUser(updated);
     closeModal('modal-profile');
   } catch (err) {
-    console.error(err);
     errEl.textContent = 'Kaydedilemedi: ' + (err.message || 'bilinmeyen hata');
     errEl.hidden = false;
   } finally {
@@ -1176,7 +1175,6 @@ $('prefs-form').addEventListener('submit', async (e) => {
     renderUser(updated);
     closeModal('modal-prefs');
   } catch (err) {
-    console.error(err);
     errEl.textContent = 'Kaydedilemedi: ' + (err.message || 'bilinmeyen hata');
     errEl.hidden = false;
   } finally {
