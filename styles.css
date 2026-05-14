@@ -10091,3 +10091,151 @@ label,
   .admin-btn-approve, .admin-btn-reject, .admin-btn-edit { width: 100%; justify-content: center; }
 }
 
+/* ==========================================================================
+   HESABIM — Admin Panel (embedded in account page)
+   ========================================================================== */
+.hbm-admin-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--color-border);
+  margin: 0 -1.5rem;
+  padding: 0 1.5rem;
+}
+.hbm-admin-tab {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 0.75rem 1.125rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  margin-bottom: -1px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: inherit;
+  transition: color 0.15s;
+}
+.hbm-admin-tab--active {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+  font-weight: 600;
+}
+.hbm-admin-tab:hover:not(.hbm-admin-tab--active) { color: var(--color-text); }
+
+.hbm-admin-badge {
+  background: #C0392B;
+  color: #fff;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  border-radius: 999px;
+  min-width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+}
+
+.hbm-admin-tab-panel { padding: 0; }
+
+.hbm-admin-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.hbm-admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+.hbm-admin-table th {
+  text-align: left;
+  padding: 0.625rem 1rem;
+  background: var(--color-bg-alt);
+  color: var(--color-text-muted);
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.hbm-admin-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: middle;
+}
+.hbm-admin-table tr:last-child td { border-bottom: none; }
+.hbm-admin-table td a { color: var(--color-text); font-weight: 500; text-decoration: none; }
+.hbm-admin-table td a:hover { color: var(--color-accent); }
+
+.hbm-admin-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.625rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.hbm-admin-status--ok   { background: #d1fae5; color: #065f46; }
+.hbm-admin-status--wait { background: #fef3c7; color: #92400e; }
+
+.hbm-admin-actions { white-space: nowrap; text-align: right; }
+
+/* Support request cards */
+.hbm-support-list { display: flex; flex-direction: column; }
+.hbm-support-card {
+  padding: 1.125rem 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+.hbm-support-card:last-child { border-bottom: none; }
+.hbm-support-card--unread {
+  background: #fffbeb;
+  border-left: 3px solid #f59e0b;
+  padding-left: calc(1.5rem - 3px);
+}
+.hbm-support-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.625rem;
+}
+.hbm-support-head strong { display: block; font-weight: 600; color: var(--color-text); font-size: 0.9375rem; }
+.hbm-support-email { display: block; font-size: 0.8125rem; color: var(--color-text-muted); margin-top: 0.125rem; }
+.hbm-support-konu {
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 0.15rem 0.5rem;
+  background: #E8F4ED;
+  color: #1F4D33;
+  border-radius: 4px;
+  margin-top: 0.25rem;
+  font-weight: 500;
+}
+.hbm-support-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+  text-align: right;
+  flex-wrap: wrap;
+}
+.hbm-support-date { font-size: 0.8125rem; color: var(--color-text-muted); white-space: nowrap; }
+.hbm-support-msg {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .hbm-admin-tabs { margin: 0 -1.125rem; padding: 0 1.125rem; }
+  .hbm-admin-table th, .hbm-admin-table td { padding: 0.625rem 0.75rem; }
+  .hbm-support-head { flex-direction: column; gap: 0.5rem; }
+  .hbm-support-meta { text-align: left; }
+}
+

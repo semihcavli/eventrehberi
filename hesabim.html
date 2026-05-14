@@ -152,6 +152,30 @@
         <!-- LEFT COL -->
         <div class="acc-main">
 
+          <!-- ADMIN PANEL (sadece role='admin' kullanıcılara gösterilir) -->
+          <div class="acc-card" id="admin-panel" hidden>
+            <div class="acc-card-head">
+              <div>
+                <h3>Admin Paneli</h3>
+                <p class="muted-sm" id="admin-panel-stats"></p>
+              </div>
+              <button class="btn btn-ghost btn-sm" type="button" id="btn-admin-refresh">Yenile</button>
+            </div>
+            <div class="hbm-admin-tabs">
+              <button class="hbm-admin-tab hbm-admin-tab--active" type="button" data-admin-tab="firms">Firmalar</button>
+              <button class="hbm-admin-tab" type="button" data-admin-tab="support">
+                Destek Talepleri
+                <span class="hbm-admin-badge" id="admin-unread-badge" hidden>0</span>
+              </button>
+            </div>
+            <div class="hbm-admin-tab-panel" id="admin-tab-firms">
+              <div id="admin-firms-body"></div>
+            </div>
+            <div class="hbm-admin-tab-panel" id="admin-tab-support" hidden>
+              <div id="admin-support-body"></div>
+            </div>
+          </div>
+
           <!-- FAVORITES -->
           <div class="acc-card" id="favorites">
             <div class="acc-card-head">
@@ -588,6 +612,15 @@ function renderUser(user) {
 
   loadingEl.hidden = true;
   pageEl.hidden = false;
+
+  if (window.ER_Supabase && user && !$('admin-panel').dataset.adminInit) {
+    fetchUserRole(window.ER_Supabase, user.id).then(role => {
+      if (role === 'admin') {
+        $('admin-panel').dataset.adminInit = '1';
+        initAdminPanel(window.ER_Supabase);
+      }
+    }).catch(() => {});
+  }
 }
 
 function renderProfileCompletion(meta) {
@@ -798,6 +831,185 @@ function eventCard(e) {
 function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   ADMIN PANEL
+   ═══════════════════════════════════════════════════════════════ */
+async function fetchUserRole(sb, userId) {
+  const { data } = await sb.from('profiles').select('role').eq('id', userId).maybeSingle();
+  return (data && data.role) || 'user';
+}
+
+async function initAdminPanel(sb) {
+  $('admin-panel').hidden = false;
+  await loadAdminFirms(sb);
+  loadSupportBadge(sb);
+
+  $('btn-admin-refresh').addEventListener('click', () => {
+    const active = document.querySelector('.hbm-admin-tab--active');
+    if (active && active.dataset.adminTab === 'support') loadSupportRequests(sb);
+    else loadAdminFirms(sb);
+  });
+
+  document.querySelectorAll('.hbm-admin-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.dataset.adminTab;
+      document.querySelectorAll('.hbm-admin-tab').forEach(b =>
+        b.classList.toggle('hbm-admin-tab--active', b.dataset.adminTab === tab)
+      );
+      $('admin-tab-firms').hidden   = tab !== 'firms';
+      $('admin-tab-support').hidden = tab !== 'support';
+      if (tab === 'support') loadSupportRequests(sb);
+    });
+  });
+}
+
+async function loadAdminFirms(sb) {
+  const body = $('admin-firms-body');
+  body.innerHTML = '<p style="padding:1rem;color:var(--color-text-muted)">Yükleniyor...</p>';
+
+  const { data: firms, error } = await sb
+    .from('firms')
+    .select('id,name,hizmet,city,approved')
+    .order('name');
+
+  if (error) {
+    body.innerHTML = `<p style="padding:1rem;color:#C0392B">Hata: ${escapeHtml(error.message)}</p>`;
+    return;
+  }
+  if (!firms || !firms.length) {
+    body.innerHTML = '<p style="padding:1rem;color:var(--color-text-muted)">Firma bulunamadı.</p>';
+    return;
+  }
+
+  const total    = firms.length;
+  const approved = firms.filter(f => f.approved).length;
+  $('admin-panel-stats').textContent = `${total} firma · ${approved} onaylı · ${total - approved} bekliyor`;
+
+  body.innerHTML = `
+    <div class="hbm-admin-table-wrap">
+      <table class="hbm-admin-table">
+        <thead><tr><th>Firma</th><th>Hizmet</th><th>Şehir</th><th>Durum</th><th></th></tr></thead>
+        <tbody>${firms.map(renderAdminFirmRow).join('')}</tbody>
+      </table>
+    </div>`;
+}
+
+function renderAdminFirmRow(f) {
+  const ok  = !!f.approved;
+  const sid = escapeHtml(String(f.id));
+  return `
+    <tr id="admin-firm-${sid}">
+      <td><a href="firma.html?id=${encodeURIComponent(f.id)}" target="_blank">${escapeHtml(f.name || '—')}</a></td>
+      <td>${escapeHtml(f.hizmet || '—')}</td>
+      <td>${escapeHtml(f.city   || '—')}</td>
+      <td><span class="hbm-admin-status ${ok ? 'hbm-admin-status--ok' : 'hbm-admin-status--wait'}">${ok ? 'Onaylı' : 'Bekliyor'}</span></td>
+      <td class="hbm-admin-actions">
+        <button class="btn btn-sm ${ok ? 'btn-ghost' : 'btn-primary'}" type="button"
+          data-admin-firm="${sid}" data-admin-set="${!ok}">
+          ${ok ? 'Reddet' : 'Onayla'}
+        </button>
+      </td>
+    </tr>`;
+}
+
+async function loadSupportBadge(sb) {
+  const { count } = await sb
+    .from('contact_requests')
+    .select('*', { count: 'exact', head: true })
+    .eq('okundu', false);
+  const badge = $('admin-unread-badge');
+  if (!badge) return;
+  badge.textContent = count || 0;
+  badge.hidden = !(count > 0);
+}
+
+async function loadSupportRequests(sb) {
+  const body = $('admin-support-body');
+  body.innerHTML = '<p style="padding:1rem;color:var(--color-text-muted)">Yükleniyor...</p>';
+
+  const { data: reqs, error } = await sb
+    .from('contact_requests')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    body.innerHTML = `<p style="padding:1rem;color:#C0392B">Hata: ${escapeHtml(error.message)}</p>`;
+    return;
+  }
+  if (!reqs || !reqs.length) {
+    body.innerHTML = '<div class="acc-empty" style="padding:2rem;text-align:center"><p>Henüz mesaj yok.</p></div>';
+    return;
+  }
+  body.innerHTML = `<div class="hbm-support-list">${reqs.map(renderSupportCard).join('')}</div>`;
+}
+
+function renderSupportCard(r) {
+  const date = new Date(r.created_at).toLocaleDateString('tr-TR', {
+    day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit'
+  });
+  return `
+    <div class="hbm-support-card ${r.okundu ? '' : 'hbm-support-card--unread'}" id="admin-req-${r.id}">
+      <div class="hbm-support-head">
+        <div>
+          <strong>${escapeHtml(r.ad || '')}</strong>
+          <span class="hbm-support-email">${escapeHtml(r.email || '')}</span>
+          ${r.konu ? `<span class="hbm-support-konu">${escapeHtml(r.konu)}</span>` : ''}
+        </div>
+        <div class="hbm-support-meta">
+          <span class="hbm-support-date">${date}</span>
+          ${!r.okundu
+            ? `<button class="btn btn-sm btn-ghost" type="button" data-admin-req="${r.id}">Okundu işaretle</button>`
+            : '<span class="hbm-admin-status hbm-admin-status--ok">Okundu</span>'}
+        </div>
+      </div>
+      <p class="hbm-support-msg">${escapeHtml(r.mesaj || '')}</p>
+    </div>`;
+}
+
+/* Admin event delegation — firma onay toggle ve destek okundu */
+document.addEventListener('click', async (e) => {
+  const firmBtn = e.target.closest('[data-admin-firm]');
+  if (firmBtn && window.ER_Supabase) {
+    const id     = firmBtn.dataset.adminFirm;
+    const newVal = firmBtn.dataset.adminSet === 'true';
+    firmBtn.disabled = true;
+    firmBtn.textContent = '...';
+    const { error } = await window.ER_Supabase.from('firms').update({ approved: newVal }).eq('id', id);
+    if (error) { alert('Hata: ' + error.message); firmBtn.disabled = false; return; }
+    const row = document.getElementById(`admin-firm-${id}`);
+    if (row) {
+      const st = row.querySelector('.hbm-admin-status');
+      st.className   = `hbm-admin-status ${newVal ? 'hbm-admin-status--ok' : 'hbm-admin-status--wait'}`;
+      st.textContent = newVal ? 'Onaylı' : 'Bekliyor';
+      row.querySelector('.hbm-admin-actions').innerHTML =
+        `<button class="btn btn-sm ${newVal ? 'btn-ghost' : 'btn-primary'}" type="button"
+          data-admin-firm="${escapeHtml(id)}" data-admin-set="${!newVal}">
+          ${newVal ? 'Reddet' : 'Onayla'}
+        </button>`;
+    }
+    return;
+  }
+
+  const reqBtn = e.target.closest('[data-admin-req]');
+  if (reqBtn && window.ER_Supabase) {
+    const id = reqBtn.dataset.adminReq;
+    reqBtn.disabled = true;
+    const { error } = await window.ER_Supabase
+      .from('contact_requests').update({ okundu: true }).eq('id', id);
+    if (error) { alert('Hata: ' + error.message); reqBtn.disabled = false; return; }
+    const card = document.getElementById(`admin-req-${id}`);
+    if (card) {
+      card.classList.remove('hbm-support-card--unread');
+      const span = document.createElement('span');
+      span.className   = 'hbm-admin-status hbm-admin-status--ok';
+      span.textContent = 'Okundu';
+      reqBtn.replaceWith(span);
+    }
+    loadSupportBadge(window.ER_Supabase);
+    return;
+  }
+});
 
 document.addEventListener('click', (e) => {
   const btn = e.target.closest('[data-remove-event]');
