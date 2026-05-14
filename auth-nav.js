@@ -30,7 +30,7 @@
       var name      = meta.full_name || (user.email ? user.email.split('@')[0] : 'Hesabım');
       var initial   = (name.trim()[0] || '?').toUpperCase();
       var firstName = name.split(' ')[0];
-      var ADMIN_EMAILS = ['rertovi@gmail.com', 'info@eventrehberi.com'];
+      var ADMIN_EMAILS = ['rertovi@gmail.com', 'info@eventrehberi.com', 'semihcavli@gmail.com'];
       var isAdmin = user.email && ADMIN_EMAILS.indexOf(user.email.toLowerCase()) !== -1;
       var adminLink = isAdmin
         ? '<a href="yonetim.html" class="nav-user-item">' +
