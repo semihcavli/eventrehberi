@@ -45,7 +45,22 @@ SELECT id, 'admin' FROM auth.users WHERE email = 'info@eventrehberi.com'
 ON CONFLICT (id) DO UPDATE SET role = 'admin';
 
 -- --------------------------------------------------------------------------
--- 3. firms tablosu — admin RLS politikaları
+-- 3. firm_applications tablosu — admin RLS politikası
+-- --------------------------------------------------------------------------
+DROP POLICY IF EXISTS "firm_applications: admin select all" ON public.firm_applications;
+
+-- Admin tüm başvuruları görebilir (sadece kendi başvurusu değil)
+CREATE POLICY "firm_applications: admin select all"
+  ON public.firm_applications FOR SELECT TO authenticated
+  USING (
+    EXISTS (
+      SELECT 1 FROM public.profiles
+      WHERE id = auth.uid() AND role = 'admin'
+    )
+  );
+
+-- --------------------------------------------------------------------------
+-- 4. firms tablosu — admin RLS politikaları
 -- --------------------------------------------------------------------------
 DROP POLICY IF EXISTS "firms: admin select all" ON public.firms;
 DROP POLICY IF EXISTS "firms: admin update"     ON public.firms;
