@@ -180,6 +180,18 @@
             </div>
           </div>
 
+          <!-- BAŞVURULARIM -->
+          <div class="acc-card" id="applications">
+            <div class="acc-card-head">
+              <div>
+                <h3>Başvurularım</h3>
+                <p class="muted-sm">Firma kayıt başvurularının durumu.</p>
+              </div>
+              <a href="kayit.html" class="btn btn-ghost btn-sm">+ Yeni başvuru</a>
+            </div>
+            <div class="acc-card-body" id="applications-body"></div>
+          </div>
+
           <!-- FAVORITES -->
           <div class="acc-card" id="favorites">
             <div class="acc-card-head">
@@ -608,6 +620,7 @@ function renderUser(user) {
   renderFavorites();
   renderEvents();
   renderRecommendations(meta);
+  if (window.ER_Supabase) loadApplications(window.ER_Supabase, user.id);
 
   $('pf-name').value = name;
   $('pf-phone').value = phone;
@@ -834,6 +847,44 @@ function eventCard(e) {
 
 function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BAŞVURULARIM
+   ═══════════════════════════════════════════════════════════════ */
+async function loadApplications(sb, userId) {
+  const body = $('applications-body');
+  const { data, error } = await sb
+    .from('firm_applications')
+    .select('firm_name,hizmet,city,status,created_at')
+    .eq('user_id', userId)
+    .order('created_at', { ascending: false });
+
+  if (error || !data || !data.length) {
+    body.innerHTML = '<p class="muted-sm" style="padding:.25rem 0">Henüz başvurun yok. <a href="kayit.html" class="link-accent">Firmanı kaydet →</a></p>';
+    return;
+  }
+
+  const STATUS_LABEL = { pending: 'İnceleniyor', approved: 'Onaylandı', rejected: 'Reddedildi' };
+  const STATUS_CLASS = { pending: 'app-status--wait', approved: 'app-status--ok', rejected: 'app-status--err' };
+  const HIZMET_LABEL = {
+    yemek:'Catering', bar:'Bar', sef:'Şef', pasta:'Pasta', susleme:'Süsleme',
+    cicek:'Çiçek', davetiye:'Davetiye', organizator:'Organizatör',
+    dj:'DJ', foto:'Fotoğraf', garson:'Garson', hostes:'Hostes', ekipman:'Ekipman'
+  };
+
+  body.innerHTML = data.map(a => {
+    const tarih = a.created_at ? new Date(a.created_at).toLocaleDateString('tr-TR',{day:'numeric',month:'long',year:'numeric'}) : '';
+    const hizmet = HIZMET_LABEL[a.hizmet] || escapeHtml(a.hizmet || '');
+    const status = a.status || 'pending';
+    return `<div class="app-row">
+      <div class="app-info">
+        <strong>${escapeHtml(a.firm_name || '—')}</strong>
+        <span class="muted-sm">${hizmet}${a.city ? ' · ' + escapeHtml(a.city) : ''}${tarih ? ' · ' + tarih : ''}</span>
+      </div>
+      <span class="app-status ${STATUS_CLASS[status] || 'app-status--wait'}">${STATUS_LABEL[status] || 'İnceleniyor'}</span>
+    </div>`;
+  }).join('');
 }
 
 /* ═══════════════════════════════════════════════════════════════
