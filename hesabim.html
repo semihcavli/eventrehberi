@@ -615,11 +615,12 @@ function renderUser(user) {
 
   if (window.ER_Supabase && user && !$('admin-panel').dataset.adminInit) {
     fetchUserRole(window.ER_Supabase, user.id).then(role => {
+      console.log('[admin] role check result:', role, 'for user:', user.id);
       if (role === 'admin') {
         $('admin-panel').dataset.adminInit = '1';
         initAdminPanel(window.ER_Supabase);
       }
-    }).catch(() => {});
+    }).catch(err => { console.error('[admin] role check failed:', err); });
   }
 }
 
@@ -836,7 +837,9 @@ function escapeHtml(s) {
    ADMIN PANEL
    ═══════════════════════════════════════════════════════════════ */
 async function fetchUserRole(sb, userId) {
-  const { data } = await sb.from('profiles').select('role').eq('id', userId).maybeSingle();
+  const { data, error } = await sb.from('profiles').select('role').eq('id', userId).maybeSingle();
+  if (error) console.warn('[admin] fetchUserRole error:', error);
+  console.log('[admin] fetchUserRole userId:', userId, 'data:', data);
   return (data && data.role) || 'user';
 }
 
