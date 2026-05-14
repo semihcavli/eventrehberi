@@ -1137,13 +1137,11 @@ async function getFirms() {
     const { data, error } = await ER_Supabase.from('firms').select('*').eq('approved', true);
     if (error) throw error;
     const firms = (data || []).map(normalizeFromRow);
-    console.log('[ER] Firms loaded:', firms.length, firms);
     window.CS_FIRMS = firms;
     syncSidebarFromState();
     if (state.query) $search.value = state.query;
     render();
   } catch (err) {
-    console.error('[ER] Firms fetch error:', err);
     if ($grid) $grid.innerHTML = '<p style="padding:2rem;text-align:center;color:#c0392b;">Firmalar yüklenemedi. Lütfen sayfayı yenileyin.</p>';
   }
 }
