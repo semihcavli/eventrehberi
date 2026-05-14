@@ -844,9 +844,11 @@ async function fetchUserRole(sb, userId) {
 }
 
 async function initAdminPanel(sb) {
-  console.log('[admin] initAdminPanel called, panel el:', $('admin-panel'));
-  $('admin-panel').hidden = false;
-  console.log('[admin] panel hidden set to false');
+  const panelEl = $('admin-panel');
+  console.log('[admin] initAdminPanel called, panel el:', panelEl, 'hidden attr:', panelEl.getAttribute('hidden'));
+  panelEl.removeAttribute('hidden');
+  panelEl.style.display = 'block';
+  console.log('[admin] panel revealed, computed display:', getComputedStyle(panelEl).display);
   try {
     await loadAdminFirms(sb);
   } catch(e) { console.error('[admin] loadAdminFirms threw:', e); }
