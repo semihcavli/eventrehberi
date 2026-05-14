@@ -614,11 +614,11 @@ function renderUser(user) {
   pageEl.hidden = false;
 
   if (window.ER_Supabase && user && !$('admin-panel').dataset.adminInit) {
-    fetchUserRole(window.ER_Supabase, user.id).then(role => {
+    fetchUserRole(window.ER_Supabase, user.id).then(async role => {
       console.log('[admin] role check result:', role, 'for user:', user.id);
       if (role === 'admin') {
         $('admin-panel').dataset.adminInit = '1';
-        initAdminPanel(window.ER_Supabase);
+        await initAdminPanel(window.ER_Supabase);
       }
     }).catch(err => { console.error('[admin] role check failed:', err); });
   }
@@ -844,8 +844,12 @@ async function fetchUserRole(sb, userId) {
 }
 
 async function initAdminPanel(sb) {
+  console.log('[admin] initAdminPanel called, panel el:', $('admin-panel'));
   $('admin-panel').hidden = false;
-  await loadAdminFirms(sb);
+  console.log('[admin] panel hidden set to false');
+  try {
+    await loadAdminFirms(sb);
+  } catch(e) { console.error('[admin] loadAdminFirms threw:', e); }
   loadSupportBadge(sb);
 
   $('btn-admin-refresh').addEventListener('click', () => {
