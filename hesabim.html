@@ -80,6 +80,10 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
             Profili düzenle
           </button>
+          <button class="btn btn-ghost-white" id="btn-goto-admin" type="button" hidden
+            onclick="document.getElementById('admin-panel').scrollIntoView({behavior:'smooth',block:'start'})">
+            ⚙ Admin Paneli
+          </button>
         </div>
       </div>
     </div>
@@ -845,10 +849,14 @@ async function fetchUserRole(sb, userId) {
 
 async function initAdminPanel(sb) {
   const panelEl = $('admin-panel');
-  console.log('[admin] initAdminPanel called, panel el:', panelEl, 'hidden attr:', panelEl.getAttribute('hidden'));
   panelEl.removeAttribute('hidden');
   panelEl.style.display = 'block';
-  console.log('[admin] panel revealed, computed display:', getComputedStyle(panelEl).display);
+
+  const heroBtn = $('btn-goto-admin');
+  if (heroBtn) heroBtn.removeAttribute('hidden');
+
+  setTimeout(() => panelEl.scrollIntoView({ behavior: 'smooth', block: 'start' }), 300);
+
   try {
     await loadAdminFirms(sb);
   } catch(e) { console.error('[admin] loadAdminFirms threw:', e); }
