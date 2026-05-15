@@ -67,7 +67,7 @@ ${mesaj}
 
   const { error } = await resend.emails.send({
     from: 'EventRehberi <noreply@eventrehberi.com>',
-    to: ['info@sanamekan.com'],
+    to: ['info@eventrehberi.com'],
     reply_to: email,
     subject: `Yeni Destek Talebi - ${konu || 'Genel'}`,
     html,
