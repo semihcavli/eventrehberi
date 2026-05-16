@@ -93,8 +93,8 @@ module.exports = async function handler(req, res) {
   const dest = tip ? `/tesekkurler.html?tip=${tip}` : '/tesekkurler.html';
 
   const body  = parseBody(req);
-  const ad    = String(body.ad    || body.name    || body.isim    || '').slice(0, 200).trim();
-  const email = String(body.email ||                               '').slice(0, 300).trim();
+  const ad    = String(body.ad || body['ad-soyad'] || body.name   || body.isim    || '').slice(0, 200).trim();
+  const email = String(body.email || body.eposta || '').slice(0, 300).trim();
   const konu  = String(body.konu  || body.subject || body.tip     || tip || '').slice(0, 300).trim();
   const mesaj = String(body.mesaj || body.message || body.icerik  || '').slice(0, 5000).trim();
 
