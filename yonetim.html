@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Başvuru Yönetimi — EventRehberi Admin</title>
+<title>BaÅvuru YÃ¶netimi â EventRehberi Admin</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -28,7 +28,7 @@
       <li><a href="catererlar.html">Firmalar</a></li>
     </ul>
     <div class="nav-cta">
-      <a href="giris.html" class="nav-auth-link">Giriş Yap</a>
+      <a href="giris.html" class="nav-auth-link">GiriÅ Yap</a>
     </div>
   </div>
 </nav>
@@ -36,55 +36,75 @@
 <div class="admin-page-wrap" id="admin-wrap">
 
   <div class="admin-header">
-    <h1>Başvuru Yönetimi</h1>
-    <button type="button" class="btn btn-ghost btn-sm" id="admin-logout-btn">Çıkış</button>
+    <h1>BaÅvuru YÃ¶netimi</h1>
+    <button type="button" class="btn btn-ghost btn-sm" id="admin-logout-btn">ÃÄ±kÄ±Å</button>
   </div>
 
   <div class="admin-stats-bar" id="admin-stats-bar"></div>
 
+  <!-- Main section tabs -->
+  <div class="hbm-admin-tabs" style="margin-bottom:1rem;">
+    <button class="hbm-admin-tab hbm-admin-tab--active" type="button" data-main-tab="applications">Ekleme Talepleri</button>
+    <button class="hbm-admin-tab" type="button" data-main-tab="contact">
+      Destek Talepleri
+      <span class="hbm-admin-badge" id="contact-unread-badge" hidden>0</span>
+    </button>
+  </div>
+
+  <!-- Applications section -->
+  <div id="section-applications">
+
   <div class="admin-filters">
     <div class="admin-filter-tabs" id="filter-tabs">
-      <button class="admin-filter-tab active" data-status="all">Tümü</button>
+      <button class="admin-filter-tab active" data-status="all">TÃ¼mÃ¼</button>
       <button class="admin-filter-tab" data-status="pending">Beklemede</button>
-      <button class="admin-filter-tab" data-status="approved">Onaylı</button>
+      <button class="admin-filter-tab" data-status="approved">OnaylÄ±</button>
       <button class="admin-filter-tab" data-status="rejected">Reddedildi</button>
     </div>
     <select class="admin-filter-select" id="filter-hizmet">
-      <option value="">Tüm kategoriler</option>
+      <option value="">TÃ¼m kategoriler</option>
       <option value="yemek">Yemek Catering</option>
       <option value="bar">Bar & Kokteyl</option>
-      <option value="sef">Özel Şef</option>
-      <option value="pasta">Pasta & Tatlı</option>
-      <option value="susleme">Süsleme & Dekor</option>
-      <option value="cicek">Çiçek</option>
-      <option value="davetiye">Davetiye Tasarımı</option>
-      <option value="organizator">Organizatör</option>
-      <option value="dj">DJ & Müzik</option>
+      <option value="sef">Ãzel Åef</option>
+      <option value="pasta">Pasta & TatlÄ±</option>
+      <option value="susleme">SÃ¼sleme & Dekor</option>
+      <option value="cicek">ÃiÃ§ek</option>
+      <option value="davetiye">Davetiye TasarÄ±mÄ±</option>
+      <option value="organizator">OrganizatÃ¶r</option>
+      <option value="dj">DJ & MÃ¼zik</option>
       <option value="foto">Foto & Video</option>
       <option value="garson">Garson Servisi</option>
       <option value="hostes">Hostes</option>
       <option value="ekipman">Ekipman Kiralama</option>
     </select>
-    <input type="text" class="admin-filter-select" id="filter-city" placeholder="Şehir filtrele…" style="max-width:160px;">
+    <input type="text" class="admin-filter-select" id="filter-city" placeholder="Åehir filtreleâ¦" style="max-width:160px;">
   </div>
 
   <div class="admin-cards" id="admin-cards">
-    <p style="color:var(--color-text-muted);padding:2rem 0;">Yükleniyor…</p>
+    <p style="color:var(--color-text-muted);padding:2rem 0;">YÃ¼kleniyorâ¦</p>
+  </div>
+  </div><!-- /section-applications -->
+
+  <!-- Contact requests section -->
+  <div id="section-contact" hidden>
+    <div id="contact-cards">
+      <p style="color:var(--color-text-muted);padding:2rem 0;">YÃ¼kleniyorâ¦</p>
+    </div>
   </div>
 
 </div>
 
 <!-- Edit modal -->
 <div class="admin-modal-overlay" id="edit-modal-overlay" hidden>
-  <div class="admin-modal" role="dialog" aria-modal="true" aria-label="Başvuru düzenle">
-    <h3>Başvuru Düzenle</h3>
+  <div class="admin-modal" role="dialog" aria-modal="true" aria-label="BaÅvuru dÃ¼zenle">
+    <h3>BaÅvuru DÃ¼zenle</h3>
     <input type="hidden" id="edit-app-id">
     <div class="form-group">
-      <label for="edit-firm-name">Firma adı</label>
+      <label for="edit-firm-name">Firma adÄ±</label>
       <input type="text" id="edit-firm-name">
     </div>
     <div class="form-group">
-      <label for="edit-city">Şehir</label>
+      <label for="edit-city">Åehir</label>
       <input type="text" id="edit-city">
     </div>
     <div class="form-group">
@@ -96,11 +116,11 @@
       <input type="email" id="edit-email">
     </div>
     <div class="form-group">
-      <label for="edit-description">Açıklama</label>
+      <label for="edit-description">AÃ§Ä±klama</label>
       <textarea id="edit-description" rows="4"></textarea>
     </div>
     <div class="admin-modal-actions">
-      <button type="button" class="btn btn-ghost btn-sm" id="edit-cancel-btn">İptal</button>
+      <button type="button" class="btn btn-ghost btn-sm" id="edit-cancel-btn">Ä°ptal</button>
       <button type="button" class="btn btn-primary btn-sm" id="edit-save-btn">Kaydet</button>
     </div>
   </div>
@@ -108,15 +128,15 @@
 
 <!-- Reject modal -->
 <div class="admin-modal-overlay" id="reject-modal-overlay" hidden>
-  <div class="admin-modal" role="dialog" aria-modal="true" aria-label="Başvuru reddet">
-    <h3>Başvuruyu Reddet</h3>
+  <div class="admin-modal" role="dialog" aria-modal="true" aria-label="BaÅvuru reddet">
+    <h3>BaÅvuruyu Reddet</h3>
     <input type="hidden" id="reject-app-id">
     <div class="form-group">
       <label for="reject-reason">Reddetme sebebi <span style="color:var(--color-text-muted);font-weight:400;">(opsiyonel)</span></label>
-      <textarea id="reject-reason" rows="3" placeholder="Firma başvurusunda eksik veya uygunsuz bilgi varsa belirt…"></textarea>
+      <textarea id="reject-reason" rows="3" placeholder="Firma baÅvurusunda eksik veya uygunsuz bilgi varsa belirtâ¦"></textarea>
     </div>
     <div class="admin-modal-actions">
-      <button type="button" class="btn btn-ghost btn-sm" id="reject-cancel-btn">İptal</button>
+      <button type="button" class="btn btn-ghost btn-sm" id="reject-cancel-btn">Ä°ptal</button>
       <button type="button" class="admin-btn-reject" id="reject-confirm-btn">Reddet</button>
     </div>
   </div>
@@ -130,17 +150,17 @@
 <script src="auth-nav.js"></script>
 <script>
 /* =====================================================
-   Admin panel — yonetim.html
+   Admin panel â yonetim.html
    ===================================================== */
 const ADMIN_EMAILS = ['rertovi@gmail.com', 'info@eventrehberi.com', 'semihcavli@gmail.com'];
 const HIZMET_LBL = {
-  yemek:'Yemek Catering', bar:'Bar & Kokteyl', sef:'Özel Şef',
-  pasta:'Pasta & Tatlı', susleme:'Süsleme & Dekor', cicek:'Çiçek',
-  davetiye:'Davetiye Tasarımı', organizator:'Organizatör',
-  dj:'DJ & Müzik', foto:'Foto & Video', garson:'Garson Servisi',
+  yemek:'Yemek Catering', bar:'Bar & Kokteyl', sef:'Ãzel Åef',
+  pasta:'Pasta & TatlÄ±', susleme:'SÃ¼sleme & Dekor', cicek:'ÃiÃ§ek',
+  davetiye:'Davetiye TasarÄ±mÄ±', organizator:'OrganizatÃ¶r',
+  dj:'DJ & MÃ¼zik', foto:'Foto & Video', garson:'Garson Servisi',
   hostes:'Hostes', ekipman:'Ekipman Kiralama'
 };
-const SEGMENT_MAP = { 'Ekonomik':1, 'Orta':2, 'Orta-üst':3, 'Premium':4 };
+const SEGMENT_MAP = { 'Ekonomik':1, 'Orta':2, 'Orta-Ã¼st':3, 'Premium':4 };
 
 let currentStatus = 'all';
 let allApplications = [];
@@ -149,8 +169,8 @@ let adminUser = null;
 /* ---- slugify ---- */
 function slugify(str) {
   return (str || '').toLowerCase()
-    .replace(/ğ/g,'g').replace(/ü/g,'u').replace(/ş/g,'s')
-    .replace(/ı/g,'i').replace(/ö/g,'o').replace(/ç/g,'c')
+    .replace(/Ä/g,'g').replace(/Ã¼/g,'u').replace(/Å/g,'s')
+    .replace(/Ä±/g,'i').replace(/Ã¶/g,'o').replace(/Ã§/g,'c')
     .replace(/[^a-z0-9\s-]/g,'').trim().replace(/\s+/g,'-');
 }
 
@@ -169,7 +189,7 @@ async function loadApplications() {
     .from('firm_applications')
     .select('*')
     .order('created_at', { ascending: false });
-  if (error) { showToast('Başvurular yüklenemedi: ' + error.message, true); return; }
+  if (error) { showToast('BaÅvurular yÃ¼klenemedi: ' + error.message, true); return; }
   allApplications = data || [];
   renderStats();
   applyFiltersAndRender();
@@ -181,7 +201,7 @@ function renderStats() {
   const rejected = allApplications.filter(a => a.status === 'rejected').length;
   document.getElementById('admin-stats-bar').innerHTML = [
     `<span class="admin-stat-chip">Beklemede: ${pending}</span>`,
-    `<span class="admin-stat-chip green">Onaylı: ${approved}</span>`,
+    `<span class="admin-stat-chip green">OnaylÄ±: ${approved}</span>`,
     `<span class="admin-stat-chip red">Reddedildi: ${rejected}</span>`,
   ].join('');
 }
@@ -197,7 +217,7 @@ function applyFiltersAndRender() {
 
   const container = document.getElementById('admin-cards');
   if (!filtered.length) {
-    container.innerHTML = '<p style="color:var(--color-text-muted);padding:2rem 0;">Başvuru bulunamadı.</p>';
+    container.innerHTML = '<p style="color:var(--color-text-muted);padding:2rem 0;">BaÅvuru bulunamadÄ±.</p>';
     return;
   }
   container.innerHTML = filtered.map(renderCard).join('');
@@ -214,7 +234,7 @@ function renderCard(app) {
   <div class="admin-card" data-id="${app.id}">
     <div class="admin-card-head">
       <div>
-        <h3 class="admin-card-name">${esc(app.firm_name || '—')}
+        <h3 class="admin-card-name">${esc(app.firm_name || 'â')}
           <span class="admin-status-badge ${app.status}">${statusLabel(app.status)}</span>
           ${app.paket === 'Pro' ? '<span class="admin-status-badge" style="background:#FFF8E8;color:#A06000;border:1px solid #F0D890;margin-left:4px;">Pro</span>' : ''}
         </h3>
@@ -231,10 +251,10 @@ function renderCard(app) {
     </div>
 
     ${desc ? `<div class="admin-card-desc" id="desc-${app.id}">${esc(desc)}</div>
-    <button type="button" class="admin-desc-toggle" data-desc="${app.id}">Daha fazla göster</button>` : ''}
+    <button type="button" class="admin-desc-toggle" data-desc="${app.id}">Daha fazla gÃ¶ster</button>` : ''}
 
     ${photos.length ? `<div class="admin-card-photos">${photos.map(url =>
-      `<img class="admin-photo-thumb" src="${esc(url)}" alt="Firma fotoğrafı" loading="lazy" onclick="window.open('${esc(url)}','_blank')">`
+      `<img class="admin-photo-thumb" src="${esc(url)}" alt="Firma fotoÄrafÄ±" loading="lazy" onclick="window.open('${esc(url)}','_blank')">`
     ).join('')}</div>` : ''}
 
     ${app.rejection_reason ? `<div style="font-size:0.8125rem;color:#C0392B;background:#FFF0F0;border:1px solid #F5B7B1;border-radius:8px;padding:0.5rem 0.75rem;margin-bottom:0.75rem;">Ret sebebi: ${esc(app.rejection_reason)}</div>` : ''}
@@ -250,14 +270,14 @@ function renderCard(app) {
       </button>` : ''}
       <button type="button" class="admin-btn-edit" data-action="edit" data-id="${app.id}">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-        Düzenle
+        DÃ¼zenle
       </button>
     </div>
   </div>`;
 }
 
 function statusLabel(s) {
-  return { pending:'Beklemede', approved:'Onaylı', rejected:'Reddedildi' }[s] || s;
+  return { pending:'Beklemede', approved:'OnaylÄ±', rejected:'Reddedildi' }[s] || s;
 }
 
 function esc(str) {
@@ -277,7 +297,7 @@ function bindCardEvents() {
         const el = document.getElementById('desc-' + tog.dataset.desc);
         if (el) {
           el.classList.toggle('expanded');
-          tog.textContent = el.classList.contains('expanded') ? 'Daha az göster' : 'Daha fazla göster';
+          tog.textContent = el.classList.contains('expanded') ? 'Daha az gÃ¶ster' : 'Daha fazla gÃ¶ster';
         }
       }
       return;
@@ -296,7 +316,7 @@ function bindCardEvents() {
 /* ---- approve ---- */
 async function approveApplication(app, btn) {
   btn.disabled = true;
-  btn.textContent = 'Onaylanıyor…';
+  btn.textContent = 'OnaylanÄ±yorâ¦';
 
   const firmId = slugify(app.firm_name) + '-' + app.id.substring(0, 4);
   const firmRow = {
@@ -329,8 +349,8 @@ async function approveApplication(app, btn) {
   const { error: aErr } = await ER_Supabase.from('firm_applications')
     .update({ status: 'approved', reviewed_at: new Date().toISOString(), reviewed_by: adminUser?.id })
     .eq('id', app.id);
-  if (aErr) showToast('Durum güncellenemedi: ' + aErr.message, true);
-  else showToast('Firma yayınlandı ✓');
+  if (aErr) showToast('Durum gÃ¼ncellenemedi: ' + aErr.message, true);
+  else showToast('Firma yayÄ±nlandÄ± â');
 
   loadApplications();
 }
@@ -362,7 +382,7 @@ document.getElementById('reject-confirm-btn').addEventListener('click', async fu
   this.disabled = false;
 
   if (error) showToast('Ret kaydedilemedi: ' + error.message, true);
-  else { showToast('Başvuru reddedildi'); loadApplications(); }
+  else { showToast('BaÅvuru reddedildi'); loadApplications(); }
 });
 
 /* ---- edit modal ---- */
@@ -395,8 +415,8 @@ document.getElementById('edit-save-btn').addEventListener('click', async functio
   document.getElementById('edit-modal-overlay').hidden = true;
   this.disabled = false;
 
-  if (error) showToast('Güncelleme başarısız: ' + error.message, true);
-  else { showToast('Başvuru güncellendi'); loadApplications(); }
+  if (error) showToast('GÃ¼ncelleme baÅarÄ±sÄ±z: ' + error.message, true);
+  else { showToast('BaÅvuru gÃ¼ncellendi'); loadApplications(); }
 });
 
 /* ---- close modals on overlay click ---- */
@@ -425,17 +445,107 @@ document.getElementById('admin-logout-btn').addEventListener('click', async func
   window.location.href = 'giris.html';
 });
 
+/* ---- main tab switching ---- */
+document.querySelectorAll('[data-main-tab]').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('[data-main-tab]').forEach(function(b) { b.classList.remove('hbm-admin-tab--active'); });
+    btn.classList.add('hbm-admin-tab--active');
+    var tab = btn.dataset.mainTab;
+    document.getElementById('section-applications').hidden = (tab !== 'applications');
+    document.getElementById('section-contact').hidden = (tab !== 'contact');
+    if (tab === 'contact') loadContactRequests();
+  });
+});
+
+/* ---- contact requests ---- */
+async function loadContactBadge() {
+  var result = await ER_Supabase
+    .from('contact_requests')
+    .select('*', { count: 'exact', head: true })
+    .eq('okundu', false);
+  var badge = document.getElementById('contact-unread-badge');
+  if (!badge) return;
+  var count = result.count || 0;
+  badge.textContent = count;
+  badge.hidden = !(count > 0);
+}
+
+async function loadContactRequests() {
+  var body = document.getElementById('contact-cards');
+  body.innerHTML = '<p style="color:var(--color-text-muted);padding:2rem 0;">YÃ¼kleniyorâ¦</p>';
+
+  var result = await ER_Supabase
+    .from('contact_requests')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  if (result.error) {
+    body.innerHTML = '<p style="padding:2rem 0;color:#C0392B;">Hata: ' + esc(result.error.message) + '</p>';
+    return;
+  }
+  var reqs = result.data || [];
+  if (!reqs.length) {
+    body.innerHTML = '<p style="color:var(--color-text-muted);padding:2rem 0;text-align:center;">HenÃ¼z mesaj yok.</p>';
+    return;
+  }
+  body.innerHTML = '<div class="hbm-support-list">' + reqs.map(renderContactCard).join('') + '</div>';
+  bindContactEvents();
+}
+
+function renderContactCard(r) {
+  var date = new Date(r.created_at).toLocaleDateString('tr-TR', {
+    day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit'
+  });
+  return '<div class="hbm-support-card ' + (r.okundu ? '' : 'hbm-support-card--unread') + '" id="contact-req-' + r.id + '">'
+    + '<div class="hbm-support-head">'
+    + '<div>'
+    + '<strong>' + esc(r.ad || '') + '</strong>'
+    + '<span class="hbm-support-email">' + esc(r.email || '') + '</span>'
+    + (r.konu ? '<span class="hbm-support-konu">' + esc(r.konu) + '</span>' : '')
+    + '</div>'
+    + '<div class="hbm-support-meta">'
+    + '<span class="hbm-support-date">' + date + '</span>'
+    + (!r.okundu
+        ? '<button class="btn btn-sm btn-ghost" type="button" data-contact-req="' + r.id + '">Okundu iÅaretle</button>'
+        : '<span class="hbm-admin-status hbm-admin-status--ok">Okundu</span>')
+    + '</div>'
+    + '</div>'
+    + '<p class="hbm-support-msg">' + esc(r.mesaj || '') + '</p>'
+    + '</div>';
+}
+
+function bindContactEvents() {
+  document.getElementById('contact-cards').addEventListener('click', async function(e) {
+    var btn = e.target.closest('[data-contact-req]');
+    if (!btn) return;
+    var id = btn.dataset.contactReq;
+    btn.disabled = true;
+    var result = await ER_Supabase.from('contact_requests').update({ okundu: true }).eq('id', id);
+    if (result.error) { showToast('Hata: ' + result.error.message, true); btn.disabled = false; return; }
+    var card = document.getElementById('contact-req-' + id);
+    if (card) {
+      card.classList.remove('hbm-support-card--unread');
+      var span = document.createElement('span');
+      span.className = 'hbm-admin-status hbm-admin-status--ok';
+      span.textContent = 'Okundu';
+      btn.replaceWith(span);
+    }
+    loadContactBadge();
+  });
+}
+
 /* ---- boot ---- */
 document.addEventListener('er-supabase-ready', async function() {
   const { data: { user } } = await ER_Supabase.auth.getUser();
   if (!user || !ADMIN_EMAILS.includes(user.email)) {
     document.getElementById('admin-wrap').innerHTML =
-      '<div class="admin-unauthorized"><p>Yetkisiz erişim.</p><p style="font-size:0.875rem;">Yönlendiriliyor…</p></div>';
+      '<div class="admin-unauthorized"><p>Yetkisiz eriÅim.</p><p style="font-size:0.875rem;">YÃ¶nlendiriliyorâ¦</p></div>';
     setTimeout(() => window.location.href = 'hesabim.html', 2000);
     return;
   }
   adminUser = user;
   loadApplications();
+  loadContactBadge();
 }, { once: true });
 </script>
 </body>
