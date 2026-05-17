@@ -81,6 +81,7 @@
           <div class="form-group">
             <label for="reg-phone">Telefon</label>
             <input type="tel" id="reg-phone" name="telefon" placeholder="05XX XXX XX XX" autocomplete="tel" required pattern="^05[0-9]{9}$">
+            <small style="color:#888; font-size:12px;">05 ile başlayan 11 haneli numara gir.</small>
           </div>
 
           <div class="form-group">
@@ -222,7 +223,7 @@ function initSignupPage() {
     hideError();
     const fullName  = document.getElementById('reg-name').value.trim();
     const email     = document.getElementById('reg-email').value.trim();
-    const phone     = document.getElementById('reg-phone').value.trim();
+    const phone     = document.getElementById('reg-phone').value.trim().replace(/\s/g, '');
     const password  = document.getElementById('reg-password').value;
     const kvkk      = form.kvkk.checked;
     const marketing = form.pazarlama.checked;
