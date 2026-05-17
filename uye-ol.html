@@ -79,8 +79,8 @@
           </div>
 
           <div class="form-group">
-            <label for="reg-phone">Telefon <span class="muted-small">(opsiyonel)</span></label>
-            <input type="tel" id="reg-phone" name="telefon" placeholder="05XX XXX XX XX" autocomplete="tel">
+            <label for="reg-phone">Telefon</label>
+            <input type="tel" id="reg-phone" name="telefon" placeholder="05XX XXX XX XX" autocomplete="tel" required pattern="^05[0-9]{9}$">
           </div>
 
           <div class="form-group">
@@ -228,6 +228,8 @@ function initSignupPage() {
     const marketing = form.pazarlama.checked;
 
     if (!fullName || !email || !password) { showError('Ad soyad, e-posta ve şifre gerekli.'); return; }
+    if (!phone) { showError('Telefon numarası gerekli.'); return; }
+    if (!/^05[0-9]{9}$/.test(phone)) { showError('Geçerli bir telefon numarası gir (05XX XXX XX XX).'); return; }
     if (password.length < 8)              { showError('Şifre en az 8 karakter olmalı.'); return; }
     if (!kvkk)                            { showError('Devam etmek için kullanım koşullarını kabul etmelisin.'); return; }
 
