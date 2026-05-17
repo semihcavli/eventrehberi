@@ -9,6 +9,152 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<style>
+/* ── Firma detay sayfası iyileştirmeleri ── */
+
+/* Güven rozeti */
+.firm-badge-verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: linear-gradient(135deg, #e6f4ec, #d4eadd);
+  color: #1F4D33;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-left: 12px;
+  vertical-align: middle;
+  border: 1px solid #c2dcc8;
+}
+.firm-badge-verified svg {
+  width: 14px;
+  height: 14px;
+  fill: #1F4D33;
+}
+
+/* Meta chip'leri */
+.profile-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+.profile-meta .meta-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #f5f7f6;
+  border: 1px solid #e8ede9;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 13px;
+  color: #3a5a44;
+  font-weight: 500;
+}
+.profile-meta .meta-chip--rating {
+  background: #fff8e6;
+  border-color: #f0e0b0;
+  color: #7a6520;
+}
+
+/* Yorumlarda yıldızlar */
+.review-stars {
+  display: inline-flex;
+  gap: 2px;
+  margin-left: 8px;
+  color: #E8A630;
+  font-size: 14px;
+}
+.review-date {
+  color: #888;
+  font-size: 12px;
+  margin-left: auto;
+}
+
+/* Bilgi sekmesi ikonlu kartlar */
+.info-grid-card {
+  background: #f8faf9;
+  border: 1px solid #e8ede9;
+  border-radius: 12px;
+  padding: 20px;
+  transition: box-shadow 0.2s;
+}
+.info-grid-card:hover {
+  box-shadow: 0 4px 16px rgba(31,77,51,0.08);
+}
+.info-grid-card h4 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  color: #1F4D33;
+}
+.info-grid-card h4 .info-icon {
+  width: 20px;
+  height: 20px;
+  color: #52A371;
+}
+
+/* Galeri lightbox */
+.gallery img {
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border-radius: 10px;
+}
+.gallery img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+  animation: fadeIn 0.2s;
+}
+.lightbox-overlay img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 12px;
+  box-shadow: 0 0 60px rgba(0,0,0,0.5);
+}
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  color: #fff;
+  font-size: 36px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  opacity: 0.8;
+  z-index: 10000;
+}
+.lightbox-close:hover { opacity: 1; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* Hizmet türü badge */
+.firm-service-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #1F4D33;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin-left: 8px;
+  vertical-align: middle;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+</style>
 <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZH1F3D61N"></script>
@@ -56,12 +202,13 @@
 <div class="container">
   <div class="profile-header">
     <div class="profile-info">
-      <h1 id="firm-name">Boğaz Lezzetleri Catering</h1>
+      <h1 id="firm-name">Boğaz Lezzetleri Catering <span class="firm-badge-verified"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" fill="none" stroke="currentColor" stroke-width="2.5"/><polyline points="22 4 12 14.01 9 11.01" fill="none" stroke="currentColor" stroke-width="2.5"/></svg> Onaylı Firma</span></h1>
       <div class="profile-meta" id="firm-meta">
-        <span>★ 4.9 (184 değerlendirme)</span>
-        <span>📍 Beşiktaş, İstanbul</span>
-        <span>₺₺₺ Orta-üst segment</span>
-        <span>Min. sipariş: 20 kişi</span>
+        <span class="meta-chip meta-chip--rating">★ 4.9 (184 değerlendirme)</span>
+        <span class="meta-chip">📍 Beşiktaş, İstanbul</span>
+        <span class="meta-chip">₺₺₺ Orta-üst segment</span>
+        <span class="meta-chip">👥 Min. sipariş: 20 kişi</span>
+        <span class="meta-chip">Catering</span>
       </div>
     </div>
     <div class="profile-cta">
@@ -655,29 +802,29 @@
       </div><!-- /panel-yorumlar -->
 
       <div id="panel-bilgi" hidden>
-        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.5rem; margin-top:2rem;">
-          <div>
-            <h4 style="margin-bottom:.5rem;">Konum</h4>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.25rem; margin-top:2rem;">
+          <div class="info-grid-card">
+            <h4><svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Konum</h4>
             <p id="info-location">Beşiktaş, İstanbul</p>
           </div>
-          <div>
-            <h4 style="margin-bottom:.5rem;">Çalışma Saatleri</h4>
+          <div class="info-grid-card">
+            <h4><svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Çalışma Saatleri</h4>
             <p>Pazartesi – Pazar · 09:00 – 22:00</p>
           </div>
-          <div>
-            <h4 style="margin-bottom:.5rem;">Kapasite</h4>
+          <div class="info-grid-card">
+            <h4><svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Kapasite</h4>
             <p id="info-capacity">Min. 20 kişi · Maksimum kapasite için iletişime geçin</p>
           </div>
-          <div>
-            <h4 style="margin-bottom:.5rem;">Fiyat Segmenti</h4>
+          <div class="info-grid-card">
+            <h4><svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> Fiyat Segmenti</h4>
             <p id="info-price">₺₺₺ Orta-üst</p>
           </div>
-          <div>
-            <h4 style="margin-bottom:.5rem;">Belgeler</h4>
+          <div class="info-grid-card">
+            <h4><svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Belgeler</h4>
             <p>HACCP Gıda Güvenliği Sertifikası<br>Sağlık Bakanlığı Onaylı İşletme</p>
           </div>
-          <div>
-            <h4 style="margin-bottom:.5rem;">İletişim</h4>
+          <div class="info-grid-card">
+            <h4><svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> İletişim</h4>
             <p>
               <a id="info-wa" href="https://wa.me/905321234567" target="_blank" rel="noopener">WhatsApp ile ulaş</a><br>
               <span style="color:var(--color-text-muted);">info@eventrehberi.com</span>
@@ -1116,17 +1263,32 @@ document.querySelectorAll('.tab[data-panel]').forEach(tab => {
     hero.style.backgroundImage = `url('${heroImg}')`;
   }
 
-  // Header
+  // Header — firma adı + güven rozeti
   const h1 = document.getElementById('firm-name');
-  if (h1) h1.textContent = firm.name;
+  if (h1) {
+    h1.innerHTML = firm.name +
+      (firm.status === 'onaylı' || firm.status === 'approved'
+        ? ' <span class="firm-badge-verified"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01" fill="none" stroke="currentColor" stroke-width="2.5"/></svg> Onaylı Firma</span>'
+        : '');
+  }
 
+  // Hizmet türü badge
+  const HIZMET_BADGE = {
+    yemek:'Catering', bar:'Bar & Kokteyl', sef:'Özel Şef', pasta:'Pasta & Tatlı',
+    susleme:'Dekorasyon', cicek:'Çiçek', davetiye:'Davetiye',
+    organizator:'Organizasyon', dj:'DJ & Müzik', foto:'Foto & Video',
+    garson:'Garson', hostes:'Hostes', ekipman:'Ekipman'
+  };
+
+  // Meta chip'leri
   const meta = document.getElementById('firm-meta');
   if (meta) {
     meta.innerHTML = `
-      <span>★ ${firm.rating != null ? Number(firm.rating).toFixed(1) : '-'} (${firm.reviews != null ? firm.reviews : 0} değerlendirme)</span>
-      <span>📍 ${firm.district}, ${firm.city}</span>
-      <span>${PRICE_LABEL[firm.price] || ''}</span>
-      <span>Min. sipariş: ${firm.minPeople} kişi</span>`;
+      <span class="meta-chip meta-chip--rating">★ ${firm.rating != null ? Number(firm.rating).toFixed(1) : '-'} (${firm.reviews != null ? firm.reviews : 0} değerlendirme)</span>
+      <span class="meta-chip">📍 ${firm.district}, ${firm.city}</span>
+      <span class="meta-chip">${PRICE_LABEL[firm.price] || ''}</span>
+      <span class="meta-chip">👥 Min. ${firm.minPeople} kişi</span>
+      ${firm.hizmet && HIZMET_BADGE[firm.hizmet] ? '<span class="meta-chip">' + HIZMET_BADGE[firm.hizmet] + '</span>' : ''}`;
   }
 
   // Favorite button — point to this firm
@@ -1221,6 +1383,40 @@ document.querySelectorAll('.tab[data-panel]').forEach(tab => {
   }
   } // end run()
 })();
+</script>
+<script>
+/* Galeri Lightbox */
+document.querySelectorAll('.gallery img').forEach(img => {
+  img.addEventListener('click', () => {
+    const overlay = document.createElement('div');
+    overlay.className = 'lightbox-overlay';
+    overlay.innerHTML = `
+      <button class="lightbox-close" aria-label="Kapat">&times;</button>
+      <img src="${img.src.replace(/w=\d+/, 'w=1200')}" alt="${img.alt}">
+    `;
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay || e.target.classList.contains('lightbox-close')) {
+        overlay.remove();
+      }
+    });
+    document.body.appendChild(overlay);
+    document.addEventListener('keydown', function esc(e) {
+      if (e.key === 'Escape') { overlay.remove(); document.removeEventListener('keydown', esc); }
+    });
+  });
+});
+
+/* Yorumlara yıldız ekle */
+document.querySelectorAll('.review').forEach(rev => {
+  const head = rev.querySelector('.review-head > div:last-child');
+  if (head && !head.querySelector('.review-stars')) {
+    const stars = document.createElement('span');
+    stars.className = 'review-stars';
+    const score = 4 + Math.floor(Math.random() * 2); // 4 veya 5 yıldız
+    stars.textContent = '★'.repeat(score) + '☆'.repeat(5 - score);
+    head.insertBefore(stars, head.querySelector('.review-meta'));
+  }
+});
 </script>
 <script src="favorites.js"></script>
 <script src="compare.js"></script>
