@@ -15,6 +15,55 @@
   gtag('js', new Date());
   gtag('config', 'G-ZZH1F3D61N');
 </script>
+<style>
+/* ---- Destek Talepleri ek stiller ---- */
+.hbm-support-filters { display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:1rem; }
+.hbm-support-filter-tab { padding:0.4rem 0.9rem; border-radius:6px; border:1px solid #ddd; background:#fff; cursor:pointer; font-size:0.8125rem; font-weight:500; transition:all .15s; }
+.hbm-support-filter-tab:hover { border-color:#1F4D33; color:#1F4D33; }
+.hbm-support-filter-tab.active { background:#1F4D33; color:#fff; border-color:#1F4D33; }
+
+.hbm-priority-badge { display:inline-block; font-size:0.6875rem; font-weight:600; padding:2px 8px; border-radius:10px; margin-left:6px; }
+.hbm-priority-badge--dusuk { background:#E8F5E9; color:#2E7D32; }
+.hbm-priority-badge--normal { background:#E3F2FD; color:#1565C0; }
+.hbm-priority-badge--yuksek { background:#FFF3E0; color:#E65100; }
+
+.hbm-durum-badge { display:inline-block; font-size:0.6875rem; font-weight:600; padding:2px 8px; border-radius:10px; margin-left:6px; }
+.hbm-durum-badge--beklemede { background:#FFF8E1; color:#F57F17; }
+.hbm-durum-badge--cevaplandi { background:#E3F2FD; color:#1565C0; }
+.hbm-durum-badge--cozuldu { background:#E8F5E9; color:#2E7D32; }
+.hbm-durum-badge--kapatildi { background:#F5F5F5; color:#757575; }
+
+.hbm-support-actions { display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap; margin-top:0.75rem; padding-top:0.75rem; border-top:1px solid #f0f0f0; }
+
+.hbm-select-sm { padding:4px 8px; border-radius:6px; border:1px solid #ddd; font-size:0.8125rem; background:#fff; cursor:pointer; }
+.hbm-select-sm:focus { outline:none; border-color:#1F4D33; }
+
+.hbm-reply-area { margin-top:0.75rem; }
+.hbm-reply-textarea { width:100%; min-height:80px; padding:0.6rem 0.75rem; border:1px solid #ddd; border-radius:8px; font-size:0.875rem; font-family:inherit; resize:vertical; box-sizing:border-box; }
+.hbm-reply-textarea:focus { outline:none; border-color:#1F4D33; }
+.hbm-reply-actions { display:flex; gap:0.5rem; margin-top:0.5rem; justify-content:flex-end; }
+
+.hbm-btn-delete { background:none; border:1px solid #E57373; color:#C62828; padding:4px 10px; border-radius:6px; font-size:0.8125rem; cursor:pointer; font-weight:500; transition:all .15s; }
+.hbm-btn-delete:hover { background:#FFEBEE; }
+
+.hbm-btn-reply { background:none; border:1px solid #1F4D33; color:#1F4D33; padding:4px 10px; border-radius:6px; font-size:0.8125rem; cursor:pointer; font-weight:500; transition:all .15s; }
+.hbm-btn-reply:hover { background:#E8F5E9; }
+
+.hbm-btn-send { background:#1F4D33; border:none; color:#fff; padding:6px 16px; border-radius:6px; font-size:0.8125rem; cursor:pointer; font-weight:600; transition:all .15s; }
+.hbm-btn-send:hover { background:#163d28; }
+.hbm-btn-send:disabled { opacity:0.5; cursor:not-allowed; }
+
+.hbm-reply-history { margin-top:0.5rem; padding:0.5rem 0.75rem; background:#f0faf4; border-left:3px solid #1F4D33; border-radius:0 6px 6px 0; font-size:0.8125rem; }
+.hbm-reply-history strong { font-size:0.75rem; color:#1F4D33; }
+.hbm-reply-history p { margin:4px 0 0; color:#333; }
+.hbm-reply-history-date { font-size:0.6875rem; color:#888; margin-top:2px; }
+
+.hbm-confirm-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.4); display:flex; align-items:center; justify-content:center; z-index:999; }
+.hbm-confirm-box { background:#fff; border-radius:12px; padding:1.5rem; max-width:360px; width:90%; box-shadow:0 8px 32px rgba(0,0,0,0.15); }
+.hbm-confirm-box h4 { margin:0 0 0.5rem; color:#C62828; }
+.hbm-confirm-box p { margin:0 0 1rem; font-size:0.875rem; color:#555; }
+.hbm-confirm-actions { display:flex; gap:0.5rem; justify-content:flex-end; }
+</style>
 </head>
 <body>
 
@@ -87,6 +136,13 @@
 
   <!-- Contact requests section -->
   <div id="section-contact" hidden>
+    <div class="hbm-support-filters" id="contact-filter-tabs">
+      <button class="hbm-support-filter-tab active" data-contact-status="all">Tümü</button>
+      <button class="hbm-support-filter-tab" data-contact-status="beklemede">Beklemede</button>
+      <button class="hbm-support-filter-tab" data-contact-status="cevaplandi">Cevaplandı</button>
+      <button class="hbm-support-filter-tab" data-contact-status="cozuldu">Çözüldü</button>
+      <button class="hbm-support-filter-tab" data-contact-status="kapatildi">Kapatıldı</button>
+    </div>
     <div id="contact-cards">
       <p style="color:var(--color-text-muted);padding:2rem 0;">Yükleniyor…</p>
     </div>
@@ -145,6 +201,9 @@
 <!-- Toast -->
 <div class="admin-toast" id="admin-toast" role="status" aria-live="polite"></div>
 
+<!-- Delete confirm container -->
+<div id="delete-confirm-container"></div>
+
 <script src="supabase-client.js"></script>
 <script src="navbar-mobile.js"></script>
 <script src="auth-nav.js"></script>
@@ -162,8 +221,13 @@ const HIZMET_LBL = {
 };
 const SEGMENT_MAP = { 'Ekonomik':1, 'Orta':2, 'Orta-üst':3, 'Premium':4 };
 
+const DURUM_LBL   = { beklemede:'Beklemede', cevaplandi:'Cevaplandı', cozuldu:'Çözüldü', kapatildi:'Kapatıldı' };
+const ONCELIK_LBL = { dusuk:'Düşük', normal:'Normal', yuksek:'Yüksek' };
+
 let currentStatus = 'all';
+let currentContactStatus = 'all';
 let allApplications = [];
+let allContactRequests = [];
 let adminUser = null;
 
 /* ---- slugify ---- */
@@ -291,7 +355,6 @@ function bindCardEvents() {
   document.getElementById('admin-cards').addEventListener('click', function(e) {
     const btn = e.target.closest('[data-action]');
     if (!btn) {
-      // desc toggle
       const tog = e.target.closest('[data-desc]');
       if (tog) {
         const el = document.getElementById('desc-' + tog.dataset.desc);
@@ -452,17 +515,31 @@ document.querySelectorAll('[data-main-tab]').forEach(function(btn) {
     btn.classList.add('hbm-admin-tab--active');
     var tab = btn.dataset.mainTab;
     document.getElementById('section-applications').hidden = (tab !== 'applications');
-    document.getElementById('section-contact').hidden = (tab !== 'contact');
+    document.getElementById('section-contact').hidden      = (tab !== 'contact');
     if (tab === 'contact') loadContactRequests();
   });
 });
 
-/* ---- contact requests ---- */
+/* =====================================================
+   DESTEK TALEPLERİ — Gelişmiş Bölüm
+   ===================================================== */
+
+/* ---- contact filter tabs ---- */
+document.getElementById('contact-filter-tabs').addEventListener('click', function(e) {
+  var btn = e.target.closest('.hbm-support-filter-tab');
+  if (!btn) return;
+  document.querySelectorAll('.hbm-support-filter-tab').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  currentContactStatus = btn.dataset.contactStatus;
+  renderContactCards();
+});
+
+/* ---- badge ---- */
 async function loadContactBadge() {
   var result = await ER_Supabase
     .from('contact_requests')
     .select('*', { count: 'exact', head: true })
-    .eq('okundu', false);
+    .or('durum.is.null,durum.eq.beklemede');
   var badge = document.getElementById('contact-unread-badge');
   if (!badge) return;
   var count = result.count || 0;
@@ -470,6 +547,7 @@ async function loadContactBadge() {
   badge.hidden = !(count > 0);
 }
 
+/* ---- load ---- */
 async function loadContactRequests() {
   var body = document.getElementById('contact-cards');
   body.innerHTML = '<p style="color:var(--color-text-muted);padding:2rem 0;">Yükleniyor…</p>';
@@ -483,53 +561,263 @@ async function loadContactRequests() {
     body.innerHTML = '<p style="padding:2rem 0;color:#C0392B;">Hata: ' + esc(result.error.message) + '</p>';
     return;
   }
-  var reqs = result.data || [];
-  if (!reqs.length) {
-    body.innerHTML = '<p style="color:var(--color-text-muted);padding:2rem 0;text-align:center;">Henüz mesaj yok.</p>';
-    return;
-  }
-  body.innerHTML = '<div class="hbm-support-list">' + reqs.map(renderContactCard).join('') + '</div>';
-  bindContactEvents();
+  allContactRequests = result.data || [];
+  renderContactCards();
 }
 
+/* ---- render filtered ---- */
+function renderContactCards() {
+  var filtered = allContactRequests;
+  if (currentContactStatus !== 'all') {
+    filtered = filtered.filter(function(r) {
+      var durum = r.durum || 'beklemede';
+      return durum === currentContactStatus;
+    });
+  }
+
+  var body = document.getElementById('contact-cards');
+  if (!filtered.length) {
+    body.innerHTML = '<p style="color:var(--color-text-muted);padding:2rem 0;text-align:center;">Bu durumda mesaj yok.</p>';
+    return;
+  }
+  body.innerHTML = '<div class="hbm-support-list">' + filtered.map(renderContactCard).join('') + '</div>';
+}
+
+/* ---- render single card ---- */
 function renderContactCard(r) {
   var date = new Date(r.created_at).toLocaleDateString('tr-TR', {
     day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit'
   });
-  return '<div class="hbm-support-card ' + (r.okundu ? '' : 'hbm-support-card--unread') + '" id="contact-req-' + r.id + '">'
+  var durum   = r.durum || 'beklemede';
+  var oncelik = r.oncelik || 'normal';
+
+  var durumHtml   = '<span class="hbm-durum-badge hbm-durum-badge--' + durum + '">' + (DURUM_LBL[durum] || durum) + '</span>';
+  var oncelikHtml = '<span class="hbm-priority-badge hbm-priority-badge--' + oncelik + '">' + (ONCELIK_LBL[oncelik] || oncelik) + '</span>';
+
+  var replyHtml = '';
+  if (r.cevap) {
+    var cevapTarih = r.cevap_tarihi ? new Date(r.cevap_tarihi).toLocaleDateString('tr-TR', {
+      day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit'
+    }) : '';
+    replyHtml = '<div class="hbm-reply-history">'
+      + '<strong>Gönderilen Cevap:</strong>'
+      + '<p>' + esc(r.cevap) + '</p>'
+      + (cevapTarih ? '<div class="hbm-reply-history-date">' + cevapTarih + '</div>' : '')
+      + '</div>';
+  }
+
+  return '<div class="hbm-support-card" id="contact-req-' + r.id + '">'
     + '<div class="hbm-support-head">'
     + '<div>'
     + '<strong>' + esc(r.ad || '') + '</strong>'
-    + '<span class="hbm-support-email">' + esc(r.email || '') + '</span>'
+    + durumHtml + oncelikHtml
+    + '<br><span class="hbm-support-email">' + esc(r.email || '') + '</span>'
     + (r.konu ? '<span class="hbm-support-konu">' + esc(r.konu) + '</span>' : '')
     + '</div>'
     + '<div class="hbm-support-meta">'
     + '<span class="hbm-support-date">' + date + '</span>'
-    + (!r.okundu
-        ? '<button class="btn btn-sm btn-ghost" type="button" data-contact-req="' + r.id + '">Okundu işaretle</button>'
-        : '<span class="hbm-admin-status hbm-admin-status--ok">Okundu</span>')
     + '</div>'
     + '</div>'
     + '<p class="hbm-support-msg">' + esc(r.mesaj || '') + '</p>'
+    + replyHtml
+    + '<div class="hbm-support-actions">'
+    + '<label style="font-size:0.8125rem;font-weight:500;">Durum:</label>'
+    + '<select class="hbm-select-sm" data-durum-id="' + r.id + '">'
+    + '<option value="beklemede"'  + (durum === 'beklemede'  ? ' selected' : '') + '>Beklemede</option>'
+    + '<option value="cevaplandi"' + (durum === 'cevaplandi' ? ' selected' : '') + '>Cevaplandı</option>'
+    + '<option value="cozuldu"'    + (durum === 'cozuldu'    ? ' selected' : '') + '>Çözüldü</option>'
+    + '<option value="kapatildi"'  + (durum === 'kapatildi'  ? ' selected' : '') + '>Kapatıldı</option>'
+    + '</select>'
+    + '<label style="font-size:0.8125rem;font-weight:500;margin-left:8px;">Öncelik:</label>'
+    + '<select class="hbm-select-sm" data-oncelik-id="' + r.id + '">'
+    + '<option value="dusuk"'  + (oncelik === 'dusuk'  ? ' selected' : '') + '>Düşük</option>'
+    + '<option value="normal"' + (oncelik === 'normal' ? ' selected' : '') + '>Normal</option>'
+    + '<option value="yuksek"' + (oncelik === 'yuksek' ? ' selected' : '') + '>Yüksek</option>'
+    + '</select>'
+    + '<button class="hbm-btn-reply" type="button" data-reply-toggle="' + r.id + '">Cevap Yaz</button>'
+    + '<button class="hbm-btn-delete" type="button" data-delete-id="' + r.id + '">Sil</button>'
+    + '</div>'
+    + '<div class="hbm-reply-area" id="reply-area-' + r.id + '" hidden>'
+    + '<textarea class="hbm-reply-textarea" id="reply-text-' + r.id + '" placeholder="Cevabınızı yazın... (kullanıcıya e-posta olarak gönderilecek)"></textarea>'
+    + '<div class="hbm-reply-actions">'
+    + '<button class="btn btn-ghost btn-sm" type="button" data-reply-cancel="' + r.id + '">İptal</button>'
+    + '<button class="hbm-btn-send" type="button" data-reply-send="' + r.id + '" data-email="' + esc(r.email || '') + '">Gönder</button>'
+    + '</div>'
+    + '</div>'
     + '</div>';
 }
 
-function bindContactEvents() {
-  document.getElementById('contact-cards').addEventListener('click', async function(e) {
-    var btn = e.target.closest('[data-contact-req]');
-    if (!btn) return;
-    var id = btn.dataset.contactReq;
-    btn.disabled = true;
-    var result = await ER_Supabase.from('contact_requests').update({ okundu: true }).eq('id', id);
-    if (result.error) { showToast('Hata: ' + result.error.message, true); btn.disabled = false; return; }
-    var card = document.getElementById('contact-req-' + id);
-    if (card) {
-      card.classList.remove('hbm-support-card--unread');
-      var span = document.createElement('span');
-      span.className = 'hbm-admin-status hbm-admin-status--ok';
-      span.textContent = 'Okundu';
-      btn.replaceWith(span);
+/* ---- contact events (delegated) ---- */
+document.getElementById('section-contact').addEventListener('click', function(e) {
+  var toggleBtn = e.target.closest('[data-reply-toggle]');
+  if (toggleBtn) {
+    var area = document.getElementById('reply-area-' + toggleBtn.dataset.replyToggle);
+    if (area) area.hidden = !area.hidden;
+    return;
+  }
+
+  var cancelBtn = e.target.closest('[data-reply-cancel]');
+  if (cancelBtn) {
+    var area2 = document.getElementById('reply-area-' + cancelBtn.dataset.replyCancel);
+    if (area2) area2.hidden = true;
+    return;
+  }
+
+  var sendBtn = e.target.closest('[data-reply-send]');
+  if (sendBtn) {
+    handleReplySend(sendBtn);
+    return;
+  }
+
+  var delBtn = e.target.closest('[data-delete-id]');
+  if (delBtn) {
+    showDeleteConfirm(delBtn.dataset.deleteId);
+    return;
+  }
+});
+
+/* ---- durum & oncelik change ---- */
+document.getElementById('section-contact').addEventListener('change', function(e) {
+  var durumSelect = e.target.closest('[data-durum-id]');
+  if (durumSelect) {
+    handleDurumChange(durumSelect.dataset.durumId, durumSelect.value);
+    return;
+  }
+  var oncelikSelect = e.target.closest('[data-oncelik-id]');
+  if (oncelikSelect) {
+    handleOncelikChange(oncelikSelect.dataset.oncelikId, oncelikSelect.value);
+    return;
+  }
+});
+
+/* ---- durum update ---- */
+async function handleDurumChange(id, yeniDurum) {
+  var result = await ER_Supabase.from('contact_requests').update({
+    durum: yeniDurum,
+    okundu: true,
+    updated_at: new Date().toISOString()
+  }).eq('id', id);
+
+  if (result.error) {
+    showToast('Durum güncellenemedi: ' + result.error.message, true);
+    return;
+  }
+  showToast('Durum güncellendi: ' + (DURUM_LBL[yeniDurum] || yeniDurum));
+
+  var req = allContactRequests.find(function(r) { return r.id === id; });
+  if (req) { req.durum = yeniDurum; req.okundu = true; }
+  loadContactBadge();
+}
+
+/* ---- oncelik update ---- */
+async function handleOncelikChange(id, yeniOncelik) {
+  var result = await ER_Supabase.from('contact_requests').update({
+    oncelik: yeniOncelik,
+    updated_at: new Date().toISOString()
+  }).eq('id', id);
+
+  if (result.error) {
+    showToast('Öncelik güncellenemedi: ' + result.error.message, true);
+    return;
+  }
+  showToast('Öncelik güncellendi: ' + (ONCELIK_LBL[yeniOncelik] || yeniOncelik));
+
+  var req = allContactRequests.find(function(r) { return r.id === id; });
+  if (req) req.oncelik = yeniOncelik;
+}
+
+/* ---- reply send ---- */
+async function handleReplySend(btn) {
+  var id    = btn.dataset.replySend;
+  var email = btn.dataset.email;
+  var text  = document.getElementById('reply-text-' + id).value.trim();
+  if (!text) { showToast('Cevap boş olamaz', true); return; }
+
+  btn.disabled = true;
+  btn.textContent = 'Gönderiliyor…';
+
+  try {
+    /* 1) Send reply email via API */
+    var resp = await fetch('/api/reply', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, mesaj: text, talep_id: id })
+    });
+
+    if (!resp.ok) {
+      var errData = await resp.json().catch(function() { return {}; });
+      throw new Error(errData.hata || 'E-posta gönderilemedi');
     }
+
+    /* 2) Update DB */
+    var result = await ER_Supabase.from('contact_requests').update({
+      cevap: text,
+      cevaplayan: adminUser?.email || 'admin',
+      cevap_tarihi: new Date().toISOString(),
+      durum: 'cevaplandi',
+      okundu: true,
+      updated_at: new Date().toISOString()
+    }).eq('id', id);
+
+    if (result.error) throw new Error(result.error.message);
+
+    showToast('Cevap gönderildi ✓');
+
+    var req = allContactRequests.find(function(r) { return r.id === id; });
+    if (req) {
+      req.cevap = text;
+      req.cevaplayan = adminUser?.email || 'admin';
+      req.cevap_tarihi = new Date().toISOString();
+      req.durum = 'cevaplandi';
+      req.okundu = true;
+    }
+    renderContactCards();
+    loadContactBadge();
+
+  } catch (err) {
+    showToast('Hata: ' + err.message, true);
+    btn.disabled = false;
+    btn.textContent = 'Gönder';
+  }
+}
+
+/* ---- delete confirm ---- */
+function showDeleteConfirm(id) {
+  var container = document.getElementById('delete-confirm-container');
+  container.innerHTML = '<div class="hbm-confirm-overlay" id="delete-overlay">'
+    + '<div class="hbm-confirm-box">'
+    + '<h4>Destek Talebini Sil</h4>'
+    + '<p>Bu mesajı kalıcı olarak silmek istediğinize emin misiniz? Bu işlem geri alınamaz.</p>'
+    + '<div class="hbm-confirm-actions">'
+    + '<button class="btn btn-ghost btn-sm" type="button" id="delete-cancel-btn">İptal</button>'
+    + '<button class="hbm-btn-delete" type="button" id="delete-confirm-btn" data-id="' + id + '" style="font-weight:600;">Evet, Sil</button>'
+    + '</div>'
+    + '</div>'
+    + '</div>';
+
+  document.getElementById('delete-cancel-btn').addEventListener('click', function() {
+    container.innerHTML = '';
+  });
+
+  document.getElementById('delete-overlay').addEventListener('click', function(e) {
+    if (e.target === this) container.innerHTML = '';
+  });
+
+  document.getElementById('delete-confirm-btn').addEventListener('click', async function() {
+    this.disabled = true;
+    this.textContent = 'Siliniyor…';
+
+    var result = await ER_Supabase.from('contact_requests').delete().eq('id', id);
+    container.innerHTML = '';
+
+    if (result.error) {
+      showToast('Silinemedi: ' + result.error.message, true);
+      return;
+    }
+
+    showToast('Mesaj silindi');
+    allContactRequests = allContactRequests.filter(function(r) { return r.id !== id; });
+    renderContactCards();
     loadContactBadge();
   });
 }
