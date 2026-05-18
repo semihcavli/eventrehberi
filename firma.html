@@ -1243,6 +1243,48 @@ document.querySelectorAll('.tab[data-panel]').forEach(tab => {
 
   function run(firm) {
 
+  // ── Analitik: profil görüntülenme kaydı ──
+  const _source = document.referrer.includes('catererlar') ? 'category'
+    : document.referrer.includes('index') ? 'homepage'
+    : document.referrer.includes('eventrehberi') ? 'internal'
+    : 'direct';
+  const _visitorId = (() => {
+    let vid = sessionStorage.getItem('er_vid');
+    if (!vid) { vid = crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).slice(2); sessionStorage.setItem('er_vid', vid); }
+    return vid;
+  })();
+
+  function trackEvent(eventType, source) {
+    if (typeof ER_Supabase === 'undefined') return;
+    ER_Supabase.from('firm_analytics').insert({
+      firm_id: firm.id,
+      event_type: eventType,
+      source: source || _source,
+      visitor_id: _visitorId
+    }).then(() => {});
+  }
+
+  // Profil görüntülenme
+  trackEvent('view');
+
+  // WhatsApp tıklama tracking
+  document.querySelectorAll('a[href*="wa.me"]').forEach(btn => {
+    btn.addEventListener('click', () => trackEvent('whatsapp_click'));
+  });
+
+  // Teklif formu tracking
+  const quoteForm = document.querySelector('form[name="iletisim"]');
+  if (quoteForm) {
+    quoteForm.addEventListener('submit', () => trackEvent('quote_request'));
+  }
+
+  // Favoriye ekleme tracking
+  const favBtn = document.querySelector('[data-fav-toggle]');
+  if (favBtn) {
+    favBtn.addEventListener('click', () => trackEvent('favorite'));
+  }
+  // ── Analitik sonu ──
+
   const PRICE_LABEL = ['', '₺ Ekonomik', '₺₺ Orta', '₺₺₺ Orta-üst', '₺₺₺₺ Premium'];
   const HIZMET_LABEL = {
     yemek:'yemek catering', bar:'bar & kokteyl', sef:'özel şef', pasta:'pasta & tatlı',
