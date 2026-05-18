@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
@@ -102,6 +102,119 @@
 }
 .phone-hint.error {
   color: #C0392B;
+}
+
+/* ── Firma Analitik Dashboard ── */
+.analytics-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.analytics-stat {
+  background: #f9fafb;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  transition: transform .15s;
+}
+.analytics-stat:hover { transform: translateY(-2px); }
+.analytics-stat-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+.analytics-stat-num {
+  font-size: 28px;
+  font-weight: 800;
+  color: #1a2e22;
+  line-height: 1.1;
+}
+.analytics-stat-label {
+  font-size: 12px;
+  color: #6b7c71;
+  font-weight: 600;
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+.analytics-period.active {
+  background: #1F4D33 !important;
+  color: #fff !important;
+  border-color: #1F4D33 !important;
+}
+.analytics-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  font-size: 13px;
+}
+.analytics-bar-label {
+  width: 70px;
+  color: #666;
+  text-align: right;
+  flex-shrink: 0;
+  font-size: 12px;
+}
+.analytics-bar-track {
+  flex: 1;
+  height: 22px;
+  background: #f0f3f1;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+.analytics-bar-fill {
+  height: 100%;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #1F4D33, #2d6b47);
+  transition: width .4s ease;
+  min-width: 2px;
+}
+.analytics-bar-val {
+  width: 36px;
+  font-weight: 600;
+  color: #1a2e22;
+  font-size: 13px;
+}
+.analytics-chart-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 100%;
+  padding: 12px 8px 24px;
+}
+.analytics-chart-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  height: 100%;
+  justify-content: flex-end;
+}
+.analytics-chart-bar {
+  width: 100%;
+  max-width: 28px;
+  background: linear-gradient(180deg, #1F4D33, #2d6b47);
+  border-radius: 4px 4px 0 0;
+  min-height: 2px;
+  transition: height .3s ease;
+}
+.analytics-chart-day {
+  font-size: 10px;
+  color: #999;
+  position: absolute;
+  bottom: 4px;
+}
+@media (max-width: 600px) {
+  .analytics-stats { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .analytics-stat { padding: 12px 8px; }
+  .analytics-stat-num { font-size: 22px; }
 }
 </style>
 <script src="supabase-client.js"></script>
@@ -392,6 +505,74 @@
               <div class="pref-block">
                 <div class="pref-lbl">Bütçe aralığı</div>
                 <div class="pref-chips" id="pref-budget-view"><span class="pref-empty">Henüz seçilmedi</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FIRMA ANALİTİK DASHBOARD -->
+          <div class="acc-card" id="analytics-panel" hidden>
+            <div class="acc-card-head">
+              <div>
+                <h3>Firma Analitik</h3>
+                <p class="muted-sm" id="analytics-subtitle">Profil performansın</p>
+              </div>
+              <div id="analytics-period-toggle" style="display:flex;gap:4px;">
+                <button class="btn btn-ghost btn-sm analytics-period active" data-period="7" type="button">7 gün</button>
+                <button class="btn btn-ghost btn-sm analytics-period" data-period="30" type="button">30 gün</button>
+                <button class="btn btn-ghost btn-sm analytics-period" data-period="90" type="button">90 gün</button>
+              </div>
+            </div>
+
+            <div class="acc-card-body">
+              <!-- Özet Metrikler -->
+              <div class="analytics-stats" id="analytics-stats">
+                <div class="analytics-stat">
+                  <div class="analytics-stat-icon" style="background:#e8f5e9;color:#1F4D33;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  </div>
+                  <div class="analytics-stat-num" id="a-views">—</div>
+                  <div class="analytics-stat-label">Görüntülenme</div>
+                </div>
+                <div class="analytics-stat">
+                  <div class="analytics-stat-icon" style="background:#e8f5e9;color:#25D366;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.555 4.126 1.528 5.862L.06 23.854l6.131-1.41A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.82c-1.98 0-3.868-.53-5.53-1.508l-.396-.236-3.636.836.876-3.546-.26-.41A9.8 9.8 0 012.18 12C2.18 6.58 6.58 2.18 12 2.18S21.82 6.58 21.82 12 17.42 21.82 12 21.82z"/></svg>
+                  </div>
+                  <div class="analytics-stat-num" id="a-whatsapp">—</div>
+                  <div class="analytics-stat-label">WhatsApp tıklama</div>
+                </div>
+                <div class="analytics-stat">
+                  <div class="analytics-stat-icon" style="background:#fff3e0;color:#C7522A;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                  </div>
+                  <div class="analytics-stat-num" id="a-quotes">—</div>
+                  <div class="analytics-stat-label">Teklif talebi</div>
+                </div>
+                <div class="analytics-stat">
+                  <div class="analytics-stat-icon" style="background:#fce4ec;color:#e91e63;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.35-9.5-8.5C.5 8 3 4 7 4c2 0 3.5 1 5 2.5C13.5 5 15 4 17 4c4 0 6.5 4 4.5 8.5C19 16.65 12 21 12 21z"/></svg>
+                  </div>
+                  <div class="analytics-stat-num" id="a-favorites">—</div>
+                  <div class="analytics-stat-label">Favoriye ekleme</div>
+                </div>
+              </div>
+
+              <!-- Trend Grafiği (Pro only) -->
+              <div id="analytics-chart-wrapper" style="margin-top:20px;">
+                <h4 style="font-size:14px;color:#666;margin:0 0 12px;">Günlük görüntülenme trendi</h4>
+                <div id="analytics-chart" style="height:180px;background:#f9fafb;border-radius:10px;position:relative;overflow:hidden;"></div>
+              </div>
+
+              <!-- Kaynak Analizi (Pro only) -->
+              <div id="analytics-sources" style="margin-top:20px;">
+                <h4 style="font-size:14px;color:#666;margin:0 0 12px;">Ziyaretçi kaynağı</h4>
+                <div id="analytics-sources-list"></div>
+              </div>
+
+              <!-- Pro Upsell (Free only) -->
+              <div id="analytics-upsell" hidden style="margin-top:20px;background:linear-gradient(135deg,#f0f7f2,#e8f5e9);border:1px solid #d4eadd;border-radius:12px;padding:20px;text-align:center;">
+                <h4 style="color:#1F4D33;margin:0 0 8px;">Detaylı analitik Pro ile açılır</h4>
+                <p style="font-size:13px;color:#666;margin:0 0 16px;">WhatsApp tıklama, teklif talebi, kaynak analizi, günlük trend grafiği ve daha fazlası.</p>
+                <a href="fiyatlar.html" class="btn btn-primary btn-sm">Pro'ya geç →</a>
               </div>
             </div>
           </div>
@@ -738,6 +919,11 @@ function renderUser(user) {
         await initAdminPanel(window.ER_Supabase);
       }
     }).catch(() => {});
+  }
+
+  // Firma analitik paneli — firma sahibiyse göster
+  if (window.ER_Supabase && user) {
+    initAnalytics(window.ER_Supabase, user.id);
   }
 }
 
@@ -1401,6 +1587,168 @@ async function doLogout() {
 }
 $('btn-logout').addEventListener('click', doLogout);
 $('btn-logout-nav').addEventListener('click', doLogout);
+
+/* ═══════════════════════════════════════════════════════════════
+   FİRMA ANALİTİK DASHBOARD
+   ═══════════════════════════════════════════════════════════════ */
+let _analyticsFirmId = null;
+let _analyticsBadge = '';
+let _analyticsPeriod = 7;
+
+async function initAnalytics(sb, userId) {
+  // Kullanıcının onaylı firması var mı kontrol et
+  const { data: firm } = await sb
+    .from('firms')
+    .select('id,badge')
+    .eq('user_id', userId)
+    .eq('approved', true)
+    .maybeSingle();
+
+  if (!firm) return; // firma sahibi değilse panel gizli kalır
+
+  _analyticsFirmId = firm.id;
+  _analyticsBadge = firm.badge || '';
+
+  // Paneli göster
+  const panel = $('analytics-panel');
+  panel.removeAttribute('hidden');
+
+  // Pro/Free ayrımı
+  const isPro = _analyticsBadge === 'Pro' || _analyticsBadge === 'Elite';
+  if (!isPro) {
+    // Free: sadece view göster, diğerlerini gizle
+    $('analytics-upsell').removeAttribute('hidden');
+    $('analytics-chart-wrapper').style.display = 'none';
+    $('analytics-sources').style.display = 'none';
+  }
+
+  // Period toggle
+  document.querySelectorAll('.analytics-period').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.analytics-period').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      _analyticsPeriod = parseInt(btn.dataset.period);
+      loadAnalyticsData(sb, isPro);
+    });
+  });
+
+  // İlk yükleme
+  loadAnalyticsData(sb, isPro);
+}
+
+async function loadAnalyticsData(sb, isPro) {
+  const since = new Date();
+  since.setDate(since.getDate() - _analyticsPeriod);
+  const sinceISO = since.toISOString();
+
+  // Toplam metrikler
+  const { data: events } = await sb
+    .from('firm_analytics')
+    .select('event_type,created_at,source')
+    .eq('firm_id', _analyticsFirmId)
+    .gte('created_at', sinceISO);
+
+  if (!events) return;
+
+  const counts = { view: 0, whatsapp_click: 0, quote_request: 0, favorite: 0 };
+  const dailyMap = {};
+  const sourceMap = {};
+
+  events.forEach(e => {
+    if (counts[e.event_type] !== undefined) counts[e.event_type]++;
+
+    // Günlük veri (chart için)
+    const day = e.created_at.slice(0, 10);
+    if (!dailyMap[day]) dailyMap[day] = 0;
+    if (e.event_type === 'view') dailyMap[day]++;
+
+    // Kaynak verisi
+    if (e.source) {
+      sourceMap[e.source] = (sourceMap[e.source] || 0) + 1;
+    }
+  });
+
+  // Metrik kartlarını güncelle
+  $('a-views').textContent = counts.view.toLocaleString('tr-TR');
+
+  if (isPro) {
+    $('a-whatsapp').textContent = counts.whatsapp_click.toLocaleString('tr-TR');
+    $('a-quotes').textContent = counts.quote_request.toLocaleString('tr-TR');
+    $('a-favorites').textContent = counts.favorite.toLocaleString('tr-TR');
+
+    // Trend grafiği çiz
+    renderAnalyticsChart(dailyMap);
+
+    // Kaynak analizi
+    renderAnalyticsSources(sourceMap);
+  } else {
+    // Free: diğer metrikleri kilitle
+    $('a-whatsapp').textContent = '🔒';
+    $('a-quotes').textContent = '🔒';
+    $('a-favorites').textContent = '🔒';
+  }
+}
+
+function renderAnalyticsChart(dailyMap) {
+  const chartEl = $('analytics-chart');
+  if (!chartEl) return;
+
+  // Son N gün için tarih dizisi oluştur
+  const days = [];
+  for (let i = _analyticsPeriod - 1; i >= 0; i--) {
+    const d = new Date();
+    d.setDate(d.getDate() - i);
+    days.push(d.toISOString().slice(0, 10));
+  }
+
+  const values = days.map(d => dailyMap[d] || 0);
+  const maxVal = Math.max(...values, 1);
+
+  // Çok fazla gün varsa label'ları seyrelt
+  const showEvery = _analyticsPeriod <= 7 ? 1 : _analyticsPeriod <= 30 ? 5 : 10;
+
+  chartEl.innerHTML = '<div class="analytics-chart-bars">' +
+    days.map((day, i) => {
+      const pct = Math.max((values[i] / maxVal) * 100, 2);
+      const shortDay = new Date(day + 'T12:00:00').toLocaleDateString('tr-TR', { day: 'numeric', month: 'short' });
+      const showLabel = i % showEvery === 0 || i === days.length - 1;
+      return `<div class="analytics-chart-col" title="${shortDay}: ${values[i]} görüntülenme">
+        <div class="analytics-chart-bar" style="height:${pct}%"></div>
+        ${showLabel ? `<span class="analytics-chart-day">${shortDay}</span>` : ''}
+      </div>`;
+    }).join('') +
+  '</div>';
+}
+
+function renderAnalyticsSources(sourceMap) {
+  const listEl = $('analytics-sources-list');
+  if (!listEl) return;
+
+  const SOURCE_LABEL = {
+    category: 'Kategori sayfası',
+    homepage: 'Ana sayfa',
+    internal: 'Site içi',
+    direct: 'Doğrudan'
+  };
+
+  const entries = Object.entries(sourceMap).sort((a, b) => b[1] - a[1]);
+  const total = entries.reduce((s, e) => s + e[1], 0) || 1;
+
+  if (!entries.length) {
+    listEl.innerHTML = '<p class="muted-sm">Henüz kaynak verisi yok.</p>';
+    return;
+  }
+
+  listEl.innerHTML = entries.map(([src, count]) => {
+    const pct = Math.round((count / total) * 100);
+    const label = SOURCE_LABEL[src] || src;
+    return `<div class="analytics-bar-row">
+      <span class="analytics-bar-label">${label}</span>
+      <div class="analytics-bar-track"><div class="analytics-bar-fill" style="width:${pct}%"></div></div>
+      <span class="analytics-bar-val">${count}</span>
+    </div>`;
+  }).join('');
+}
 
 function initAccountPage() {
   const sb = window.ER_Supabase;
