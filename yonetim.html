@@ -399,9 +399,10 @@ async function approveApplication(app, btn) {
     approved:   true,
     rating:     0,
     reviews:    0,
+    user_id:    app.user_id || null,
   };
 
-  const { error: fErr } = await ER_Supabase.from('firms').insert(firmRow);
+  const { error: fErr } = await ER_Supabase.from('firms').upsert(firmRow, { onConflict: 'id' });
   if (fErr) {
     showToast('Firma eklenemedi: ' + fErr.message, true);
     btn.disabled = false;
