@@ -1279,9 +1279,9 @@ document.querySelectorAll('.tab[data-panel]').forEach(tab => {
   }
 
   // Favoriye ekleme tracking
-  const favBtn = document.querySelector('[data-fav-toggle]');
-  if (favBtn) {
-    favBtn.addEventListener('click', () => trackEvent('favorite'));
+  const favTrackBtn = document.querySelector('[data-fav-toggle]');
+  if (favTrackBtn) {
+    favTrackBtn.addEventListener('click', () => trackEvent('favorite'));
   }
   // ── Analitik sonu ──
 
