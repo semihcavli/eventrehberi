@@ -105,8 +105,8 @@
 
   <div class="admin-filters">
     <div class="admin-filter-tabs" id="filter-tabs">
-      <button class="admin-filter-tab active" data-status="all">Tümü</button>
-      <button class="admin-filter-tab" data-status="pending">Beklemede</button>
+      <button class="admin-filter-tab" data-status="all">Tümü</button>
+      <button class="admin-filter-tab active" data-status="pending">Beklemede</button>
       <button class="admin-filter-tab" data-status="approved">Onaylı</button>
       <button class="admin-filter-tab" data-status="rejected">Reddedildi</button>
     </div>
@@ -224,7 +224,7 @@ const SEGMENT_MAP = { 'Ekonomik':1, 'Orta':2, 'Orta-üst':3, 'Premium':4 };
 const DURUM_LBL   = { beklemede:'Beklemede', cevaplandi:'Cevaplandı', cozuldu:'Çözüldü', kapatildi:'Kapatıldı' };
 const ONCELIK_LBL = { dusuk:'Düşük', normal:'Normal', yuksek:'Yüksek' };
 
-let currentStatus = 'all';
+let currentStatus = 'pending';
 let currentContactStatus = 'all';
 let allApplications = [];
 let allContactRequests = [];
@@ -324,11 +324,11 @@ function renderCard(app) {
     ${app.rejection_reason ? `<div style="font-size:0.8125rem;color:#C0392B;background:#FFF0F0;border:1px solid #F5B7B1;border-radius:8px;padding:0.5rem 0.75rem;margin-bottom:0.75rem;">Ret sebebi: ${esc(app.rejection_reason)}</div>` : ''}
 
     <div class="admin-card-actions">
-      ${app.status !== 'approved' ? `<button type="button" class="admin-btn-approve" data-action="approve" data-id="${app.id}">
+      ${app.status === 'pending' ? `<button type="button" class="admin-btn-approve" data-action="approve" data-id="${app.id}">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
         Onayla
-      </button>` : ''}
-      ${app.status !== 'rejected' ? `<button type="button" class="admin-btn-reject" data-action="reject" data-id="${app.id}">
+      </button>
+      <button type="button" class="admin-btn-reject" data-action="reject" data-id="${app.id}">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         Reddet
       </button>` : ''}
