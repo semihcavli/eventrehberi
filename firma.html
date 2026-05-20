@@ -1430,8 +1430,9 @@ document.querySelectorAll('.tab[data-panel]').forEach(tab => {
   const featureList = document.querySelector('.feature-list');
   if (featureList) featureList.hidden = true;
 
-  // Menü kartları (statik örnek menüler)
-  document.querySelectorAll('.menu-card').forEach(c => c.hidden = true);
+  // Menü paketleri (statik örnek menüler)
+  const menuPackages = document.querySelector('.menu-packages');
+  if (menuPackages) menuPackages.hidden = true;
 
   // Galeri tab'ını gizle (statik Boğaz fotoğrafları)
   const tabGaleri = document.querySelector('[data-panel="galeri"]');
