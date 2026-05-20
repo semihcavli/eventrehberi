@@ -1423,6 +1423,36 @@ document.querySelectorAll('.tab[data-panel]').forEach(tab => {
     const sidebarWa = document.getElementById('sidebar-wa-btn');
     if (sidebarWa && firm.phone) sidebarWa.href = `https://wa.me/${firm.phone}`;
   }
+
+  // ── Boğaz Lezzetleri'ne ait statik içerikleri gizle (gerçek firmalar için) ──
+
+  // Feature list (Boğaz Lezzetleri'ne özel statik maddeler)
+  const featureList = document.querySelector('.feature-list');
+  if (featureList) featureList.hidden = true;
+
+  // Menü kartları (statik örnek menüler)
+  document.querySelectorAll('.menu-card').forEach(c => c.hidden = true);
+
+  // Galeri tab'ını gizle (statik Boğaz fotoğrafları)
+  const tabGaleri = document.querySelector('[data-panel="galeri"]');
+  if (tabGaleri) tabGaleri.hidden = true;
+
+  // Yorumlar tab'ını gizle (statik sahte yorumlar)
+  const tabYorumlar = document.querySelector('[data-panel="yorumlar"]');
+  if (tabYorumlar) tabYorumlar.hidden = true;
+
+  // Galeri ve yorumlar panellerini gizle
+  const panelGaleri = document.getElementById('panel-galeri');
+  const panelYorumlar = document.getElementById('panel-yorumlar');
+  if (panelGaleri) panelGaleri.hidden = true;
+  if (panelYorumlar) panelYorumlar.hidden = true;
+
+  // Hero image yoksa default hero'yu da gizle
+  if (!firm.image) {
+    const heroEl = document.getElementById('profile-hero');
+    if (heroEl) heroEl.style.display = 'none';
+  }
+
   } // end run()
 })();
 </script>
