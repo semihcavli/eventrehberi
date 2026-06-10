@@ -1329,9 +1329,9 @@ document.querySelectorAll('.tab[data-panel]').forEach(tab => {
     };
     if (firm.phone) ld.telephone = '+' + String(firm.phone).replace(/[^0-9]/g,'');
     if (firm.tagline) ld.description = firm.tagline;
-    if (firm.rating && firm.reviews) {
-      ld.aggregateRating = {"@type":"AggregateRating","ratingValue":firm.rating,"reviewCount":firm.reviews,"bestRating":5};
-    }
+    // if (firm.rating && firm.reviews) {
+    // ld.aggregateRating = {"@type":"AggregateRating","ratingValue":firm.rating,"reviewCount":firm.reviews,"bestRating":5};
+    // }
     var s = document.createElement('script');
     s.type = 'application/ld+json';
     s.text = JSON.stringify(ld);
