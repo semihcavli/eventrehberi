@@ -2,7 +2,7 @@ const { Resend } = require('resend');
 const { blocked } = require('./_guard');
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') { res.status(405).end(); return; }
-
+  if (blocked(req, res)) return;
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) { res.status(500).json({ hata: 'RESEND_API_KEY tanımlı değil' }); return; }
 
