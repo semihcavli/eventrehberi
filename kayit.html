@@ -382,6 +382,14 @@
             <span class="wz-event-name">Özel Davet</span>
           </label>
         </div>
+
+        <!-- Mutfak tarzı — sadece yemek/şef/pasta için JS tarafından gösterilir -->
+        <div id="wz-mutfak-block" hidden style="margin-top:1.5rem;">
+          <h3 class="wz-step-q" style="font-size:1.05rem;margin-bottom:.5rem;">Mutfak tarzın?</h3>
+          <p class="wz-step-hint">Birden fazla seçebilirsin.</p>
+          <div class="wz-event-grid" id="wz-mutfak-grid"></div>
+        </div>
+
         <div class="wz-error" id="err-3" hidden></div>
       </div>
 
@@ -484,7 +492,8 @@
               <option>10+ yıl</option>
             </select>
           </div>
-          <div class="form-group wz-field">
+          <div class="form-group wz-field" id="wz-dynamic-fields">
+            <!-- Hizmete göre JS tarafından doldurulur (kayit-wizard.js → renderServiceFields) -->
             <label for="min-kisi">Min. kişi kapasitesi <span class="req">*</span></label>
             <input type="number" id="min-kisi" name="min-kisi" placeholder="20" min="1">
           </div>
