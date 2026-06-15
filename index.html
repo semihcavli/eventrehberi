@@ -128,90 +128,9 @@
       <!-- Alan 2: Şehir -->
       <div class="hs-field">
         <svg class="hs-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        <input type="text" id="hs-sehir" class="hs-input hs-city-input" list="hs-sehir-list" placeholder="Tüm Türkiye" autocomplete="off" aria-label="Şehir ara veya seç">
-        <datalist id="hs-sehir-list">
-          <option value="Adana"></option>
-          <option value="Adıyaman"></option>
-          <option value="Afyonkarahisar"></option>
-          <option value="Ağrı"></option>
-          <option value="Aksaray"></option>
-          <option value="Amasya"></option>
-          <option value="Ankara"></option>
-          <option value="Antalya"></option>
-          <option value="Ardahan"></option>
-          <option value="Artvin"></option>
-          <option value="Aydın"></option>
-          <option value="Balıkesir"></option>
-          <option value="Bartın"></option>
-          <option value="Batman"></option>
-          <option value="Bayburt"></option>
-          <option value="Bilecik"></option>
-          <option value="Bingöl"></option>
-          <option value="Bitlis"></option>
-          <option value="Bolu"></option>
-          <option value="Burdur"></option>
-          <option value="Bursa"></option>
-          <option value="Çanakkale"></option>
-          <option value="Çankırı"></option>
-          <option value="Çorum"></option>
-          <option value="Denizli"></option>
-          <option value="Diyarbakır"></option>
-          <option value="Düzce"></option>
-          <option value="Edirne"></option>
-          <option value="Elazığ"></option>
-          <option value="Erzincan"></option>
-          <option value="Erzurum"></option>
-          <option value="Eskişehir"></option>
-          <option value="Gaziantep"></option>
-          <option value="Giresun"></option>
-          <option value="Gümüşhane"></option>
-          <option value="Hakkari"></option>
-          <option value="Hatay"></option>
-          <option value="Iğdır"></option>
-          <option value="Isparta"></option>
-          <option value="İstanbul"></option>
-          <option value="İzmir"></option>
-          <option value="Kahramanmaraş"></option>
-          <option value="Karabük"></option>
-          <option value="Karaman"></option>
-          <option value="Kars"></option>
-          <option value="Kastamonu"></option>
-          <option value="Kayseri"></option>
-          <option value="Kırıkkale"></option>
-          <option value="Kırklareli"></option>
-          <option value="Kırşehir"></option>
-          <option value="Kilis"></option>
-          <option value="Kocaeli"></option>
-          <option value="Konya"></option>
-          <option value="Kütahya"></option>
-          <option value="Malatya"></option>
-          <option value="Manisa"></option>
-          <option value="Mardin"></option>
-          <option value="Mersin"></option>
-          <option value="Muğla"></option>
-          <option value="Muş"></option>
-          <option value="Nevşehir"></option>
-          <option value="Niğde"></option>
-          <option value="Ordu"></option>
-          <option value="Osmaniye"></option>
-          <option value="Rize"></option>
-          <option value="Sakarya"></option>
-          <option value="Samsun"></option>
-          <option value="Siirt"></option>
-          <option value="Sinop"></option>
-          <option value="Sivas"></option>
-          <option value="Şanlıurfa"></option>
-          <option value="Şırnak"></option>
-          <option value="Tekirdağ"></option>
-          <option value="Tokat"></option>
-          <option value="Trabzon"></option>
-          <option value="Tunceli"></option>
-          <option value="Uşak"></option>
-          <option value="Van"></option>
-          <option value="Yalova"></option>
-          <option value="Yozgat"></option>
-          <option value="Zonguldak"></option>
-        </datalist>
+        <input type="text" id="hs-sehir-input" class="hs-input hs-city-input" placeholder="Tüm Türkiye" autocomplete="off" role="combobox" aria-expanded="false" aria-autocomplete="list" aria-label="Şehir ara veya seç">
+        <input type="hidden" id="hs-sehir" value="">
+        <ul id="hs-sehir-sug" class="hs-suggest" role="listbox" hidden></ul>
       </div>
 
       <div class="hs-divider" aria-hidden="true"></div>
@@ -846,6 +765,81 @@
 </footer>
 
 <script>
+/* ---- Şehir autocomplete (Türkçe-akıllı) ---- */
+(function () {
+  var ILLER = "İstanbul,Ankara,İzmir,Bursa,Antalya,Muğla,Adana,Adıyaman,Afyonkarahisar,Ağrı,Aksaray,Amasya,Ardahan,Artvin,Aydın,Balıkesir,Bartın,Batman,Bayburt,Bilecik,Bingöl,Bitlis,Bolu,Burdur,Çanakkale,Çankırı,Çorum,Denizli,Diyarbakır,Düzce,Edirne,Elazığ,Erzincan,Erzurum,Eskişehir,Gaziantep,Giresun,Gümüşhane,Hakkari,Hatay,Iğdır,Isparta,Kahramanmaraş,Karabük,Karaman,Kars,Kastamonu,Kayseri,Kırıkkale,Kırklareli,Kırşehir,Kilis,Kocaeli,Konya,Kütahya,Malatya,Manisa,Mardin,Mersin,Muş,Nevşehir,Niğde,Ordu,Osmaniye,Rize,Sakarya,Samsun,Siirt,Sinop,Sivas,Şanlıurfa,Şırnak,Tekirdağ,Tokat,Trabzon,Tunceli,Uşak,Van,Yalova,Yozgat,Zonguldak".split(',');
+  var input = document.getElementById('hs-sehir-input');
+  var hidden = document.getElementById('hs-sehir');
+  var sug = document.getElementById('hs-sehir-sug');
+  if (!input || !hidden || !sug) return;
+
+  function norm(s) {
+    return (s || '').toLocaleLowerCase('tr-TR')
+      .replace(/İ/g,'i').replace(/I/g,'ı').replace(/ı/g,'i')
+      .replace(/ş/g,'s').replace(/ğ/g,'g').replace(/ü/g,'u')
+      .replace(/ö/g,'o').replace(/ç/g,'c');
+  }
+
+  var activeIdx = -1;
+
+  function render(list) {
+    if (!list.length) { sug.hidden = true; input.setAttribute('aria-expanded','false'); return; }
+    sug.innerHTML = list.map(function(il, i) {
+      return '<li role="option" class="hs-suggest-item" data-il="' + il + '" data-i="' + i + '">' + il + '</li>';
+    }).join('');
+    sug.hidden = false;
+    input.setAttribute('aria-expanded','true');
+    activeIdx = -1;
+  }
+
+  function pick(il) {
+    input.value = il;
+    hidden.value = il;
+    sug.hidden = true;
+    input.setAttribute('aria-expanded','false');
+  }
+
+  input.addEventListener('input', function () {
+    hidden.value = '';
+    var q = norm(input.value.trim());
+    if (!q) { sug.hidden = true; return; }
+    // baştan eşleşenler önce, sonra içinde geçenler
+    var starts = [], contains = [];
+    ILLER.forEach(function(il) {
+      var n = norm(il);
+      if (n.indexOf(q) === 0) starts.push(il);
+      else if (n.indexOf(q) !== -1) contains.push(il);
+    });
+    render(starts.concat(contains).slice(0, 8));
+  });
+
+  sug.addEventListener('mousedown', function (e) {
+    var li = e.target.closest('.hs-suggest-item');
+    if (li) { e.preventDefault(); pick(li.dataset.il); }
+  });
+
+  input.addEventListener('keydown', function (e) {
+    var items = [].slice.call(sug.querySelectorAll('.hs-suggest-item'));
+    if (sug.hidden || !items.length) return;
+    if (e.key === 'ArrowDown') { e.preventDefault(); activeIdx = Math.min(activeIdx+1, items.length-1); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); activeIdx = Math.max(activeIdx-1, 0); }
+    else if (e.key === 'Enter') { if (activeIdx >= 0) { e.preventDefault(); pick(items[activeIdx].dataset.il); } return; }
+    else if (e.key === 'Escape') { sug.hidden = true; return; }
+    else return;
+    items.forEach(function(it,i){ it.classList.toggle('is-active', i === activeIdx); });
+  });
+
+  input.addEventListener('blur', function () {
+    setTimeout(function(){ sug.hidden = true; }, 150);
+    // Geçerli bir il yazıldıysa kabul et (tam eşleşme normalize)
+    if (!hidden.value && input.value.trim()) {
+      var q = norm(input.value.trim());
+      var exact = ILLER.find(function(il){ return norm(il) === q; });
+      if (exact) { input.value = exact; hidden.value = exact; }
+    }
+  });
+})();
+
 function smartSearchRedirect(event) {
   event.preventDefault();
   const hizmet = (document.getElementById('hs-hizmet').value || '').trim();
