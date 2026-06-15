@@ -4969,8 +4969,8 @@ body.drawer-open {
 }
 .firm-card-rating {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  bottom: 12px;
+  left: 12px;
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
@@ -10578,3 +10578,27 @@ label,
   background: rgba(31,77,51,0.08);
   color: var(--color-accent, #1F4D33);
 }
+
+/* ============================================================
+   Kategori şeridi sağ/sol kaydırma okları
+   ============================================================ */
+.service-tabs-wrap { position: relative; display: flex; align-items: center; }
+.service-tabs-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 50%;
+  color: #1F4D33;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+  transition: background 0.15s, transform 0.15s;
+}
+.service-tabs-arrow:hover { background: #F3F7F4; }
+.service-tabs-arrow--left { left: -4px; }
+.service-tabs-arrow--right { right: -4px; }
+.service-tabs-arrow[hidden] { display: none; }
