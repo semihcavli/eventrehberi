@@ -1367,13 +1367,29 @@ document.querySelectorAll('.tab[data-panel]').forEach(tab => {
   };
 
   // Meta chip'leri
+  // Hizmete göre uygun bilgi chip'i üret (kişi sayısı her hizmette anlamlı değil)
+  function buildServiceChip(f) {
+    const CAP = ['yemek','bar','sef','garson','organizator','workshop'];
+    const h = f.hizmet;
+    if (h === 'dj' && f.sure) return `<span class="meta-chip">🎵 ${f.sure}</span>`;
+    if (h === 'foto' && f.teslim_suresi) return `<span class="meta-chip">📷 Teslim: ${f.teslim_suresi}</span>`;
+    if ((h === 'pasta' || h === 'davetiye') && f.min_adet) return `<span class="meta-chip">📦 Min. ${f.min_adet} adet</span>`;
+    if (h === 'cocuk' && f.yas_grubu) return `<span class="meta-chip">🧒 ${f.yas_grubu}</span>`;
+    if ((h === 'susleme' || h === 'cicek' || h === 'ekipman') && Array.isArray(f.proje_tipi) && f.proje_tipi.length)
+      return `<span class="meta-chip">🎨 ${f.proje_tipi[0]}${f.proje_tipi.length>1?' +'+(f.proje_tipi.length-1):''}</span>`;
+    // kapasiteli hizmetler veya veri yoksa kişi sayısı (varsa)
+    if (CAP.includes(h) && f.minPeople) return `<span class="meta-chip">👥 Min. ${f.minPeople} kişi</span>`;
+    if (f.minPeople) return `<span class="meta-chip">👥 Min. ${f.minPeople} kişi</span>`;
+    return '';
+  }
+
   const meta = document.getElementById('firm-meta');
   if (meta) {
     meta.innerHTML = `
       <span class="meta-chip meta-chip--rating">★ ${firm.rating != null ? Number(firm.rating).toFixed(1) : '-'} (${firm.reviews != null ? firm.reviews : 0} değerlendirme)</span>
       <span class="meta-chip">📍 ${firm.district}, ${firm.city}</span>
       <span class="meta-chip">${PRICE_LABEL[firm.price] || ''}</span>
-      <span class="meta-chip">👥 Min. ${firm.minPeople} kişi</span>
+      ${buildServiceChip(firm)}
       ${firm.hizmet && HIZMET_BADGE[firm.hizmet] ? '<span class="meta-chip">' + HIZMET_BADGE[firm.hizmet] + '</span>' : ''}`;
   }
 
