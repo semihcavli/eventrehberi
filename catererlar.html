@@ -774,7 +774,7 @@ function renderCard(f) {
   const badgeHtml = f.badge === 'Elite'
     ? '<span class="firm-badge firm-badge--elite"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5L18.2 21 12 16.5 5.8 21l2.4-7.1L2 9.4h7.6L12 2z"/></svg> Elite</span>'
     : f.badge === 'Pro' ? '<span class="firm-badge firm-badge--pro">Pro</span>' : '';
-  const featuredStripe = f.featured ? '<span class="firm-sponsored">Öne çıkan</span>' : '';
+  const featuredStripe = '';
   const favPayload = JSON.stringify({
     id: f.id, name: f.name, city: f.city, district: f.district,
     rating: f.rating, reviews: f.reviews, image: f.image,
