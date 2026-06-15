@@ -9,6 +9,128 @@
   const TOTAL_STEPS = 9;
   const FOOD_CATS   = ['yemek', 'bar', 'sef', 'pasta'];
 
+  // Mutfak tarzı gösterilecek hizmetler
+  const CUISINE_CATS = ['yemek', 'sef', 'pasta'];
+  const CUISINE_OPTIONS = ['Akdeniz','Osmanlı/Türk','Ege','İtalyan','Uzak Doğu','Dünya mutfağı','Vegan/Vejetaryen','Deniz ürünleri','Sokak lezzetleri'];
+
+  /* ----------------------------------------------------------
+     Hizmete özel alan tanımları (Adım 7 dinamik blok)
+     type: number | select | chips(çoklu) | radio(tekli)
+  ---------------------------------------------------------- */
+  const SERVICE_FIELDS = {
+    // Grup A — kişi kapasiteli
+    _capacity: [
+      { key:'min_kisi', label:'Min. kişi kapasitesi', type:'number', required:true, placeholder:'20' },
+      { key:'max_kisi', label:'Max. kişi kapasitesi', type:'number', required:false, placeholder:'500' },
+    ],
+    yemek: '_capacity', bar: '_capacity', garson: '_capacity', sef: '_capacity', organizator: '_capacity',
+    // Grup B — DJ
+    dj: [
+      { key:'sure', label:'Etkinlik süresi', type:'select', required:true, options:['2-4 saat','4-6 saat','Tüm gece'] },
+      { key:'ekipman_dahil', label:'Ses & ışık ekipmanı dahil mi?', type:'select', required:true, options:['Evet, tam sistem','Kısmi','Hayır, mekan sağlar'] },
+    ],
+    // Grup B — Foto/Video
+    foto: [
+      { key:'sure', label:'Çekim paketi süresi', type:'select', required:true, options:['Yarım gün','Tam gün','Çoklu gün'] },
+      { key:'teslim_suresi', label:'Teslim süresi', type:'select', required:true, options:['1 hafta','2-4 hafta','1+ ay'] },
+      { key:'ek_hizmetler', label:'Ek hizmetler', type:'chips', required:false, options:['Drone','Video','Albüm','Dış çekim'] },
+    ],
+    // Grup C — Pasta
+    pasta: [
+      { key:'min_adet', label:'Min. porsiyon / kg', type:'number', required:true, placeholder:'10' },
+      { key:'ozel_diyet', label:'Özel diyet seçenekleri', type:'chips', required:false, options:['Vegan','Glutensiz','Şekersiz'] },
+    ],
+    // Grup C — Davetiye
+    davetiye: [
+      { key:'min_adet', label:'Min. adet', type:'number', required:true, placeholder:'50' },
+      { key:'proje_tipi', label:'Tür', type:'chips', required:true, options:['Baskılı','Dijital'] },
+    ],
+    // Grup D — proje bazlı
+    susleme: [
+      { key:'proje_tipi', label:'Proje tipleri', type:'chips', required:true, options:['Düğün dekoru','Masa süsleme','Mekan tasarımı','Işıklandırma'] },
+    ],
+    cicek: [
+      { key:'proje_tipi', label:'Ürün tipleri', type:'chips', required:true, options:['Gelin buketi','Masa çiçeği','Nikah/Kına','Mekan süsleme'] },
+    ],
+    ekipman: [
+      { key:'proje_tipi', label:'Ekipman türleri', type:'chips', required:true, options:['Masa-sandalye','Çadır','Ses-ışık','Servis takımı'] },
+      { key:'ekipman_dahil', label:'Kurulum dahil mi?', type:'select', required:true, options:['Evet, kurulum dahil','Hayır, sadece kiralama'] },
+    ],
+    // Grup E — çocuk / workshop
+    cocuk: [
+      { key:'yas_grubu', label:'Yaş grubu', type:'select', required:true, options:['0-3 yaş','4-6 yaş','7-12 yaş','Karma'] },
+      { key:'proje_tipi', label:'Aktiviteler', type:'chips', required:true, options:['Animasyon','Yüz boyama','Balon','Sihirbaz'] },
+    ],
+    workshop: [
+      { key:'min_kisi', label:'Min. katılımcı', type:'number', required:true, placeholder:'5' },
+      { key:'max_kisi', label:'Max. katılımcı', type:'number', required:false, placeholder:'30' },
+    ],
+  };
+
+  function getServiceFields(cat) {
+    let def = SERVICE_FIELDS[cat];
+    if (typeof def === 'string') def = SERVICE_FIELDS[def];   // alias çöz (_capacity)
+    return def || SERVICE_FIELDS._capacity;                   // varsayılan: kapasite
+  }
+
+  function getSelectedCategory() {
+    return document.querySelector('[name="kategori"]:checked')?.value || null;
+  }
+
+  /* ----------------------------------------------------------
+     Adım 7 dinamik alanları render et
+  ---------------------------------------------------------- */
+  function renderServiceFields() {
+    const cont = document.getElementById('wz-dynamic-fields');
+    if (!cont) return;
+    const cat = getSelectedCategory();
+    const fields = getServiceFields(cat);
+    cont.innerHTML = '';
+    cont.classList.remove('wz-field');  // grid bozulmasın
+
+    fields.forEach(f => {
+      const wrap = document.createElement('div');
+      wrap.className = 'form-group wz-field';
+      const reqStar = f.required ? ' <span class="req">*</span>' : '';
+      let inner = `<label>${f.label}${reqStar}</label>`;
+
+      if (f.type === 'number') {
+        inner += `<input type="number" data-field="${f.key}" name="${f.key}" min="1" placeholder="${f.placeholder||''}">`;
+      } else if (f.type === 'select') {
+        inner += `<select data-field="${f.key}" name="${f.key}"><option value="">Seçiniz...</option>` +
+          f.options.map(o => `<option>${o}</option>`).join('') + `</select>`;
+      } else if (f.type === 'chips') {
+        inner += `<div class="wz-chip-group" data-field="${f.key}">` +
+          f.options.map(o => `<label class="chip-check"><input type="checkbox" value="${o}"><span>${o}</span></label>`).join('') +
+          `</div>`;
+      }
+      wrap.innerHTML = inner;
+      cont.appendChild(wrap);
+    });
+  }
+
+  /* ----------------------------------------------------------
+     Mutfak bloğunu (Adım 3) hizmete göre göster/gizle + doldur
+  ---------------------------------------------------------- */
+  function renderMutfakBlock() {
+    const block = document.getElementById('wz-mutfak-block');
+    const grid  = document.getElementById('wz-mutfak-grid');
+    if (!block || !grid) return;
+    const cat = getSelectedCategory();
+    if (CUISINE_CATS.includes(cat)) {
+      block.hidden = false;
+      if (!grid.children.length) {
+        grid.innerHTML = CUISINE_OPTIONS.map(o =>
+          `<label class="wz-event-card"><input type="checkbox" name="mutfak" value="${o}"><span class="wz-event-name">${o}</span></label>`
+        ).join('');
+      }
+    } else {
+      block.hidden = true;
+    }
+  }
+
+
+
   let currentStep = 1;
   let currentUser = null;
 
@@ -71,6 +193,34 @@
     });
   }
 
+  // Dinamik alanlar (Adım 3 mutfak, Adım 7 hizmet alanları) sonradan oluştuğu için
+  // draft varsa değerlerini onlara da uygula
+  function reapplyDraftToDynamic() {
+    const draft = loadDraft();
+    if (!draft) return;
+    Object.entries(draft).forEach(([name, val]) => {
+      if (name === '_step') return;
+      // mutfak checkbox'ları
+      document.querySelectorAll(`[name="${CSS.escape(name)}"]`).forEach(el => {
+        if (el.type === 'checkbox') el.checked = Array.isArray(val) && val.includes(el.value);
+        else if (el.type === 'radio') el.checked = el.value === val;
+        else if (el.value === '') el.value = val;
+      });
+      // dinamik data-field alanları
+      const dynEl = document.querySelector(`#wz-dynamic-fields [data-field="${name}"]`);
+      if (dynEl) {
+        if (dynEl.classList.contains('wz-chip-group')) {
+          (Array.isArray(val) ? val : [val]).forEach(v => {
+            const cb = [...dynEl.querySelectorAll('input')].find(i => i.value === v);
+            if (cb) cb.checked = true;
+          });
+        } else if (!dynEl.value) {
+          dynEl.value = val;
+        }
+      }
+    });
+  }
+
   function showDraftBanner(draft) {
     const banner = document.getElementById('wz-draft-banner');
     if (!banner) return;
@@ -111,6 +261,8 @@
     updateFooter();
     clearErrors();
 
+    if (currentStep === 3) { renderMutfakBlock(); reapplyDraftToDynamic(); }
+    if (currentStep === 7) { renderServiceFields(); reapplyDraftToDynamic(); }
     if (currentStep === 9) renderPreview();
 
     // URL state
@@ -227,9 +379,24 @@
         showError('err-7', 'Deneyim süresi seçimi zorunlu.');
         return false;
       }
-      if (!document.getElementById('min-kisi').value) {
-        showError('err-7', 'Minimum kişi sayısı zorunlu.');
-        return false;
+      // Hizmete özel zorunlu alanları kontrol et
+      const cat = getSelectedCategory();
+      const fields = getServiceFields(cat);
+      for (const f of fields) {
+        if (!f.required) continue;
+        if (f.type === 'chips') {
+          const grp = document.querySelector(`[data-field="${f.key}"]`);
+          if (grp && !grp.querySelector('input:checked')) {
+            showError('err-7', `Lütfen "${f.label}" alanından en az bir seçim yap.`);
+            return false;
+          }
+        } else {
+          const el = document.querySelector(`[data-field="${f.key}"]`);
+          if (el && !el.value) {
+            showError('err-7', `Lütfen "${f.label}" alanını doldur.`);
+            return false;
+          }
+        }
       }
     }
     if (n === 8) {
@@ -508,6 +675,21 @@
     const ilceler = [...document.querySelectorAll('input[type="hidden"][name="ilce"]')].map(el => el.value);
     const etkinlikler = [...document.querySelectorAll('[name="etkinlik"]:checked')].map(el => el.value);
 
+    // Hizmete özel dinamik alanları topla
+    const dyn = {};
+    document.querySelectorAll('#wz-dynamic-fields [data-field]').forEach(el => {
+      const key = el.dataset.field;
+      if (el.classList.contains('wz-chip-group')) {
+        const vals = [...el.querySelectorAll('input:checked')].map(i => i.value);
+        if (vals.length) dyn[key] = vals;
+      } else if (el.value) {
+        // number alanları integer, diğerleri text
+        dyn[key] = (el.type === 'number') ? (parseInt(el.value) || null) : el.value;
+      }
+    });
+    // Mutfak (Adım 3, sadece yemek/şef/pasta)
+    const mutfaklar = [...document.querySelectorAll('[name="mutfak"]:checked')].map(el => el.value);
+
     const payload = {
       user_id:     currentUser.id,
       firm_name:   document.getElementById('firma-adi').value.trim(),
@@ -523,7 +705,17 @@
       web:         (document.getElementById('web')?.value || '').trim() || null,
       segment:     document.querySelector('[name="segment"]:checked')?.value || null,
       deneyim:     document.getElementById('deneyim').value || null,
-      min_kisi:    parseInt(document.getElementById('min-kisi').value) || null,
+      min_kisi:    dyn.min_kisi ?? null,
+      max_kisi:    dyn.max_kisi ?? null,
+      min_adet:    dyn.min_adet ?? null,
+      sure:          dyn.sure || null,
+      ekipman_dahil: dyn.ekipman_dahil || null,
+      teslim_suresi: dyn.teslim_suresi || null,
+      yas_grubu:     dyn.yas_grubu || null,
+      ek_hizmetler:  dyn.ek_hizmetler || null,
+      proje_tipi:    dyn.proje_tipi || null,
+      ozel_diyet:    dyn.ozel_diyet || null,
+      mutfak:        mutfaklar.length ? mutfaklar : null,
       paket:       document.querySelector('[name="paket"]:checked')?.value || 'Free',
       photos:      photoUrls,
       status:      'pending',
