@@ -4483,6 +4483,19 @@ body.drawer-open {
   flex-wrap: wrap;
   gap: 0.5rem;
 }
+/* Etkinlik türü & minimum puan: düzgün 2 sütunlu grid (kısa, eşit çipler) */
+.filter-chips[data-filter="event"],
+.filter-chips[data-filter="rating"] {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+.filter-chips[data-filter="event"] .filter-chip,
+.filter-chips[data-filter="rating"] .filter-chip {
+  justify-content: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+}
 .filter-chip {
   position: relative;
   display: inline-flex;
