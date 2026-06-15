@@ -782,15 +782,30 @@
 
   var activeIdx = -1;
 
+  // overflow:hidden olan .hero-search'ten kurtarmak için listeyi body'ye taşı
+  if (sug.parentElement !== document.body) document.body.appendChild(sug);
+
+  function positionSug() {
+    var r = input.getBoundingClientRect();
+    sug.style.position = 'fixed';
+    sug.style.top = (r.bottom + 6) + 'px';
+    sug.style.left = r.left + 'px';
+    sug.style.width = r.width + 'px';
+  }
+
   function render(list) {
     if (!list.length) { sug.hidden = true; input.setAttribute('aria-expanded','false'); return; }
     sug.innerHTML = list.map(function(il, i) {
       return '<li role="option" class="hs-suggest-item" data-il="' + il + '" data-i="' + i + '">' + il + '</li>';
     }).join('');
+    positionSug();
     sug.hidden = false;
     input.setAttribute('aria-expanded','true');
     activeIdx = -1;
   }
+
+  window.addEventListener('scroll', function(){ if(!sug.hidden) positionSug(); }, true);
+  window.addEventListener('resize', function(){ if(!sug.hidden) positionSug(); });
 
   function pick(il) {
     input.value = il;
