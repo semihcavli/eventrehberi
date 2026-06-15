@@ -128,104 +128,90 @@
       <!-- Alan 2: Şehir -->
       <div class="hs-field">
         <svg class="hs-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        <select id="hs-sehir" class="hs-select" aria-label="Şehir seç">
-          <option value="">Tüm Türkiye</option>
-          <optgroup label="Marmara">
-            <option>Balıkesir</option>
-            <option>Bilecik</option>
-            <option>Bursa</option>
-            <option>Çanakkale</option>
-            <option>Edirne</option>
-            <option>İstanbul</option>
-            <option>Kırklareli</option>
-            <option>Kocaeli</option>
-            <option>Sakarya</option>
-            <option>Tekirdağ</option>
-            <option>Yalova</option>
-          </optgroup>
-          <optgroup label="Ege">
-            <option>Afyonkarahisar</option>
-            <option>Aydın</option>
-            <option>Denizli</option>
-            <option>İzmir</option>
-            <option>Kütahya</option>
-            <option>Manisa</option>
-            <option>Muğla</option>
-            <option>Uşak</option>
-          </optgroup>
-          <optgroup label="Akdeniz">
-            <option>Adana</option>
-            <option>Antalya</option>
-            <option>Burdur</option>
-            <option>Hatay</option>
-            <option>Isparta</option>
-            <option>Kahramanmaraş</option>
-            <option>Mersin</option>
-            <option>Osmaniye</option>
-          </optgroup>
-          <optgroup label="İç Anadolu">
-            <option>Aksaray</option>
-            <option>Ankara</option>
-            <option>Çankırı</option>
-            <option>Eskişehir</option>
-            <option>Karaman</option>
-            <option>Kayseri</option>
-            <option>Kırıkkale</option>
-            <option>Kırşehir</option>
-            <option>Konya</option>
-            <option>Nevşehir</option>
-            <option>Niğde</option>
-            <option>Sivas</option>
-            <option>Yozgat</option>
-          </optgroup>
-          <optgroup label="Karadeniz">
-            <option>Amasya</option>
-            <option>Artvin</option>
-            <option>Bartın</option>
-            <option>Bayburt</option>
-            <option>Bolu</option>
-            <option>Çorum</option>
-            <option>Düzce</option>
-            <option>Giresun</option>
-            <option>Gümüşhane</option>
-            <option>Karabük</option>
-            <option>Kastamonu</option>
-            <option>Ordu</option>
-            <option>Rize</option>
-            <option>Samsun</option>
-            <option>Sinop</option>
-            <option>Tokat</option>
-            <option>Trabzon</option>
-            <option>Zonguldak</option>
-          </optgroup>
-          <optgroup label="Doğu Anadolu">
-            <option>Ağrı</option>
-            <option>Ardahan</option>
-            <option>Bingöl</option>
-            <option>Bitlis</option>
-            <option>Elazığ</option>
-            <option>Erzincan</option>
-            <option>Erzurum</option>
-            <option>Hakkari</option>
-            <option>Iğdır</option>
-            <option>Kars</option>
-            <option>Malatya</option>
-            <option>Muş</option>
-            <option>Tunceli</option>
-            <option>Van</option>
-          </optgroup>
-          <optgroup label="Güneydoğu Anadolu">
-            <option>Adıyaman</option>
-            <option>Batman</option>
-            <option>Diyarbakır</option>
-            <option>Gaziantep</option>
-            <option>Kilis</option>
-            <option>Mardin</option>
-            <option>Siirt</option>
-            <option>Şanlıurfa</option>
-            <option>Şırnak</option>
-          </optgroup>
-        </select>
+        <input type="text" id="hs-sehir" class="hs-input hs-city-input" list="hs-sehir-list" placeholder="Tüm Türkiye" autocomplete="off" aria-label="Şehir ara veya seç">
+        <datalist id="hs-sehir-list">
+          <option value="Adana"></option>
+          <option value="Adıyaman"></option>
+          <option value="Afyonkarahisar"></option>
+          <option value="Ağrı"></option>
+          <option value="Aksaray"></option>
+          <option value="Amasya"></option>
+          <option value="Ankara"></option>
+          <option value="Antalya"></option>
+          <option value="Ardahan"></option>
+          <option value="Artvin"></option>
+          <option value="Aydın"></option>
+          <option value="Balıkesir"></option>
+          <option value="Bartın"></option>
+          <option value="Batman"></option>
+          <option value="Bayburt"></option>
+          <option value="Bilecik"></option>
+          <option value="Bingöl"></option>
+          <option value="Bitlis"></option>
+          <option value="Bolu"></option>
+          <option value="Burdur"></option>
+          <option value="Bursa"></option>
+          <option value="Çanakkale"></option>
+          <option value="Çankırı"></option>
+          <option value="Çorum"></option>
+          <option value="Denizli"></option>
+          <option value="Diyarbakır"></option>
+          <option value="Düzce"></option>
+          <option value="Edirne"></option>
+          <option value="Elazığ"></option>
+          <option value="Erzincan"></option>
+          <option value="Erzurum"></option>
+          <option value="Eskişehir"></option>
+          <option value="Gaziantep"></option>
+          <option value="Giresun"></option>
+          <option value="Gümüşhane"></option>
+          <option value="Hakkari"></option>
+          <option value="Hatay"></option>
+          <option value="Iğdır"></option>
+          <option value="Isparta"></option>
+          <option value="İstanbul"></option>
+          <option value="İzmir"></option>
+          <option value="Kahramanmaraş"></option>
+          <option value="Karabük"></option>
+          <option value="Karaman"></option>
+          <option value="Kars"></option>
+          <option value="Kastamonu"></option>
+          <option value="Kayseri"></option>
+          <option value="Kırıkkale"></option>
+          <option value="Kırklareli"></option>
+          <option value="Kırşehir"></option>
+          <option value="Kilis"></option>
+          <option value="Kocaeli"></option>
+          <option value="Konya"></option>
+          <option value="Kütahya"></option>
+          <option value="Malatya"></option>
+          <option value="Manisa"></option>
+          <option value="Mardin"></option>
+          <option value="Mersin"></option>
+          <option value="Muğla"></option>
+          <option value="Muş"></option>
+          <option value="Nevşehir"></option>
+          <option value="Niğde"></option>
+          <option value="Ordu"></option>
+          <option value="Osmaniye"></option>
+          <option value="Rize"></option>
+          <option value="Sakarya"></option>
+          <option value="Samsun"></option>
+          <option value="Siirt"></option>
+          <option value="Sinop"></option>
+          <option value="Sivas"></option>
+          <option value="Şanlıurfa"></option>
+          <option value="Şırnak"></option>
+          <option value="Tekirdağ"></option>
+          <option value="Tokat"></option>
+          <option value="Trabzon"></option>
+          <option value="Tunceli"></option>
+          <option value="Uşak"></option>
+          <option value="Van"></option>
+          <option value="Yalova"></option>
+          <option value="Yozgat"></option>
+          <option value="Zonguldak"></option>
+        </datalist>
       </div>
 
       <div class="hs-divider" aria-hidden="true"></div>
@@ -265,6 +251,18 @@
         <a href="catererlar.html?hizmet=sef" class="chip chip-glass">Özel Şef</a>
         <a href="catererlar.html?hizmet=ekipman" class="chip chip-glass">Ekipman</a>
         <a href="catererlar.html?hizmet=pasta" class="chip chip-glass">Pasta</a>
+      </div>
+    </div>
+
+    <div class="hero-popular hero-popular--cities">
+      <span class="hero-popular-label">Şehirler:</span>
+      <div class="hero-popular-chips">
+        <a href="catererlar.html?sehir=İstanbul" class="chip chip-glass">İstanbul</a>
+        <a href="catererlar.html?sehir=Ankara" class="chip chip-glass">Ankara</a>
+        <a href="catererlar.html?sehir=İzmir" class="chip chip-glass">İzmir</a>
+        <a href="catererlar.html?sehir=Bursa" class="chip chip-glass">Bursa</a>
+        <a href="catererlar.html?sehir=Antalya" class="chip chip-glass">Antalya</a>
+        <a href="catererlar.html?sehir=Muğla" class="chip chip-glass">Muğla</a>
       </div>
     </div>
   </div>
