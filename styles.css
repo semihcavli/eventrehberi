@@ -4483,11 +4483,11 @@ body.drawer-open {
   flex-wrap: wrap;
   gap: 0.5rem;
 }
-/* Etkinlik türü & minimum puan: düzgün 2 sütunlu grid (kısa, eşit çipler) */
+/* Etkinlik türü & minimum puan: tek sütun, tam genişlik, alt alta (en temiz, hizalı) */
 .filter-chips[data-filter="event"],
 .filter-chips[data-filter="rating"] {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 0.5rem;
 }
 .filter-chips[data-filter="event"] .filter-chip,
@@ -4495,6 +4495,7 @@ body.drawer-open {
   justify-content: flex-start;
   width: 100%;
   box-sizing: border-box;
+  white-space: nowrap;
 }
 .filter-chip {
   position: relative;
@@ -9949,8 +9950,8 @@ label,
 /* ============= COMPARE BUTTON ON FIRM CARDS ============= */
 .firm-card-compare {
   position: absolute;
-  top: 12px; right: 56px;
-  width: 36px; height: 36px;
+  top: 0.75rem; right: 62px;
+  width: 38px; height: 38px;
   background: rgba(255,255,255,0.95);
   backdrop-filter: blur(8px);
   border-radius: 50%;
