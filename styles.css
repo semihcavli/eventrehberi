@@ -10528,3 +10528,37 @@ label,
   .hbm-support-meta { text-align: left; }
 }
 
+
+/* ============================================================
+   Şehir autocomplete öneri listesi (hero arama)
+   ============================================================ */
+.hs-field { position: relative; }
+.hs-suggest {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  z-index: 50;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background: #fff;
+  border: 1px solid var(--color-border, #e5e5e5);
+  border-radius: 12px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+  max-height: 280px;
+  overflow-y: auto;
+}
+.hs-suggest-item {
+  padding: 10px 14px;
+  font-size: 0.9375rem;
+  color: var(--color-text, #1a1a1a);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+.hs-suggest-item:hover,
+.hs-suggest-item.is-active {
+  background: rgba(31,77,51,0.08);
+  color: var(--color-accent, #1F4D33);
+}
