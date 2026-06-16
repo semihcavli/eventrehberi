@@ -10808,3 +10808,5 @@ label,
 }
 .wz-belge-btn--done { background: #1D9E75; }
 .wz-belge-btn--err { background: #C7522A; }
+
+.fc-verified { display:inline-flex; vertical-align:-2px; margin-left:2px; }
