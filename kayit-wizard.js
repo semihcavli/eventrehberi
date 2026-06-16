@@ -319,7 +319,7 @@
 
     if (currentStep === 3) { renderMutfakBlock(); reapplyDraftToDynamic(); }
     if (currentStep === 7) { renderServiceFields(); reapplyDraftToDynamic(); }
-    if (currentStep === 9) renderPreview();
+    if (currentStep === 9) { renderPreview(); renderProfilGucu(); }
 
     // URL state
     if (pushHistory !== false) {
@@ -661,6 +661,44 @@
   /* ----------------------------------------------------------
      7. Preview (Step 9)
   ---------------------------------------------------------- */
+  function renderProfilGucu() {
+    // Her madde bir puan; toplam üzerinden yüzde
+    const checks = [
+      { ok: !!document.getElementById('firma-adi')?.value.trim(), label: 'Firma adı', w: 12 },
+      { ok: !!document.getElementById('tagline')?.value.trim(), label: 'Kısa tanıtım', w: 10 },
+      { ok: (document.getElementById('tanitim')?.value.trim().length || 0) >= 100, label: 'Detaylı açıklama', w: 15 },
+      { ok: !!document.getElementById('il')?.value, label: 'Konum', w: 10 },
+      { ok: !!document.querySelector('[name="etkinlik"]:checked'), label: 'Etkinlik türleri', w: 8 },
+      { ok: !!document.querySelector('[name="segment"]:checked'), label: 'Fiyat segmenti', w: 8 },
+      { ok: (document.getElementById('galeri')?.files?.length || 0) > 0, label: 'Fotoğraf', w: 17, bonus: '+%17 görünürlük' },
+      { ok: Object.keys(typeof uploadedBelgeler !== 'undefined' ? uploadedBelgeler : {}).length > 0, label: 'Belge / doğrulama', w: 12, bonus: 'Doğrulanmış rozeti' },
+      { ok: !!document.getElementById('web')?.value.trim(), label: 'Web / sosyal medya', w: 8 },
+    ];
+    const total = checks.reduce((s,c)=>s+c.w, 0);
+    const earned = checks.filter(c=>c.ok).reduce((s,c)=>s+c.w, 0);
+    const pct = Math.round((earned/total)*100);
+
+    const fill = document.getElementById('wz-profilguc-fill');
+    const pctEl = document.getElementById('wz-profilguc-pct');
+    if (fill) fill.style.width = pct + '%';
+    if (pctEl) pctEl.textContent = '%' + pct + (pct >= 80 ? ' · Güçlü' : pct >= 50 ? ' · İyi' : ' · Geliştir');
+
+    const itemsEl = document.getElementById('wz-profilguc-items');
+    if (itemsEl) {
+      // Tamamlananlar + en önemli 2 eksik
+      const done = checks.filter(c=>c.ok);
+      const missing = checks.filter(c=>!c.ok).sort((a,b)=>b.w-a.w);
+      let html = '';
+      done.slice(-2).forEach(c => {
+        html += `<div class="wz-pg-item wz-pg-item--done"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#1D9E75" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> ${c.label}</div>`;
+      });
+      missing.slice(0,2).forEach(c => {
+        html += `<div class="wz-pg-item wz-pg-item--todo"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#C7522A" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> ${c.label}${c.bonus ? ` <span class="wz-pg-bonus">${c.bonus}</span>` : ''}</div>`;
+      });
+      itemsEl.innerHTML = html;
+    }
+  }
+
   function renderPreview() {
     const ad = document.getElementById('firma-adi')?.value.trim() || 'Firma Adı';
     const tagline = document.getElementById('tagline')?.value.trim() || '';
