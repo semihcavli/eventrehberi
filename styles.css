@@ -10757,3 +10757,22 @@ label,
   transition: background 0.15s;
 }
 .firm-card:hover .firm-card-cta-btn { background: #163825; }
+
+/* ============================================================
+   Kayıt — firma türü seçimi (Şirket / Bireysel)
+   ============================================================ */
+.wz-firmatype { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+.wz-firmatype-card { position: relative; cursor: pointer; }
+.wz-firmatype-card input { position: absolute; opacity: 0; }
+.wz-firmatype-inner {
+  display: flex; flex-direction: column; gap: 4px;
+  padding: 1rem; border: 1.5px solid #E6DFCF; border-radius: 12px;
+  color: #1F2D20; transition: all 0.15s ease;
+}
+.wz-firmatype-card:hover .wz-firmatype-inner { border-color: #1F4D33; }
+.wz-firmatype-card input:checked + .wz-firmatype-inner {
+  border-color: #1F4D33; background: #F0F7F2;
+}
+.wz-firmatype-name { font-weight: 600; font-size: 0.9375rem; margin-top: 4px; }
+.wz-firmatype-desc { font-size: 0.8125rem; color: var(--color-text-muted, #888); }
+@media (max-width: 600px) { .wz-firmatype { grid-template-columns: 1fr; } }
