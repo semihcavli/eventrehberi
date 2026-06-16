@@ -786,7 +786,7 @@ function renderCard(f) {
     rating: f.rating, reviews: f.reviews, image: f.image,
     tagline: f.tagline, badge: f.badge || '',
     cuisines: f.cuisine || [], events: f.events || [],
-    price: f.price, hizmet: f.hizmet
+    price: f.price, hizmet: f.hizmet, dogrulanmis: f.dogrulanmis || false
   }).replace(/"/g, '&quot;');
   return `
     <a href="firma.html?id=${f.id}" class="firm-card ${f.featured ? 'firm-card--featured' : ''}">
@@ -803,7 +803,7 @@ function renderCard(f) {
       </div>
       <div class="firm-card-body">
         <div class="firm-card-head">
-          <h4>${f.name}</h4>
+          <h4>${f.name}${f.dogrulanmis ? ' <span class="fc-verified" title="Doğrulanmış firma"><svg viewBox="0 0 24 24" width="14" height="14" fill="#1D9E75"><path d="M12 2l2.2 1.5 2.6-.4 1.2 2.4 2.4 1.2-.4 2.6L23.5 12l-1.7 2.1.4 2.6-2.4 1.2-1.2 2.4-2.6-.4L12 22l-2.1-1.7-2.6.4-1.2-2.4-2.4-1.2.4-2.6L2.5 12l1.7-2.1-.4-2.6 2.4-1.2L7.4 3.7l2.6.4z" fill="#1D9E75"/><path d="M9.5 12.5l2 2 4-4.5" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' : ''}</h4>
           ${badgeHtml}
         </div>
         <p class="firm-card-tagline">${f.tagline}</p>
