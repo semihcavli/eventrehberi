@@ -92,6 +92,14 @@
 
 .admin-belge-unverify-btn { display:inline-flex; align-items:center; gap:5px; font-size:0.8125rem; font-weight:500; background:#FDECEC; color:#C0392B; border:1px solid #F5C6C6; padding:6px 14px; border-radius:8px; cursor:pointer; }
 .admin-belge-unverify-btn:hover { background:#FBDADA; }
+
+.admin-bulk-bar { display:flex; align-items:center; justify-content:space-between; gap:1rem; background:#1F4D33; color:#fff; padding:0.75rem 1.25rem; border-radius:10px; margin-bottom:1rem; }
+.admin-bulk-count { font-size:0.9375rem; font-weight:500; }
+.admin-bulk-actions { display:flex; gap:8px; }
+.admin-bulk-approve, .admin-bulk-reject, .admin-bulk-clear { font-size:0.8125rem; font-weight:500; padding:6px 14px; border-radius:7px; cursor:pointer; border:none; }
+.admin-bulk-approve { background:#1D9E75; color:#fff; }
+.admin-bulk-reject { background:#fff; color:#C0392B; }
+.admin-bulk-clear { background:transparent; color:rgba(255,255,255,0.8); border:1px solid rgba(255,255,255,0.3); }
 </style>
 </head>
 <body>
@@ -165,7 +173,15 @@
     </select>
   </div>
 
-  <div class="admin-cards" id="admin-cards">
+  <div class="admin-bulk-bar" id="admin-bulk-bar" hidden>
+  <span class="admin-bulk-count" id="admin-bulk-count">0 seçili</span>
+  <div class="admin-bulk-actions">
+    <button type="button" class="admin-bulk-approve" id="bulk-approve">Seçilenleri onayla</button>
+    <button type="button" class="admin-bulk-reject" id="bulk-reject">Seçilenleri reddet</button>
+    <button type="button" class="admin-bulk-clear" id="bulk-clear">Temizle</button>
+  </div>
+</div>
+<div class="admin-cards" id="admin-cards">
     <p style="color:var(--color-text-muted);padding:2rem 0;">Yükleniyor…</p>
   </div>
   </div><!-- /section-applications -->
@@ -342,6 +358,66 @@ function applyFiltersAndRender() {
   }
   container.innerHTML = filtered.map(renderCard).join('');
   bindCardEvents();
+  bindBulkEvents();
+}
+
+const bulkSelected = new Set();
+
+function bindBulkEvents() {
+  document.querySelectorAll('.admin-card-check').forEach(function(cb){
+    cb.checked = bulkSelected.has(cb.dataset.checkId);
+    cb.addEventListener('change', function(){
+      if (cb.checked) bulkSelected.add(cb.dataset.checkId);
+      else bulkSelected.delete(cb.dataset.checkId);
+      updateBulkBar();
+    });
+  });
+  updateBulkBar();
+}
+
+function updateBulkBar() {
+  const bar = document.getElementById('admin-bulk-bar');
+  const count = document.getElementById('admin-bulk-count');
+  // Sadece görünür (pending) seçilileri say
+  const visibleIds = new Set([...document.querySelectorAll('.admin-card-check')].map(c=>c.dataset.checkId));
+  [...bulkSelected].forEach(id => { if (!visibleIds.has(id)) bulkSelected.delete(id); });
+  if (!bar || !count) return;
+  bar.hidden = bulkSelected.size === 0;
+  count.textContent = bulkSelected.size + ' seçili';
+}
+
+async function bulkApprove() {
+  const ids = [...bulkSelected];
+  if (!ids.length) return;
+  if (!confirm(ids.length + ' başvuruyu onaylamak istiyor musun?')) return;
+  for (const id of ids) {
+    const app = allApplications.find(a => a.id === id);
+    if (app) await approveApplication(app, document.createElement('button'));
+  }
+  bulkSelected.clear();
+  showToast(ids.length + ' başvuru onaylandı ✓');
+  loadApplications();
+}
+
+async function bulkReject() {
+  const ids = [...bulkSelected];
+  if (!ids.length) return;
+  if (!confirm(ids.length + ' başvuruyu reddetmek istiyor musun?')) return;
+  for (const id of ids) {
+    await ER_Supabase.from('firm_applications').update({ status: 'rejected' }).eq('id', id);
+  }
+  bulkSelected.clear();
+  showToast(ids.length + ' başvuru reddedildi.');
+  loadApplications();
+}
+
+function bindBulkBar() {
+  const ba = document.getElementById('bulk-approve');
+  const br = document.getElementById('bulk-reject');
+  const bc = document.getElementById('bulk-clear');
+  if (ba) ba.addEventListener('click', bulkApprove);
+  if (br) br.addEventListener('click', bulkReject);
+  if (bc) bc.addEventListener('click', function(){ bulkSelected.clear(); document.querySelectorAll('.admin-card-check').forEach(c=>c.checked=false); updateBulkBar(); });
 }
 
 function renderCard(app) {
@@ -353,7 +429,8 @@ function renderCard(app) {
   return `
   <div class="admin-card" data-id="${app.id}">
     <div class="admin-card-head">
-      <div>
+      <div style="display:flex;align-items:flex-start;gap:10px;">
+        ${app.status === 'pending' ? `<input type="checkbox" class="admin-card-check" data-check-id="${app.id}" style="margin-top:4px;width:18px;height:18px;cursor:pointer;">` : ''}
         <h3 class="admin-card-name">${esc(app.firm_name || '—')}
           <span class="admin-status-badge ${app.status}">${statusLabel(app.status)}</span>
           ${app.paket === 'Pro' ? '<span class="admin-status-badge" style="background:#FFF8E8;color:#A06000;border:1px solid #F0D890;margin-left:4px;">Pro</span>' : ''}
@@ -1023,6 +1100,8 @@ document.addEventListener('er-supabase-ready', async function() {
   loadApplications();
   loadContactBadge();
 }, { once: true });
+
+document.addEventListener('DOMContentLoaded', function(){ if(typeof bindBulkBar==='function') bindBulkBar(); });
 </script>
 </body>
 </html>
