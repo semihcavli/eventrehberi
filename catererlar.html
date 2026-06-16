@@ -796,7 +796,10 @@ function renderCard(f) {
         <button type="button" class="firm-card-fav" data-fav-toggle data-fav-id="${f.id}" data-fav="${favPayload}" aria-label="Favorilere ekle" aria-pressed="false" title="Favorilere ekle">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
         </button>
-        <span class="firm-card-rating">★ ${f.rating != null ? Number(f.rating).toFixed(1) : '-'}</span>
+        <div class="firm-card-rating-wrap">
+          <span class="firm-card-rating-new"><svg viewBox="0 0 24 24" width="12" height="12" fill="#EF9F27"><path d="M12 2l2.4 7.4H22l-6.2 4.5L18.2 21 12 16.5 5.8 21l2.4-7.1L2 9.4h7.6L12 2z"/></svg> ${f.rating != null ? Number(f.rating).toFixed(1) : 'Yeni'}</span>
+          ${f.reviews ? `<span class="firm-card-reviews-new">${f.reviews} değerlendirme</span>` : ''}
+        </div>
       </div>
       <div class="firm-card-body">
         <div class="firm-card-head">
@@ -804,6 +807,7 @@ function renderCard(f) {
           ${badgeHtml}
         </div>
         <p class="firm-card-tagline">${f.tagline}</p>
+        ${buildCardTags(f)}
         <div class="firm-card-meta">
           <span class="firm-card-loc">
             <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -811,13 +815,23 @@ function renderCard(f) {
           </span>
           <span class="firm-card-price">${PRICE_STR[f.price] || '-'}</span>
         </div>
-        <div class="firm-card-foot">
-          <span class="firm-card-reviews">${f.reviews != null ? f.reviews : 0} yorum</span>
-          <span class="firm-card-min">Min ${f.minPeople} kişi</span>
+        <div class="firm-card-cta">
+          <span class="firm-card-cta-btn">Teklif al →</span>
         </div>
       </div>
     </a>
   `;
+}
+
+function buildCardTags(f) {
+  const tags = [];
+  (f.cuisine || []).slice(0, 2).forEach(c => tags.push(`<span class="fc-tag fc-tag--green">${cuisineLabel(c)}</span>`));
+  if (tags.length < 2 && (f.events || []).length) {
+    const EV = {dugun:'Düğün', kurumsal:'Kurumsal', nisan:'Nişan', 'dogum-gunu':'Doğum günü', kokteyl:'Kokteyl', 'ozel-davet':'Özel davet'};
+    (f.events || []).slice(0, 2 - tags.length).forEach(e => tags.push(`<span class="fc-tag fc-tag--green">${EV[e] || e}</span>`));
+  }
+  tags.push('<span class="fc-tag fc-tag--orange"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 24sa yanıt</span>');
+  return `<div class="firm-card-tags">${tags.join('')}</div>`;
 }
 
 function renderChips() {
