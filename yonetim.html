@@ -63,6 +63,18 @@
 .hbm-confirm-box h4 { margin:0 0 0.5rem; color:#C62828; }
 .hbm-confirm-box p { margin:0 0 1rem; font-size:0.875rem; color:#555; }
 .hbm-confirm-actions { display:flex; gap:0.5rem; justify-content:flex-end; }
+
+.admin-belge-box { background:#FAF8F3; border:1px solid #ECE5D8; border-radius:10px; padding:0.75rem 0.875rem; margin-bottom:0.75rem; }
+.admin-belge-head { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:0.5rem; }
+.admin-belge-label { display:inline-flex; align-items:center; gap:5px; font-size:0.8125rem; color:#5a5a52; }
+.admin-belge-verified { font-size:0.75rem; font-weight:600; color:#1D9E75; background:#E6F7F0; padding:2px 8px; border-radius:999px; }
+.admin-belge-pending { font-size:0.75rem; font-weight:500; color:#A06000; background:#FFF8E8; padding:2px 8px; border-radius:999px; }
+.admin-belge-none { font-size:0.75rem; color:#999; }
+.admin-belge-list { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:0.5rem; }
+.admin-belge-link { display:inline-flex; align-items:center; gap:4px; font-size:0.75rem; background:#fff; border:1px solid #DDD6C8; color:#1F4D33; padding:4px 10px; border-radius:7px; cursor:pointer; }
+.admin-belge-link:hover { border-color:#1F4D33; background:#F0F7F2; }
+.admin-belge-verify-btn { display:inline-flex; align-items:center; gap:5px; font-size:0.8125rem; font-weight:500; background:#1D9E75; color:#fff; border:none; padding:6px 14px; border-radius:8px; cursor:pointer; }
+.admin-belge-verify-btn:hover { background:#178A65; }
 </style>
 </head>
 <body>
@@ -219,6 +231,7 @@ const HIZMET_LBL = {
   dj:'DJ & Müzik', foto:'Foto & Video', garson:'Garson Servisi',
   hostes:'Hostes', ekipman:'Ekipman Kiralama'
 };
+const BELGE_LBL = { vergi_levhasi:'Vergi levhası', kimlik:'Kimlik/Sirküler', sertifika:'Sertifika/Ruhsat', portfolyo:'Portfolyo' };
 const SEGMENT_MAP = { 'Ekonomik':1, 'Orta':2, 'Orta-üst':3, 'Premium':4 };
 
 const DURUM_LBL   = { beklemede:'Beklemede', cevaplandi:'Cevaplandı', cozuldu:'Çözüldü', kapatildi:'Kapatıldı' };
@@ -321,6 +334,23 @@ function renderCard(app) {
       `<img class="admin-photo-thumb" src="${esc(url)}" alt="Firma fotoğrafı" loading="lazy" onclick="window.open('${esc(url)}','_blank')">`
     ).join('')}</div>` : ''}
 
+    <div class="admin-belge-box">
+      <div class="admin-belge-head">
+        <span class="admin-belge-label">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          ${app.firma_turu === 'sirket' ? 'Şirket' : app.firma_turu === 'bireysel' ? 'Bireysel' : 'Tür belirtilmemiş'}
+          ${app.vergi_no ? ` · VKN: ${esc(app.vergi_no)}` : ''}
+        </span>
+        ${app.dogrulanmis ? '<span class="admin-belge-verified">✓ Doğrulanmış</span>' : (app.belgeler && app.belgeler.length ? '<span class="admin-belge-pending">Belge bekliyor</span>' : '<span class="admin-belge-none">Belge yok</span>')}
+      </div>
+      ${(app.belgeler && app.belgeler.length) ? `<div class="admin-belge-list">${app.belgeler.map(b =>
+        `<button type="button" class="admin-belge-link" data-belge-path="${esc(b.path)}">${BELGE_LBL[b.tur] || b.tur} <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></button>`
+      ).join('')}</div>` : ''}
+      ${(app.belgeler && app.belgeler.length && !app.dogrulanmis) ? `<button type="button" class="admin-belge-verify-btn" data-action="verify" data-id="${app.id}">
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> Belgeleri doğrula
+      </button>` : ''}
+    </div>
+
     ${app.rejection_reason ? `<div style="font-size:0.8125rem;color:#C0392B;background:#FFF0F0;border:1px solid #F5B7B1;border-radius:8px;padding:0.5rem 0.75rem;margin-bottom:0.75rem;">Ret sebebi: ${esc(app.rejection_reason)}</div>` : ''}
 
     <div class="admin-card-actions">
@@ -373,7 +403,34 @@ function bindCardEvents() {
     if (btn.dataset.action === 'approve') approveApplication(app, btn);
     if (btn.dataset.action === 'reject')  openRejectModal(app);
     if (btn.dataset.action === 'edit')    openEditModal(app);
+    if (btn.dataset.action === 'verify')  verifyBelgeler(app, btn);
   }, { once: false });
+
+  // Belge linkine tıklayınca signed URL ile aç (private)
+  document.getElementById('admin-cards').addEventListener('click', async function(e) {
+    const link = e.target.closest('[data-belge-path]');
+    if (!link) return;
+    e.preventDefault();
+    const path = link.dataset.belgePath;
+    const { data, error } = await ER_Supabase.storage.from('firma-belgeler').createSignedUrl(path, 120);
+    if (error) { showToast('Belge açılamadı: ' + error.message, true); return; }
+    window.open(data.signedUrl, '_blank');
+  });
+}
+
+async function verifyBelgeler(app, btn) {
+  btn.disabled = true;
+  btn.textContent = 'Doğrulanıyor…';
+  const { error } = await ER_Supabase.from('firm_applications')
+    .update({ dogrulanmis: true, belge_durumu: 'onayli' })
+    .eq('id', app.id);
+  if (error) { showToast('Hata: ' + error.message, true); btn.disabled = false; return; }
+  // Eğer firma zaten firms tablosunda ise oradaki dogrulanmis'i de güncelle
+  if (app.user_id) {
+    await ER_Supabase.from('firms').update({ dogrulanmis: true }).eq('user_id', app.user_id);
+  }
+  showToast('Belgeler doğrulandı ✓ Firma artık "Doğrulanmış" rozeti alacak.');
+  loadApplications();
 }
 
 /* ---- approve ---- */
