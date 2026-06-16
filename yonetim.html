@@ -157,6 +157,12 @@
     </select>
     <input type="text" class="admin-filter-select" id="filter-search" placeholder="Firma adı ara…" style="max-width:200px;">
     <input type="text" class="admin-filter-select" id="filter-city" placeholder="Şehir filtrele…" style="max-width:160px;">
+    <select class="admin-filter-select" id="filter-sort" style="max-width:180px;">
+      <option value="date-desc">En yeni</option>
+      <option value="date-asc">En eski</option>
+      <option value="name-asc">Firma adı (A-Z)</option>
+      <option value="city-asc">Şehir (A-Z)</option>
+    </select>
   </div>
 
   <div class="admin-cards" id="admin-cards">
@@ -319,6 +325,15 @@ function applyFiltersAndRender() {
   if (hizmet) filtered = filtered.filter(a => (a.hizmet || []).includes(hizmet));
   if (city)   filtered = filtered.filter(a => (a.city || '').toLowerCase().includes(city));
   if (search) filtered = filtered.filter(a => (a.firm_name || '').toLowerCase().includes(search));
+
+  // Sıralama
+  const sort = document.getElementById('filter-sort')?.value || 'date-desc';
+  filtered = [...filtered].sort((a, b) => {
+    if (sort === 'date-asc')  return new Date(a.created_at) - new Date(b.created_at);
+    if (sort === 'name-asc')  return (a.firm_name||'').localeCompare(b.firm_name||'', 'tr');
+    if (sort === 'city-asc')  return (a.city||'').localeCompare(b.city||'', 'tr');
+    return new Date(b.created_at) - new Date(a.created_at); // date-desc varsayılan
+  });
 
   const container = document.getElementById('admin-cards');
   if (!filtered.length) {
@@ -673,6 +688,7 @@ document.getElementById('filter-tabs').addEventListener('click', function(e) {
 document.getElementById('filter-hizmet').addEventListener('change', applyFiltersAndRender);
 document.getElementById('filter-city').addEventListener('input', applyFiltersAndRender);
   document.getElementById('filter-search').addEventListener('input', applyFiltersAndRender);
+  document.getElementById('filter-sort').addEventListener('change', applyFiltersAndRender);
 
 /* ---- logout ---- */
 document.getElementById('admin-logout-btn').addEventListener('click', async function() {
