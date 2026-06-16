@@ -482,6 +482,13 @@ async function suspendFirm(app, btn) {
   // başvuru durumunu 'pending'e çek (tekrar onaylanabilsin)
   const { error: aErr } = await ER_Supabase.from('firm_applications').update({ status: 'pending' }).eq('id', app.id);
   if (fErr || aErr) { showToast('Hata: ' + ((fErr||aErr).message), true); btn.disabled = false; btn.textContent = 'Yayından kaldır'; return; }
+  // DOĞRULA: firms gerçekten gizlendi mi?
+  const { data: chk } = await ER_Supabase.from('firms').select('approved').eq('id', firmId);
+  if (chk && chk.length && chk[0].approved === true) {
+    showToast('Yayından kaldırılamadı — yetki sorunu olabilir.', true);
+    btn.disabled = false; btn.textContent = 'Yayından kaldır';
+    return;
+  }
   showToast('Firma yayından kaldırıldı. "Beklemede" listesine alındı.');
   loadApplications();
 }
@@ -492,11 +499,18 @@ async function deleteFirm(app, btn) {
   btn.disabled = true;
   btn.textContent = 'Siliniyor…';
   const firmId = slugify(app.firm_name) + '-' + app.id.substring(0, 4);
-  // firms tablosundan sil
+  // firms tablosundan sil (varsa)
   await ER_Supabase.from('firms').delete().eq('id', firmId);
   // başvuruyu sil
   const { error } = await ER_Supabase.from('firm_applications').delete().eq('id', app.id);
   if (error) { showToast('Silme hatası: ' + error.message, true); btn.disabled = false; btn.textContent = 'Sil'; return; }
+  // DOĞRULA: gerçekten silindi mi? (RLS sessiz başarısızlığını yakala)
+  const { data: still } = await ER_Supabase.from('firm_applications').select('id').eq('id', app.id);
+  if (still && still.length) {
+    showToast('Silinemedi — yetki sorunu olabilir. Değişiklik yapılmadı.', true);
+    btn.disabled = false; btn.textContent = 'Sil';
+    return;
+  }
   showToast('Firma kalıcı olarak silindi.');
   loadApplications();
 }
