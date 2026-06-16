@@ -89,6 +89,9 @@
 
 .admin-stat-chip.amber { background:#FFF8E8; color:#A06000; }
 .admin-stat-chip.teal { background:#E6F7F0; color:#1D9E75; }
+
+.admin-belge-unverify-btn { display:inline-flex; align-items:center; gap:5px; font-size:0.8125rem; font-weight:500; background:#FDECEC; color:#C0392B; border:1px solid #F5C6C6; padding:6px 14px; border-radius:8px; cursor:pointer; }
+.admin-belge-unverify-btn:hover { background:#FBDADA; }
 </style>
 </head>
 <body>
@@ -374,6 +377,9 @@ function renderCard(app) {
       ${(app.belgeler && app.belgeler.length && !app.dogrulanmis) ? `<button type="button" class="admin-belge-verify-btn" data-action="verify" data-id="${app.id}">
         <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> Belgeleri doğrula
       </button>` : ''}
+      ${app.dogrulanmis ? `<button type="button" class="admin-belge-unverify-btn" data-action="unverify" data-id="${app.id}">
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg> Doğrulamayı kaldır
+      </button>` : ''}
     </div>
 
     ${app.rejection_reason ? `<div style="font-size:0.8125rem;color:#C0392B;background:#FFF0F0;border:1px solid #F5B7B1;border-radius:8px;padding:0.5rem 0.75rem;margin-bottom:0.75rem;">Ret sebebi: ${esc(app.rejection_reason)}</div>` : ''}
@@ -441,6 +447,7 @@ function bindCardEvents() {
     if (btn.dataset.action === 'reject')  openRejectModal(app);
     if (btn.dataset.action === 'edit')    openEditModal(app);
     if (btn.dataset.action === 'verify')  verifyBelgeler(app, btn);
+    if (btn.dataset.action === 'unverify') unverifyBelgeler(app, btn);
     if (btn.dataset.action === 'suspend') suspendFirm(app, btn);
     if (btn.dataset.action === 'delete')  deleteFirm(app, btn);
   }, { once: false });
@@ -469,6 +476,21 @@ async function verifyBelgeler(app, btn) {
     await ER_Supabase.from('firms').update({ dogrulanmis: true }).eq('user_id', app.user_id);
   }
   showToast('Belgeler doğrulandı ✓ Firma artık "Doğrulanmış" rozeti alacak.');
+  loadApplications();
+}
+
+async function unverifyBelgeler(app, btn) {
+  if (!confirm(`"${app.firm_name}" firmasının doğrulamasını kaldırmak istiyor musun?\n\n"Doğrulanmış" rozeti kalkacak. Belgeler silinmez, tekrar doğrulayabilirsin.`)) return;
+  btn.disabled = true;
+  btn.textContent = 'Kaldırılıyor…';
+  const { error } = await ER_Supabase.from('firm_applications')
+    .update({ dogrulanmis: false, belge_durumu: 'beklemede' })
+    .eq('id', app.id);
+  if (error) { showToast('Hata: ' + error.message, true); btn.disabled = false; btn.textContent = 'Doğrulamayı kaldır'; return; }
+  if (app.user_id) {
+    await ER_Supabase.from('firms').update({ dogrulanmis: false }).eq('user_id', app.user_id);
+  }
+  showToast('Doğrulama kaldırıldı. Firma artık "Doğrulanmış" rozeti almayacak.');
   loadApplications();
 }
 
