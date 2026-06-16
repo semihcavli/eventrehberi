@@ -155,9 +155,50 @@
       wrap.hidden = !(sel && sel.value === 'sirket');
     }
     document.querySelectorAll('[name="firma-turu"]').forEach(function(r){
-      r.addEventListener('change', syncVergi);
+      r.addEventListener('change', function(){ syncVergi(); updateVergiReq(); });
     });
     syncVergi();
+  }
+
+  // Yüklenen belgeler: { tur: { path, ad } }
+  const uploadedBelgeler = {};
+
+  function updateVergiReq() {
+    const sel = document.querySelector('[name="firma-turu"]:checked');
+    const req = document.getElementById('vergi-req');
+    if (req) req.hidden = !(sel && sel.value === 'sirket');
+  }
+
+  async function uploadBelge(file, tur, item) {
+    const status = document.getElementById('wz-belge-status');
+    if (status) status.hidden = false;
+    const ext = (file.name.split('.').pop() || 'pdf').toLowerCase();
+    const path = currentUser.id + '/belge_' + tur + '_' + crypto.randomUUID() + '.' + ext;
+    const { error } = await ER_Supabase.storage
+      .from('firma-belgeler')
+      .upload(path, file, { cacheControl: '3600', upsert: true });
+    if (status) status.hidden = true;
+    if (error) {
+      const btn = item.querySelector('.wz-belge-btn');
+      if (btn) { btn.textContent = 'Hata, tekrar dene'; btn.classList.add('wz-belge-btn--err'); }
+      return;
+    }
+    uploadedBelgeler[tur] = { path: path, ad: file.name };
+    const btn = item.querySelector('.wz-belge-btn');
+    if (btn) { btn.textContent = '✓ Yüklendi'; btn.classList.add('wz-belge-btn--done'); }
+    item.classList.add('wz-belge-item--done');
+  }
+
+  function bindBelgeUpload() {
+    document.querySelectorAll('[data-belge]').forEach(function(input){
+      input.addEventListener('change', function(){
+        if (!input.files || !input.files[0]) return;
+        if (!currentUser) { alert('Önce giriş yapmalısın.'); return; }
+        const item = input.closest('.wz-belge-item');
+        uploadBelge(input.files[0], input.dataset.belge, item);
+      });
+    });
+    updateVergiReq();
   }
 
   function initWizard() {
@@ -165,6 +206,7 @@
     if (draft) showDraftBanner(draft);
     bindInputAutoSave();
     bindFirmaTuru();
+    bindBelgeUpload();
     bindNavButtons();
     bindCharCounter();
     bindDistrictLogic();
@@ -387,6 +429,13 @@
       const len = document.getElementById('tanitim').value.trim().length;
       if (len < 100) {
         showError('err-5', `En az 100 karakter gerekli (şu an: ${len}).`);
+        return false;
+      }
+    }
+    if (n === 6) {
+      const sel = document.querySelector('[name="firma-turu"]:checked');
+      if (sel && sel.value === 'sirket' && !uploadedBelgeler['vergi_levhasi']) {
+        showError('err-6', 'Şirket olarak vergi levhası yüklemen gerekiyor.');
         return false;
       }
     }
@@ -716,6 +765,8 @@
       tagline:     document.getElementById('tagline').value.trim(),
       firma_turu:  document.querySelector('[name="firma-turu"]:checked')?.value || null,
       vergi_no:    (document.getElementById('vergi-no')?.value || '').replace(/\D/g,'') || null,
+      belgeler:    Object.entries(uploadedBelgeler).map(([tur, b]) => ({ tur, path: b.path, ad: b.ad })),
+      belge_durumu: Object.keys(uploadedBelgeler).length ? 'beklemede' : 'yok',
       hizmet:      [document.querySelector('[name="kategori"]:checked')?.value].filter(Boolean),
       city:        document.getElementById('il').value,
       district:    ilceler.join(', '),
