@@ -10776,3 +10776,35 @@ label,
 .wz-firmatype-name { font-weight: 600; font-size: 0.9375rem; margin-top: 4px; }
 .wz-firmatype-desc { font-size: 0.8125rem; color: var(--color-text-muted, #888); }
 @media (max-width: 600px) { .wz-firmatype { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   Kayıt — Belgeler & Doğrulama
+   ============================================================ */
+.wz-belge-section { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #EFEAE0; }
+.wz-belge-title { display: flex; align-items: center; gap: 8px; font-size: 1.0625rem; margin: 0 0 4px; }
+.wz-belge-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 0.6875rem; font-weight: 500;
+  background: #E8F1EB; color: #1F4D33;
+  padding: 2px 8px; border-radius: 999px;
+}
+.wz-belge-hint { font-size: 0.8125rem; color: var(--color-text-muted, #888); margin: 0 0 1rem; line-height: 1.5; }
+.wz-belge-list { display: flex; flex-direction: column; gap: 0.5rem; }
+.wz-belge-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.875rem 1rem; border: 1px solid #E6DFCF; border-radius: 12px;
+  cursor: pointer; transition: all 0.15s ease;
+}
+.wz-belge-item:hover { border-color: #1F4D33; }
+.wz-belge-item--done { border-color: #1D9E75; background: #F0FAF5; }
+.wz-belge-info { display: flex; flex-direction: column; gap: 2px; }
+.wz-belge-name { font-weight: 500; font-size: 0.9375rem; color: #1F2D20; }
+.wz-belge-req { color: #C7522A; font-size: 0.8125rem; font-weight: 600; }
+.wz-belge-desc { font-size: 0.8125rem; color: var(--color-text-muted, #999); }
+.wz-belge-btn {
+  flex-shrink: 0; font-size: 0.8125rem; font-weight: 500;
+  background: #1F4D33; color: #fff;
+  padding: 7px 16px; border-radius: 8px;
+}
+.wz-belge-btn--done { background: #1D9E75; }
+.wz-belge-btn--err { background: #C7522A; }
