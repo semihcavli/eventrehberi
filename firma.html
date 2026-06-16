@@ -164,6 +164,8 @@
   text-transform: uppercase;
   letter-spacing: 0.3px;
 }
+
+.firm-badge-dogrulanmis { display:inline-flex; align-items:center; gap:4px; font-size:0.8125rem; font-weight:600; color:#1D9E75; background:#E6F7F0; padding:3px 10px; border-radius:999px; vertical-align:middle; margin-left:6px; }
 </style>
 <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <!-- Google Analytics 4 -->
@@ -1355,6 +1357,9 @@ document.querySelectorAll('.tab[data-panel]').forEach(tab => {
     h1.innerHTML = esc(firm.name) +
       (firm.status === 'onaylı' || firm.status === 'approved'
         ? ' <span class="firm-badge-verified"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01" fill="none" stroke="currentColor" stroke-width="2.5"/></svg> Onaylı Firma</span>'
+        : '') +
+      (firm.dogrulanmis
+        ? ' <span class="firm-badge-dogrulanmis" title="Belgeleri doğrulanmış firma"><svg viewBox="0 0 24 24" width="15" height="15" fill="#1D9E75"><path d="M12 2l2.2 1.5 2.6-.4 1.2 2.4 2.4 1.2-.4 2.6L23.5 12l-1.7 2.1.4 2.6-2.4 1.2-1.2 2.4-2.6-.4L12 22l-2.1-1.7-2.6.4-1.2-2.4-2.4-1.2.4-2.6L2.5 12l1.7-2.1-.4-2.6 2.4-1.2L7.4 3.7l2.6.4z"/><path d="M9.5 12.5l2 2 4-4.5" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Doğrulanmış</span>'
         : '');
   }
 
