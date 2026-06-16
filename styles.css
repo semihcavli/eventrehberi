@@ -10712,3 +10712,48 @@ label,
   .ab-hero-title { font-size: 1.625rem; }
   .ab-hero-overlay { padding: 1.75rem; }
 }
+
+/* ============================================================
+   Firma kartı zenginleştirme (puan + etiket + CTA)
+   ============================================================ */
+.firm-card-img { position: relative; }
+.firm-card-rating-wrap {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  display: flex; align-items: center; gap: 8px;
+  padding: 24px 12px 10px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.55));
+}
+.firm-card-rating-new {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: rgba(255,255,255,0.95);
+  color: #1F4D33;
+  font-size: 0.75rem; font-weight: 600;
+  padding: 2px 8px; border-radius: 6px;
+}
+.firm-card-reviews-new { color: #fff; font-size: 0.75rem; }
+
+.firm-card-tags {
+  display: flex; flex-wrap: wrap; gap: 5px;
+  margin: 0 0 10px;
+}
+.fc-tag {
+  display: inline-flex; align-items: center; gap: 3px;
+  font-size: 0.6875rem; font-weight: 500;
+  padding: 3px 8px; border-radius: 6px;
+}
+.fc-tag--green { background: #E8F1EB; color: #1F4D33; }
+.fc-tag--orange { background: #FBEAE2; color: #C7522A; }
+
+.firm-card-cta {
+  margin-top: 12px; padding-top: 12px;
+  border-top: 0.5px solid rgba(0,0,0,0.07);
+}
+.firm-card-cta-btn {
+  display: block; text-align: center;
+  background: #1F4D33; color: #fff;
+  font-size: 0.8125rem; font-weight: 500;
+  padding: 9px; border-radius: 8px;
+  transition: background 0.15s;
+}
+.firm-card:hover .firm-card-cta-btn { background: #163825; }
