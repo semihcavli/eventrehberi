@@ -473,6 +473,51 @@
           <span>Fotoğraflar yükleniyor...</span>
         </div>
         <div id="galeri-preview" class="gallery-preview-grid" style="margin-top:1rem;"></div>
+
+        <!-- Belgeler & Doğrulama -->
+        <div class="wz-belge-section">
+          <h3 class="wz-belge-title">Belgeler & doğrulama <span class="wz-belge-badge"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> Güven artırır</span></h3>
+          <p class="wz-belge-hint">Belgelerin <strong>gizli tutulur</strong>, profilinde gösterilmez. Onaylanınca <strong>"Doğrulanmış Firma"</strong> rozeti alırsın.</p>
+
+          <div class="wz-belge-list">
+            <label class="wz-belge-item" id="belge-vergi-item">
+              <div class="wz-belge-info">
+                <span class="wz-belge-name">Vergi levhası <span class="wz-belge-req" id="vergi-req" hidden>(zorunlu)</span></span>
+                <span class="wz-belge-desc">Şirket / işletme doğrulaması</span>
+              </div>
+              <input type="file" data-belge="vergi_levhasi" accept="image/*,.pdf" class="file-input-hidden">
+              <span class="wz-belge-btn">Yükle</span>
+            </label>
+
+            <label class="wz-belge-item">
+              <div class="wz-belge-info">
+                <span class="wz-belge-name">Kimlik / İmza sirküleri</span>
+                <span class="wz-belge-desc">Yetkili kişi doğrulaması</span>
+              </div>
+              <input type="file" data-belge="kimlik" accept="image/*,.pdf" class="file-input-hidden">
+              <span class="wz-belge-btn">Yükle</span>
+            </label>
+
+            <label class="wz-belge-item">
+              <div class="wz-belge-info">
+                <span class="wz-belge-name">Sertifika / Ruhsat</span>
+                <span class="wz-belge-desc">Hijyen, işyeri ruhsatı vb.</span>
+              </div>
+              <input type="file" data-belge="sertifika" accept="image/*,.pdf" class="file-input-hidden">
+              <span class="wz-belge-btn">Yükle</span>
+            </label>
+
+            <label class="wz-belge-item">
+              <div class="wz-belge-info">
+                <span class="wz-belge-name">Portfolyo / Referans</span>
+                <span class="wz-belge-desc">Geçmiş iş, müşteri referansı</span>
+              </div>
+              <input type="file" data-belge="portfolyo" accept="image/*,.pdf" class="file-input-hidden">
+              <span class="wz-belge-btn">Yükle</span>
+            </label>
+          </div>
+          <div id="wz-belge-status" class="wz-uploading" hidden><div class="wz-spinner"></div><span>Belge yükleniyor...</span></div>
+        </div>
       </div>
 
       <!-- ======= STEP 7: Fiyat + Deneyim ======= -->
