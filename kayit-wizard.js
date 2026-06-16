@@ -147,10 +147,20 @@
     initWizard();
   });
 
+  function bindFirmaTuru() {
+    const wrap = document.getElementById('vergi-no-wrap');
+    document.querySelectorAll('[name="firma-turu"]').forEach(function(r){
+      r.addEventListener('change', function(){
+        if (wrap) wrap.hidden = (r.value !== 'sirket') || !r.checked;
+      });
+    });
+  }
+
   function initWizard() {
     const draft = loadDraft();
     if (draft) showDraftBanner(draft);
     bindInputAutoSave();
+    bindFirmaTuru();
     bindNavButtons();
     bindCharCounter();
     bindDistrictLogic();
@@ -358,6 +368,12 @@
       }
     }
     if (n === 4) {
+      const firmaTuru = document.querySelector('[name="firma-turu"]:checked');
+      if (!firmaTuru) { showError('err-4', 'Lütfen firma türünü seç (Şirket veya Bireysel).'); return false; }
+      if (firmaTuru.value === 'sirket') {
+        const vno = (document.getElementById('vergi-no').value || '').replace(/\D/g,'');
+        if (vno.length < 10) { showError('err-4', 'Şirket için geçerli bir vergi numarası gir (en az 10 hane).'); return false; }
+      }
       const ad = document.getElementById('firma-adi').value.trim();
       const tg = document.getElementById('tagline').value.trim();
       if (ad.length < 2) { showError('err-4', 'Firma adı en az 2 karakter olmalı.'); return false; }
@@ -694,6 +710,8 @@
       user_id:     currentUser.id,
       firm_name:   document.getElementById('firma-adi').value.trim(),
       tagline:     document.getElementById('tagline').value.trim(),
+      firma_turu:  document.querySelector('[name="firma-turu"]:checked')?.value || null,
+      vergi_no:    (document.getElementById('vergi-no')?.value || '').replace(/\D/g,'') || null,
       hizmet:      [document.querySelector('[name="kategori"]:checked')?.value].filter(Boolean),
       city:        document.getElementById('il').value,
       district:    ilceler.join(', '),
