@@ -100,6 +100,16 @@
 .admin-bulk-approve { background:#1D9E75; color:#fff; }
 .admin-bulk-reject { background:#fff; color:#C0392B; }
 .admin-bulk-clear { background:transparent; color:rgba(255,255,255,0.8); border:1px solid rgba(255,255,255,0.3); }
+
+.admin-distro { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-bottom:1.5rem; }
+.admin-distro-col { background:#fff; border:1px solid #ECE5D8; border-radius:12px; padding:1rem 1.25rem; }
+.admin-distro-title { font-size:0.875rem; font-weight:600; color:#5a5a52; margin:0 0 0.875rem; }
+.admin-distro-row { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+.admin-distro-label { font-size:0.8125rem; color:#3a3a35; width:120px; flex-shrink:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.admin-distro-track { flex:1; height:8px; background:#F1EFE8; border-radius:999px; overflow:hidden; }
+.admin-distro-fill { height:100%; border-radius:999px; }
+.admin-distro-val { font-size:0.8125rem; font-weight:600; color:#1F2D20; width:24px; text-align:right; }
+@media (max-width:700px){ .admin-distro { grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
@@ -127,6 +137,7 @@
   </div>
 
   <div class="admin-stats-bar" id="admin-stats-bar"></div>
+  <div class="admin-distro" id="admin-distro"></div>
 
   <!-- Main section tabs -->
   <div class="hbm-admin-tabs" style="margin-bottom:1rem;">
@@ -329,6 +340,45 @@ function renderStats() {
     `<span class="admin-stat-chip teal">Doğrulanmış: ${dogrulanmis}</span>`,
     `<span class="admin-stat-chip">Bu hafta: ${buHafta}</span>`,
   ].join('');
+  renderDistro();
+}
+
+function renderDistro() {
+  const distro = document.getElementById('admin-distro');
+  if (!distro) return;
+  // Sadece onaylı firmalar üzerinden dağılım
+  const onayli = allApplications.filter(a => a.status === 'approved');
+  if (!onayli.length) { distro.innerHTML = ''; return; }
+
+  // Kategori dağılımı
+  const katCount = {};
+  onayli.forEach(a => { const k = (a.hizmet||[])[0]; if (k) katCount[k] = (katCount[k]||0)+1; });
+  const katTop = Object.entries(katCount).sort((a,b)=>b[1]-a[1]).slice(0,5);
+
+  // Şehir dağılımı
+  const sehirCount = {};
+  onayli.forEach(a => { if (a.city) sehirCount[a.city] = (sehirCount[a.city]||0)+1; });
+  const sehirTop = Object.entries(sehirCount).sort((a,b)=>b[1]-a[1]).slice(0,5);
+
+  const maxKat = katTop.length ? katTop[0][1] : 1;
+  const maxSehir = sehirTop.length ? sehirTop[0][1] : 1;
+
+  const bar = (label, val, max, color) => `
+    <div class="admin-distro-row">
+      <span class="admin-distro-label">${esc(label)}</span>
+      <div class="admin-distro-track"><div class="admin-distro-fill" style="width:${Math.round(val/max*100)}%;background:${color};"></div></div>
+      <span class="admin-distro-val">${val}</span>
+    </div>`;
+
+  distro.innerHTML = `
+    <div class="admin-distro-col">
+      <h4 class="admin-distro-title">Kategori dağılımı</h4>
+      ${katTop.map(([k,v]) => bar(HIZMET_LBL[k]||k, v, maxKat, '#1F4D33')).join('')}
+    </div>
+    <div class="admin-distro-col">
+      <h4 class="admin-distro-title">Şehir dağılımı</h4>
+      ${sehirTop.map(([k,v]) => bar(k, v, maxSehir, '#C7522A')).join('')}
+    </div>`;
 }
 
 function applyFiltersAndRender() {
