@@ -149,11 +149,15 @@
 
   function bindFirmaTuru() {
     const wrap = document.getElementById('vergi-no-wrap');
+    function syncVergi() {
+      if (!wrap) return;
+      const sel = document.querySelector('[name="firma-turu"]:checked');
+      wrap.hidden = !(sel && sel.value === 'sirket');
+    }
     document.querySelectorAll('[name="firma-turu"]').forEach(function(r){
-      r.addEventListener('change', function(){
-        if (wrap) wrap.hidden = (r.value !== 'sirket') || !r.checked;
-      });
+      r.addEventListener('change', syncVergi);
     });
+    syncVergi();
   }
 
   function initWizard() {
